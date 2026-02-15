@@ -1,0 +1,63 @@
+baseURL = 'https://puget.audio'
+languageCode = 'en-us'
+title = 'Puget Audio'
+theme = 'puget-theme'
+
+[params]
+  tagline = "Professional Audio Hardware for Creators"
+  description = "Premium audio interfaces and guitar effects pedals engineered in the Pacific Northwest"
+  selling = true
+  stock_display_cap = 50
+  price = 299.00
+  currency = "USD"
+  
+  [params.brand]
+    name = "Puget Audio"
+    key = "puget"
+    logo = "/images/puget-logo.svg"
+  
+  [params.seo]
+    description = "Puget Audio - Professional audio interfaces and guitar effects pedals engineered in the Pacific Northwest"
+    keywords = ["audio interface", "guitar pedal", "effects pedal", "studio equipment", "PNW audio", "professional audio"]
+  
+  [params.social]
+    image = "/images/puget-og.jpg"
+    twitter = "@pugetaudio"
+  
+  [params.api]
+    base = "https://api.gsgmfg.com"
+  
+  [params.fluidpay]
+    tokenizerScript = "https://app.fluidpay.com/tokenizer/tokenizer.js"
+    publicKey = "your-fluidpay-public-key"
+
+[menu]
+  [[menu.main]]
+    name = 'Products'
+    url = '/#products'
+    weight = 10
+  
+  [[menu.main]]
+    name = 'Features'
+    url = '/#features'
+    weight = 20
+  
+  [[menu.main]]
+    name = 'Sound'
+    url = '/#demos'
+    weight = 30
+  
+  [[menu.main]]
+    name = 'Specs'
+    url = '/#specs'
+    weight = 40
+
+[taxonomies]
+  tag = 'tags'
+
+[module]
+  [[module.imports]]
+    path = "github.com/FuturePresentLabs/gsg-ecommerce"
+
+[build]
+  writeStats = true
