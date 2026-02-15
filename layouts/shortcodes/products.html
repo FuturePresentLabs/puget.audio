@@ -4,8 +4,8 @@
     <div class="product-card featured">
       <div class="product-image">
         {{ $product := resources.Get "images/pedal-product.jpg" }}
-        {{ $productResized := $product.Resize "400x300" }}
-        <img src="{{ $productResized.RelPermalink }}" alt="The Overdrive" width="400" height="300" />
+        {{ $productCropped := $product.Fill "400x300 center" }}
+        <img src="{{ $productCropped.RelPermalink }}" alt="The Overdrive" width="400" height="300" />
       </div>
       <h3>The Overdrive</h3>
       <p class="price">$149</p>
@@ -15,8 +15,8 @@
     <div class="product-card">
       <div class="product-image">
         {{ $detail := resources.Get "images/pedal-detail.jpg" }}
-        {{ $detailResized := $detail.Resize "400x300" }}
-        <img src="{{ $detailResized.RelPermalink }}" alt="The Fuzz" width="400" height="300" />
+        {{ $detailCropped := $detail.Fill "400x300 center" }}
+        <img src="{{ $detailCropped.RelPermalink }}" alt="The Fuzz" width="400" height="300" />
       </div>
       <h3>The Fuzz</h3>
       <p class="price">$129</p>
@@ -26,8 +26,8 @@
     <div class="product-card">
       <div class="product-image">
         {{ $life := resources.Get "images/pedal-lifestyle.jpg" }}
-        {{ $lifeResized := $life.Resize "400x300" }}
-        <img src="{{ $lifeResized.RelPermalink }}" alt="The Delay" width="400" height="300" />
+        {{ $lifeCropped := $life.Fill "400x300 center" }}
+        <img src="{{ $lifeCropped.RelPermalink }}" alt="The Delay" width="400" height="300" />
       </div>
       <h3>The Delay</h3>
       <p class="price">$179</p>
