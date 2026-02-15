@@ -1,6 +1,6 @@
 ---
 title: "Puget Audio"
-description: "Professional Audio Hardware for Creators"
+description: "Analog FX Pedals for Guitar & Bass - Coming Soon"
 ---
 
 {{< hero >}}
@@ -11,8 +11,6 @@ description: "Professional Audio Hardware for Creators"
 
 {{< demos >}}
 
-{{< specs >}}
-
-{{< testimonials >}}
+{{< signup >}}
 
 {{< faq >}}

@@ -1,16 +1,38 @@
 <section id="products" class="products">
-  <h2>Our Products</h2>
+  <h2>The Lineup</h2>
   <div class="product-grid">
     <div class="product-card featured">
       <div class="product-image">
         {{ $product := resources.Get "images/pedal-product.jpg" }}
         {{ $productResized := $product.Resize "400x300" }}
-        <img src="{{ $productResized.RelPermalink }}" alt="Puget Audio Interface" width="400" height="300" />
+        <img src="{{ $productResized.RelPermalink }}" alt="The Overdrive" width="400" height="300" />
       </div>
-      <h3>Puget Audio Interface</h3>
-      <p class="price">$299.00</p>
-      <p class="description">24-bit/192kHz USB-C audio interface with premium preamps</p>
-      <a href="/checkout" class="btn-primary">Buy Now</a>
+      <h3>The Overdrive</h3>
+      <p class="price">$149</p>
+      <p class="description">Classic tube screamer warmth with expanded gain range. True bypass.</p>
+      <span class="badge">Limited First Run</span>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        {{ $detail := resources.Get "images/pedal-detail.jpg" }}
+        {{ $detailResized := $detail.Resize "400x300" }}
+        <img src="{{ $detailResized.RelPermalink }}" alt="The Fuzz" width="400" height="300" />
+      </div>
+      <h3>The Fuzz</h3>
+      <p class="price">$129</p>
+      <p class="description">Germanium transistor fuzz with bias control. From mild crunch to velcro rippage.</p>
+      <span class="badge">Coming Soon</span>
+    </div>
+    <div class="product-card">
+      <div class="product-image">
+        {{ $life := resources.Get "images/pedal-lifestyle.jpg" }}
+        {{ $lifeResized := $life.Resize "400x300" }}
+        <img src="{{ $lifeResized.RelPermalink }}" alt="The Delay" width="400" height="300" />
+      </div>
+      <h3>The Delay</h3>
+      <p class="price">$179</p>
+      <p class="description">Analog bucket-brigade delay with modulation. 600ms of warm repeats.</p>
+      <span class="badge">In Development</span>
     </div>
   </div>
 </section>

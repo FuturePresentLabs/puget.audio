@@ -7,19 +7,20 @@
       {{ $logo := resources.Get "images/puget-logo.jpg" }}
       {{ $logoCropped := $logo.Crop "400x400 center" }}
       {{ $logoResized := $logoCropped.Resize "200x200" }}
-      <img src="{{ $logoResized.RelPermalink }}" alt="Puget Audio - Professional Audio Hardware" width="200" height="200" />
+      <img src="{{ $logoResized.RelPermalink }}" alt="Puget Audio - Analog FX Pedals" width="200" height="200" />
     </div>
     <h1>Puget Audio</h1>
-    <p class="tagline">Professional Audio Hardware for Creators</p>
-    <p class="description">Premium audio interfaces and guitar effects pedals engineered in the Pacific Northwest</p>
+    <p class="tagline">Analog FX Pedals for Guitar & Bass</p>
+    <p class="description">Handcrafted in the Pacific Northwest. Vintage tone, modern reliability.</p>
     <div class="hero-cta">
-      <a href="#products" class="btn-primary">Explore Products</a>
-      <a href="#demos" class="btn-secondary">Hear the Difference</a>
+      <a href="#signup" class="btn-primary">Join the Waitlist</a>
+      <a href="#demos" class="btn-secondary">Hear the Tone</a>
     </div>
+    <p class="coming-soon">Coming 2026</p>
   </div>
   <div class="hero-image">
     {{ $hero := resources.Get "images/pedal-hero.jpg" }}
     {{ $heroResized := $hero.Resize "600x400" }}
-    <img src="{{ $heroResized.RelPermalink }}" alt="Puget Audio Pedal - Dramatic monochromatic shot with smoke effects" width="600" height="400" />
+    <img src="{{ $heroResized.RelPermalink }}" alt="Puget Audio Analog Pedal" width="600" height="400" />
   </div>
 </section>
