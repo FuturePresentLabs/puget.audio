@@ -4,7 +4,10 @@
   </div>
   <div class="hero-content">
     <div class="logo-emblem">
-      <img src="/images/puget-logo.jpg" alt="Puget Audio - Professional Audio Hardware" />
+      {{ $logo := resources.Get "images/puget-logo.jpg" }}
+      {{ $logoCropped := $logo.Crop "400x400 center" }}
+      {{ $logoResized := $logoCropped.Resize "200x200" }}
+      <img src="{{ $logoResized.RelPermalink }}" alt="Puget Audio - Professional Audio Hardware" width="200" height="200" />
     </div>
     <h1>Puget Audio</h1>
     <p class="tagline">Professional Audio Hardware for Creators</p>
@@ -15,6 +18,8 @@
     </div>
   </div>
   <div class="hero-image">
-    <img src="/images/pedal-hero.jpg" alt="Puget Audio Pedal - Dramatic monochromatic shot with smoke effects" />
+    {{ $hero := resources.Get "images/pedal-hero.jpg" }}
+    {{ $heroResized := $hero.Resize "600x400" }}
+    <img src="{{ $heroResized.RelPermalink }}" alt="Puget Audio Pedal - Dramatic monochromatic shot with smoke effects" width="600" height="400" />
   </div>
 </section>
