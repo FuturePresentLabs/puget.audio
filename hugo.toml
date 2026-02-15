@@ -55,9 +55,8 @@ theme = 'puget-theme'
 [taxonomies]
   tag = 'tags'
 
-[module]
-  [[module.imports]]
     path = "github.com/FuturePresentLabs/gsg-ecommerce"
 
 [build]
   writeStats = true
+theme = 'puget-theme'
