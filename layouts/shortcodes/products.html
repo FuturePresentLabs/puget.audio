@@ -1,35 +1,25 @@
 <section id="products" class="products">
-  <h2>The Lineup</h2>
+  <h2>Studio-Grade Audio Tools</h2>
   <div class="product-grid">
     <div class="product-card featured">
       <div class="product-image">
         {{ $product := resources.Get "images/pedal-product.jpg" }}
         {{ $productCropped := $product.Fill "400x300 center" }}
-        <img src="{{ $productCropped.RelPermalink }}" alt="The Overdrive" width="400" height="300" />
+        <img src="{{ $productCropped.RelPermalink }}" alt="VST3 Plugins" width="400" height="300" />
       </div>
-      <h3>The Overdrive</h3>
-      <p class="description">Classic tube screamer warmth with expanded gain range. True bypass.</p>
-      <span class="badge">Limited First Run</span>
+      <h3>VST3 Plugins</h3>
+      <p class="description">Professional effect emulations for your DAW. Circuit-accurate models that respond like the real thing.</p>
+      <span class="badge">Coming Soon</span>
     </div>
     <div class="product-card">
       <div class="product-image">
         {{ $detail := resources.Get "images/pedal-detail.jpg" }}
         {{ $detailCropped := $detail.Fill "400x300 center" }}
-        <img src="{{ $detailCropped.RelPermalink }}" alt="The Fuzz" width="400" height="300" />
+        <img src="{{ $detailCropped.RelPermalink }}" alt="Hardware Pedals" width="400" height="300" />
       </div>
-      <h3>The Fuzz</h3>
-      <p class="description">Germanium transistor fuzz with bias control. From mild crunch to velcro rippage.</p>
+      <h3>Hardware Pedals</h3>
+      <p class="description">Hand-assembled effects machined in our Seattle workshop. Original designs for working musicians.</p>
       <span class="badge">Coming Soon</span>
-    </div>
-    <div class="product-card">
-      <div class="product-image">
-        {{ $life := resources.Get "images/pedal-lifestyle.jpg" }}
-        {{ $lifeCropped := $life.Fill "400x300 center" }}
-        <img src="{{ $lifeCropped.RelPermalink }}" alt="The Delay" width="400" height="300" />
-      </div>
-      <h3>The Delay</h3>
-      <p class="description">Analog bucket-brigade delay with modulation. 600ms of warm repeats.</p>
-      <span class="badge">In Development</span>
     </div>
   </div>
 </section>
