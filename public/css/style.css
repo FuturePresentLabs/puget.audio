@@ -342,6 +342,20 @@ body {
   line-height: 1.7;
 }
 
+.feature-image {
+  margin: 1rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.feature-image img {
+  width: 100%;
+  height: auto;
+  max-width: 400px;
+  display: block;
+  border-radius: 8px;
+}
+
 /* Signup Section */
 .signup {
   padding: 6rem 2rem;
@@ -355,6 +369,20 @@ body {
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+}
+
+.signup-image {
+  margin: 0 auto 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  max-width: 600px;
+}
+
+.signup-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
 }
 
 .signup-subtitle {
