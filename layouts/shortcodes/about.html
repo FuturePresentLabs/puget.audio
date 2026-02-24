@@ -7,6 +7,11 @@
     </div>
     <div class="feature">
       <h3>Seattle Craftsmanship</h3>
+      <div class="feature-image">
+        {{ $workshop := resources.Get "images/puget_workshop_cnc.png" }}
+        {{ $workshopCropped := $workshop.Fill "400x250 center" }}
+        <img src="{{ $workshopCropped.RelPermalink }}" alt="Belltown Workshop" width="400" height="250" />
+      </div>
       <p>Our hardware is machined and assembled in-house at our Belltown workshop. Our software is developed by engineers who understand both code and solder. Craftsman-quality tools built by people who use them.</p>
     </div>
     <div class="feature">
