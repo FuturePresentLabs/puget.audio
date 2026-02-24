@@ -270,6 +270,120 @@ Every resistor, capacitor, inductor, and semiconductor is modeled as it behaves 
 
 ---
 
-*Document Version: 1.0*
+## Phase 3: Hardware Pedals (Physical)
+
+**Manufactured in-house at Future Present Labs in Seattle.**
+
+All hardware pedals use circuits composed entirely of validated WDF-modeled components from the PedalKernel engine. Hardware and software share identical circuit DNA — the same resistors, capacitors, op-amps, and photocouplers exist as validated models in both domains.
+
+---
+
+### Phase Lock — Frequency-Aware Parallel Signal Processor
+**Price:** $200–$260
+
+**The Problem:**
+Every bass player with a dirt pedal knows it: blend clean signal with distorted signal, and the low end disappears. The result is hollow, phasey, and thin. Simple parallel mixing ignores phase relationships, frequency overlap, and dynamics mismatch.
+
+**The Engineering Fix:**
+Phase Lock splits the input through a 4th-order Linkwitz-Riley active crossover, sends only the highs through an effects loop (where the player patches their dirt/fuzz/synth pedals), and recombines processed highs with untouched clean lows.
+
+**Technical Details:**
+- **Crossover:** 4th-order Linkwitz-Riley (LR4), 80–500Hz adjustable
+- **Summation:** Flat magnitude + phase coherence at crossover point
+- **Dynamics Matcher:** Dual-envelope compressor driven by VTL5C3 photocoupler
+- **Purpose:** Matches clean path dynamic range to dirty path for consistent blend
+- **Power:** Internal charge pump (9V → 18V) for headroom
+- **Enclosure:** 1590BB, four jacks (INPUT, OUTPUT, SEND, RETURN)
+
+**Controls:**
+- CROSSOVER: 80–500Hz
+- BLEND: Clean/dirty ratio
+- DYNAMICS: Matching intensity
+- VOLUME: Output level
+
+**Why Phase Lock First:**
+1. Addresses universal, well-understood bass player pain point
+2. Uses only validated WDF components: TL072, JFET buffers, photocouplers, envelope followers
+3. Positions Puget Audio as engineering-first problem solvers, not vintage cloners
+4. Establishes hardware build quality standard for the line
+5. Strong margins: BOM $35–55, retail $200–260
+
+**Competitive Landscape:**
+| Product | Price | Approach |
+|---------|-------|----------|
+| Boss LS-2 | $100 | Simple A+B mixer, no crossover, no phase alignment |
+| Darkglass (blend knobs) | $200–$300 | Full-range mixing, no frequency separation |
+| **Phase Lock** | **$200–$260** | **Crossover + phase alignment + dynamics matching** |
+
+---
+
+### String Time — Analog String-Age Simulator
+**Price:** $160–$200
+
+**The Concept:**
+Spectral reshaping pedal that simulates bass string tonal character at every stage of life — from zingy new roundwounds to dead, woody thump of six-month-old flatwounds.
+
+**One Knob (AGE):** Sweeps continuously through entire string-aging spectrum.
+
+**Not a Tone Knob:**
+String aging is complex, multi-dimensional spectral transformation:
+- Higher harmonics die first
+- Transient brightness fades
+- Inharmonicity increases
+- Fundamental-to-harmonic ratio shifts
+
+A tone knob addresses ~10% of this. String Time models the full phenomenon.
+
+**Dual-Path Analog Processing:**
+- Path 1: Fundamental preservation with controlled harmonic decay
+- Path 2: Inharmonicity and transient shaping
+- AGE knob: Continuously morphs between new/aged spectra
+
+**Applications:**
+- Dial in "broken-in" tone with brand new strings
+- Simulate flatwound thump without changing strings
+- Match bass tone to vintage recordings
+- Create evolving timbres for ambient/experimental
+
+---
+
+## Hardware Differentiation
+
+**Software→Hardware Pipeline:**
+1. Circuit designed in PedalKernel WDF environment
+2. Component models validated against real parts
+3. PCB layout optimized for audio performance
+4. CNC-machined enclosures in-house (Seattle)
+5. Hand-assembled and tested
+
+**WDF-First Design:**
+Every resistor, capacitor, and semiconductor exists as a validated WDF model before the hardware is built. The plugin and hardware versions are mathematically identical.
+
+**Open Technology:**
+Circuit topology documented, WDF models open-source in PedalKernel. Buy the hardware for the craftsmanship and convenience — the knowledge is free.
+
+---
+
+## Complete Product Matrix
+
+| Category | Product | Price | Status |
+|----------|---------|-------|--------|
+| **Pedals (Plugins)** | Tube Screamer | $19–$29 | Q1 2026 |
+| | CE-2 Chorus | $19–$29 | Q1 2026 |
+| | Big Muff Pi | $19–$29 | Q1 2026 |
+| | ProCo RAT | $19–$29 | Q1 2026 |
+| | Univibe | $19–$29 | Q2 2026 |
+| | Rangemaster | $19–$29 | Q2 2026 |
+| **Studio (Plugins)** | Passive EQ | $59–$99 | Q2 2026 |
+| | Opto Compressor | $79–$119 | Q3 2026 |
+| | FET Limiter | $89–$129 | Q4 2026 |
+| | Channel Strip | $99–$149 | Q4 2026 |
+| | Variable-Mu | $129–$179 | Q4 2026 |
+| **Hardware** | Phase Lock | $200–$260 | TBD |
+| | String Time | $160–$200 | TBD |
+
+---
+
+*Document Version: 1.1*
 *Last Updated: 2026-02-24*
-*Status: Planning Phase*
+*Status: Planning Phase — Hardware Specs Draft*
