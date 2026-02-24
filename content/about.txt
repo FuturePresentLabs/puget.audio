@@ -6,6 +6,6 @@ Every product starts with the same question: what would this circuit do if we mo
 
 The result is software that responds to your playing like analog gear. Because under the hood, it is analog. Just transformed into mathematics.
 
-Based in Seattle. Built in a machine shop. Rooted in open technology.
+Based in Seattle. Rooted in open technology.
 
 Serious tools for serious musicians.
