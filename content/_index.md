@@ -1,6 +1,6 @@
 ---
 title: "Puget Audio"
-description: "Analog FX Pedals for Guitar & Bass - Coming Soon"
+description: "Circuit-Accurate Effects. Seattle Craftsmanship."
 ---
 
 {{< hero >}}
