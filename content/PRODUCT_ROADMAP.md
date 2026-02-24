@@ -332,18 +332,49 @@ String aging is complex, multi-dimensional spectral transformation:
 - Inharmonicity increases
 - Fundamental-to-harmonic ratio shifts
 
-A tone knob addresses ~10% of this. String Time models the full phenomenon.
+A tone knob addresses ~10% of this. String Time models the full phenomenon through dual-path analog processing.
 
-**Dual-Path Analog Processing:**
-- Path 1: Fundamental preservation with controlled harmonic decay
-- Path 2: Inharmonicity and transient shaping
-- AGE knob: Continuously morphs between new/aged spectra
+**Circuit Architecture:**
 
-**Applications:**
-- Dial in "broken-in" tone with brand new strings
-- Simulate flatwound thump without changing strings
-- Match bass tone to vintage recordings
-- Create evolving timbres for ambient/experimental
+**Fresh Side (AGE fully CCW):**
+- Harmonic enhancer based on simplified Aphex Aural Exciter topology
+- HPF isolation of upper harmonics
+- Asymmetric soft clipping (germanium + silicon diodes) generates 2nd and 3rd order harmonics
+- Filtered and mixed back at low level
+- Adds "zing" and "sparkle" of new roundwounds to any string
+
+**Dead Side (AGE fully CW):**
+- Progressive harmonic suppressor
+- Cascaded multi-stage LPFs: 1st-order at 4kHz, 2nd-order Sallen-Key at 2kHz
+- Resonant notch at 800Hz for characteristic "scooped" quality of dead strings
+- Envelope-driven transient softener (VTL5C1 fast photocoupler) attenuates initial pick attack's high-frequency content
+- Dead strings don't "zing" on the attack — they "thud"
+
+**Noon Position:**
+Neither path active. Signal passes flat. Represents strings at 3–4 weeks — the "broken in" sweet spot most players prefer.
+
+**AGE Pot Taper:**
+Dual-gang pot with shaped taper mapping musically to string-aging timeline:
+- 7:00–10:00: Very fresh
+- 10:00–12:00: Subtle enhancement
+- 12:00: Flat (broken in)
+- 12:00–2:00: Subtle aging
+- 2:00–5:00: Dead flatwound territory
+
+**Controls:**
+- AGE (one knob — that's it)
+
+**Why String Time Second:**
+1. Creates new product category — no pedal/plugin/outboard marketed as string-age simulator
+2. Zero direct competitors
+3. Addressable market: entire bass-playing population (not just dirt pedal users)
+4. Single-knob interface infinitely shareable — 5 seconds of video communicates value
+5. Low BOM ($26–40), excellent margins at $160–200
+6. Compact enclosure (1590B or 125B)
+7. All components exist in PedalKernel WDF library
+
+**Critical Success Factor:**
+Voicing must NOT sound like "just a tone knob." The transient softener and harmonic enhancer are the differentiators and must be validated through blind listening tests with real bass players before production.
 
 ---
 
@@ -384,6 +415,48 @@ Circuit topology documented, WDF models open-source in PedalKernel. Buy the hard
 
 ---
 
-*Document Version: 1.1*
+## The Narrative
+
+**"We don't approximate analog. We simulate it."**
+
+Every product — free or premium, software or hardware — is built on the same WDF engine that models actual circuits at the component level. When you turn the tone knob on a Puget Tube Screamer plugin, you're not moving a parameter on a curve-fit approximation. You're changing the value of a capacitor in a simulated RC network that interacts with every other component in the circuit, just like the real thing.
+
+The PedalKernel engine is open source, so the approach is verifiable. The Puget Audio products are where that technology gets packaged into polished, professional tools — both in software and in hardware that you can bolt to your pedalboard.
+
+**Built in Seattle. Modeled from the circuit up.**
+
+---
+
+## Competitive Positioning Matrix
+
+| | PedalKernel Free | Puget Audio Plugins | Puget Audio Hardware |
+|---|---|---|---|
+| **Price** | $0–$19 | $49–$179 | $160–$260 |
+| **Audience** | Developers, DIY, budget | Professionals, enthusiasts | Bass players, gigging musicians, gear collectors |
+| **Competitors** | Analog modeling OSS (e.g., guitarix, CAPS) | UAD, Waves, Neural DSP, Arturia | Boss LS-2, Xotic X-Blender (Phase Lock); no competitors (String Time) |
+| **Differentiator** | Open-source WDF, inspectable models | Circuit-accurate WDF at lower prices than UA | Original designs solving real problems; WDF-modeled components; machined in-house in Seattle |
+
+---
+
+## Long-Term Vision
+
+**The Ecosystem Endgame:**
+
+PedalKernel is the open engine that proves the technology. Puget Audio is the product brand that monetizes it. The hardware pedals create a physical platform that generates recurring revenue through downloadable models.
+
+**The Model Marketplace:**
+Third-party developers can sell their own WDF circuit models for Puget hardware — turning the platform into something self-sustaining.
+
+**The Flywheel:**
+- Machine shop manufactures the hardware
+- WDF engine powers the software
+- Open-source community validates the science
+- Every product feeds every other product
+
+Everything feeds everything else.
+
+---
+
+*Document Version: 1.2*
 *Last Updated: 2026-02-24*
-*Status: Planning Phase — Hardware Specs Draft*
+*Status: Planning Phase — Hardware Specs Complete*
