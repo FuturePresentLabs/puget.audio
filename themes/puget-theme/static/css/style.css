@@ -1630,3 +1630,620 @@ body {
     padding: 1.5rem;
   }
 }
+
+/* ========================================
+   AMPS PAGE
+   ======================================== */
+
+/* --- Amps Hero --- */
+.amps-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 2rem 4rem;
+}
+
+.amps-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -20%, rgba(74, 103, 65, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(201, 169, 110, 0.06) 0%, transparent 40%),
+    var(--bg-primary);
+  z-index: -2;
+}
+
+.amps-noise-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  z-index: -1;
+}
+
+.amps-glow-orb {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(74, 103, 65, 0.06) 0%, transparent 60%);
+  z-index: -1;
+  animation: pulse 8s ease-in-out infinite;
+}
+
+.amps-hero-content {
+  text-align: center;
+  max-width: 700px;
+  z-index: 1;
+}
+
+.amps-hero-title {
+  font-size: clamp(3rem, 8vw, 5.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #fff 0%, #c0c0c0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.amps-hero-names {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.amps-hero-subhead {
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  color: var(--text-primary);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.amps-hero-description {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 2.5rem;
+}
+
+/* --- Amps Email Form (reused in hero + bottom) --- */
+.amps-hero-cta {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.amps-email-form {
+  text-align: center;
+}
+
+.amps-email-label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.amps-email-row {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.amps-email-row input[type="email"] {
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  min-width: 260px;
+  flex: 1;
+  max-width: 320px;
+  transition: border-color 0.2s ease;
+}
+
+.amps-email-row input[type="email"]:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.amps-email-row .btn-primary {
+  white-space: nowrap;
+}
+
+/* --- Why It's Different --- */
+.amps-why {
+  padding: 6rem 2rem;
+  background: var(--bg-secondary);
+}
+
+.amps-why h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+}
+
+.amps-why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.amps-why-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: border-color 0.3s ease;
+}
+
+.amps-why-card:hover {
+  border-color: rgba(201, 169, 110, 0.25);
+}
+
+.amps-why-icon {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  background: rgba(201, 169, 110, 0.08);
+  color: var(--accent);
+  margin-bottom: 1.25rem;
+}
+
+.amps-why-card h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.amps-why-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* --- The Lineup --- */
+.amps-lineup {
+  padding: 6rem 2rem;
+  background: var(--bg-primary);
+}
+
+.amps-lineup h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+}
+
+.amps-lineup-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- Amp Cards --- */
+.amps-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+
+.amps-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.amps-card-badge {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  z-index: 2;
+  padding: 0.3rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  background: rgba(201, 169, 110, 0.15);
+  color: var(--accent);
+  border: 1px solid rgba(201, 169, 110, 0.3);
+}
+
+.amps-card-visual {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.amps-card-tolex {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+}
+
+.amps-card-name {
+  position: relative;
+  z-index: 1;
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.amps-card-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+.amps-card-tagline {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.amps-card-tones {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.amps-card-detail {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* SWAMPALL - Swamp green, aged cream, brass */
+.amps-card--swampall {
+  border-color: rgba(74, 103, 65, 0.3);
+}
+
+.amps-card--swampall:hover {
+  border-color: rgba(74, 103, 65, 0.6);
+  box-shadow: 0 20px 40px rgba(74, 103, 65, 0.15);
+}
+
+.amps-card--swampall .amps-card-visual {
+  background: linear-gradient(135deg, #2d3f28 0%, #3a5233 50%, #4a6741 100%);
+}
+
+.amps-card--swampall .amps-card-tolex {
+  background:
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.08) 2px, rgba(0, 0, 0, 0.08) 4px),
+    repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, 0.05) 2px, rgba(0, 0, 0, 0.05) 4px);
+}
+
+.amps-card--swampall .amps-card-name {
+  color: #e8dcc8;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.amps-card--swampall .amps-card-tones {
+  color: #6b8f5e;
+}
+
+/* BENDER - Silver/black with turquoise */
+.amps-card--bender {
+  border-color: rgba(45, 212, 191, 0.15);
+}
+
+.amps-card--bender:hover {
+  border-color: rgba(45, 212, 191, 0.4);
+  box-shadow: 0 20px 40px rgba(45, 212, 191, 0.1);
+}
+
+.amps-card--bender .amps-card-visual {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 50%, #333 100%);
+}
+
+.amps-card--bender .amps-card-tolex {
+  background:
+    repeating-linear-gradient(90deg, transparent, transparent 30px, rgba(255, 255, 255, 0.02) 30px, rgba(255, 255, 255, 0.02) 31px);
+}
+
+.amps-card--bender .amps-card-name {
+  color: #c0c0c0;
+  text-shadow: 0 0 20px rgba(45, 212, 191, 0.3);
+}
+
+.amps-card--bender .amps-card-tones {
+  color: #2dd4bf;
+}
+
+/* DETOX - Oxblood red, diamond grille, chrome */
+.amps-card--detox {
+  border-color: rgba(107, 28, 35, 0.3);
+}
+
+.amps-card--detox:hover {
+  border-color: rgba(107, 28, 35, 0.6);
+  box-shadow: 0 20px 40px rgba(107, 28, 35, 0.15);
+}
+
+.amps-card--detox .amps-card-visual {
+  background: linear-gradient(135deg, #3d1218 0%, #5a1a22 50%, #6b1c23 100%);
+}
+
+.amps-card--detox .amps-card-tolex {
+  background:
+    repeating-conic-gradient(rgba(255, 255, 255, 0.03) 0% 25%, transparent 0% 50%) 0 0 / 12px 12px;
+}
+
+.amps-card--detox .amps-card-name {
+  color: #d4a0a5;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.amps-card--detox .amps-card-tones {
+  color: #c4686f;
+}
+
+/* BOOGER - Matte black, chrome mesh, industrial */
+.amps-card--booger {
+  border-color: rgba(192, 192, 192, 0.15);
+}
+
+.amps-card--booger:hover {
+  border-color: rgba(192, 192, 192, 0.35);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.amps-card--booger .amps-card-visual {
+  background: linear-gradient(135deg, #0d0d0d 0%, #1a1a1a 50%, #222 100%);
+}
+
+.amps-card--booger .amps-card-tolex {
+  background:
+    radial-gradient(circle 1.5px at 50% 50%, rgba(192, 192, 192, 0.15) 0%, transparent 100%) 0 0 / 8px 8px;
+}
+
+.amps-card--booger .amps-card-name {
+  color: #c0c0c0;
+  text-shadow: 0 0 10px rgba(192, 192, 192, 0.2);
+}
+
+.amps-card--booger .amps-card-tones {
+  color: #888;
+}
+
+/* --- Comparison (reuse existing table styles, add highlight) --- */
+.amps-comparison {
+  padding: 5rem 2rem;
+  background: var(--bg-secondary);
+}
+
+.amps-comparison h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+.amps-compare-highlight {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+/* --- Pricing --- */
+.amps-pricing {
+  padding: 6rem 2rem;
+  background: var(--bg-primary);
+  text-align: center;
+}
+
+.amps-pricing h2 {
+  font-size: 2rem;
+  margin-bottom: 3rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+}
+
+.amps-pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.amps-price-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  transition: border-color 0.3s ease;
+}
+
+.amps-price-card:hover {
+  border-color: rgba(201, 169, 110, 0.2);
+}
+
+.amps-price-card--featured {
+  border-color: rgba(201, 169, 110, 0.3);
+  position: relative;
+}
+
+.amps-price-card--featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.amps-price-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.amps-price-amount {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.amps-price-note {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.amps-pricing-launch {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.amps-pricing-launch strong {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+/* --- Bottom CTA --- */
+.amps-bottom-cta {
+  padding: 6rem 2rem;
+  background: var(--bg-secondary);
+  text-align: center;
+}
+
+.amps-bottom-cta h2 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.amps-bottom-cta > p {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+}
+
+.amps-bottom-cta .amps-email-form {
+  max-width: 500px;
+  margin: 0 auto 1rem;
+}
+
+.amps-bottom-note {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin-top: 1rem;
+}
+
+/* --- Amps Responsive --- */
+@media (max-width: 768px) {
+  .amps-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .amps-hero-names {
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+  }
+
+  .amps-email-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .amps-email-row input[type="email"] {
+    min-width: unset;
+    max-width: unset;
+    width: 100%;
+  }
+
+  .amps-email-row .btn-primary {
+    width: 100%;
+    text-align: center;
+  }
+
+  .amps-lineup-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .amps-why-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .amps-pricing-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .amps-hero {
+    padding-top: 5rem;
+  }
+
+  .amps-hero-title {
+    font-size: 2rem;
+  }
+
+  .amps-card-name {
+    font-size: 1.4rem;
+  }
+}
