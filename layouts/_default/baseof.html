@@ -46,10 +46,6 @@
   {{ end }}
 
   <link rel="stylesheet" href="/css/style.css">
-
-  {{/* Snipcart */}}
-  <link rel="preconnect" href="https://cdn.snipcart.com">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
 <body>
   {{/* Site navigation */}}
@@ -60,9 +56,7 @@
         <a href="/plugins/">Plugins</a>
         <a href="/#about">About</a>
         <a href="/blog/">Blog</a>
-        <button class="snipcart-checkout nav-cart-btn">
-          Cart (<span class="snipcart-items-count">0</span>)
-        </button>
+        {{/* TODO: wire up gsg-ecommerce cart button */}}
       </div>
     </div>
   </nav>
@@ -80,8 +74,6 @@
     </div>
   </footer>
 
-  {{/* Snipcart JS */}}
-  <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
-  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-config-modal-style="side"></div>
+  {{/* TODO: gsg-ecommerce scripts */}}
 </body>
 </html>

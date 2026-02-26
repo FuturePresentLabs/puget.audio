@@ -46,10 +46,6 @@
   
 
   <link rel="stylesheet" href="/css/style.css">
-
-  
-  <link rel="preconnect" href="https://cdn.snipcart.com">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
 <body>
   
@@ -60,9 +56,7 @@
         <a href="/plugins/">Plugins</a>
         <a href="/#about">About</a>
         <a href="/blog/">Blog</a>
-        <button class="snipcart-checkout nav-cart-btn">
-          Cart (<span class="snipcart-items-count">0</span>)
-        </button>
+        
       </div>
     </div>
   </nav>
@@ -91,14 +85,9 @@
         <span class="plugin-license-type">Perpetual license</span>
       </div>
       
-      <button class="snipcart-add-item btn-primary btn-lg"
-        data-item-id="puget-passive-eq"
-        data-item-price="199"
-        data-item-url="https://puget.audio/plugins/passive-eq/"
-        data-item-name="Puget Passive EQ"
-        data-item-description="Pultec EQP-1A circuit-modeled equalizer plugin (VST3/AU/AAX)"
-        data-item-categories="plugins">
-        Add to Cart — $199
+      
+      <button class="btn-primary btn-lg buy-btn" data-sku="puget-passive-eq" data-price="199">
+        Buy Now — $199
       </button>
       
       <p class="plugin-format-note">VST3 / AU / AAX &middot; macOS &amp; Windows</p>
@@ -162,14 +151,9 @@
   <div class="plugin-bottom-cta">
     
     <div class="plugin-bottom-actions">
-      <button class="snipcart-add-item btn-primary btn-lg"
-        data-item-id="puget-passive-eq"
-        data-item-price="199"
-        data-item-url="https://puget.audio/plugins/passive-eq/"
-        data-item-name="Puget Passive EQ"
-        data-item-description="Pultec EQP-1A circuit-modeled equalizer plugin (VST3/AU/AAX)"
-        data-item-categories="plugins">
-        Add to Cart — $199
+      
+      <button class="btn-primary btn-lg buy-btn" data-sku="puget-passive-eq" data-price="199">
+        Buy Now — $199
       </button>
       <p class="plugin-bundle-upsell">Or get all five plugins in the <a href="/plugins/studio-collection/">Studio Collection</a> for $699.</p>
     </div>
@@ -222,7 +206,5 @@
   </footer>
 
   
-  <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
-  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-config-modal-style="side"></div>
 </body>
 </html>

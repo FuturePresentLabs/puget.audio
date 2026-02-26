@@ -22,10 +22,6 @@
   
 
   <link rel="stylesheet" href="/css/style.css">
-
-  
-  <link rel="preconnect" href="https://cdn.snipcart.com">
-  <link rel="stylesheet" href="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.css" />
 </head>
 <body>
   
@@ -36,9 +32,7 @@
         <a href="/plugins/">Plugins</a>
         <a href="/#about">About</a>
         <a href="/blog/">Blog</a>
-        <button class="snipcart-checkout nav-cart-btn">
-          Cart (<span class="snipcart-items-count">0</span>)
-        </button>
+        
       </div>
     </div>
   </nav>
@@ -71,14 +65,9 @@
         <span class="bundle-price">$699</span>
         <span class="bundle-savings">Save $296 vs. buying individually</span>
       </div>
-      <button class="snipcart-add-item btn-primary"
-        data-item-id="puget-studio-collection"
-        data-item-price="699"
-        data-item-url="https://puget.audio/plugins/studio-collection/"
-        data-item-name="Puget Studio Collection"
-        data-item-description="All 5 studio plugins — Passive EQ, Opto Compressor, FET Limiter, Variable-Mu, Channel"
-        data-item-categories="plugins|bundles">
-        Add to Cart — $699
+      
+      <button class="btn-primary buy-btn" data-sku="puget-studio-collection" data-price="699">
+        Buy Now — $699
       </button>
       <a href="https://puget.audio/plugins/studio-collection/" class="bundle-details-link">View bundle details</a>
     </div>
@@ -107,14 +96,9 @@
       <div class="plugin-card-footer">
         <span class="plugin-card-price">$199</span>
         
-        <button class="snipcart-add-item btn-primary btn-sm"
-          data-item-id="puget-passive-eq"
-          data-item-price="199"
-          data-item-url="https://puget.audio/plugins/passive-eq/"
-          data-item-name="Puget Passive EQ"
-          data-item-description="Pultec EQP-1A circuit-modeled equalizer plugin (VST3/AU/AAX)"
-          data-item-categories="plugins">
-          Add to Cart
+        
+        <button class="btn-primary btn-sm buy-btn" data-sku="puget-passive-eq" data-price="199">
+          Buy Now
         </button>
         
       </div>
@@ -136,14 +120,9 @@
       <div class="plugin-card-footer">
         <span class="plugin-card-price">$199</span>
         
-        <button class="snipcart-add-item btn-primary btn-sm"
-          data-item-id="puget-opto-compressor"
-          data-item-price="199"
-          data-item-url="https://puget.audio/plugins/opto-compressor/"
-          data-item-name="Puget Opto Compressor"
-          data-item-description="Teletronix LA-2A circuit-modeled leveling amplifier plugin (VST3/AU/AAX)"
-          data-item-categories="plugins">
-          Add to Cart
+        
+        <button class="btn-primary btn-sm buy-btn" data-sku="puget-opto-compressor" data-price="199">
+          Buy Now
         </button>
         
       </div>
@@ -165,14 +144,9 @@
       <div class="plugin-card-footer">
         <span class="plugin-card-price">$199</span>
         
-        <button class="snipcart-add-item btn-primary btn-sm"
-          data-item-id="puget-fet-limiter"
-          data-item-price="199"
-          data-item-url="https://puget.audio/plugins/fet-limiter/"
-          data-item-name="Puget FET Limiter"
-          data-item-description="UREI 1176LN circuit-modeled limiting amplifier plugin (VST3/AU/AAX)"
-          data-item-categories="plugins">
-          Add to Cart
+        
+        <button class="btn-primary btn-sm buy-btn" data-sku="puget-fet-limiter" data-price="199">
+          Buy Now
         </button>
         
       </div>
@@ -194,14 +168,9 @@
       <div class="plugin-card-footer">
         <span class="plugin-card-price">$199</span>
         
-        <button class="snipcart-add-item btn-primary btn-sm"
-          data-item-id="puget-variable-mu"
-          data-item-price="199"
-          data-item-url="https://puget.audio/plugins/variable-mu/"
-          data-item-name="Puget Variable-Mu"
-          data-item-description="Fairchild 670 circuit-modeled stereo limiter plugin (VST3/AU/AAX)"
-          data-item-categories="plugins">
-          Add to Cart
+        
+        <button class="btn-primary btn-sm buy-btn" data-sku="puget-variable-mu" data-price="199">
+          Buy Now
         </button>
         
       </div>
@@ -223,14 +192,9 @@
       <div class="plugin-card-footer">
         <span class="plugin-card-price">$199</span>
         
-        <button class="snipcart-add-item btn-primary btn-sm"
-          data-item-id="puget-channel"
-          data-item-price="199"
-          data-item-url="https://puget.audio/plugins/channel/"
-          data-item-name="Puget Channel"
-          data-item-description="Neve 1073 circuit-modeled preamp and equalizer plugin (VST3/AU/AAX)"
-          data-item-categories="plugins">
-          Add to Cart
+        
+        <button class="btn-primary btn-sm buy-btn" data-sku="puget-channel" data-price="199">
+          Buy Now
         </button>
         
       </div>
@@ -339,7 +303,7 @@
 
 <section class="plugins-cta">
   <p>All plugins include perpetual licenses, free updates, and no copy protection hassles.</p>
-  <a href="#" class="btn-secondary snipcart-checkout">View Cart</a>
+  
 </section>
 
   </main>
@@ -354,7 +318,5 @@
   </footer>
 
   
-  <script async src="https://cdn.snipcart.com/themes/v3.7.1/default/snipcart.js"></script>
-  <div hidden id="snipcart" data-api-key="YOUR_SNIPCART_PUBLIC_API_KEY" data-config-modal-style="side"></div>
 </body>
 </html>

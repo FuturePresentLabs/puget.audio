@@ -25,14 +25,9 @@
         <span class="bundle-price">${{ .Params.price }}</span>
         <span class="bundle-savings">Save $296 vs. buying individually</span>
       </div>
-      <button class="snipcart-add-item btn-primary"
-        data-item-id="{{ .Params.sku }}"
-        data-item-price="{{ .Params.price }}"
-        data-item-url="{{ .Permalink }}"
-        data-item-name="{{ .Title }}"
-        data-item-description="{{ .Description }}"
-        data-item-categories="plugins|bundles">
-        Add to Cart — ${{ .Params.price }}
+      {{/* TODO: gsg-ecommerce add-to-cart button */}}
+      <button class="btn-primary buy-btn" data-sku="{{ .Params.sku }}" data-price="{{ .Params.price }}">
+        Buy Now — ${{ .Params.price }}
       </button>
       <a href="{{ .Permalink }}" class="bundle-details-link">View bundle details</a>
     </div>
@@ -63,14 +58,9 @@
         {{ if eq .Params.status "coming-soon" }}
         <span class="plugin-card-coming-soon">Coming Soon</span>
         {{ else }}
-        <button class="snipcart-add-item btn-primary btn-sm"
-          data-item-id="{{ .Params.sku }}"
-          data-item-price="{{ .Params.price }}"
-          data-item-url="{{ .Permalink }}"
-          data-item-name="{{ .Title }}"
-          data-item-description="{{ .Description }}"
-          data-item-categories="plugins">
-          Add to Cart
+        {{/* TODO: gsg-ecommerce add-to-cart button */}}
+        <button class="btn-primary btn-sm buy-btn" data-sku="{{ .Params.sku }}" data-price="{{ .Params.price }}">
+          Buy Now
         </button>
         {{ end }}
       </div>
@@ -131,6 +121,6 @@
 {{/* Bottom CTA */}}
 <section class="plugins-cta">
   <p>All plugins include perpetual licenses, free updates, and no copy protection hassles.</p>
-  <a href="#" class="btn-secondary snipcart-checkout">View Cart</a>
+  {{/* TODO: gsg-ecommerce cart link */}}
 </section>
 {{ end }}

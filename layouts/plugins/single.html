@@ -26,14 +26,9 @@
         Coming Soon
       </div>
       {{ else }}
-      <button class="snipcart-add-item btn-primary btn-lg"
-        data-item-id="{{ .Params.sku }}"
-        data-item-price="{{ .Params.price }}"
-        data-item-url="{{ .Permalink }}"
-        data-item-name="{{ .Title }}"
-        data-item-description="{{ .Description }}"
-        data-item-categories="{{ .Params.category }}">
-        Add to Cart — ${{ .Params.price }}
+      {{/* TODO: gsg-ecommerce add-to-cart button */}}
+      <button class="btn-primary btn-lg buy-btn" data-sku="{{ .Params.sku }}" data-price="{{ .Params.price }}">
+        Buy Now — ${{ .Params.price }}
       </button>
       {{ end }}
       <p class="plugin-format-note">VST3 / AU / AAX &middot; macOS &amp; Windows</p>
@@ -66,14 +61,9 @@
     <p>This plugin is in development. <a href="/#signup">Join the waitlist</a> to be notified when it ships.</p>
     {{ else }}
     <div class="plugin-bottom-actions">
-      <button class="snipcart-add-item btn-primary btn-lg"
-        data-item-id="{{ .Params.sku }}"
-        data-item-price="{{ .Params.price }}"
-        data-item-url="{{ .Permalink }}"
-        data-item-name="{{ .Title }}"
-        data-item-description="{{ .Description }}"
-        data-item-categories="{{ .Params.category }}">
-        Add to Cart — ${{ .Params.price }}
+      {{/* TODO: gsg-ecommerce add-to-cart button */}}
+      <button class="btn-primary btn-lg buy-btn" data-sku="{{ .Params.sku }}" data-price="{{ .Params.price }}">
+        Buy Now — ${{ .Params.price }}
       </button>
       <p class="plugin-bundle-upsell">Or get all five plugins in the <a href="/plugins/studio-collection/">Studio Collection</a> for $699.</p>
     </div>
