@@ -33,7 +33,7 @@ An engineer can mix an entire record with these five tools. Generations of them 
 
 ## $699 — Save $296
 
-That's roughly $140 per plugin vs. $199 individually. Five perpetual licenses, all formats (VST3/AU/AAX), macOS and Windows.
+That's roughly $140 per plugin vs. $199 individually. Five perpetual licenses, VST3 format, macOS and Windows.
 
 No subscriptions. No iLok. No dongles. Buy once, use forever.
 

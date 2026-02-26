@@ -1,6 +1,6 @@
 ---
 title: "Puget Passive EQ"
-description: "Pultec EQP-1A circuit-modeled equalizer plugin (VST3/AU/AAX)"
+description: "Pultec EQP-1A circuit-modeled equalizer plugin (VST3)"
 subtitle: "Pultec EQP-1A Program Equalizer"
 date: 2026-02-24
 slug: "passive-eq"
@@ -25,7 +25,7 @@ specs:
   - label: "EQ Bands"
     value: "Low shelf, high shelf, HF attenuator"
   - label: "Formats"
-    value: "VST3, AU, AAX"
+    value: "VST3"
   - label: "Platform"
     value: "macOS 10.15+, Windows 10+"
   - label: "License"

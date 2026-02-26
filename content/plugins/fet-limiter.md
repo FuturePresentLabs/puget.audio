@@ -1,6 +1,6 @@
 ---
 title: "Puget FET Limiter"
-description: "UREI 1176LN circuit-modeled limiting amplifier plugin (VST3/AU/AAX)"
+description: "UREI 1176LN circuit-modeled limiting amplifier plugin (VST3)"
 subtitle: "UREI 1176LN Limiting Amplifier"
 date: 2026-02-24
 slug: "fet-limiter"
@@ -31,7 +31,7 @@ specs:
   - label: "I/O"
     value: "Transformer-coupled input and output"
   - label: "Formats"
-    value: "VST3, AU, AAX"
+    value: "VST3"
   - label: "Platform"
     value: "macOS 10.15+, Windows 10+"
   - label: "License"

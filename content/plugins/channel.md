@@ -1,6 +1,6 @@
 ---
 title: "Puget Channel"
-description: "Neve 1073 circuit-modeled preamp and equalizer plugin (VST3/AU/AAX)"
+description: "Neve 1073 circuit-modeled preamp and equalizer plugin (VST3)"
 subtitle: "Neve 1073 Preamp / Equalizer"
 date: 2026-02-24
 slug: "channel"
@@ -29,7 +29,7 @@ specs:
   - label: "Inductor Model"
     value: "Physical: losses, saturation, Q interaction"
   - label: "Formats"
-    value: "VST3, AU, AAX"
+    value: "VST3"
   - label: "Platform"
     value: "macOS 10.15+, Windows 10+"
   - label: "License"

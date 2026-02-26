@@ -1,6 +1,6 @@
 ---
 title: "Puget Opto Compressor"
-description: "Teletronix LA-2A circuit-modeled leveling amplifier plugin (VST3/AU/AAX)"
+description: "Teletronix LA-2A circuit-modeled leveling amplifier plugin (VST3)"
 subtitle: "Teletronix LA-2A Leveling Amplifier"
 date: 2026-02-24
 slug: "opto-compressor"
@@ -27,7 +27,7 @@ specs:
   - label: "Modes"
     value: "Limit / Compress"
   - label: "Formats"
-    value: "VST3, AU, AAX"
+    value: "VST3"
   - label: "Platform"
     value: "macOS 10.15+, Windows 10+"
   - label: "License"

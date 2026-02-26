@@ -1,6 +1,6 @@
 ---
 title: "Puget Variable-Mu"
-description: "Fairchild 670 circuit-modeled stereo limiter plugin (VST3/AU/AAX)"
+description: "Fairchild 670 circuit-modeled stereo limiter plugin (VST3)"
 subtitle: "Fairchild 670 Stereo Limiter"
 date: 2026-02-24
 slug: "variable-mu"
@@ -31,7 +31,7 @@ specs:
   - label: "I/O"
     value: "Transformer-coupled (WDF two-ports)"
   - label: "Formats"
-    value: "VST3, AU, AAX"
+    value: "VST3"
   - label: "Platform"
     value: "macOS 10.15+, Windows 10+"
   - label: "License"
