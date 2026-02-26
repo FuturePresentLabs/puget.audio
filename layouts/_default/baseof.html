@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }}{{ if not .IsHome }} | {{ .Site.Title }}{{ end }}</title>
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.seo.description }}{{ end }}">
+
+  {{/* Open Graph */}}
+  <meta property="og:title" content="{{ .Title }}{{ if not .IsHome }} | {{ .Site.Title }}{{ end }}">
+  <meta property="og:description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.seo.description }}{{ end }}">
+  <meta property="og:type" content="{{ if .Params.price }}product{{ else }}website{{ end }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+  {{ with .Params.og_image }}<meta property="og:image" content="{{ . | absURL }}">{{ else }}<meta property="og:image" content="{{ $.Site.Params.social.image | absURL }}">{{ end }}
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+
+  {{/* Twitter */}}
+  <meta name="twitter:card" content="summary_large_image">
+  {{ with .Site.Params.social.twitter }}<meta name="twitter:site" content="{{ . }}">{{ end }}
+
+  {{/* Product Schema.org */}}
+  {{ if .Params.price }}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "{{ .Title }}",
+    "description": "{{ .Description }}",
+    "brand": {
+      "@type": "Brand",
+      "name": "Puget Audio"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "{{ .Params.price }}",
+      "priceCurrency": "USD",
+      "availability": "{{ if eq .Params.status "coming-soon" }}https://schema.org/PreOrder{{ else }}https://schema.org/InStock{{ end }}",
+      "seller": {
+        "@type": "Organization",
+        "name": "Puget Audio"
+      }
+    },
+    "sku": "{{ .Params.sku }}"
+  }
+  </script>
+  {{ end }}
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  {{/* Site navigation */}}
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Puget Audio</a>
+      <div class="nav-links">
+        <a href="/plugins/">Plugins</a>
+        <a href="/#about">About</a>
+        <a href="/blog/">Blog</a>
+        {{/* TODO: wire up gsg-ecommerce cart button */}}
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  {{/* Site footer */}}
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">Puget Audio &middot; Seattle, WA</p>
+      <p class="footer-tagline">We don't approximate analog. We simulate it.</p>
+      <p class="footer-copy">&copy; {{ now.Year }} Puget Audio. All rights reserved.</p>
+    </div>
+  </footer>
+
+  {{/* TODO: gsg-ecommerce scripts */}}
+</body>
+</html>

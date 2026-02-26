@@ -18,7 +18,7 @@ theme = 'puget-theme'
   
   [params.seo]
     description = "Puget Audio - Professional audio interfaces and guitar effects pedals engineered in the Pacific Northwest"
-    keywords = ["audio interface", "guitar pedal", "effects pedal", "studio equipment", "PNW audio", "professional audio"]
+    keywords = ["audio plugins", "VST3 plugins", "analog emulation", "wave digital filter", "guitar pedal", "studio equipment", "PNW audio", "professional audio"]
   
   [params.social]
     image = "/images/puget-og.jpg"
@@ -36,17 +36,22 @@ theme = 'puget-theme'
     name = 'Products'
     url = '/#products'
     weight = 10
-  
+
+  [[menu.main]]
+    name = 'Plugins'
+    url = '/plugins/'
+    weight = 15
+
   [[menu.main]]
     name = 'Features'
     url = '/#features'
     weight = 20
-  
+
   [[menu.main]]
     name = 'Sound'
     url = '/#demos'
     weight = 30
-  
+
   [[menu.main]]
     name = 'Specs'
     url = '/#specs'
@@ -55,8 +60,5 @@ theme = 'puget-theme'
 [taxonomies]
   tag = 'tags'
 
-    path = "github.com/FuturePresentLabs/gsg-ecommerce"
-
 [build]
   writeStats = true
-theme = 'puget-theme'

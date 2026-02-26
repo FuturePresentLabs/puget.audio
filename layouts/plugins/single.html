@@ -1,0 +1,88 @@
+{{ define "main" }}
+<article class="plugin-page">
+  {{/* Breadcrumb */}}
+  <nav class="plugin-breadcrumb">
+    <a href="/">Home</a> / <a href="/plugins/">Plugins</a> / <span>{{ .Title }}</span>
+  </nav>
+
+  {{/* Hero */}}
+  <header class="plugin-hero">
+    <div class="plugin-hero-image">
+      <div class="plugin-hero-placeholder">
+        <span class="plugin-hero-icon">{{ with .Params.icon }}{{ . }}{{ else }}~{{ end }}</span>
+      </div>
+    </div>
+    <div class="plugin-hero-info">
+      <h1>{{ .Title }}</h1>
+      <p class="plugin-subtitle">{{ .Params.subtitle }}</p>
+      <p class="plugin-one-liner">{{ .Description }}</p>
+      <div class="plugin-price-row">
+        <span class="plugin-price">${{ .Params.price }}</span>
+        <span class="plugin-license-type">Perpetual license</span>
+      </div>
+      {{ if eq .Params.status "coming-soon" }}
+      <div class="plugin-coming-soon-notice">
+        <span class="badge-dot"></span>
+        Coming Soon
+      </div>
+      {{ else }}
+      {{/* TODO: gsg-ecommerce add-to-cart button */}}
+      <button class="btn-primary btn-lg buy-btn" data-sku="{{ .Params.sku }}" data-price="{{ .Params.price }}">
+        Buy Now — ${{ .Params.price }}
+      </button>
+      {{ end }}
+      <p class="plugin-format-note">VST3 / AU / AAX &middot; macOS &amp; Windows</p>
+    </div>
+  </header>
+
+  {{/* Main content */}}
+  <div class="plugin-content">
+    {{ .Content }}
+  </div>
+
+  {{/* Specs sidebar */}}
+  {{ with .Params.specs }}
+  <aside class="plugin-specs">
+    <h2>Specifications</h2>
+    <dl class="spec-list">
+      {{ range . }}
+      <dt>{{ .label }}</dt>
+      <dd>{{ .value }}</dd>
+      {{ end }}
+    </dl>
+  </aside>
+  {{ end }}
+
+  <!-- audio-demo: {{ .Params.sku }} -->
+
+  {{/* Bottom CTA */}}
+  <div class="plugin-bottom-cta">
+    {{ if eq .Params.status "coming-soon" }}
+    <p>This plugin is in development. <a href="/#signup">Join the waitlist</a> to be notified when it ships.</p>
+    {{ else }}
+    <div class="plugin-bottom-actions">
+      {{/* TODO: gsg-ecommerce add-to-cart button */}}
+      <button class="btn-primary btn-lg buy-btn" data-sku="{{ .Params.sku }}" data-price="{{ .Params.price }}">
+        Buy Now — ${{ .Params.price }}
+      </button>
+      <p class="plugin-bundle-upsell">Or get all five plugins in the <a href="/plugins/studio-collection/">Studio Collection</a> for $699.</p>
+    </div>
+    {{ end }}
+  </div>
+
+  {{/* Related plugins */}}
+  <nav class="plugin-related">
+    <h2>More Studio Plugins</h2>
+    <div class="plugin-related-grid">
+      {{ $current := . }}
+      {{ range where (where .CurrentSection.Pages "Params.product_type" "plugin") ".Permalink" "ne" .Permalink }}
+      <a href="{{ .Permalink }}" class="plugin-related-card">
+        <h3>{{ .Title }}</h3>
+        <p>{{ .Params.subtitle }}</p>
+        <span>${{ .Params.price }}</span>
+      </a>
+      {{ end }}
+    </div>
+  </nav>
+</article>
+{{ end }}
