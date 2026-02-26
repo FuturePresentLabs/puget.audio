@@ -1,0 +1,225 @@
+{{ define "main" }}
+
+{{/* ========================================
+   HERO SECTION
+   ======================================== */}}
+<section class="amps-hero">
+  <div class="amps-hero-bg">
+    <div class="amps-noise-overlay"></div>
+    <div class="amps-glow-orb"></div>
+  </div>
+  <div class="amps-hero-content">
+    <h1 class="amps-hero-title">The Puget<br>Amp Collection</h1>
+    <p class="amps-hero-names">SWAMPALL &middot; BENDER &middot; DETOX &middot; BOOGER</p>
+    <p class="amps-hero-subhead">Not modeled from hardware. Modeled from the schematic.</p>
+    <p class="amps-hero-description">Four amp families. One engine. Every component simulated.</p>
+
+    <div class="amps-hero-cta">
+      <form class="amps-email-form" action="https://api.gsgmfg.com/waitlist" method="POST">
+        <label for="amps-email-hero" class="amps-email-label">Get notified when SWAMPALL drops</label>
+        <div class="amps-email-row">
+          <input type="email" id="amps-email-hero" name="email" placeholder="you@example.com" required />
+          <input type="hidden" name="interest" value="amps-swampall" />
+          <button type="submit" class="btn-primary">Notify Me</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+{{/* ========================================
+   WHY IT'S DIFFERENT
+   ======================================== */}}
+<section class="amps-why">
+  <h2>Why It&rsquo;s Different</h2>
+  <div class="amps-why-grid">
+
+    <div class="amps-why-card">
+      <div class="amps-why-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M16 8v8l5.5 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>It cleans up like a real amp.</h3>
+      <p>Roll back the guitar volume knob and it transitions from crunch to clean naturally. The single most cited complaint about every other amp sim. Solved.</p>
+    </div>
+
+    <div class="amps-why-card">
+      <div class="amps-why-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 22c2-6 4-14 10-14s8 14 10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>It sags like a real amp.</h3>
+      <p>Hit a heavy chord and the power stage compresses as the virtual tubes draw current. This is the &ldquo;feel&rdquo; guitarists mean when they say a real amp &ldquo;breathes.&rdquo; It emerges from the physics.</p>
+    </div>
+
+    <div class="amps-why-card">
+      <div class="amps-why-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="10" width="20" height="12" rx="2" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M11 14v4M16 13v6M21 15v2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>It can be modded like a real amp.</h3>
+      <p>Flip the amp around. Swap tube types. Adjust bias. Snip the bright cap. Real mods, real-time. No other amp sim can do this because no other amp sim models at this level.</p>
+    </div>
+
+  </div>
+</section>
+
+{{/* ========================================
+   THE LINEUP
+   ======================================== */}}
+<section class="amps-lineup">
+  <h2>The Lineup</h2>
+  <div class="amps-lineup-grid">
+
+    {{/* SWAMPALL */}}
+    <div class="amps-card amps-card--swampall">
+      <div class="amps-card-badge">Launching Soon</div>
+      <div class="amps-card-visual">
+        <div class="amps-card-tolex"></div>
+        <span class="amps-card-name">SWAMPALL</span>
+      </div>
+      <div class="amps-card-body">
+        <p class="amps-card-tagline">&ldquo;Every British amp in one swamp.&rdquo;</p>
+        <p class="amps-card-tones">Classic Rock &middot; Hard Rock &middot; Metal</p>
+        <p class="amps-card-detail">36 variants from one circuit. Plexi to crunch to high-gain, all from switched components in a single topology.</p>
+      </div>
+    </div>
+
+    {{/* BENDER */}}
+    <div class="amps-card amps-card--bender">
+      <div class="amps-card-visual">
+        <div class="amps-card-tolex"></div>
+        <span class="amps-card-name">BENDER</span>
+      </div>
+      <div class="amps-card-body">
+        <p class="amps-card-tagline">&ldquo;The American standard, bent.&rdquo;</p>
+        <p class="amps-card-tones">Blues &middot; Country &middot; Jazz &middot; Indie</p>
+        <p class="amps-card-detail">Clean-to-crunch American lineage. Tweed through silverface. Sag, compression, harmonic bloom. 6L6/6V6 power tube switching.</p>
+      </div>
+    </div>
+
+    {{/* DETOX */}}
+    <div class="amps-card amps-card--detox">
+      <div class="amps-card-visual">
+        <div class="amps-card-tolex"></div>
+        <span class="amps-card-name">DETOX</span>
+      </div>
+      <div class="amps-card-body">
+        <p class="amps-card-tagline">&ldquo;British chime, detoxified.&rdquo;</p>
+        <p class="amps-card-tones">Jangle Pop &middot; Britpop &middot; Shoegaze</p>
+        <p class="amps-card-detail">Class A, cathode-biased. Top Boost and Normal channels. Rectifier sag, tremolo, cut control. The sound of shimmer.</p>
+      </div>
+    </div>
+
+    {{/* BOOGER */}}
+    <div class="amps-card amps-card--booger">
+      <div class="amps-card-visual">
+        <div class="amps-card-tolex"></div>
+        <span class="amps-card-name">BOOGER</span>
+      </div>
+      <div class="amps-card-body">
+        <p class="amps-card-tagline">&ldquo;Pick your nose. Find your tone.&rdquo;</p>
+        <p class="amps-card-tones">Modern Metal &middot; Prog &middot; Djent</p>
+        <p class="amps-card-detail">Cascading gain stages, graphic EQ, silicon/tube rectifier switching. Multi-channel architecture. The sound of heavy.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{/* ========================================
+   COMPARISON TABLE
+   ======================================== */}}
+<section class="amps-comparison">
+  <h2>The Technology Gap</h2>
+  <div class="comparison-table-wrap">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Neural / Profiling</th>
+          <th>Circuit DSP</th>
+          <th>Puget (WDF)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Volume knob cleanup</td>
+          <td>Poor&ndash;Fair</td>
+          <td>Fair&ndash;Good</td>
+          <td class="amps-compare-highlight">Physically accurate</td>
+        </tr>
+        <tr>
+          <td>Power stage sag</td>
+          <td>Baked in or absent</td>
+          <td>Simulated</td>
+          <td class="amps-compare-highlight">Per-sample tube current</td>
+        </tr>
+        <tr>
+          <td>Component-level mods</td>
+          <td>Not possible</td>
+          <td>Not possible</td>
+          <td class="amps-compare-highlight">Full access</td>
+        </tr>
+        <tr>
+          <td>Variants per plugin</td>
+          <td>1 per capture</td>
+          <td>1&ndash;3</td>
+          <td class="amps-compare-highlight">36+</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{{/* ========================================
+   PRICING
+   ======================================== */}}
+<section class="amps-pricing">
+  <h2>Simple Pricing</h2>
+  <div class="amps-pricing-grid">
+
+    <div class="amps-price-card">
+      <span class="amps-price-label">Single Plugin</span>
+      <span class="amps-price-amount">$99</span>
+      <span class="amps-price-note">Any one amp</span>
+    </div>
+
+    <div class="amps-price-card">
+      <span class="amps-price-label">Any Two</span>
+      <span class="amps-price-amount">$149</span>
+      <span class="amps-price-note">Pick your pair</span>
+    </div>
+
+    <div class="amps-price-card amps-price-card--featured">
+      <span class="amps-price-label">The Puget Collection</span>
+      <span class="amps-price-amount">$249</span>
+      <span class="amps-price-note">All four amps</span>
+    </div>
+
+  </div>
+  <p class="amps-pricing-launch">30% off at launch. SWAMPALL early adopter price: <strong>$69</strong>.</p>
+</section>
+
+{{/* ========================================
+   BOTTOM CTA
+   ======================================== */}}
+<section class="amps-bottom-cta">
+  <h2>SWAMPALL is coming.</h2>
+  <p>Don&rsquo;t miss it.</p>
+  <form class="amps-email-form" action="https://api.gsgmfg.com/waitlist" method="POST">
+    <div class="amps-email-row">
+      <input type="email" name="email" placeholder="you@example.com" required />
+      <input type="hidden" name="interest" value="amps-swampall" />
+      <button type="submit" class="btn-primary">Notify Me</button>
+    </div>
+  </form>
+  <p class="amps-bottom-note">No spam. Just a heads-up when it drops.</p>
+</section>
+
+{{ end }}
