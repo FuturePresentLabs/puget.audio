@@ -15,6 +15,13 @@ icon: "CH"
 wdf_components: "Transformers, inductors, tantalum caps, Class A"
 og_image: "/images/puget-og.jpg"
 weight: 5
+usage:
+  - "Everything"
+  - "Vocals"
+  - "Drums"
+  - "Guitars"
+  - "Bass"
+  - "Channel strip for any source"
 specs:
   - label: "Circuit Origin"
     value: "Neve 1073"

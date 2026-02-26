@@ -15,6 +15,11 @@ icon: "LA"
 wdf_components: "T4B opto cell, 12AX7 + 12BH7 tubes"
 og_image: "/images/puget-og.jpg"
 weight: 2
+usage:
+  - "Vocals"
+  - "Bass"
+  - "Leveling without losing life"
+  - "Sustained notes"
 specs:
   - label: "Circuit Origin"
     value: "Teletronix LA-2A"

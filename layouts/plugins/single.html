@@ -40,6 +40,18 @@
     {{ .Content }}
   </div>
 
+  {{/* Usage section */}}
+  {{ with .Params.usage }}
+  <section class="plugin-usage">
+    <h2>Best For</h2>
+    <ul class="usage-list">
+      {{ range . }}
+      <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
+
   {{/* Specs sidebar */}}
   {{ with .Params.specs }}
   <aside class="plugin-specs">

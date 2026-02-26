@@ -15,6 +15,11 @@ icon: "EQ"
 wdf_components: "Inductors, capacitors, 12AX7 tube"
 og_image: "/images/puget-og.jpg"
 weight: 1
+usage:
+  - "Vocals"
+  - "Mix bus"
+  - "Acoustic instruments"
+  - "Tone shaping without fighting the source"
 specs:
   - label: "Circuit Origin"
     value: "Pultec EQP-1A"

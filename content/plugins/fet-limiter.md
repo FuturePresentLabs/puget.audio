@@ -15,6 +15,11 @@ icon: "FET"
 wdf_components: "JFET, Class A transistor stages, transformers"
 og_image: "/images/puget-og.jpg"
 weight: 3
+usage:
+  - "Drums"
+  - "Room mics"
+  - "Anything that needs to hit hard"
+  - "Fast transients"
 specs:
   - label: "Circuit Origin"
     value: "UREI 1176LN"

@@ -15,6 +15,11 @@ icon: "Mu"
 wdf_components: "6386 triodes, transformers, push-pull amplifier"
 og_image: "/images/puget-og.jpg"
 weight: 4
+usage:
+  - "Mix bus"
+  - "Stereo bus"
+  - "Master chain"
+  - "Glue and cohesion"
 specs:
   - label: "Circuit Origin"
     value: "Fairchild 670"
