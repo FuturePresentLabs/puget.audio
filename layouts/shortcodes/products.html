@@ -1,16 +1,17 @@
 <section id="products" class="products">
   <h2>Studio-Grade Audio Tools</h2>
   <div class="product-grid">
-    <div class="product-card featured">
+    <a href="/plugins/" class="product-card featured" style="text-decoration:none;color:inherit;">
       <div class="product-image">
         {{ $product := resources.Get "images/puget_producer_workflow.png" }}
         {{ $productCropped := $product.Fill "400x300 center" }}
         <img src="{{ $productCropped.RelPermalink }}" alt="VST3 Plugins" width="400" height="300" />
       </div>
       <h3>VST3 Plugins</h3>
+      <p class="price">From $199</p>
       <p class="description">Professional effect emulations for your DAW. Circuit-accurate models that respond like the real thing.</p>
-      <span class="badge">Coming Soon</span>
-    </div>
+      <span class="badge">5 Plugins Available</span>
+    </a>
     <div class="product-card">
       <div class="product-image">
         {{ $detail := resources.Get "images/puget_mixing_desk.png" }}

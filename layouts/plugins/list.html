@@ -1,0 +1,136 @@
+{{ define "main" }}
+<section class="plugins-hero">
+  <div class="plugins-hero-bg"></div>
+  <div class="plugins-hero-content">
+    <h1>Studio Plugins</h1>
+    <p class="plugins-hero-tagline">Studio-grade analog emulations. Modeled from the circuit up.</p>
+    <div class="plugins-hero-description">
+      <p>Every Puget Studio plugin is built on <a href="https://pedalkernel.com">PedalKernel</a> — our open-source Wave Digital Filter engine. No black-box curve fitting. No impulse responses. Every resistor, capacitor, inductor, transformer, and tube in the original circuit is modeled as a real component with real physics.</p>
+      <p>When you turn a knob, you're changing a component value in a simulated circuit — the same way the original hardware works.</p>
+      <p class="plugins-hero-meta">Built in Seattle. Perpetual licenses. No iLok. No dongles.</p>
+    </div>
+  </div>
+</section>
+
+{{/* Bundle card */}}
+{{ $bundle := .GetPage "studio-collection" }}
+{{ with $bundle }}
+<section class="bundle-highlight">
+  <div class="bundle-card">
+    <div class="bundle-info">
+      <span class="bundle-label">Bundle &amp; Save</span>
+      <h2>{{ .Title }}</h2>
+      <p class="bundle-pitch">{{ .Description }}</p>
+      <div class="bundle-pricing">
+        <span class="bundle-price">${{ .Params.price }}</span>
+        <span class="bundle-savings">Save $296 vs. buying individually</span>
+      </div>
+      <button class="snipcart-add-item btn-primary"
+        data-item-id="{{ .Params.sku }}"
+        data-item-price="{{ .Params.price }}"
+        data-item-url="{{ .Permalink }}"
+        data-item-name="{{ .Title }}"
+        data-item-description="{{ .Description }}"
+        data-item-categories="plugins|bundles">
+        Add to Cart — ${{ .Params.price }}
+      </button>
+      <a href="{{ .Permalink }}" class="bundle-details-link">View bundle details</a>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+{{/* Individual plugin grid */}}
+<section class="plugins-grid-section">
+  <h2>Individual Plugins</h2>
+  <div class="plugins-grid">
+    {{ range where .Pages "Params.product_type" "plugin" }}
+    <div class="plugin-card{{ if eq .Params.status "coming-soon" }} coming-soon{{ end }}">
+      <a href="{{ .Permalink }}" class="plugin-card-link">
+        <div class="plugin-card-image">
+          <div class="plugin-card-placeholder">
+            <span class="plugin-card-icon">{{ with .Params.icon }}{{ . }}{{ else }}~{{ end }}</span>
+          </div>
+        </div>
+        <div class="plugin-card-body">
+          <h3>{{ .Title }}</h3>
+          <p class="plugin-card-subtitle">{{ .Params.subtitle }}</p>
+          <p class="plugin-card-desc">{{ .Description }}</p>
+        </div>
+      </a>
+      <div class="plugin-card-footer">
+        <span class="plugin-card-price">${{ .Params.price }}</span>
+        {{ if eq .Params.status "coming-soon" }}
+        <span class="plugin-card-coming-soon">Coming Soon</span>
+        {{ else }}
+        <button class="snipcart-add-item btn-primary btn-sm"
+          data-item-id="{{ .Params.sku }}"
+          data-item-price="{{ .Params.price }}"
+          data-item-url="{{ .Permalink }}"
+          data-item-name="{{ .Title }}"
+          data-item-description="{{ .Description }}"
+          data-item-categories="plugins">
+          Add to Cart
+        </button>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+{{/* Comparison table */}}
+<section class="plugins-comparison">
+  <h2>Compare Plugins</h2>
+  <div class="comparison-table-wrap">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th>Feature</th>
+          {{ range where .Pages "Params.product_type" "plugin" }}
+          <th>{{ .Params.short_name }}</th>
+          {{ end }}
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Type</td>
+          {{ range where .Pages "Params.product_type" "plugin" }}
+          <td>{{ .Params.plugin_type }}</td>
+          {{ end }}
+        </tr>
+        <tr>
+          <td>Circuit Origin</td>
+          {{ range where .Pages "Params.product_type" "plugin" }}
+          <td>{{ .Params.subtitle }}</td>
+          {{ end }}
+        </tr>
+        <tr>
+          <td>WDF Components</td>
+          {{ range where .Pages "Params.product_type" "plugin" }}
+          <td>{{ .Params.wdf_components }}</td>
+          {{ end }}
+        </tr>
+        <tr>
+          <td>Price</td>
+          {{ range where .Pages "Params.product_type" "plugin" }}
+          <td>${{ .Params.price }}</td>
+          {{ end }}
+        </tr>
+        <tr>
+          <td>Formats</td>
+          {{ range where .Pages "Params.product_type" "plugin" }}
+          <td>VST3 / AU / AAX</td>
+          {{ end }}
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{{/* Bottom CTA */}}
+<section class="plugins-cta">
+  <p>All plugins include perpetual licenses, free updates, and no copy protection hassles.</p>
+  <a href="#" class="btn-secondary snipcart-checkout">View Cart</a>
+</section>
+{{ end }}
