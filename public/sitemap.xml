@@ -2,15 +2,36 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://puget.audio/plugins/passive-eq/</loc>
+    <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://puget.audio/plugins/opto-compressor/</loc>
+    <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://puget.audio/plugins/fet-limiter/</loc>
+    <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://puget.audio/plugins/variable-mu/</loc>
+    <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://puget.audio/plugins/channel/</loc>
+    <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://puget.audio/plugins/studio-collection/</loc>
+    <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://puget.audio/blog/</loc>
+    <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://puget.audio/</loc>
+    <lastmod>2026-02-24T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://puget.audio/plugins/</loc>
+    <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://puget.audio/checkout/</loc>
   </url><url>
-    <loc>https://puget.audio/github.com/futurepresentlabs/gsg-ecommerce/</loc>
-  </url><url>
     <loc>https://puget.audio/products/</loc>
-  </url><url>
-    <loc>https://puget.audio/</loc>
   </url><url>
     <loc>https://puget.audio/tags/</loc>
   </url><url>
