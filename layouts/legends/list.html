@@ -1,0 +1,322 @@
+{{ define "main" }}
+
+{{/* ========================================
+   HERO SECTION
+   ======================================== */}}
+<section class="legends-hero">
+  <div class="legends-hero-bg">
+    <div class="legends-noise-overlay"></div>
+    <div class="legends-glow-orb"></div>
+  </div>
+  <div class="legends-hero-content">
+    <h1 class="legends-hero-title">The Puget<br>Legends Collection</h1>
+    <p class="legends-hero-names">GOLDENROD &middot; RATKING &middot; MONSOON &middot; FIZZ &middot; SHRINE</p>
+    <p class="legends-hero-subhead">Five circuits that changed music. Rebuilt from the schematic.</p>
+    <p class="legends-hero-description">Not sampled. Not captured. Not profiled. Simulated&mdash;component by component.</p>
+
+    <div class="legends-hero-cta">
+      <form class="legends-email-form" action="https://api.gsgmfg.com/waitlist" method="POST">
+        <label for="legends-email-hero" class="legends-email-label">Get notified when Legends drops</label>
+        <div class="legends-email-row">
+          <input type="email" id="legends-email-hero" name="email" placeholder="you@example.com" required />
+          <input type="hidden" name="interest" value="legends-goldenrod" />
+          <button type="submit" class="btn-primary">Notify Me</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+{{/* ========================================
+   WHY LEGENDS?
+   ======================================== */}}
+<section class="legends-why">
+  <h2>Why Legends?</h2>
+  <div class="legends-why-body">
+    <p>Some pedals became legendary because guitarists couldn&rsquo;t stop chasing their sound. Originals sell for thousands. Clones miss the point. Captures freeze one setting in amber.</p>
+    <p>We went back to the schematics and rebuilt each circuit at the component level&mdash;so you get the real behavior, not an approximation of it. Every knob interaction. Every cleanup. Every weird, beautiful thing the circuit does that the designers didn&rsquo;t plan.</p>
+  </div>
+</section>
+
+{{/* ========================================
+   WHAT MAKES THIS DIFFERENT
+   ======================================== */}}
+<section class="legends-diff">
+  <h2>What Makes This Different</h2>
+  <div class="legends-diff-grid">
+
+    <div class="legends-diff-card">
+      <div class="legends-diff-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M16 10v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          <circle cx="16" cy="20" r="1.5" fill="currentColor"/>
+        </svg>
+      </div>
+      <h3>It cleans up like the real thing.</h3>
+      <p>Roll back your guitar volume and GOLDENROD transitions from overdrive to clean boost. FIZZ goes from fuzz to sparkling clean. This is the single biggest thing every other pedal plugin gets wrong. We get it right because we model the actual circuit interaction between your guitar&rsquo;s output impedance and the pedal&rsquo;s input stage.</p>
+    </div>
+
+    <div class="legends-diff-card">
+      <div class="legends-diff-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M6 22c2-6 4-14 10-14s8 14 10 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>It responds like the real thing.</h3>
+      <p>Pick dynamics, string attack, volume knob position&mdash;the circuit responds to all of it because it&rsquo;s processing signal through simulated components, not looking up a pre-baked response curve. MONSOON&rsquo;s repeats degrade naturally. RATKING&rsquo;s filter sweeps interact with the gain stage. The feel is the physics.</p>
+    </div>
+
+    <div class="legends-diff-card">
+      <div class="legends-diff-icon">
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="7" y="7" width="18" height="18" rx="3" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M12 16h8M16 12v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>It can be modded like the real thing.</h3>
+      <p>Open circuit view. Swap diode types in GOLDENROD. Change transistors in FIZZ. Push MONSOON&rsquo;s BBD bias out of spec. Every mod that exists on a forum thread, available in one click&mdash;plus mods that would destroy the original hardware. Your pedal. Your circuit. Your rules.</p>
+    </div>
+
+  </div>
+</section>
+
+{{/* ========================================
+   THE LINEUP
+   ======================================== */}}
+<section class="legends-lineup">
+  <h2>The Lineup</h2>
+  <div class="legends-lineup-grid">
+
+    {{/* GOLDENROD */}}
+    <div class="legends-card legends-card--goldenrod">
+      <div class="legends-card-badge">Launching First</div>
+      <div class="legends-card-visual">
+        <div class="legends-card-enclosure"></div>
+        <span class="legends-card-name">GOLDENROD</span>
+      </div>
+      <div class="legends-card-body">
+        <p class="legends-card-tagline">&ldquo;The pedal that started a religion.&rdquo;</p>
+        <p class="legends-card-tones">Transparent Overdrive &middot; Clean Boost &middot; Edge of Breakup</p>
+        <p class="legends-card-detail">Dual germanium diode clipping, clean blend circuit, charge pump voltage doubler. The full gain-knob interaction that captures and clones flatten into a single snapshot.</p>
+      </div>
+    </div>
+
+    {{/* RATKING */}}
+    <div class="legends-card legends-card--ratking">
+      <div class="legends-card-visual">
+        <div class="legends-card-enclosure"></div>
+        <span class="legends-card-name">RATKING</span>
+      </div>
+      <div class="legends-card-body">
+        <p class="legends-card-tagline">&ldquo;The filter is the voice.&rdquo;</p>
+        <p class="legends-card-tones">Distortion &middot; Fuzz-Adjacent Saturation &middot; Shoegaze Wall</p>
+        <p class="legends-card-detail">LM308 op-amp hard clipping into the legendary passive filter network. First published WDF model of this circuit&mdash;the filter-gain interaction solved from the schematic.</p>
+      </div>
+    </div>
+
+    {{/* MONSOON */}}
+    <div class="legends-card legends-card--monsoon">
+      <div class="legends-card-visual">
+        <div class="legends-card-enclosure"></div>
+        <span class="legends-card-name">MONSOON</span>
+      </div>
+      <div class="legends-card-body">
+        <p class="legends-card-tagline">&ldquo;Every repeat, a little more gone.&rdquo;</p>
+        <p class="legends-card-tones">Analog Delay &middot; Modulated Ambience &middot; Oscillating Feedback</p>
+        <p class="legends-card-detail">Hybrid architecture. Analog signal path in pure WDF. BBD chip modeled with a matched DSP kernel that captures clock feedthrough, companding artifacts, and per-stage high-frequency rolloff.</p>
+      </div>
+    </div>
+
+    {{/* FIZZ */}}
+    <div class="legends-card legends-card--fizz">
+      <div class="legends-card-visual">
+        <div class="legends-card-enclosure"></div>
+        <span class="legends-card-name">FIZZ</span>
+      </div>
+      <div class="legends-card-body">
+        <p class="legends-card-tagline">&ldquo;Germanium is alive.&rdquo;</p>
+        <p class="legends-card-tones">Germanium Fuzz &middot; Velcro Sag &middot; Violin-Like Sustain</p>
+        <p class="legends-card-detail">Two PNP germanium transistors sharing a feedback network. Bias points shift with input signal, temperature, and your guitar&rsquo;s impedance. The first plugin where the fuzz actually cleans up when you roll back the volume.</p>
+      </div>
+    </div>
+
+    {{/* SHRINE */}}
+    <div class="legends-card legends-card--shrine">
+      <div class="legends-card-visual">
+        <div class="legends-card-enclosure"></div>
+        <span class="legends-card-name">SHRINE</span>
+      </div>
+      <div class="legends-card-body">
+        <p class="legends-card-tagline">&ldquo;Spring reverb without the spring.&rdquo;</p>
+        <p class="legends-card-tones">Spring Reverb &middot; Hall &middot; Shimmer</p>
+        <p class="legends-card-detail">Hybrid architecture. Analog I/O conditioning in WDF. Reverb core models the allpass/comb filter network with parameters derived from the actual module spec. The specific character of the original, not generic spring reverb.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+{{/* ========================================
+   CIRCUIT VIEW TEASER
+   ======================================== */}}
+<section class="legends-circuit">
+  <h2>Flip it around. Open it up.</h2>
+  <div class="legends-circuit-body">
+    <p>Every Legends plugin ships with Circuit View&mdash;a real-time interactive schematic of the pedal&rsquo;s actual circuit. See exactly what&rsquo;s happening to your signal. Swap components and hear the difference instantly. It&rsquo;s not a gimmick. It&rsquo;s the reason we built this engine.</p>
+  </div>
+
+  <div class="legends-circuit-visual">
+    <div class="legends-schematic">
+      <div class="legends-schematic-node legends-schematic-input">IN</div>
+      <div class="legends-schematic-trace"></div>
+      <div class="legends-schematic-component legends-schematic-swappable">
+        <span class="legends-schematic-label">R1</span>
+        <svg width="40" height="16" viewBox="0 0 40 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 8h5l2-6 4 12 4-12 4 12 4-12 4 12 2-6h5" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="legends-schematic-trace"></div>
+      <div class="legends-schematic-component legends-schematic-swappable legends-schematic-highlight">
+        <span class="legends-schematic-label">D1</span>
+        <svg width="28" height="20" viewBox="0 0 28 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 10h6" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M6 3l10 7-10 7z" stroke="currentColor" stroke-width="1.2" fill="none"/>
+          <path d="M16 3v14" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M16 10h6" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+        <span class="legends-schematic-swap-hint">Swap</span>
+      </div>
+      <div class="legends-schematic-trace"></div>
+      <div class="legends-schematic-component">
+        <span class="legends-schematic-label">C2</span>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 10h7M13 10h7" stroke="currentColor" stroke-width="1.2"/>
+          <path d="M7 3v14M13 3v14" stroke="currentColor" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div class="legends-schematic-trace"></div>
+      <div class="legends-schematic-node legends-schematic-output">OUT</div>
+    </div>
+  </div>
+
+  <div class="legends-circuit-examples">
+    <div class="legends-circuit-example">
+      <span class="legends-circuit-swap">Germanium &rarr; Silicon</span>
+      <p>Swap the clipping diodes in GOLDENROD. Hear the overdrive turn from warm and compressed to tight and bright.</p>
+    </div>
+    <div class="legends-circuit-example">
+      <span class="legends-circuit-swap">AC128 &rarr; BC108</span>
+      <p>Change the transistors in FIZZ. Go from vintage germanium warmth to silicon aggression.</p>
+    </div>
+    <div class="legends-circuit-example">
+      <span class="legends-circuit-swap">LM308 &rarr; OP07</span>
+      <p>The op-amp debate in RATKING, settled by your ears.</p>
+    </div>
+  </div>
+</section>
+
+{{/* ========================================
+   COMPARISON TABLE
+   ======================================== */}}
+<section class="legends-comparison">
+  <h2>The Technology Gap</h2>
+  <div class="comparison-table-wrap">
+    <table class="comparison-table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Neural / Capture</th>
+          <th>Clone Plugins</th>
+          <th>Puget Legends (WDF)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Volume knob cleanup</td>
+          <td>Snapshot&mdash;no real interaction</td>
+          <td>Approximated</td>
+          <td class="legends-compare-highlight">Physically accurate</td>
+        </tr>
+        <tr>
+          <td>Pick dynamics</td>
+          <td>Good at captured setting</td>
+          <td>Fair</td>
+          <td class="legends-compare-highlight">Full circuit response</td>
+        </tr>
+        <tr>
+          <td>Component-level mods</td>
+          <td>Not possible</td>
+          <td>Not possible</td>
+          <td class="legends-compare-highlight">Full access via Circuit View</td>
+        </tr>
+        <tr>
+          <td>Knob interaction</td>
+          <td>Interpolated between captures</td>
+          <td>Modeled per-knob</td>
+          <td class="legends-compare-highlight">Emerges from circuit physics</td>
+        </tr>
+        <tr>
+          <td>Variants per plugin</td>
+          <td>1 per capture file</td>
+          <td>1&ndash;2</td>
+          <td class="legends-compare-highlight">Unlimited (swap any component)</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+{{/* ========================================
+   PRICING
+   ======================================== */}}
+<section class="legends-pricing">
+  <h2>Simple Pricing</h2>
+  <div class="legends-pricing-grid">
+
+    <div class="legends-price-card">
+      <span class="legends-price-label">Single Plugin</span>
+      <span class="legends-price-amount">$39</span>
+      <span class="legends-price-note">Any one pedal</span>
+    </div>
+
+    <div class="legends-price-card">
+      <span class="legends-price-label">Any Three</span>
+      <span class="legends-price-amount">$89</span>
+      <span class="legends-price-note">Pick your trio</span>
+    </div>
+
+    <div class="legends-price-card legends-price-card--featured">
+      <span class="legends-price-label">The Legends Collection</span>
+      <span class="legends-price-amount">$129</span>
+      <span class="legends-price-note">All five pedals</span>
+    </div>
+
+  </div>
+  <p class="legends-pricing-launch">Launch pricing on GOLDENROD: <strong>$29</strong>. Early adopters get the pedal that started a religion for less than a set of strings.</p>
+</section>
+
+{{/* ========================================
+   CROSS-LINK
+   ======================================== */}}
+<section class="legends-crosslink">
+  <p>Looking for amp sims? <a href="/amps/">Meet the Puget Amp Collection &rarr;</a></p>
+</section>
+
+{{/* ========================================
+   BOTTOM CTA
+   ======================================== */}}
+<section class="legends-bottom-cta">
+  <h2>GOLDENROD is coming first.</h2>
+  <p>Get on the list.</p>
+  <form class="legends-email-form" action="https://api.gsgmfg.com/waitlist" method="POST">
+    <div class="legends-email-row">
+      <input type="email" name="email" placeholder="you@example.com" required />
+      <input type="hidden" name="interest" value="legends-goldenrod" />
+      <button type="submit" class="btn-primary">Notify Me</button>
+    </div>
+  </form>
+  <p class="legends-bottom-note">No spam. Just a heads-up when it drops.</p>
+</section>
+
+{{ end }}
