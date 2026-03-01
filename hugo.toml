@@ -43,6 +43,11 @@ theme = 'puget-theme'
     weight = 15
 
   [[menu.main]]
+    name = 'Legends'
+    url = '/legends/'
+    weight = 17
+
+  [[menu.main]]
     name = 'Features'
     url = '/#features'
     weight = 20
