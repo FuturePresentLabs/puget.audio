@@ -1,0 +1,40 @@
+{{ define "main" }}
+<section class="plugins-hero">
+  <div class="plugins-hero-bg"></div>
+  <div class="plugins-hero-content">
+    <h1>{{ .Title }}</h1>
+    <p class="plugins-hero-tagline">Thoughts on audio engineering, circuit modeling, and building tools for creators.</p>
+  </div>
+</section>
+
+<section class="plugins-grid-section">
+  <div class="plugins-grid">
+    {{ range .Pages }}
+    <article class="plugin-card">
+      <a href="{{ .Permalink }}" class="plugin-card-link">
+        <div class="plugin-card-image">
+          {{ if .Params.featured_image }}
+          <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" />
+          {{ else }}
+          <div class="plugin-card-placeholder">
+            <span class="plugin-card-icon">📝</span>
+          </div>
+          {{ end }}
+        </div>
+        <div class="plugin-card-body">
+          <h3>{{ .Title }}</h3>
+          {{ if .Date }}
+          <p class="plugin-card-subtitle">{{ .Date.Format "January 2, 2006" }}</p>
+          {{ end }}
+          {{ if .Params.description }}
+          <p class="plugin-card-desc">{{ .Params.description }}</p>
+          {{ else }}
+          <p class="plugin-card-desc">{{ .Summary | truncate 150 }}</p>
+          {{ end }}
+        </div>
+      </a>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
