@@ -1,7 +1,7 @@
 ---
 title: "Puget Variable-Mu"
-description: "Fairchild 670 circuit-modeled stereo limiter plugin (VST3)"
-subtitle: "Fairchild 670 Stereo Limiter"
+description: "Classic variable-mu stereo limiter plugin modeled from the 670 circuit (VST3)"
+subtitle: "Variable-Mu Stereo Limiter"
 date: 2026-02-24
 slug: "variable-mu"
 price: 199.00
@@ -22,7 +22,7 @@ usage:
   - "Glue and cohesion"
 specs:
   - label: "Circuit Origin"
-    value: "Fairchild 670"
+    value: "670 style variable-mu limiter"
   - label: "Topology"
     value: "Push-pull Class A with variable-mu gain reduction"
   - label: "Gain Reduction"
@@ -43,7 +43,7 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-The holy grail. Original 670s sell for $40,000+ when they surface. Twenty tubes, eleven transformers, and the 6386 remote-cutoff triode that makes variable-mu compression possible.
+The holy grail. Originals sell for $40,000+ when they surface. Twenty tubes, eleven transformers, and the 6386 remote-cutoff triode that makes variable-mu compression possible.
 
 ## How variable-mu works
 
@@ -53,7 +53,7 @@ We modeled the 6386 with a novel WDF triode model fitted to the original GE data
 
 ## Where WDFs really shine
 
-The transformer coupling between stages is where WDFs excel. Transformers map naturally to WDF two-port elements, capturing the frequency-dependent saturation and phase behavior that gives the 670 its legendary "glue."
+The transformer coupling between stages is where WDFs excel. Transformers map naturally to WDF two-port elements, capturing the frequency-dependent saturation and phase behavior that gives this design its legendary "glue."
 
 - **6386 remote-cutoff triode** — variable-mu compression from the actual tube model
 - **Push-pull Class A signal amplifier** (4× parallel 6386 per channel half)

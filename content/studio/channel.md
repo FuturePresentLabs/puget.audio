@@ -1,7 +1,7 @@
 ---
 title: "Puget Channel"
-description: "Neve 1073 circuit-modeled preamp and equalizer plugin (VST3)"
-subtitle: "Neve 1073 Preamp / Equalizer"
+description: "Classic preamp and equalizer plugin modeled from the 1073 circuit (VST3)"
+subtitle: "Preamp / Equalizer"
 date: 2026-02-24
 slug: "channel"
 price: 199.00
@@ -24,7 +24,7 @@ usage:
   - "Channel strip for any source"
 specs:
   - label: "Circuit Origin"
-    value: "Neve 1073"
+    value: "1073 style channel amplifier"
   - label: "Topology"
     value: "Transformer-coupled Class A discrete preamp + inductor EQ"
   - label: "Preamp"
@@ -43,11 +43,11 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-The most recognized preamp in recording history. The 1073 is all transformers and inductors — transformer-coupled Class A discrete preamp, inductor-based 3-band EQ with high-pass filter.
+The most recognized preamp in recording history. All transformers and inductors — transformer-coupled Class A discrete preamp, inductor-based 3-band EQ with high-pass filter.
 
 ## Every component that matters
 
-Every component that gives it that "Neve sound" — the Marinair transformers, the hand-wound inductors, the tantalum capacitors — is a WDF element in our model. Nothing is approximated. Nothing is left out.
+Every component that gives it that signature sound — the transformers, the hand-wound inductors, the tantalum capacitors — is a WDF element in our model. Nothing is approximated. Nothing is left out.
 
 ## Real inductors, not filter coefficients
 
@@ -57,13 +57,13 @@ The result is an EQ that responds to level. Push it harder and the inductors sat
 
 - **Transformer-coupled Class A discrete preamp**
 - **3-band inductor EQ + HPF**
-- **Marinair-style transformer I/O** modeled as WDF two-ports
+- **Transformer I/O** modeled as WDF two-ports
 - **Inductor losses and saturation** captured by physical modeling
 
 <!-- audio-demo: channel -->
 
 ## Use it on
 
-Everything. The 1073 is the channel strip that built modern recording. Vocals, drums, guitars, bass — it works on all of them because the circuit was designed to work on all of them.
+Everything. This is the channel strip that built modern recording. Vocals, drums, guitars, bass — it works on all of them because the circuit was designed to work on all of them.
 
 **$199 — Perpetual license. No iLok. No dongle.**

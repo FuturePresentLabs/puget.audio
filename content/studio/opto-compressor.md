@@ -1,7 +1,7 @@
 ---
 title: "Puget Opto Compressor"
-description: "Teletronix LA-2A circuit-modeled leveling amplifier plugin (VST3)"
-subtitle: "Teletronix LA-2A Leveling Amplifier"
+description: "Classic optical leveling amplifier plugin modeled from the LA-2A circuit (VST3)"
+subtitle: "Optical Leveling Amplifier"
 date: 2026-02-24
 slug: "opto-compressor"
 price: 199.00
@@ -22,7 +22,7 @@ usage:
   - "Sustained notes"
 specs:
   - label: "Circuit Origin"
-    value: "Teletronix LA-2A"
+    value: "LA-2A style leveling amplifier"
   - label: "Topology"
     value: "Two tube gain stages + T4B opto attenuator"
   - label: "Tube Stages"
@@ -39,7 +39,7 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-Every major studio has a pair. The LA-2A is the most revered optical compressor ever built — two tube gain stages, a passive interstage network, and the T4B electro-optical attenuator that gives it that unmistakable program-dependent character.
+Every major studio has a pair. The most revered optical compressor ever built — two tube gain stages, a passive interstage network, and the T4B electro-optical attenuator that gives it that unmistakable program-dependent character.
 
 ## The T4B: why it sounds like nothing else
 
@@ -55,6 +55,6 @@ The tube stages (12AX7 + 12BH7) add harmonic warmth that changes with the gain r
 
 ## Use it on
 
-Vocals. Bass. Anything that needs leveling without losing the life. The LA-2A's program-dependent release means it adapts to the material — fast enough for transients, slow enough to breathe on sustained notes.
+Vocals. Bass. Anything that needs leveling without losing the life. The program-dependent release means it adapts to the material — fast enough for transients, slow enough to breathe on sustained notes.
 
 **$199 — Perpetual license. No iLok. No dongle.**

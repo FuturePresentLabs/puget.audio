@@ -1,7 +1,7 @@
 ---
 title: "Puget FET Limiter"
-description: "UREI 1176LN circuit-modeled limiting amplifier plugin (VST3)"
-subtitle: "UREI 1176LN Limiting Amplifier"
+description: "Classic FET limiting amplifier plugin modeled from the 1176LN circuit (VST3)"
+subtitle: "FET Limiting Amplifier"
 date: 2026-02-24
 slug: "fet-limiter"
 price: 199.00
@@ -22,7 +22,7 @@ usage:
   - "Fast transients"
 specs:
   - label: "Circuit Origin"
-    value: "UREI 1176LN"
+    value: "1176LN style limiting amplifier"
   - label: "Topology"
     value: "JFET gain reduction + Class A transistor amplifier"
   - label: "Gain Reduction"
@@ -43,7 +43,7 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-The fastest compressor in the room. The 1176's gain reduction element is a single JFET used as a voltage-variable resistor — which maps naturally to a nonlinear one-port in our WDF tree. The rest is discrete Class A transistor amplifier stages, transformer I/O, and the four ratio settings that change the feedback topology.
+The fastest compressor in the room. The gain reduction element is a single JFET used as a voltage-variable resistor — which maps naturally to a nonlinear one-port in our WDF tree. The rest is discrete Class A transistor amplifier stages, transformer I/O, and the four ratio settings that change the feedback topology.
 
 ## All Buttons In
 

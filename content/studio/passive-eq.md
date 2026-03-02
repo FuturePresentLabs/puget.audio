@@ -1,7 +1,7 @@
 ---
 title: "Puget Passive EQ"
-description: "Pultec EQP-1A circuit-modeled equalizer plugin (VST3)"
-subtitle: "Pultec EQP-1A Program Equalizer"
+description: "Classic program equalizer plugin modeled from the iconic EQP-1A circuit (VST3)"
+subtitle: "Program Equalizer"
 date: 2026-02-24
 slug: "passive-eq"
 price: 199.00
@@ -22,7 +22,7 @@ usage:
   - "Tone shaping without fighting the source"
 specs:
   - label: "Circuit Origin"
-    value: "Pultec EQP-1A"
+    value: "EQP-1A style program equalizer"
   - label: "Topology"
     value: "Passive LC EQ + tube makeup gain"
   - label: "Tube Stage"
@@ -37,7 +37,7 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-The Pultec is the textbook case for why WDF modeling matters. It's a passive LC equalizer — literally inductors and capacitors in a ladder network — followed by a single 12AX7 tube makeup gain stage. This is the exact circuit topology Wave Digital Filters were invented to model with mathematical precision.
+The textbook case for why WDF modeling matters. It's a passive LC equalizer — literally inductors and capacitors in a ladder network — followed by a single 12AX7 tube makeup gain stage. This is the exact circuit topology Wave Digital Filters were invented to model with mathematical precision.
 
 ## The boost-and-cut trick
 
@@ -56,6 +56,6 @@ Hear the real interaction between the boost and cut coils, the way the tube stag
 
 ## Use it on
 
-Vocals. Mix bus. Acoustic instruments. Anywhere you need to shape tone without fighting the source material. The Pultec adds body and air simultaneously — because the circuit lets you.
+Vocals. Mix bus. Acoustic instruments. Anywhere you need to shape tone without fighting the source material. This design adds body and air simultaneously — because the circuit lets you.
 
 **$199 — Perpetual license. No iLok. No dongle.**
