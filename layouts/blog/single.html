@@ -1,35 +1,42 @@
 {{ define "main" }}
-<article class="blog-post">
-  <header class="blog-post-header">
+<section class="plugins-hero">
+  <div class="plugins-hero-bg"></div>
+  <div class="plugins-hero-content">
     <h1>{{ .Title }}</h1>
     {{ if .Date }}
-    <time class="blog-post-date" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-      {{ .Date.Format "January 2, 2006" }}
-    </time>
+    <p class="plugins-hero-meta">{{ .Date.Format "January 2, 2006" }}</p>
     {{ end }}
     {{ if .Params.description }}
-    <p class="blog-post-description">{{ .Params.description }}</p>
+    <div class="plugins-hero-description">
+      <p>{{ .Params.description }}</p>
+    </div>
     {{ end }}
-  </header>
-
-  {{ if .Params.featured_image }}
-  <div class="blog-post-image">
-    <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" />
   </div>
-  {{ end }}
+</section>
 
-  <div class="blog-post-content">
+{{ if .Params.featured_image }}
+<section class="bundle-highlight">
+  <div class="bundle-card">
+    <div class="bundle-image" style="padding: 0;">
+      <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" style="width: 100%; height: auto; border-radius: 8px;" />
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<section class="plugins-cta">
+  <div class="plugin-content" style="max-width: 800px; margin: 0 auto; text-align: left;">
     {{ .Content }}
   </div>
+</section>
 
-  {{ if .Params.tags }}
-  <footer class="blog-post-footer">
-    <div class="blog-post-tags">
-      {{ range .Params.tags }}
-      <span class="blog-tag">{{ . }}</span>
-      {{ end }}
-    </div>
-  </footer>
-  {{ end }}
-</article>
+{{ if .Params.tags }}
+<section class="plugins-cta" style="padding-top: 0;">
+  <div style="max-width: 800px; margin: 0 auto; text-align: left;">
+    {{ range .Params.tags }}
+    <span class="badge" style="margin-right: 0.5rem;">{{ . }}</span>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
 {{ end }}
