@@ -1,85 +1,64 @@
 ---
-title: "What is Wave Digital Filter Modeling?"
-date: 2026-02-24
-draft: true
-tags: ["wdf", "circuit-modeling", "dsp"]
+title: "What Is WDF? The Tech Behind Plugins That Actually Sound Like Real Pedals"
+date: 2026-03-02T09:31:00Z
+draft: false
+description: "Wave Digital Filters explained: why component-level circuit modeling creates plugins that respond to your playing like real analog gear."
 ---
 
-## The Problem with "Analog Emulation"
+You've probably noticed that some amp sims and pedal plugins sound eerily close to the real thing, while others feel flat and lifeless no matter how much you tweak them. The difference often comes down to how the plugin models the original circuit — and a technology called **Wave Digital Filters** is quietly behind some of the most realistic-sounding plugins available today.
 
-Every plugin company claims their digital effects "sound analog." But what does that actually mean?
+Here's what WDF is, why it matters to your tone, and why we use it at Puget Audio.
 
-Most fall into three camps:
+## The old way: "just make it sound close enough"
 
-1. **Impulse Responses (IRs)** — Record the output of hardware, play it back. Static snapshots that can't respond to your playing dynamics.
+Most guitar plugins use one of two approaches.
 
-2. **Curve Fitting** — Mathematically approximate the frequency response. Looks right on a graph, misses the feel.
+The first is **impulse responses and EQ curves**. The developer measures a real amp or pedal, captures its frequency response, and bakes that into the plugin. It can sound great for clean tones or static settings, but the moment you dig in with your pick or roll back your guitar's volume knob, it falls apart. A real Tube Screamer doesn't respond the same way at every pick velocity — an IR-based model does.
 
-3. **Black Box Modeling** — Train a neural network on input/output pairs. Might sound right, but nobody knows why.
+The second is **black-box machine learning**. Feed a neural network thousands of audio samples from a real pedal, and it learns to mimic the output. This can sound excellent for the specific settings it was trained on, but it's essentially a very sophisticated copy machine. It doesn't know *why* the pedal sounds the way it does. Change a knob to a position that wasn't well-represented in the training data, and the results can get weird fast.
 
-All three share a fundamental limitation: they're approximating the *result* of analog behavior, not simulating the *process*.
+## WDF: build the actual circuit, digitally
 
----
+Wave Digital Filters take a completely different approach. Instead of measuring what a circuit *sounds like* and trying to copy it, WDF models what the circuit *is* — every resistor, capacitor, diode, and transistor — and lets the sound emerge naturally from the physics.
 
-## Enter Wave Digital Filters
+Think of it this way. If you wanted to predict how a billiard ball would bounce off a rail, you could either watch a thousand billiard shots and memorize the patterns (the machine learning approach) or you could just do the physics — angle of incidence equals angle of reflection, account for friction and spin, done.
 
-Wave Digital Filter (WDF) theory was developed at the University of Erlangen-Nuremberg in the 1970s by Alfred Fettweis. It's not a new idea — it's a rigorously mathematical framework for modeling analog circuits.
+WDF is the physics approach applied to audio circuits.
 
-Instead of approximating behavior, WDFs simulate physics.
+Each component in the original pedal gets a digital counterpart. A capacitor stores energy over time. A resistor dissipates it. A pair of germanium diodes soft-clips the signal in that warm, asymmetric way that germanium is known for. These digital components are connected together in the same topology as the original schematic, and the math handles the rest.
 
-### Kirchhoff's Laws, Digitized
+## Why does this matter for your playing?
 
-Every circuit obeys two fundamental principles:
-- **KCL (Kirchhoff's Current Law):** Current flowing into a node equals current flowing out
-- **KVL (Kirchhoff's Voltage Law):** The sum of voltages around any closed loop equals zero
+The payoff is in **how the plugin responds to your hands**.
 
-WDFs transform these continuous-time laws into discrete-time implementations using wave variables — a clever mathematical trick that preserves energy relationships.
+A real Klon Centaur is famous for its "transparent" drive because it blends a clean signal with a clipped signal using a dual-gang potentiometer — one side attenuates the clean path while the other increases the gain stage's feedback resistance. At low gain, you get mostly clean with a hint of harmonic sheen. Dig in harder, and the germanium diodes start to compress the peaks. Roll back your guitar volume and the whole character opens up.
 
-### Component-By-Component
+A WDF model of the Klon has that same dual-gang pot, those same germanium diodes with their ~0.3V forward voltage, and that same three-way signal split that Finnegan and the MIT engineers designed into the original circuit. The plugin doesn't need to be told how to respond to pick dynamics — it responds that way because the circuit responds that way.
 
-In a WDF model, every resistor, capacitor, inductor, and semiconductor exists as a discrete element with:
-- Its physical parameters (resistance, capacitance, forward voltage)
-- Its energy relationships with connected elements
-- Its nonlinear behavior (when applicable)
+This is the same reason a real tube amp feels different than a digital model of one. Tubes compress dynamically, sag when the power supply can't keep up with loud transients, and generate different harmonic content depending on how hard you hit them. WDF models all of this from the component level, so the feel translates — not just the sound at one static setting.
 
-When you turn a tone knob in a WDF-modeled pedal, you're not adjusting a filter coefficient. You're changing a capacitor value in a simulated RC network. The resulting frequency response emerges naturally from component interaction — just like the real circuit.
+## It's not new — it's just newly practical
 
----
+The math behind WDF has been around since 1986, when Alfred Fettweis published the foundational theory. Audio researchers at universities like Stanford and Politecnico di Milano have been refining the approach for over a decade.
 
-## Why It Matters for Musicians
+But for most of that time, WDF models were too computationally expensive for real-time use, or they could only handle simple circuits with one or two nonlinear components.
 
-### Touch Sensitivity
+Recent advances in how multiple nonlinear elements are solved simultaneously — things like multi-junction solvers that handle circuits where transistors, diodes, and op-amps all interact with each other — have made it practical to model complex pedals and studio gear in real time on a normal laptop. No special hardware required.
 
-Analog circuits respond to how hard you play. Soft notes clean up. Hard notes saturate. This isn't programmed — it emerges from component physics.
+## What Puget Audio does with WDF
 
-WDFs capture this naturally. The same voltage swings that clip diodes in hardware clip diodes in the model.
+Every Puget Audio plugin is built on [PedalKernel](https://github.com/ajmwagar/pedalkernel), an open-source WDF engine. We write a netlist of the original circuit — the actual schematic, with real component values — and the engine compiles it into a real-time audio processor.
 
-### The "Feel" Question
+This means our plugins aren't approximations or trained copies. They're the circuit, running as math.
 
-Engineers dismiss "feel" as unmeasurable. But musicians know when a plugin responds wrong. The attack is too fast. The decay is too linear. Something intangible is missing.
+When we model a Tube Screamer, we use the actual 4.7k feedback pot, the 47nF capacitor, the silicon diode pair, and the TL072 op-amp from the original TS-808 schematic. When we model a Fuzz Face, we use extracted Gummel-Poon parameters for the AC128 germanium transistors — the same parameters a SPICE simulator would use.
 
-That intangible quality often comes from component interaction: an op-amp's slew rate limiting, a transformer's hysteresis, a capacitor's ESR affecting transient response. WDFs model these explicitly.
+The result is plugins that respond to your playing the way the original hardware does. Not because we told them to, but because the physics requires it.
 
-### Consistency Across Products
+## Try it yourself
 
-Because every Puget Audio product uses the same WDF engine, techniques learned on one plugin transfer to others. The Tube Screamer's op-amp topology helps you understand the FET Limiter's gain reduction behavior.
+You can explore PedalKernel yourself — it's free, open-source, and written in Rust. Check it out at [github.com/ajmwagar/pedalkernel](https://github.com/ajmwagar/pedalkernel).
 
----
+If you just want to play, our [Puget Audio VST plugins](https://puget.audio/studio/) package the engine into studio-ready plugins with GUIs, presets, and DAW integration.
 
-## The Technical Deep End (Optional)
-
-For the curious: WDFs use scattering parameters (S-parameters) to represent energy flow between components. A resistor becomes a simple reflection coefficient. A capacitor becomes a first-order delay element. Nonlinear elements like diodes use iterative solvers (Newton-Raphson) to find consistent operating points.
-
-The math is heavy. But the result is worth it: digital audio that behaves like analog circuits because it's literally following the same physical laws.
-
----
-
-## Open Source, Verified
-
-The PedalKernel WDF engine is open source. Every component model is inspectable. Every circuit topology is documented. We don't ask you to trust us — we ask you to verify.
-
-The best audio modeling isn't magic. It's just physics, simulated in real time.
-
----
-
-*Want to go deeper? Check out the [PedalKernel documentation](https://pedalkernel.dev) or read Fettweis's original 1986 paper on wave digital filters.*
+Either way, your ears will know the difference.
