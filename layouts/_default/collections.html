@@ -1,66 +1,82 @@
 {{ define "main" }}
-<section class="collections-hero">
-  <div class="collections-hero-content">
+<section class="plugins-hero">
+  <div class="plugins-hero-bg"></div>
+  <div class="plugins-hero-content">
     <h1>Our Plugins</h1>
-    <p class="collections-hero-tagline">Three product lines. One philosophy: simulate the physics, don't approximate the sound.</p>
-  </div>
-</section>
-
-<section class="collections-grid">
-  {{/* Studio Collection */}}
-  <div class="collection-card">
-    <div class="collection-card-content">
-      <h2><a href="/studio/">Studio</a></h2>
-      <p class="collection-tagline">Professional VST3 plugins for your DAW</p>
-      <p class="collection-description">Five studio-grade processors modeled from legendary analog circuits. The Pultec that shapes tone. The 1176 that catches transients. The LA-2A that levels dynamics. The Fairchild that glues the bus. The Neve that does everything in between.</p>
-      <ul class="collection-features">
-        <li>Passive EQ — Pultec EQP-1A</li>
-        <li>Opto Compressor — LA-2A</li>
-        <li>FET Limiter — 1176LN</li>
-        <li>Variable-Mu — Fairchild 670</li>
-        <li>Channel — Neve 1073</li>
-      </ul>
-      <a href="/studio/" class="collection-cta">Explore Studio →</a>
-    </div>
-  </div>
-
-  {{/* Legends Collection */}}
-  <div class="collection-card">
-    <div class="collection-card-content">
-      <h2><a href="/legends/">Legends</a></h2>
-      <p class="collection-tagline">Iconic guitar pedals, rebuilt from the schematic</p>
-      <p class="collection-description">Five legendary guitar effect circuits, modeled at the component level using Wave Digital Filters. Not sampled. Not captured. Simulated — component by component. The pedals that defined rock, blues, and metal.</p>
-      <ul class="collection-features">
-        <li>Overdrive classics</li>
-        <li>Fuzz legends</li>
-        <li>Modulation icons</li>
-        <li>Component-accurate WDF models</li>
-      </ul>
-      <a href="/legends/" class="collection-cta">Explore Legends →</a>
-    </div>
-  </div>
-
-  {{/* Amps Collection */}}
-  <div class="collection-card">
-    <div class="collection-card-content">
-      <h2><a href="/amps/">Amps</a></h2>
-      <p class="collection-tagline">Four amp families. One engine.</p>
-      <p class="collection-description">Tube amp simulations that clean up, sag, and mod like the real thing. British, American, and boutique voicings. Every component simulated. Real power amp dynamics that respond to your playing.</p>
-      <ul class="collection-features">
-        <li>British classics</li>
-        <li>American staples</li>
-        <li>Boutique voicings</li>
-        <li>Real power amp dynamics</li>
-      </ul>
-      <a href="/amps/" class="collection-cta">Explore Amps →</a>
+    <p class="plugins-hero-tagline">Three product lines. One philosophy: simulate the physics, don't approximate the sound.</p>
+    <div class="plugins-hero-description">
+      <p>Explore our three collections: Studio plugins for your DAW, Legends guitar pedals, and Amps — all built with Wave Digital Filter technology.</p>
     </div>
   </div>
 </section>
 
-<section class="collections-wdf">
+<section class="plugins-grid-section">
+  <h2>Collections</h2>
+  <div class="plugins-grid">
+    {{/* Studio Collection */}}
+    <div class="plugin-card">
+      <a href="/studio/" class="plugin-card-link">
+        <div class="plugin-card-image">
+          <div class="plugin-card-placeholder">
+            <span class="plugin-card-icon">ST</span>
+          </div>
+        </div>
+        <div class="plugin-card-body">
+          <h3>Studio</h3>
+          <p class="plugin-card-subtitle">Professional VST3 Plugins</p>
+          <p class="plugin-card-desc">Five studio-grade processors: Passive EQ, Opto Compressor, FET Limiter, Variable-Mu, and Channel strip.</p>
+        </div>
+      </a>
+      <div class="plugin-card-footer">
+        <span class="plugin-card-price">From $199</span>
+        <a href="/studio/" class="btn-primary btn-sm">Explore</a>
+      </div>
+    </div>
+
+    {{/* Legends Collection */}}
+    <div class="plugin-card">
+      <a href="/legends/" class="plugin-card-link">
+        <div class="plugin-card-image">
+          <div class="plugin-card-placeholder">
+            <span class="plugin-card-icon">LG</span>
+          </div>
+        </div>
+        <div class="plugin-card-body">
+          <h3>Legends</h3>
+          <p class="plugin-card-subtitle">Iconic Guitar Pedals</p>
+          <p class="plugin-card-desc">Legendary guitar effect circuits rebuilt from the schematic using Wave Digital Filters.</p>
+        </div>
+      </a>
+      <div class="plugin-card-footer">
+        <span class="plugin-card-coming-soon">Coming Soon</span>
+      </div>
+    </div>
+
+    {{/* Amps Collection */}}
+    <div class="plugin-card">
+      <a href="/amps/" class="plugin-card-link">
+        <div class="plugin-card-image">
+          <div class="plugin-card-placeholder">
+            <span class="plugin-card-icon">AM</span>
+          </div>
+        </div>
+        <div class="plugin-card-body">
+          <h3>Amps</h3>
+          <p class="plugin-card-subtitle">Tube Amplifier Simulations</p>
+          <p class="plugin-card-desc">Four amp families with real power amp dynamics. British, American, and boutique voicings.</p>
+        </div>
+      </a>
+      <div class="plugin-card-footer">
+        <span class="plugin-card-coming-soon">Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="plugins-cta">
   <h2>Why Wave Digital Filters?</h2>
   <p>All our products use the same underlying technology: Wave Digital Filters (WDF). Instead of sampling or curve-fitting, we model the actual physics of analog circuits — resistors, capacitors, tubes, and transformers — one component at a time.</p>
-  <p>The result is the kind of nonlinear behavior, harmonic saturation, and dynamic response that makes analog gear special. When you turn a knob, you're adjusting a modeled component, not interpolating between presets.</p>
-  <a href="/blog/what-is-wdf/">Learn more about WDF →</a>
+  <p>The result is the kind of nonlinear behavior, harmonic saturation, and dynamic response that makes analog gear special.</p>
+  <a href="/blog/what-is-wdf/" class="btn-secondary">Learn more about WDF →</a>
 </section>
 {{ end }}
