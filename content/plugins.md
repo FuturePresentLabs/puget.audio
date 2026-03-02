@@ -1,11 +1,11 @@
 ---
-title: "Collections"
+title: "Plugins"
 description: "Explore our three product lines: Studio plugins, Legends pedals, and Amps — all built with Wave Digital Filter technology"
 layout: "collections"
 menu:
   main:
-    name: "Collections"
-    url: '/collections/'
+    name: "Plugins"
+    url: '/plugins/'
     weight: 12
 og_image: "/images/puget-og.jpg"
 ---
