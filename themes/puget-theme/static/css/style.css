@@ -1469,6 +1469,54 @@ body {
 }
 
 /* ========================================
+   Plugin Usage Section (Best For)
+   ======================================== */
+
+.plugin-usage {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 2rem 2rem;
+}
+
+.plugin-usage h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.usage-list {
+  list-style: none;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+}
+
+.usage-list li {
+  padding: 0.75rem 1.25rem;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  padding-left: 2.5rem;
+}
+
+.usage-list li:last-child {
+  border-bottom: none;
+}
+
+.usage-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 1.25rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ========================================
    Plugin Bottom CTA
    ======================================== */
 
