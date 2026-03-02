@@ -25,11 +25,11 @@ An engineer can mix an entire record with these five tools. Generations of them 
 
 | Plugin | Models | Type |
 |--------|--------|------|
-| [Puget Passive EQ](/plugins/passive-eq/) | Pultec EQP-1A | Equalizer |
-| [Puget Opto Compressor](/plugins/opto-compressor/) | Teletronix LA-2A | Compressor |
-| [Puget FET Limiter](/plugins/fet-limiter/) | UREI 1176LN | Limiter |
-| [Puget Variable-Mu](/plugins/variable-mu/) | Fairchild 670 | Compressor/Limiter |
-| [Puget Channel](/plugins/channel/) | Neve 1073 | Preamp/EQ |
+| [Puget Passive EQ](/studio/passive-eq/) | Pultec EQP-1A | Equalizer |
+| [Puget Opto Compressor](/studio/opto-compressor/) | Teletronix LA-2A | Compressor |
+| [Puget FET Limiter](/studio/fet-limiter/) | UREI 1176LN | Limiter |
+| [Puget Variable-Mu](/studio/variable-mu/) | Fairchild 670 | Compressor/Limiter |
+| [Puget Channel](/studio/channel/) | Neve 1073 | Preamp/EQ |
 
 ## $699 — Save $296
 

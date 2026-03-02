@@ -38,8 +38,8 @@ theme = 'puget-theme'
     weight = 10
 
   [[menu.main]]
-    name = 'Plugins'
-    url = '/plugins/'
+    name = 'Studio'
+    url = '/studio/'
     weight = 15
 
   [[menu.main]]
