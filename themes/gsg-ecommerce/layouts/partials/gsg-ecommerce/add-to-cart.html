@@ -1,0 +1,31 @@
+{{/*
+  gsg-ecommerce: Add to Cart Button
+
+  Usage: {{ partial "gsg-ecommerce/add-to-cart.html" (dict "sku" "product-sku" "price" 49.00 "title" "Product Name" "label" "Buy Now" "class" "btn-lg") }}
+
+  Parameters:
+    sku    - Product SKU (required)
+    price  - Product price as number (required)
+    title  - Product title for cart display (required)
+    label  - Button text (optional, defaults to "Add to Cart — $price")
+    class  - Additional CSS classes (optional)
+    image  - Product image URL (optional)
+*/}}
+{{ $sku := .sku }}
+{{ $price := .price }}
+{{ $title := .title }}
+{{ $image := .image | default "" }}
+{{ $class := .class | default "" }}
+{{ $label := .label | default (printf "Add to Cart — $%s" (string $price)) }}
+
+<button
+  class="gsg-add-to-cart {{ $class }}"
+  data-gsg-sku="{{ $sku }}"
+  data-gsg-price="{{ $price }}"
+  data-gsg-title="{{ $title }}"
+  data-gsg-image="{{ $image }}"
+  type="button"
+>
+  <span class="gsg-atc-label">{{ $label }}</span>
+  <span class="gsg-atc-added" aria-hidden="true">Added!</span>
+</button>

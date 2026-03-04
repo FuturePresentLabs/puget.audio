@@ -1,0 +1,22 @@
+{{/*
+  gsg-ecommerce: Scripts
+
+  Usage: {{ partial "gsg-ecommerce/scripts.html" . }}
+
+  Include before </body> to load the gsg-ecommerce JavaScript.
+  Reads configuration from .Site.Params.api and .Site.Params.fluidpay
+*/}}
+<script>
+  window.GSG_ECOMMERCE_CONFIG = {
+    apiBase: "{{ with .Site.Params.api.base }}{{ . }}{{ else }}{{ end }}",
+    currency: "{{ with .Site.Params.currency }}{{ . }}{{ else }}USD{{ end }}",
+    brandName: "{{ with .Site.Params.brand.name }}{{ . }}{{ else }}Store{{ end }}"
+    {{ with .Site.Params.fluidpay }}
+    ,fluidpay: {
+      tokenizerScript: "{{ .tokenizerScript }}",
+      publicKey: "{{ .publicKey }}"
+    }
+    {{ end }}
+  };
+</script>
+<script src="/js/gsg-ecommerce.js"></script>

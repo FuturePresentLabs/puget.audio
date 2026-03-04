@@ -45,6 +45,9 @@
   </script>
   
 
+  
+<link rel="stylesheet" href="/css/gsg-ecommerce.css">
+
   <link rel="stylesheet" href="/css/style.css">
 
   
@@ -69,6 +72,16 @@
         <a href="/#about">About</a>
         <a href="/blog/">Blog</a>
         
+<a href="/cart/" class="gsg-cart-nav" aria-label="Shopping Cart">
+  <svg class="gsg-cart-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="21" r="1"/>
+    <circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+  </svg>
+  <span class="gsg-cart-count" data-gsg-cart-count style="display:none;">0</span>
+  <span class="gsg-cart-label">Cart</span>
+</a>
+
       </div>
     </div>
   </nav>
@@ -98,9 +111,25 @@
       </div>
       
       
-      <button class="btn-primary btn-lg buy-btn" data-sku="puget-opto-compressor" data-price="199">
-        Buy Now — $199
-      </button>
+
+
+
+
+
+
+
+<button
+  class="gsg-add-to-cart btn-primary btn-lg"
+  data-gsg-sku="puget-opto-compressor"
+  data-gsg-price="199"
+  data-gsg-title="Puget Opto Compressor"
+  data-gsg-image=""
+  type="button"
+>
+  <span class="gsg-atc-label">Add to Cart — $199</span>
+  <span class="gsg-atc-added" aria-hidden="true">Added!</span>
+</button>
+
       
       <p class="plugin-format-note">VST3 &middot; macOS &amp; Windows</p>
     </div>
@@ -180,9 +209,25 @@
     
     <div class="plugin-bottom-actions">
       
-      <button class="btn-primary btn-lg buy-btn" data-sku="puget-opto-compressor" data-price="199">
-        Buy Now — $199
-      </button>
+
+
+
+
+
+
+
+<button
+  class="gsg-add-to-cart btn-primary btn-lg"
+  data-gsg-sku="puget-opto-compressor"
+  data-gsg-price="199"
+  data-gsg-title="Puget Opto Compressor"
+  data-gsg-image=""
+  type="button"
+>
+  <span class="gsg-atc-label">Add to Cart — $199</span>
+  <span class="gsg-atc-added" aria-hidden="true">Added!</span>
+</button>
+
       <p class="plugin-bundle-upsell">Or get all five plugins in the <a href="/plugins/studio/studio-collection/">Studio Collection</a> for $699.</p>
     </div>
     
@@ -235,5 +280,20 @@
   </footer>
 
   
+<script>
+  window.GSG_ECOMMERCE_CONFIG = {
+    apiBase: "https:\/\/api.gsgmfg.com",
+    currency: "USD",
+    brandName: "Puget Audio"
+    
+    ,fluidpay: {
+      tokenizerScript: "https:\/\/app.fluidpay.com\/tokenizer\/tokenizer.js",
+      publicKey: "your-fluidpay-public-key"
+    }
+    
+  };
+</script>
+<script src="/js/gsg-ecommerce.js"></script>
+
 </body>
 </html>
