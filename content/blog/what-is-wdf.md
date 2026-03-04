@@ -59,6 +59,6 @@ The result is plugins that respond to your playing the way the original hardware
 
 You can explore PedalKernel yourself — it's free, open-source, and written in Rust. Check it out at [github.com/ajmwagar/pedalkernel](https://github.com/ajmwagar/pedalkernel).
 
-If you just want to play, our [Puget Audio VST plugins](https://puget.audio/studio/) package the engine into studio-ready plugins with GUIs, presets, and DAW integration.
+If you just want to play, our [Puget Audio VST plugins](https://puget.audio/plugins/studio/) package the engine into studio-ready plugins with GUIs, presets, and DAW integration.
 
 Either way, your ears will know the difference.

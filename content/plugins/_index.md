@@ -1,22 +1,27 @@
 ---
 title: "Plugins"
-description: "Explore our three product lines: Studio plugins, Legends pedals, and Amps — all built with Wave Digital Filter technology"
+description: "Explore our four product lines: Studio plugins, Legends pedals, Continuum modulation effects, and Amps — all built with Wave Digital Filter technology"
 layout: "collections"
-menu:
-  main:
-    name: "Plugins"
-    url: '/plugins/'
-    weight: 12
 og_image: "/images/puget-og.jpg"
 ---
 
 ## Our Collections
 
-We build professional audio tools across three product lines. Each one shares the same foundation: circuit-accurate modeling using Wave Digital Filter technology.
+We build professional audio tools across four product lines. Each one shares the same foundation: circuit-accurate modeling using Wave Digital Filter technology.
 
 ---
 
-### [Studio](/studio/)
+### [Continuum](/plugins/continuum/)
+
+**Analog modulation and time effects. Circuit-modeled from the component up.**
+
+Six iconic effect circuits — chorus, delay, phaser, vibe, flanger, reverb — featuring patent-pending BBD modeling.
+
+[Explore Continuum →](/plugins/continuum/)
+
+---
+
+### [Studio](/plugins/studio/)
 
 **Professional VST3 plugins for your DAW**
 
@@ -28,11 +33,11 @@ Five studio-grade processors modeled from legendary analog circuits:
 - **Variable-Mu** — Fairchild 670 stereo compressor
 - **Channel** — Neve 1073 preamp/EQ
 
-[Explore Studio →](/studio/)
+[Explore Studio →](/plugins/studio/)
 
 ---
 
-### [Legends](/legends/)
+### [Legends](/plugins/legends/)
 
 **Iconic guitar pedals, rebuilt from the schematic**
 
@@ -42,11 +47,11 @@ Five legendary guitar effect circuits, modeled at the component level:
 - Component-accurate WDF models
 - The circuits that defined rock, blues, and metal
 
-[Explore Legends →](/legends/)
+[Explore Legends →](/plugins/legends/)
 
 ---
 
-### [Amps](/amps/)
+### [Amps](/plugins/amps/)
 
 **Four amp families. One engine.**
 
@@ -56,7 +61,7 @@ Tube amp simulations that clean up, sag, and respond like the real thing:
 - Every component simulated
 - Real power amp dynamics
 
-[Explore Amps →](/amps/)
+[Explore Amps →](/plugins/amps/)
 
 ---
 

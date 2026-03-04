@@ -2,7 +2,7 @@
 <article class="plugin-page">
   {{/* Breadcrumb */}}
   <nav class="plugin-breadcrumb">
-    <a href="/">Home</a> / <a href="/studio/">Studio</a> / <span>{{ .Title }}</span>
+    <a href="/">Home</a> / <a href="/plugins/studio/">Studio</a> / <span>{{ .Title }}</span>
   </nav>
 
   {{/* Hero */}}
@@ -77,7 +77,7 @@
       <button class="btn-primary btn-lg buy-btn" data-sku="{{ .Params.sku }}" data-price="{{ .Params.price }}">
         Buy Now — ${{ .Params.price }}
       </button>
-      <p class="plugin-bundle-upsell">Or get all five plugins in the <a href="/studio/studio-collection/">Studio Collection</a> for $699.</p>
+      <p class="plugin-bundle-upsell">Or get all five plugins in the <a href="/plugins/studio/studio-collection/">Studio Collection</a> for $699.</p>
     </div>
     {{ end }}
   </div>

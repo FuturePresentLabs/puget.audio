@@ -13,6 +13,9 @@ status: "available"
 short_name: "Channel"
 icon: "CH"
 wdf_components: "Transformers, inductors, tantalum caps, Class A"
+type: "studio"
+aliases:
+  - /studio/channel/
 og_image: "/images/puget-og.jpg"
 weight: 5
 usage:

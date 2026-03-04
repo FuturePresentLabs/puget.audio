@@ -13,6 +13,9 @@ status: "available"
 short_name: "Passive EQ"
 icon: "EQ"
 wdf_components: "Inductors, capacitors, 12AX7 tube"
+type: "studio"
+aliases:
+  - /studio/passive-eq/
 og_image: "/images/puget-og.jpg"
 weight: 1
 usage:

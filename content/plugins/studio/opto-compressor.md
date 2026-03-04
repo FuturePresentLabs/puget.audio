@@ -13,6 +13,9 @@ status: "available"
 short_name: "Opto Comp"
 icon: "LA"
 wdf_components: "T4B opto cell, 12AX7 + 12BH7 tubes"
+type: "studio"
+aliases:
+  - /studio/opto-compressor/
 og_image: "/images/puget-og.jpg"
 weight: 2
 usage:

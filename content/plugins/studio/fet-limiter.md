@@ -13,6 +13,9 @@ status: "available"
 short_name: "FET Limiter"
 icon: "FET"
 wdf_components: "JFET, Class A transistor stages, transformers"
+type: "studio"
+aliases:
+  - /studio/fet-limiter/
 og_image: "/images/puget-og.jpg"
 weight: 3
 usage:

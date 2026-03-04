@@ -38,14 +38,24 @@ theme = 'puget-theme'
     weight = 10
 
   [[menu.main]]
+    name = 'Plugins'
+    url = '/plugins/'
+    weight = 12
+
+  [[menu.main]]
     name = 'Studio'
-    url = '/studio/'
+    url = '/plugins/studio/'
     weight = 15
 
   [[menu.main]]
     name = 'Legends'
-    url = '/legends/'
+    url = '/plugins/legends/'
     weight = 17
+
+  [[menu.main]]
+    name = 'Continuum'
+    url = '/plugins/continuum/'
+    weight = 18
 
   [[menu.main]]
     name = 'Features'
