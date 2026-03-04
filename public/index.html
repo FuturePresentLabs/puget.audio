@@ -23,6 +23,15 @@
   
 
   <link rel="stylesheet" href="/css/style.css">
+
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NX7QPG0SE3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NX7QPG0SE3');
+  </script>
 </head>
 <body>
   
@@ -31,6 +40,9 @@
       <a href="/" class="nav-logo">Puget Audio</a>
       <div class="nav-links">
         <a href="/plugins/">Plugins</a>
+        <a href="/plugins/studio/">Studio</a>
+        <a href="/plugins/legends/">Legends</a>
+        <a href="/plugins/continuum/">Continuum</a>
         <a href="/#about">About</a>
         <a href="/blog/">Blog</a>
         
@@ -104,16 +116,11 @@
     </div>
     <div class="feature">
       <h3>Seattle Craftsmanship</h3>
-      <div class="feature-image">
-        
-        
-        <img src="/images/puget_workshop_cnc_hu2b96ab95236c2386d20cc508e206f055_6067309_400x250_fill_box_center_3.png" alt="Belltown Workshop" width="400" height="250" />
-      </div>
       <p>Our hardware is machined and assembled in-house at our Belltown workshop. Our software is developed by engineers who understand both code and solder. Craftsman-quality tools built by people who use them.</p>
     </div>
     <div class="feature">
       <h3>Open Foundation</h3>
-      <p>Every product is built on the open-source <a href="https://pedalkernel.com">PedalKernel</a> engine. The approach is transparent, the math is rigorous, and the community validates the science. When you buy Puget Audio, you support open audio development.</p>
+      <p>Every product is built on the open-source <a href="https://pedalkernel.com" style="color: var(--accent); text-decoration: none; border-bottom: 1px solid rgba(201, 169, 110, 0.3);">PedalKernel</a> engine. The approach is transparent, the math is rigorous, and the community validates the science. When you buy Puget Audio, you support open audio development.</p>
     </div>
   </div>
 </section>
@@ -127,12 +134,6 @@
   <p class="signup-subtitle">Be first to know when we launch.</p>
   <form class="signup-form" action="https://api.gsgmfg.com/waitlist" method="POST">
     <input type="email" name="email" placeholder="Enter your email" required />
-    <select name="interest">
-      <option value="">Interested in...</option>
-      <option value="plugins">VST3 Plugins</option>
-      <option value="hardware">Hardware Pedals</option>
-      <option value="all">Everything</option>
-    </select>
     <button type="submit" class="btn-primary">Join List</button>
   </form>
   <p class="signup-note">No spam. Just updates on our progress.</p>
@@ -148,6 +149,7 @@
       <p class="footer-brand">Puget Audio &middot; Seattle, WA</p>
       <p class="footer-tagline">We don't approximate analog. We simulate it.</p>
       <p class="footer-copy">&copy; 2026 Puget Audio. All rights reserved.</p>
+      <p class="footer-parent" style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.6; margin-top: 1rem;"><a href="https://fpl.dev" style="color: inherit; text-decoration: none;">A Future Present Labs Brand</a></p>
     </div>
   </footer>
 

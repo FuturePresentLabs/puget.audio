@@ -13,6 +13,9 @@ status: "available"
 short_name: "Variable-Mu"
 icon: "Mu"
 wdf_components: "6386 triodes, transformers, push-pull amplifier"
+type: "studio"
+aliases:
+  - /studio/variable-mu/
 og_image: "/images/puget-og.jpg"
 weight: 4
 usage:

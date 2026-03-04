@@ -3,19 +3,56 @@
   <div class="plugins-hero-bg"></div>
   <div class="plugins-hero-content">
     <h1>Our Plugins</h1>
-    <p class="plugins-hero-tagline">Three product lines. One philosophy: simulate the physics, don't approximate the sound.</p>
+    <p class="plugins-hero-tagline">Four product lines. One philosophy: simulate the physics, don't approximate the sound.</p>
     <div class="plugins-hero-description">
-      <p>Explore our three collections: Studio plugins for your DAW, Legends guitar pedals, and Amps — all built with Wave Digital Filter technology.</p>
+      <p>Studio processors, legendary guitar pedals, modulation and time effects, and amp simulations &mdash; all built with Wave Digital Filter technology.</p>
     </div>
   </div>
 </section>
 
+{{/* Featured: Continuum (NEW) */}}
+<section class="plugins-featured">
+  <div class="plugins-featured-inner">
+    <div class="plugins-featured-badge">New</div>
+    <a href="/plugins/continuum/" class="plugins-featured-link">
+      <div class="plugins-featured-content">
+        <h2>Continuum</h2>
+        <p class="plugins-featured-subtitle">Modulation &amp; Time Effects</p>
+        <p class="plugins-featured-desc">Six iconic analog modulation and time-based effect circuits. Chorus, delay, phaser, vibe, flanger, reverb &mdash; all circuit-modeled from the component up. Featuring patent-pending BBD modeling.</p>
+        <div class="plugins-featured-meta">
+          <span class="plugins-featured-count">6 effects</span>
+          <span class="plugins-featured-price">$49</span>
+        </div>
+      </div>
+    </a>
+  </div>
+</section>
+
 <section class="plugins-grid-section">
-  <h2>Collections</h2>
+  <h2>All Collections</h2>
   <div class="plugins-grid">
+    {{/* Legends Collection */}}
+    <div class="plugin-card">
+      <a href="/plugins/legends/" class="plugin-card-link">
+        <div class="plugin-card-image">
+          <div class="plugin-card-placeholder">
+            <span class="plugin-card-icon">LG</span>
+          </div>
+        </div>
+        <div class="plugin-card-body">
+          <h3>Legends</h3>
+          <p class="plugin-card-subtitle">Iconic Guitar Pedals</p>
+          <p class="plugin-card-desc">Five legendary drive and fuzz circuits rebuilt from the schematic. Overdrive, distortion, fuzz, delay, and reverb.</p>
+        </div>
+      </a>
+      <div class="plugin-card-footer">
+        <span class="plugin-card-price">5 pedals &middot; $49</span>
+      </div>
+    </div>
+
     {{/* Studio Collection */}}
     <div class="plugin-card">
-      <a href="/studio/" class="plugin-card-link">
+      <a href="/plugins/studio/" class="plugin-card-link">
         <div class="plugin-card-image">
           <div class="plugin-card-placeholder">
             <span class="plugin-card-icon">ST</span>
@@ -28,33 +65,13 @@
         </div>
       </a>
       <div class="plugin-card-footer">
-        <span class="plugin-card-price">From $199</span>
-        <a href="/studio/" class="btn-primary btn-sm">Explore</a>
-      </div>
-    </div>
-
-    {{/* Legends Collection */}}
-    <div class="plugin-card">
-      <a href="/legends/" class="plugin-card-link">
-        <div class="plugin-card-image">
-          <div class="plugin-card-placeholder">
-            <span class="plugin-card-icon">LG</span>
-          </div>
-        </div>
-        <div class="plugin-card-body">
-          <h3>Legends</h3>
-          <p class="plugin-card-subtitle">Iconic Guitar Pedals</p>
-          <p class="plugin-card-desc">Legendary guitar effect circuits rebuilt from the schematic using Wave Digital Filters.</p>
-        </div>
-      </a>
-      <div class="plugin-card-footer">
         <span class="plugin-card-coming-soon">Coming Soon</span>
       </div>
     </div>
 
     {{/* Amps Collection */}}
     <div class="plugin-card">
-      <a href="/amps/" class="plugin-card-link">
+      <a href="/plugins/amps/" class="plugin-card-link">
         <div class="plugin-card-image">
           <div class="plugin-card-placeholder">
             <span class="plugin-card-icon">AM</span>
@@ -76,9 +93,9 @@
 <section class="plugins-cta" style="padding: 4rem 2rem;">
   <div style="max-width: 700px; margin: 0 auto;">
     <h2 style="font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; color: var(--text-primary);">Why Wave Digital Filters?</h2>
-    <p style="color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7;">All our products use the same underlying technology: Wave Digital Filters (WDF). Instead of sampling or curve-fitting, we model the actual physics of analog circuits — resistors, capacitors, tubes, and transformers — one component at a time.</p>
+    <p style="color: var(--text-secondary); margin-bottom: 1rem; line-height: 1.7;">All our products use the same underlying technology: Wave Digital Filters (WDF). Instead of sampling or curve-fitting, we model the actual physics of analog circuits &mdash; resistors, capacitors, tubes, and transformers &mdash; one component at a time.</p>
     <p style="color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.7;">The result is the kind of nonlinear behavior, harmonic saturation, and dynamic response that makes analog gear special.</p>
-    <a href="/blog/what-is-wdf/" class="btn-secondary">Learn more about WDF →</a>
+    <a href="/blog/what-is-wdf/" class="btn-secondary">Learn more about WDF &rarr;</a>
   </div>
 </section>
 {{ end }}

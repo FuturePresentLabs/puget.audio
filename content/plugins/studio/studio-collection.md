@@ -13,6 +13,9 @@ short_name: "Studio Collection"
 icon: "ALL"
 og_image: "/images/puget-og.jpg"
 weight: 10
+type: "studio"
+aliases:
+  - /studio/studio-collection/
 ---
 
 ## The five tools that built modern recording. Modeled from the circuit up.
@@ -25,11 +28,11 @@ An engineer can mix an entire record with these five tools. Generations of them 
 
 | Plugin | Circuit Reference | Type |
 |--------|-------------------|------|
-| [Puget Passive EQ](/studio/passive-eq/) | EQP-1A style | Equalizer |
-| [Puget Opto Compressor](/studio/opto-compressor/) | LA-2A style | Compressor |
-| [Puget FET Limiter](/studio/fet-limiter/) | 1176LN style | Limiter |
-| [Puget Variable-Mu](/studio/variable-mu/) | 670 style | Compressor/Limiter |
-| [Puget Channel](/studio/channel/) | 1073 style | Preamp/EQ |
+| [Puget Passive EQ](/plugins/studio/passive-eq/) | EQP-1A style | Equalizer |
+| [Puget Opto Compressor](/plugins/studio/opto-compressor/) | LA-2A style | Compressor |
+| [Puget FET Limiter](/plugins/studio/fet-limiter/) | 1176LN style | Limiter |
+| [Puget Variable-Mu](/plugins/studio/variable-mu/) | 670 style | Compressor/Limiter |
+| [Puget Channel](/plugins/studio/channel/) | 1073 style | Preamp/EQ |
 
 ## $699 — Save $296
 
