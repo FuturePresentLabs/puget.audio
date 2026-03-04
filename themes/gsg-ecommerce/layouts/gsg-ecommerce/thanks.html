@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="gsg-page gsg-thanks-page">
+  <div class="gsg-page-inner">
+    <div class="gsg-thanks-icon">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    </div>
+    <h1 class="gsg-page-title">Thank You!</h1>
+    <p class="gsg-thanks-message">Your order has been received and is being processed.</p>
+
+    <div class="gsg-thanks-details" data-gsg-thanks-details>
+      <!-- Populated by JS with order summary -->
+    </div>
+
+    <div class="gsg-thanks-next">
+      <h2>What's Next</h2>
+      <ul class="gsg-thanks-steps">
+        <li>Check your email for your order confirmation and license key(s)</li>
+        <li>Download your plugin(s) from the link in your confirmation email</li>
+        <li>Install and activate with your license key</li>
+      </ul>
+    </div>
+
+    <div class="gsg-thanks-actions">
+      <a href="/plugins/" class="gsg-btn gsg-btn-secondary">Browse More Plugins</a>
+      <a href="/" class="gsg-btn gsg-btn-ghost">Return to Homepage</a>
+    </div>
+  </div>
+</div>
+{{ end }}

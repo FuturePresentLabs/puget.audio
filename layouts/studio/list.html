@@ -25,10 +25,7 @@
         <span class="bundle-price">${{ .Params.price }}</span>
         <span class="bundle-savings">Save $296 vs. buying individually</span>
       </div>
-      {{/* TODO: gsg-ecommerce add-to-cart button */}}
-      <button class="btn-primary buy-btn" data-sku="{{ .Params.sku }}" data-price="{{ .Params.price }}">
-        Buy Now — ${{ .Params.price }}
-      </button>
+      {{ partial "gsg-ecommerce/add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary") }}
       <a href="{{ .Permalink }}" class="bundle-details-link">View bundle details</a>
     </div>
   </div>
@@ -58,10 +55,7 @@
         {{ if eq .Params.status "coming-soon" }}
         <span class="plugin-card-coming-soon">Coming Soon</span>
         {{ else }}
-        {{/* TODO: gsg-ecommerce add-to-cart button */}}
-        <button class="btn-primary btn-sm buy-btn" data-sku="{{ .Params.sku }}" data-price="{{ .Params.price }}">
-          Buy Now
-        </button>
+        {{ partial "gsg-ecommerce/add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Add to Cart" "class" "btn-primary btn-sm") }}
         {{ end }}
       </div>
     </div>
@@ -121,6 +115,6 @@
 {{/* Bottom CTA */}}
 <section class="plugins-cta">
   <p>All plugins include perpetual licenses, free updates, and no copy protection hassles.</p>
-  {{/* TODO: gsg-ecommerce cart link */}}
+  <a href="/cart/" class="btn-secondary" style="margin-top: 1rem; display: inline-block;">View Cart</a>
 </section>
 {{ end }}

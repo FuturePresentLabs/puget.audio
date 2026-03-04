@@ -1,0 +1,80 @@
+{{ define "main" }}
+<div class="gsg-page gsg-checkout-page">
+  <div class="gsg-page-inner">
+    <h1 class="gsg-page-title">Checkout</h1>
+
+    <!-- Empty cart redirect -->
+    <div class="gsg-checkout-empty" data-gsg-checkout-empty style="display:none;">
+      <p>Your cart is empty.</p>
+      <a href="/plugins/" class="gsg-btn gsg-btn-secondary">Browse Plugins</a>
+    </div>
+
+    <div class="gsg-checkout-layout" data-gsg-checkout-layout>
+      <!-- Order summary sidebar -->
+      <aside class="gsg-checkout-summary">
+        <h2 class="gsg-checkout-summary-title">Order Summary</h2>
+        <div class="gsg-checkout-items" data-gsg-checkout-items>
+          <!-- Rendered by JS -->
+        </div>
+        <div class="gsg-checkout-summary-total">
+          <span>Total</span>
+          <span data-gsg-checkout-total>$0.00</span>
+        </div>
+      </aside>
+
+      <!-- Checkout form -->
+      <div class="gsg-checkout-form-wrap">
+        <form class="gsg-checkout-form" data-gsg-checkout-form>
+          <fieldset class="gsg-fieldset">
+            <legend class="gsg-legend">Contact Information</legend>
+            <div class="gsg-field">
+              <label for="gsg-email" class="gsg-label">Email</label>
+              <input type="email" id="gsg-email" name="email" required class="gsg-input" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="gsg-field-row">
+              <div class="gsg-field">
+                <label for="gsg-first-name" class="gsg-label">First Name</label>
+                <input type="text" id="gsg-first-name" name="first_name" required class="gsg-input" autocomplete="given-name">
+              </div>
+              <div class="gsg-field">
+                <label for="gsg-last-name" class="gsg-label">Last Name</label>
+                <input type="text" id="gsg-last-name" name="last_name" required class="gsg-input" autocomplete="family-name">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="gsg-fieldset">
+            <legend class="gsg-legend">Payment</legend>
+            <div class="gsg-field">
+              <label for="gsg-card-number" class="gsg-label">Card Number</label>
+              <input type="text" id="gsg-card-number" name="card_number" required class="gsg-input" placeholder="4242 4242 4242 4242" autocomplete="cc-number" inputmode="numeric" maxlength="19">
+            </div>
+            <div class="gsg-field-row">
+              <div class="gsg-field">
+                <label for="gsg-card-expiry" class="gsg-label">Expiration</label>
+                <input type="text" id="gsg-card-expiry" name="card_expiry" required class="gsg-input" placeholder="MM / YY" autocomplete="cc-exp" inputmode="numeric" maxlength="7">
+              </div>
+              <div class="gsg-field">
+                <label for="gsg-card-cvc" class="gsg-label">CVC</label>
+                <input type="text" id="gsg-card-cvc" name="card_cvc" required class="gsg-input" placeholder="123" autocomplete="cc-csc" inputmode="numeric" maxlength="4">
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="gsg-checkout-error" data-gsg-checkout-error style="display:none;"></div>
+
+          <button type="submit" class="gsg-btn gsg-btn-primary gsg-place-order-btn" data-gsg-place-order>
+            <span class="gsg-btn-text">Place Order</span>
+            <span class="gsg-btn-loading" style="display:none;">Processing...</span>
+          </button>
+
+          <p class="gsg-checkout-secure">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secure checkout. Your payment info is encrypted.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

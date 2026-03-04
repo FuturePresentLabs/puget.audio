@@ -1,7 +1,7 @@
 baseURL = 'https://puget.audio'
 languageCode = 'en-us'
 title = 'Puget Audio'
-theme = 'puget-theme'
+theme = ['puget-theme', 'gsg-ecommerce']
 
 [params]
   tagline = "Professional Audio Hardware for Creators"
