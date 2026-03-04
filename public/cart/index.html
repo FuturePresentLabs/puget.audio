@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Products | Puget Audio</title>
-  <meta name="description" content="Puget Audio - Professional audio interfaces and guitar effects pedals engineered in the Pacific Northwest">
+  <title>Cart | Puget Audio</title>
+  <meta name="description" content="Your Puget Audio shopping cart">
 
   
-  <meta property="og:title" content="Products | Puget Audio">
-  <meta property="og:description" content="Puget Audio - Professional audio interfaces and guitar effects pedals engineered in the Pacific Northwest">
+  <meta property="og:title" content="Cart | Puget Audio">
+  <meta property="og:description" content="Your Puget Audio shopping cart">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://puget.audio/products/">
+  <meta property="og:url" content="https://puget.audio/cart/">
   <meta property="og:image" content="https://puget.audio/images/puget-og.jpg">
   <meta property="og:site_name" content="Puget Audio">
 
@@ -64,19 +64,40 @@
 
   <main>
     
-<article>
-  <h2 id="studio-grade-audio-tools">Studio-Grade Audio Tools</h2>
-<p>We build two kinds of products: software plugins that run in your DAW, and hardware pedals you can bolt to your board. Both share the same DNA — circuit-accurate models built on our Wave Digital Filter engine.</p>
-<h3 id="vst3-plugins">VST3 Plugins</h3>
-<p>Professional-grade effect emulations for producers, engineers, and guitarists. Each plugin models the actual physics of analog circuits — not impulse responses, not curve fitting, but real component simulation.</p>
-<p><strong>Coming soon.</strong></p>
-<h3 id="hardware-pedals">Hardware Pedals</h3>
-<p>Hand-assembled effects pedals machined in our Seattle workshop. Original designs that solve real problems for working musicians. Every circuit exists as a validated software model before the first enclosure gets milled.</p>
-<p><strong>Coming soon.</strong></p>
-<hr>
-<p><em>Join the mailing list to be first to know when we launch.</em></p>
+<div class="gsg-page gsg-cart-page">
+  <div class="gsg-page-inner">
+    <h1 class="gsg-page-title">Your Cart</h1>
 
-</article>
+    
+    <div class="gsg-cart-empty" data-gsg-cart-empty>
+      <div class="gsg-empty-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+      </div>
+      <p class="gsg-empty-message">Your cart is empty.</p>
+      <a href="/plugins/" class="gsg-btn gsg-btn-secondary">Browse Plugins</a>
+    </div>
+
+    
+    <div class="gsg-cart-contents" data-gsg-cart-contents style="display:none;">
+      <div class="gsg-cart-items" data-gsg-cart-items>
+        
+      </div>
+
+      <div class="gsg-cart-summary">
+        <div class="gsg-cart-summary-row gsg-cart-total-row">
+          <span class="gsg-cart-total-label">Total</span>
+          <span class="gsg-cart-total-amount" data-gsg-cart-total>$0.00</span>
+        </div>
+        <a href="/checkout/" class="gsg-btn gsg-btn-primary gsg-checkout-btn">Proceed to Checkout</a>
+        <a href="/plugins/" class="gsg-continue-shopping">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+</div>
 
   </main>
 

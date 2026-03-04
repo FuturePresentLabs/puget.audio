@@ -86,11 +86,18 @@
       <description>If you&amp;rsquo;ve ever compared a Boss DM-2 or Electro-Harmonix Memory Man to a clean digital delay, you already know they don&amp;rsquo;t sound the same. The analog delay is darker, warmer, and slightly unstable — the repeats decay into a murky wash that sits behind your dry signal instead of competing with it.&#xA;Most people chalk this up to &amp;ldquo;analog magic&amp;rdquo; and leave it at that. But the real story is more interesting.</description>
     </item>
     <item>
+      <title>Cart</title>
+      <link>https://puget.audio/cart/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://puget.audio/cart/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Checkout</title>
       <link>https://puget.audio/checkout/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://puget.audio/checkout/</guid>
-      <description>Complete Your Purchase You&amp;rsquo;re purchasing Puget Audio Interface - Professional Audio Hardware&#xA;Price: $299.00 USD (one-time purchase, lifetime updates)&#xA;Secure checkout powered by FluidPay</description>
+      <description></description>
     </item>
     <item>
       <title>Products</title>
@@ -105,6 +112,13 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://puget.audio/success/</guid>
       <description>Thank You for Your Purchase! Your order has been received and is being processed.&#xA;Your license key and download link will be emailed to you shortly.&#xA;What&amp;rsquo;s Next? Check your email for order confirmation Download the Puget Audio Control software Join our community of creators Return to Homepage</description>
+    </item>
+    <item>
+      <title>Thank You!</title>
+      <link>https://puget.audio/thanks/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://puget.audio/thanks/</guid>
+      <description></description>
     </item>
   </channel>
 </rss>

@@ -9,6 +9,21 @@
   --accent: #c9a96e;
   --accent-glow: rgba(201, 169, 110, 0.15);
   --border: #2a2a32;
+
+  /* gsg-ecommerce module overrides — map to Puget theme */
+  --gsg-bg: #0d0d0f;
+  --gsg-bg-secondary: #141418;
+  --gsg-bg-tertiary: #1c1c22;
+  --gsg-text: #f5f5f7;
+  --gsg-text-secondary: #a0a0a8;
+  --gsg-accent: #c9a96e;
+  --gsg-accent-hover: #d4b87a;
+  --gsg-accent-glow: rgba(201, 169, 110, 0.15);
+  --gsg-border: #2a2a32;
+  --gsg-error: #e74c5a;
+  --gsg-success: #4ade80;
+  --gsg-radius: 6px;
+  --gsg-font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
 }
 
 * {
@@ -4042,5 +4057,528 @@ body {
 
   .continuum-card-name {
     font-size: 1.2rem;
+  }
+}
+
+
+/* ========================================
+   GSG-ECOMMERCE MODULE — PUGET THEME OVERRIDES
+
+   These overrides restyle every gsg-ecommerce
+   component to match the Puget Audio dark theme:
+   dark backgrounds, gold accent, monospace details,
+   uppercase labels, subtle borders, and glow effects.
+   ======================================== */
+
+/* ---------------------------------------------------------------------------
+   Add to Cart Button — match existing .btn-primary styling
+   --------------------------------------------------------------------------- */
+
+.gsg-add-to-cart {
+  padding: 1rem 2rem;
+  border-radius: 6px;
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.gsg-add-to-cart:hover {
+  background: #d4b87a;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.gsg-add-to-cart:active {
+  transform: translateY(0);
+}
+
+.gsg-add-to-cart.btn-sm {
+  padding: 0.6rem 1.25rem;
+  font-size: 0.8rem;
+}
+
+.gsg-add-to-cart.btn-lg {
+  padding: 1.1rem 2.5rem;
+  font-size: 1rem;
+}
+
+.gsg-atc-added {
+  background: #4ade80;
+  color: #0d0d0f;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------------------
+   Cart Navigation — match existing .nav-links styling
+   --------------------------------------------------------------------------- */
+
+.gsg-cart-nav {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  gap: 0.35rem;
+  position: relative;
+}
+
+.gsg-cart-nav:hover {
+  color: var(--accent);
+}
+
+.gsg-cart-count {
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-size: 0.6rem;
+  font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  top: -5px;
+  right: -8px;
+}
+
+.gsg-cart-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* ---------------------------------------------------------------------------
+   Page Layouts (Cart / Checkout / Thanks) — dark theme
+   --------------------------------------------------------------------------- */
+
+.gsg-page {
+  padding: 6rem 2rem 4rem;
+  min-height: 60vh;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+}
+
+.gsg-page-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #fff 0%, #a0a0a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2.5rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Cart Page
+   --------------------------------------------------------------------------- */
+
+.gsg-cart-empty {
+  padding: 5rem 2rem;
+}
+
+.gsg-empty-icon {
+  color: var(--text-secondary);
+  opacity: 0.3;
+}
+
+.gsg-empty-message {
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.gsg-cart-item {
+  border-bottom: 1px solid var(--border);
+  padding: 1.5rem 0;
+}
+
+.gsg-cart-item:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.gsg-cart-item-title {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+.gsg-cart-item-sku {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  letter-spacing: 0.03em;
+}
+
+.gsg-qty-btn {
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.gsg-qty-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(201, 169, 110, 0.05);
+}
+
+.gsg-qty-value {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.gsg-cart-item-price {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
+.gsg-cart-item-remove {
+  color: var(--text-secondary);
+  padding: 0.35rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.gsg-cart-item-remove:hover {
+  color: #e74c5a;
+  background: rgba(231, 76, 90, 0.08);
+}
+
+.gsg-cart-total-label {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.gsg-cart-total-amount {
+  color: var(--accent);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.gsg-continue-shopping {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.gsg-continue-shopping:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ---------------------------------------------------------------------------
+   Buttons — match .btn-primary / .btn-secondary
+   --------------------------------------------------------------------------- */
+
+.gsg-btn {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: all 0.3s ease;
+}
+
+.gsg-btn-primary {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+.gsg-btn-primary:hover {
+  background: #d4b87a;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.gsg-btn-secondary {
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.gsg-btn-secondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(201, 169, 110, 0.05);
+}
+
+.gsg-btn-ghost {
+  color: var(--text-secondary);
+}
+
+.gsg-btn-ghost:hover {
+  color: var(--accent);
+}
+
+.gsg-checkout-btn {
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+/* ---------------------------------------------------------------------------
+   Checkout Page — dark form styling
+   --------------------------------------------------------------------------- */
+
+.gsg-checkout-layout {
+  gap: 2.5rem;
+}
+
+.gsg-checkout-summary {
+  background: var(--bg-tertiary);
+  border: 1px solid rgba(201, 169, 110, 0.15);
+  border-radius: 12px;
+  padding: 2rem;
+  position: sticky;
+  top: 5rem;
+}
+
+.gsg-checkout-summary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  border-radius: 12px 12px 0 0;
+}
+
+.gsg-checkout-summary-title {
+  color: var(--accent);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.gsg-checkout-item {
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(42, 42, 50, 0.5);
+}
+
+.gsg-checkout-item:last-child {
+  border-bottom: none;
+}
+
+.gsg-checkout-item-name {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+}
+
+.gsg-checkout-item-qty {
+  color: var(--text-secondary);
+}
+
+.gsg-checkout-item-price {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.gsg-checkout-summary-total {
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  margin-top: 0.75rem;
+  color: var(--text-primary);
+  font-size: 1.15rem;
+}
+
+.gsg-checkout-summary-total span:last-child {
+  color: var(--accent);
+}
+
+/* Form fields */
+.gsg-fieldset {
+  margin-bottom: 2.5rem;
+}
+
+.gsg-legend {
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.75rem;
+}
+
+.gsg-label {
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.gsg-input {
+  padding: 0.85rem 1.1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.gsg-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.gsg-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.4;
+}
+
+.gsg-checkout-error {
+  background: rgba(231, 76, 90, 0.08);
+  border: 1px solid rgba(231, 76, 90, 0.25);
+  color: #e74c5a;
+  border-radius: 6px;
+}
+
+.gsg-place-order-btn {
+  padding: 1.1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.gsg-place-order-btn:disabled {
+  opacity: 0.5;
+}
+
+.gsg-checkout-secure {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+}
+
+.gsg-checkout-secure svg {
+  color: var(--accent);
+  opacity: 0.6;
+}
+
+/* ---------------------------------------------------------------------------
+   Thanks Page — dark theme
+   --------------------------------------------------------------------------- */
+
+.gsg-thanks-page {
+  text-align: center;
+}
+
+.gsg-thanks-icon {
+  color: #4ade80;
+}
+
+.gsg-thanks-message {
+  color: var(--text-secondary);
+  font-size: 1.15rem;
+}
+
+.gsg-thanks-order {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  text-align: left;
+}
+
+.gsg-thanks-email {
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.gsg-thanks-email strong {
+  color: var(--text-primary);
+}
+
+.gsg-thanks-item {
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  padding: 0.5rem 0;
+}
+
+.gsg-thanks-item span:last-child {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.gsg-thanks-total {
+  border-top: 1px solid var(--border);
+  color: var(--text-primary);
+}
+
+.gsg-thanks-total span:last-child {
+  color: var(--accent);
+}
+
+.gsg-thanks-next {
+  text-align: left;
+}
+
+.gsg-thanks-next h2 {
+  color: var(--text-primary);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.gsg-thanks-steps li {
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border);
+}
+
+.gsg-thanks-steps li:last-child {
+  border-bottom: none;
+}
+
+.gsg-thanks-steps li::before {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+/* ---------------------------------------------------------------------------
+   Responsive — gsg-ecommerce dark theme
+   --------------------------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .gsg-checkout-summary {
+    position: static;
+  }
+
+  .gsg-cart-item {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .gsg-cart-item-info {
+    flex-basis: 100%;
+  }
+
+  .gsg-thanks-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .gsg-thanks-actions .gsg-btn {
+    width: 100%;
+    text-align: center;
   }
 }

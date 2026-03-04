@@ -47,6 +47,8 @@
     <loc>https://puget.audio/plugins/studio/</loc>
     <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>https://puget.audio/cart/</loc>
+  </url><url>
     <loc>https://puget.audio/checkout/</loc>
   </url><url>
     <loc>https://puget.audio/products/</loc>
@@ -58,6 +60,8 @@
     <loc>https://puget.audio/tags/</loc>
   </url><url>
     <loc>https://puget.audio/success/</loc>
+  </url><url>
+    <loc>https://puget.audio/thanks/</loc>
   </url><url>
     <loc>https://puget.audio/plugins/amps/</loc>
   </url>
