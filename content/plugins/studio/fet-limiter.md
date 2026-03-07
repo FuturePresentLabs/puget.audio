@@ -46,7 +46,7 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-The fastest compressor in the room. The gain reduction element is a single JFET used as a voltage-variable resistor — which maps naturally to a nonlinear one-port in our WDF tree. The rest is discrete Class A transistor amplifier stages, transformer I/O, and the four ratio settings that change the feedback topology.
+Based on the UREI 1176LN limiting amplifier. The fastest compressor in the room. The gain reduction element is a single JFET used as a voltage-variable resistor — which maps naturally to a nonlinear one-port in our WDF tree. The rest is discrete Class A transistor amplifier stages, transformer I/O, and the four ratio settings that change the feedback topology.
 
 ## All Buttons In
 
@@ -65,7 +65,11 @@ We modeled the actual feedback network, so ABM behaves exactly the way it does o
 
 ## Use it on
 
-Drums. Room mics. Anything that needs to hit hard. The 1176 on drums is one of recording's most documented moves — now with the actual circuit behavior, not a cleaned-up approximation.
+Drums. Room mics. Anything that needs to hit hard. The 1176LN on drums is one of recording's most documented moves — now with the actual circuit behavior, not a cleaned-up approximation.
+
+---
+
+*All product names, trademarks, and registered trademarks are property of their respective owners. These names are used solely to identify the products whose circuits inspired these models. Puget Audio is not affiliated with or endorsed by any of these companies.*
 
 Attack: 20μs – 800μs. Release: 50ms – 1.1s.
 

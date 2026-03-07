@@ -46,7 +46,7 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-The most recognized preamp in recording history. All transformers and inductors — transformer-coupled Class A discrete preamp, inductor-based 3-band EQ with high-pass filter.
+Based on the Neve 1073 channel amplifier. The most recognized preamp in recording history. All transformers and inductors — transformer-coupled Class A discrete preamp, inductor-based 3-band EQ with high-pass filter.
 
 ## Every component that matters
 
@@ -70,3 +70,7 @@ The result is an EQ that responds to level. Push it harder and the inductors sat
 Everything. This is the channel strip that built modern recording. Vocals, drums, guitars, bass — it works on all of them because the circuit was designed to work on all of them.
 
 **$199 — Perpetual license. No iLok. No dongle.**
+
+---
+
+*All product names, trademarks, and registered trademarks are property of their respective owners. These names are used solely to identify the products whose circuits inspired these models. Puget Audio is not affiliated with or endorsed by any of these companies.*

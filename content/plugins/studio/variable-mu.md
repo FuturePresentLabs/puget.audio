@@ -46,7 +46,7 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-The holy grail. Originals sell for $40,000+ when they surface. Twenty tubes, eleven transformers, and the 6386 remote-cutoff triode that makes variable-mu compression possible.
+Based on the Fairchild 670 limiter. The holy grail. Originals sell for $40,000+ when they surface. Twenty tubes, eleven transformers, and the 6386 remote-cutoff triode that makes variable-mu compression possible.
 
 ## How variable-mu works
 
@@ -71,3 +71,7 @@ The transformer coupling between stages is where WDFs excel. Transformers map na
 The mix bus. The stereo bus. Master chain. The 670 is the reason engineers describe compression as "glue." It ties a mix together without crushing it — the program-dependent release and tube harmonics do the work.
 
 **$199 — Perpetual license. No iLok. No dongle.**
+
+---
+
+*All product names, trademarks, and registered trademarks are property of their respective owners. These names are used solely to identify the products whose circuits inspired these models. Puget Audio is not affiliated with or endorsed by any of these companies.*

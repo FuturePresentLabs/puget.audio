@@ -42,7 +42,7 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-Every major studio has a pair. The most revered optical compressor ever built — two tube gain stages, a passive interstage network, and the T4B electro-optical attenuator that gives it that unmistakable program-dependent character.
+Based on the Teletronix LA-2A leveling amplifier. Every major studio has a pair. The most revered optical compressor ever built — two tube gain stages, a passive interstage network, and the T4B electro-optical attenuator that gives it that unmistakable program-dependent character.
 
 ## The T4B: why it sounds like nothing else
 
@@ -61,3 +61,7 @@ The tube stages (12AX7 + 12BH7) add harmonic warmth that changes with the gain r
 Vocals. Bass. Anything that needs leveling without losing the life. The program-dependent release means it adapts to the material — fast enough for transients, slow enough to breathe on sustained notes.
 
 **$199 — Perpetual license. No iLok. No dongle.**
+
+---
+
+*All product names, trademarks, and registered trademarks are property of their respective owners. These names are used solely to identify the products whose circuits inspired these models. Puget Audio is not affiliated with or endorsed by any of these companies.*

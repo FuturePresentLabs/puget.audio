@@ -40,7 +40,7 @@ specs:
     value: "Perpetual — no iLok, no dongle"
 ---
 
-The textbook case for why WDF modeling matters. It's a passive LC equalizer — literally inductors and capacitors in a ladder network — followed by a single 12AX7 tube makeup gain stage. This is the exact circuit topology Wave Digital Filters were invented to model with mathematical precision.
+Based on the Pultec EQP-1A program equalizer. The textbook case for why WDF modeling matters. It's a passive LC equalizer — literally inductors and capacitors in a ladder network — followed by a single 12AX7 tube makeup gain stage. This is the exact circuit topology Wave Digital Filters were invented to model with mathematical precision.
 
 ## The boost-and-cut trick
 
@@ -62,3 +62,7 @@ Hear the real interaction between the boost and cut coils, the way the tube stag
 Vocals. Mix bus. Acoustic instruments. Anywhere you need to shape tone without fighting the source material. This design adds body and air simultaneously — because the circuit lets you.
 
 **$199 — Perpetual license. No iLok. No dongle.**
+
+---
+
+*All product names, trademarks, and registered trademarks are property of their respective owners. These names are used solely to identify the products whose circuits inspired these models. Puget Audio is not affiliated with or endorsed by any of these companies.*
