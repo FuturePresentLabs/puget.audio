@@ -18,6 +18,9 @@
   <meta name="twitter:card" content="summary_large_image">
   {{ with .Site.Params.social.twitter }}<meta name="twitter:site" content="{{ . }}">{{ end }}
 
+  {{/* Favicon */}}
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
   {{/* Product Schema.org */}}
   {{ if .Params.price }}
   <script type="application/ld+json">
