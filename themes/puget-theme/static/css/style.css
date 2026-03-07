@@ -4616,3 +4616,234 @@ body {
     text-align: center;
   }
 }
+
+/* ========================================
+   PLUGINS / COLLECTIONS PAGE
+   ======================================== */
+
+.collections-hero {
+  padding: 6rem 2rem 3rem;
+  text-align: center;
+  background: var(--bg-primary);
+}
+
+.collections-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #fff 0%, #a0a0a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.collections-subtitle {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  background: var(--bg-secondary);
+}
+
+.collection-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
+}
+
+.collection-visual {
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.collection-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.6;
+}
+
+.collection-icon {
+  position: relative;
+  z-index: 1;
+  font-size: 3rem;
+  font-weight: 300;
+}
+
+.collection-body {
+  padding: 1.5rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.collection-body h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.collection-tagline {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+  font-weight: 500;
+}
+
+.collection-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  flex: 1;
+}
+
+.collection-price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+}
+
+.collection-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 4px;
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+}
+
+.collection-cta {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: auto;
+  transition: color 0.2s ease;
+}
+
+.collection-card:hover .collection-cta {
+  color: #d4b87a;
+}
+
+/* Collection-specific color themes */
+.collection-card--continuum .collection-visual {
+  background: linear-gradient(135deg, #312e81 0%, #4338ca 50%, #6366f1 100%);
+}
+
+.collection-card--continuum .collection-icon {
+  color: #c7d2fe;
+  text-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+}
+
+.collection-card--continuum:hover {
+  border-color: rgba(99, 102, 241, 0.4);
+  box-shadow: 0 24px 48px rgba(99, 102, 241, 0.15);
+}
+
+.collection-card--studio .collection-visual {
+  background: linear-gradient(135deg, #7c2d12 0%, #c2410c 50%, #f97316 100%);
+}
+
+.collection-card--studio .collection-icon {
+  color: #ffedd5;
+  text-shadow: 0 0 30px rgba(249, 115, 22, 0.5);
+}
+
+.collection-card--studio:hover {
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 24px 48px rgba(249, 115, 22, 0.15);
+}
+
+.collection-card--legends .collection-visual {
+  background: linear-gradient(135deg, #6b5a2e 0%, #8c7638 50%, #b8963e 100%);
+}
+
+.collection-card--legends .collection-icon {
+  color: #fef3c7;
+  text-shadow: 0 0 30px rgba(184, 150, 62, 0.5);
+}
+
+.collection-card--legends:hover {
+  border-color: rgba(184, 150, 62, 0.4);
+  box-shadow: 0 24px 48px rgba(184, 150, 62, 0.15);
+}
+
+.collection-card--amps .collection-visual {
+  background: linear-gradient(135deg, #1e3a5f 0%, #3b82f6 50%, #60a5fa 100%);
+}
+
+.collection-card--amps .collection-icon {
+  color: #dbeafe;
+  text-shadow: 0 0 30px rgba(59, 130, 246, 0.5);
+}
+
+.collection-card--amps:hover {
+  border-color: rgba(59, 130, 246, 0.4);
+  box-shadow: 0 24px 48px rgba(59, 130, 246, 0.15);
+}
+
+.collections-wdf {
+  padding: 5rem 2rem;
+  text-align: center;
+  background: var(--bg-primary);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.collections-wdf h2 {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+}
+
+.collections-wdf p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .collections-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+}
