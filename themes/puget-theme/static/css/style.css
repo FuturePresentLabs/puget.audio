@@ -2730,6 +2730,23 @@ body {
   font-size: 0.85rem;
   color: var(--text-secondary);
   line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.legends-card-modeled {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.legends-card-modeled span {
+  color: var(--accent);
+  font-weight: 700;
 }
 
 /* GOLDENROD - Brushed gold, cream */
@@ -3540,6 +3557,22 @@ body {
   color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 0.75rem;
+}
+
+.continuum-card-modeled {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-top: auto;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.continuum-card-modeled span {
+  color: #a5b4fc;
+  font-weight: 700;
 }
 
 .continuum-card-badge {
