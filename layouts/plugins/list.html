@@ -1,71 +1,72 @@
 {{ define "main" }}
-<section class="collections-hero">
-  <h1>Our Collections</h1>
-  <p class="collections-subtitle">Four product lines. One philosophy: simulate the physics, don't approximate the sound.</p>
+
+{{/* Featured Collection */}}
+<section class="collections-featured">
+  <div class="featured-card">
+    <div class="featured-visual">
+      <div class="featured-glow"></div>
+      <span class="featured-icon">~</span>
+    </div>
+    <div class="featured-content">
+      <span class="featured-label">Featured Collection</span>
+      <h1>Continuum</h1>
+      <p class="featured-tagline">Analog modulation & time effects</p>
+      <p class="featured-desc">Six iconic circuits — chorus, delay, phaser, vibe, flanger, reverb. Featuring proprietary BBD modeling that captures the warmth and character of vintage analog gear.</p>
+      <div class="featured-meta">
+        <span class="featured-price">$79</span>
+        <span class="featured-note">All 6 effects · One purchase</span>
+      </div>
+      <a href="/plugins/continuum/" class="btn-primary btn-lg">Explore Continuum →</a>
+    </div>
+  </div>
 </section>
 
-<section class="collections-grid">
-  <a href="/plugins/continuum/" class="collection-card collection-card--continuum">
-    <div class="collection-visual">
-      <div class="collection-glow"></div>
-      <span class="collection-icon">~</span>
-    </div>
-    <div class="collection-body">
-      <h2>Continuum</h2>
-      <p class="collection-tagline">Analog modulation & time effects</p>
-      <p class="collection-desc">Six iconic circuits — chorus, delay, phaser, vibe, flanger, reverb. Featuring proprietary BBD modeling.</p>
-      <span class="collection-price">$79</span>
-      <span class="collection-cta">Explore →</span>
-    </div>
-  </a>
+{{/* All Collections */}}
+<section class="collections-all">
+  <h2>All Collections</h2>
+  <div class="collections-grid">
+    
+    <a href="/plugins/studio/" class="collection-item">
+      <div class="collection-item-visual studio">
+        <span>◈</span>
+      </div>
+      <div class="collection-item-body">
+        <h3>Studio</h3>
+        <p>Professional VST3 processors</p>
+        <span class="collection-item-price">From $199</span>
+      </div>
+    </a>
 
-  <a href="/plugins/studio/" class="collection-card collection-card--studio">
-    <div class="collection-visual">
-      <div class="collection-glow"></div>
-      <span class="collection-icon">◈</span>
-    </div>
-    <div class="collection-body">
-      <h2>Studio</h2>
-      <p class="collection-tagline">Professional VST3 processors</p>
-      <p class="collection-desc">Five studio-grade plugins: EQ, compression, limiting, channel strip. Modeled from legendary analog circuits.</p>
-      <span class="collection-price">From $199</span>
-      <span class="collection-cta">Explore →</span>
-    </div>
-  </a>
+    <a href="/plugins/legends/" class="collection-item">
+      <div class="collection-item-visual legends">
+        <span>⚡</span>
+      </div>
+      <div class="collection-item-body">
+        <h3>Legends</h3>
+        <p>Iconic guitar pedals</p>
+        <span class="collection-item-price">$49</span>
+      </div>
+    </a>
 
-  <a href="/plugins/legends/" class="collection-card collection-card--legends">
-    <div class="collection-visual">
-      <div class="collection-glow"></div>
-      <span class="collection-icon">⚡</span>
-    </div>
-    <div class="collection-body">
-      <h2>Legends</h2>
-      <p class="collection-tagline">Iconic guitar pedals</p>
-      <p class="collection-desc">Five legendary effect circuits rebuilt from the schematic. Overdrive, fuzz, and modulation classics.</p>
-      <span class="collection-price">$49</span>
-      <span class="collection-cta">Explore →</span>
-    </div>
-  </a>
+    <a href="/plugins/amps/" class="collection-item">
+      <div class="collection-item-visual amps">
+        <span>▲</span>
+      </div>
+      <div class="collection-item-body">
+        <h3>Amps</h3>
+        <p>Tube amp simulations</p>
+        <span class="collection-item-badge">Coming Soon</span>
+      </div>
+    </a>
 
-  <a href="/plugins/amps/" class="collection-card collection-card--amps">
-    <div class="collection-visual">
-      <div class="collection-glow"></div>
-      <span class="collection-icon">▲</span>
-    </div>
-    <div class="collection-body">
-      <h2>Amps</h2>
-      <p class="collection-tagline">Tube amp simulations</p>
-      <p class="collection-desc">Four amp families with real power amp dynamics. British, American, and boutique voicings.</p>
-      <span class="collection-badge">Coming Soon</span>
-      <span class="collection-cta">Explore →</span>
-    </div>
-  </a>
+  </div>
 </section>
 
+{{/* Why WDF */}}
 <section class="collections-wdf">
   <h2>Why Wave Digital Filters?</h2>
   <p>All our products use the same underlying technology: Wave Digital Filters (WDF). Instead of sampling or curve-fitting, we model the actual physics of analog circuits — resistors, capacitors, tubes, and transformers — one component at a time.</p>
-  <p>The result is the kind of nonlinear behavior, harmonic saturation, and dynamic response that makes analog gear special.</p>
   <a href="/blog/what-is-wdf/" class="btn-secondary">Learn more about WDF →</a>
 </section>
+
 {{ end }}
