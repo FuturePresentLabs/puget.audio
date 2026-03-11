@@ -3216,7 +3216,9 @@ body {
   margin-top: 1rem;
 }
 
-.legends-disclaimer {
+/* Generic disclaimer - works across all plugin pages */
+.disclaimer,
+[class$="-disclaimer"] {
   font-size: 0.75rem;
   color: var(--text-secondary);
   margin-top: 2rem;
