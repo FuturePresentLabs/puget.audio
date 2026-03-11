@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $features := site.Data.features }}
+
 <section class="plugins-hero">
   <div class="plugins-hero-bg"></div>
   <div class="plugins-hero-content">
@@ -10,19 +12,45 @@
   </div>
 </section>
 
-{{/* Featured: Continuum (NEW) */}}
+{{ $featured := $features.featured_collection }}
+{{ $featuredData := index $features.collections $featured }}
+
+{{/* Featured Collection */}}
 <section class="plugins-featured">
   <div class="plugins-featured-inner">
-    <div class="plugins-featured-badge">New</div>
-    <a href="/plugins/continuum/" class="plugins-featured-link">
+    {{ if not $featuredData.available }}<div class="plugins-featured-badge">Coming Soon</div>{{ end }}
+    <a href="/plugins/{{ $featured }}/" class="plugins-featured-link">
       <div class="plugins-featured-content">
-        <h2>Continuum</h2>
+        <h2>{{ $featured | title }}</h2>
+        {{ if eq $featured "legends" }}
+        <p class="plugins-featured-subtitle">Iconic Guitar Pedals</p>
+        <p class="plugins-featured-desc">Five legendary guitar effect circuits, rebuilt from the schematic. Overdrive, fuzz, and modulation classics &mdash; all circuit-modeled from the component up. The circuits that defined rock, blues, and metal.</p>
+        <div class="plugins-featured-meta">
+          <span class="plugins-featured-count">5 pedals</span>
+          <span class="plugins-featured-price">$49</span>
+        </div>
+        {{ else if eq $featured "continuum" }}
         <p class="plugins-featured-subtitle">Modulation &amp; Time Effects</p>
         <p class="plugins-featured-desc">Six iconic analog modulation and time-based effect circuits. Chorus, delay, phaser, vibe, flanger, reverb &mdash; all circuit-modeled from the component up. Featuring proprietary BBD modeling.</p>
         <div class="plugins-featured-meta">
           <span class="plugins-featured-count">6 effects</span>
           <span class="plugins-featured-price">$49</span>
         </div>
+        {{ else if eq $featured "studio" }}
+        <p class="plugins-featured-subtitle">Professional VST3 Plugins</p>
+        <p class="plugins-featured-desc">Five studio-grade processors modeled from legendary analog circuits. Passive EQ, Opto Compressor, FET Limiter, Variable-Mu, and Channel strip.</p>
+        <div class="plugins-featured-meta">
+          <span class="plugins-featured-count">5 plugins</span>
+          <span class="plugins-featured-price">$49</span>
+        </div>
+        {{ else if eq $featured "amps" }}
+        <p class="plugins-featured-subtitle">Tube Amplifier Simulations</p>
+        <p class="plugins-featured-desc">Four amp families with real power amp dynamics. British, American, and boutique voicings. Every component simulated.</p>
+        <div class="plugins-featured-meta">
+          <span class="plugins-featured-count">4 amps</span>
+          <span class="plugins-featured-price">$249</span>
+        </div>
+        {{ end }}
       </div>
     </a>
   </div>
@@ -31,27 +59,9 @@
 <section class="plugins-grid-section">
   <h2>All Collections</h2>
   <div class="plugins-grid">
-    {{/* Continuum Collection */}}
-    <div class="plugin-card">
-      <a href="/plugins/continuum/" class="plugin-card-link">
-        <div class="plugin-card-image">
-          <div class="plugin-card-placeholder">
-            <span class="plugin-card-icon">CN</span>
-          </div>
-        </div>
-        <div class="plugin-card-body">
-          <h3>Continuum</h3>
-          <p class="plugin-card-subtitle">Modulation &amp; Time Effects</p>
-          <p class="plugin-card-desc">Six iconic analog modulation and time-based effects. Chorus, delay, phaser, vibe, flanger, reverb with proprietary BBD modeling.</p>
-        </div>
-      </a>
-      <div class="plugin-card-footer">
-        <span class="plugin-card-price">6 effects &middot; $49</span>
-      </div>
-    </div>
-
+    {{ $legendsData := index $features.collections "legends" }}
     {{/* Legends Collection */}}
-    <div class="plugin-card">
+    <div class="plugin-card{{ if $legendsData.coming_soon }} coming-soon{{ end }}">
       <a href="/plugins/legends/" class="plugin-card-link">
         <div class="plugin-card-image">
           <div class="plugin-card-placeholder">
@@ -65,12 +75,41 @@
         </div>
       </a>
       <div class="plugin-card-footer">
+        {{ if $legendsData.coming_soon }}
+        <span class="plugin-card-coming-soon">Coming Soon</span>
+        {{ else }}
         <span class="plugin-card-price">5 pedals &middot; $49</span>
+        {{ end }}
       </div>
     </div>
 
+    {{ $continuumData := index $features.collections "continuum" }}
+    {{/* Continuum Collection */}}
+    <div class="plugin-card{{ if $continuumData.coming_soon }} coming-soon{{ end }}">
+      <a href="/plugins/continuum/" class="plugin-card-link">
+        <div class="plugin-card-image">
+          <div class="plugin-card-placeholder">
+            <span class="plugin-card-icon">CN</span>
+          </div>
+        </div>
+        <div class="plugin-card-body">
+          <h3>Continuum</h3>
+          <p class="plugin-card-subtitle">Modulation &amp; Time Effects</p>
+          <p class="plugin-card-desc">Six iconic analog modulation and time-based effects. Chorus, delay, phaser, vibe, flanger, reverb with proprietary BBD modeling.</p>
+        </div>
+      </a>
+      <div class="plugin-card-footer">
+        {{ if $continuumData.coming_soon }}
+        <span class="plugin-card-coming-soon">Coming Soon</span>
+        {{ else }}
+        <span class="plugin-card-price">6 effects &middot; $49</span>
+        {{ end }}
+      </div>
+    </div>
+
+    {{ $studioData := index $features.collections "studio" }}
     {{/* Studio Collection */}}
-    <div class="plugin-card">
+    <div class="plugin-card{{ if $studioData.coming_soon }} coming-soon{{ end }}">
       <a href="/plugins/studio/" class="plugin-card-link">
         <div class="plugin-card-image">
           <div class="plugin-card-placeholder">
@@ -84,12 +123,17 @@
         </div>
       </a>
       <div class="plugin-card-footer">
+        {{ if $studioData.coming_soon }}
         <span class="plugin-card-coming-soon">Coming Soon</span>
+        {{ else }}
+        <span class="plugin-card-price">5 plugins &middot; $49</span>
+        {{ end }}
       </div>
     </div>
 
+    {{ $ampsData := index $features.collections "amps" }}
     {{/* Amps Collection */}}
-    <div class="plugin-card">
+    <div class="plugin-card{{ if $ampsData.coming_soon }} coming-soon{{ end }}">
       <a href="/plugins/amps/" class="plugin-card-link">
         <div class="plugin-card-image">
           <div class="plugin-card-placeholder">
@@ -103,7 +147,11 @@
         </div>
       </a>
       <div class="plugin-card-footer">
+        {{ if $ampsData.coming_soon }}
         <span class="plugin-card-coming-soon">Coming Soon</span>
+        {{ else }}
+        <span class="plugin-card-price">4 amps &middot; $249</span>
+        {{ end }}
       </div>
     </div>
   </div>

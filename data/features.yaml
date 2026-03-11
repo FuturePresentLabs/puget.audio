@@ -1,0 +1,20 @@
+# Feature flags for Puget Audio
+
+# Featured collection on the main plugins page
+featured_collection: legends
+
+# Collection availability
+# When false, shows "Coming Soon" button instead of "Add to Cart"
+collections:
+  legends:
+    available: true
+    coming_soon: false
+  continuum:
+    available: false
+    coming_soon: true
+  studio:
+    available: false
+    coming_soon: true
+  amps:
+    available: false
+    coming_soon: true

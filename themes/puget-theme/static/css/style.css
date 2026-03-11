@@ -4009,6 +4009,33 @@ body {
   border-color: #a5b4fc;
 }
 
+/* --- Amps Crosslink --- */
+.amps-crosslink {
+  padding: 4rem 2rem;
+  background: var(--bg-secondary);
+  text-align: center;
+}
+
+.amps-crosslink p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.75rem;
+}
+
+.amps-crosslink p:last-child {
+  margin-bottom: 0;
+}
+
+.amps-crosslink a {
+  color: #fbbf24;
+  border-bottom: 1px solid rgba(251, 191, 36, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.amps-crosslink a:hover {
+  border-color: #fbbf24;
+}
+
 /* --- Bottom CTA --- */
 .continuum-bottom-cta {
   padding: 6rem 2rem;
