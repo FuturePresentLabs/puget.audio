@@ -3161,27 +3161,32 @@ body {
   font-weight: 700;
 }
 
-/* --- Cross-link --- */
-.legends-crosslink {
+/* --- Cross-link (generic for all collections) --- */
+[class*="-crosslink"] {
   padding: 2.5rem 2rem;
   text-align: center;
   background: var(--bg-primary);
   border-top: 1px solid var(--border);
 }
 
-.legends-crosslink p {
+[class*="-crosslink"] p {
   color: var(--text-secondary);
   font-size: 0.95rem;
+  margin-bottom: 0.5rem;
 }
 
-.legends-crosslink a {
+[class*="-crosslink"] p:last-child {
+  margin-bottom: 0;
+}
+
+[class*="-crosslink"] a {
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid rgba(201, 169, 110, 0.3);
   transition: border-color 0.2s ease;
 }
 
-.legends-crosslink a:hover {
+[class*="-crosslink"] a:hover {
   border-color: var(--accent);
 }
 
@@ -3978,62 +3983,6 @@ body {
   color: var(--text-secondary);
   font-size: 0.9rem;
   line-height: 1.6;
-}
-
-/* --- Cross-link --- */
-.continuum-crosslink {
-  padding: 2.5rem 2rem;
-  text-align: center;
-  background: var(--bg-secondary);
-  border-top: 1px solid var(--border);
-}
-
-.continuum-crosslink p {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-  margin-bottom: 0.5rem;
-}
-
-.continuum-crosslink p:last-child {
-  margin-bottom: 0;
-}
-
-.continuum-crosslink a {
-  color: #a5b4fc;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(165, 180, 252, 0.3);
-  transition: border-color 0.2s ease;
-}
-
-.continuum-crosslink a:hover {
-  border-color: #a5b4fc;
-}
-
-/* --- Amps Crosslink --- */
-.amps-crosslink {
-  padding: 4rem 2rem;
-  background: var(--bg-secondary);
-  text-align: center;
-}
-
-.amps-crosslink p {
-  font-size: 1.1rem;
-  color: var(--text-secondary);
-  margin-bottom: 0.75rem;
-}
-
-.amps-crosslink p:last-child {
-  margin-bottom: 0;
-}
-
-.amps-crosslink a {
-  color: #fbbf24;
-  border-bottom: 1px solid rgba(251, 191, 36, 0.3);
-  transition: border-color 0.2s ease;
-}
-
-.amps-crosslink a:hover {
-  border-color: #fbbf24;
 }
 
 /* --- Bottom CTA --- */
