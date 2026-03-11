@@ -2849,33 +2849,34 @@ body {
   color: #a78bfa;
 }
 
-/* FIZZ - Turquoise, psychedelic warm */
-.legends-card--fizz {
-  border-color: rgba(20, 184, 166, 0.2);
+/* AUSTIN - Red Mesa, Texas heat */
+.legends-card--austin {
+  border-color: rgba(220, 38, 38, 0.2);
 }
 
-.legends-card--fizz:hover {
-  border-color: rgba(20, 184, 166, 0.5);
-  box-shadow: 0 20px 40px rgba(20, 184, 166, 0.1);
+.legends-card--austin:hover {
+  border-color: rgba(220, 38, 38, 0.5);
+  box-shadow: 0 20px 40px rgba(220, 38, 38, 0.15);
 }
 
-.legends-card--fizz .legends-card-visual {
-  background: linear-gradient(135deg, #0d7a6e 0%, #14b8a6 50%, #2dd4bf 100%);
+.legends-card--austin .legends-card-visual {
+  background: linear-gradient(135deg, #7f1d1d 0%, #dc2626 40%, #ea580c 70%, #fbbf24 100%);
 }
 
-.legends-card--fizz .legends-card-enclosure {
+.legends-card--austin .legends-card-enclosure {
   background:
-    radial-gradient(circle at 30% 40%, rgba(245, 158, 11, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(245, 158, 11, 0.08) 0%, transparent 50%);
+    radial-gradient(circle at 25% 30%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 75% 70%, rgba(127, 29, 29, 0.2) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(220, 38, 38, 0.1) 0%, transparent 60%);
 }
 
-.legends-card--fizz .legends-card-name {
-  color: #f5f0e0;
-  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+.legends-card--austin .legends-card-name {
+  color: #fef3c7;
+  text-shadow: 0 2px 8px rgba(127, 29, 29, 0.6);
 }
 
-.legends-card--fizz .legends-card-tones {
-  color: #14b8a6;
+.legends-card--austin .legends-card-tones {
+  color: #f87171;
 }
 
 /* SCREAMER - Classic green, midrange punch */
