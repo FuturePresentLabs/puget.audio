@@ -19,7 +19,7 @@ People applied the same logic to guitar gear. Capture a cabinet's frequency resp
 
 The problem is when people tried to apply this to the *rest* of the signal chain — preamps, power stages, pedals. Here, the snapshot assumption collapses.
 
-A 1959 Plexi doesn't have a static frequency response. It has a *dynamic* one. The power supply sags when you hit a loud chord, so the next note has less headroom and more compression. The output transformer saturates differently depending on how much current the power tubes are pulling. The input grid resistor and coupling capacitors interact with your pickups' output impedance in ways that change the high-frequency rolloff depending on your guitar's volume setting.
+A 1959 Plexi doesn't have a static frequency response. It has a *dynamic* one. The power supply sags when you hit a loud chord, so the next note has less headroom and more compression. The output transformer saturates differently depending on how much current the power tubes are pulling. The power supply voltage sags under load, changing how hard the tubes are being driven. The output transformer saturates differently at different current levels.
 
 None of this is captured in a convolution measurement. An IR of a cranked Marshall is a picture of that Marshall at one moment, at one volume, with one guitar, at one pick velocity. Move any of those variables and the snapshot is wrong.
 
@@ -43,9 +43,11 @@ The core idea, formalized by Alfred Fettweis in 1986, is that any analog circuit
 
 Connect these digital elements in the same topology as the original schematic, drive the network with your guitar signal, and read the output. The sound isn't programmed in — it emerges from the same physics that produces the sound in the physical device.
 
-This is what makes WDF models behave differently in practice. When you roll back your guitar's volume on a WDF model of a Tube Screamer, the interaction between your pickup's source impedance and the pedal's input stage changes — exactly as it does on the hardware. When you dig in with your pick and the supply voltage momentarily drops under the current load, the diode clipping threshold shifts — because the circuit's operating point shifts. When you go from a humbucker to a single-coil, the input stage loads differently.
+This is what makes WDF models behave differently in practice. When you dig in with your pick and the supply voltage momentarily drops under the current load, the diode clipping threshold shifts — because the circuit's operating point shifts. Roll back your guitar's volume and the plugin responds to the lower signal level the same way the hardware does — the input stage's operating point changes, headroom opens up, the character shifts.
 
-None of this was programmed. It's just the physics.
+One honest caveat: a real pickup is an inductor, and its inductance forms a resonant circuit with the pedal's input impedance. That interaction affects frequency response, not just level — it's part of why humbuckers and single-coils feel different through the same pedal. A plugin receiving a post-ADC signal has already lost that information; the audio interface presents a fixed, low source impedance regardless of what guitar you're playing. Modeling that interaction accurately would require the plugin to know your pickup's specs. No plugin does this well yet, including ours.
+
+What WDF does get right is everything downstream of that interface — and that's most of the circuit. None of it is programmed. It's just the physics.
 
 ## The practical tradeoffs
 
