@@ -49,6 +49,8 @@
   {{ end }}
 
   <link rel="stylesheet" href="/css/style.css">
+  {{ $shopCSS := resources.Get "css/shop.css" }}
+  {{ if $shopCSS }}<link rel="stylesheet" href="{{ $shopCSS.RelPermalink }}">{{ end }}
   
   {{/* GSG Ecommerce Assets */}}
   {{ $gsgCore := resources.Get "js/gsg_core.js" }}
