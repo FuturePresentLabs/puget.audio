@@ -1,0 +1,3 @@
+[submodule "vendor/gsg-websites"]
+	path = vendor/gsg-websites
+	url = git@github.com:FuturePresentLabs/gsg-websites.git

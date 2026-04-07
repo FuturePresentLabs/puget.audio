@@ -48,8 +48,13 @@
   </script>
   {{ end }}
 
-  {{ partial "gsg-ecommerce/head.html" . }}
   <link rel="stylesheet" href="/css/style.css">
+  
+  {{/* GSG Ecommerce Assets */}}
+  {{ $gsgCore := resources.Get "js/gsg_core.js" }}
+  {{ $gsgCart := resources.Get "js/cart.js" }}
+  {{ $gsgApi  := resources.Get "js/gsg_api.js" }}
+  {{ $gsgNews := resources.Get "js/newsletter.js" }}
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NX7QPG0SE3"></script>
@@ -88,6 +93,15 @@
     </div>
   </footer>
 
-  {{ partial "gsg-ecommerce/scripts.html" . }}
+  {{/* GSG Ecommerce Scripts */}}
+  <script>
+    var GSG_PUBLIC_KEY = "{{ .Site.Params.fluidpay.publicKey }}";
+    var VENDOR_API = "{{ .Site.Params.api.base }}";
+    var BRAND_KEY = "{{ .Site.Params.brand.key }}";
+  </script>
+  {{ if $gsgCore }}<script src="{{ $gsgCore.RelPermalink }}"></script>{{ end }}
+  {{ if $gsgCart }}<script src="{{ $gsgCart.RelPermalink }}"></script>{{ end }}
+  {{ if $gsgApi }}<script src="{{ $gsgApi.RelPermalink }}"></script>{{ end }}
+  {{ if $gsgNews }}<script src="{{ $gsgNews.RelPermalink }}"></script>{{ end }}
 </body>
 </html>

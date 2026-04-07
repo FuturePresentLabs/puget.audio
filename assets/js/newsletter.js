@@ -1,0 +1,1 @@
+../../vendor/gsg-websites/modules/gsg-ecommerce/assets/js/newsletter.js
