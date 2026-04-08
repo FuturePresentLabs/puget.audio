@@ -12,15 +12,16 @@
       <p class="description">Professional effect emulations for your DAW. Circuit-accurate models that respond like the real thing.</p>
       <span class="badge">5 Plugins Available</span>
     </a>
-    <div class="product-card">
+    <a href="/hardware/" class="product-card" style="text-decoration:none;color:inherit;">
       <div class="product-image">
         {{ $detail := resources.Get "images/puget_mixing_desk.png" }}
         {{ $detailCropped := $detail.Fill "400x300 center" }}
-        <img src="{{ $detailCropped.RelPermalink }}" alt="Hardware Pedals" width="400" height="300" />
+        <img src="{{ $detailCropped.RelPermalink }}" alt="Hardware" width="400" height="300" />
       </div>
-      <h3>Hardware Pedals</h3>
-      <p class="description">Hand-assembled effects machined in our Seattle workshop. Original designs for working musicians.</p>
-      <span class="badge">Coming Soon</span>
-    </div>
+      <h3>Hardware</h3>
+      <p class="price">From $449</p>
+      <p class="description">Eurorack cases, guitar pedals, and audio equipment built in our Seattle workshop.</p>
+      <span class="badge">Cornucopia Available</span>
+    </a>
   </div>
 </section>
