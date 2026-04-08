@@ -1,7 +1,11 @@
 {{ define "main" }}
 <article class="puget-product-page">
   <div class="puget-product-inner">
-    
+
+    <nav class="puget-product-breadcrumb">
+      <a href="/">Home</a> / <a href="/hardware/">Hardware</a> / <span>{{ .Title }}</span>
+    </nav>
+
     <header class="puget-product-header">
       <h1 class="puget-product-title">{{ .Title }}</h1>
       {{ with .Params.price }}
@@ -22,7 +26,7 @@
     {{ if .Params.configurable }}
     <div class="puget-configurator" data-customization-form data-product-sku="{{ .Params.sku }}">
       <h2>Configure Your {{ .Title }}</h2>
-      
+
       <div class="puget-config-options">
         {{ range .Params.options }}
         <div class="puget-config-group" data-customization-field data-field-id="{{ .key }}" data-field-type="select" data-required="true">
@@ -42,7 +46,7 @@
           <span>Total</span>
           <span class="puget-config-price" data-customization-summary data-base-price="{{ .Params.price }}">${{ .Params.price }}</span>
         </div>
-        <button class="puget-btn puget-btn-primary puget-add-to-cart" data-add-to-cart data-sku="{{ .Params.sku }}" data-title="{{ .Title }}" data-price-cents="{{ mul .Params.price 100 }}">
+        <button class="puget-add-to-cart" data-add-to-cart data-sku="{{ .Params.sku }}" data-title="{{ .Title }}" data-price-cents="{{ mul .Params.price 100 }}">
           Add to Cart
         </button>
       </div>
@@ -51,174 +55,4 @@
 
   </div>
 </article>
-
-<style>
-.puget-product-page {
-  min-height: 100vh;
-  padding: 120px 2rem 4rem;
-  background: var(--bg-primary);
-}
-
-.puget-product-inner {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.puget-product-header {
-  margin-bottom: 3rem;
-}
-
-.puget-product-title {
-  font-size: 3rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-.puget-product-price {
-  font-size: 1.5rem;
-  color: var(--accent);
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.puget-product-sku {
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-  font-family: monospace;
-}
-
-.puget-product-content {
-  font-size: 1.0625rem;
-  line-height: 1.8;
-}
-
-.puget-product-content h2 {
-  font-size: 1.75rem;
-  margin-top: 3rem;
-  margin-bottom: 1.5rem;
-  color: var(--text-primary);
-}
-
-.puget-product-content h3 {
-  font-size: 1.25rem;
-  margin-top: 2rem;
-  margin-bottom: 1rem;
-  color: var(--text-primary);
-}
-
-.puget-product-content table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2rem 0;
-  font-size: 0.9375rem;
-}
-
-.puget-product-content th,
-.puget-product-content td {
-  padding: 0.75rem 1rem;
-  text-align: left;
-  border-bottom: 1px solid var(--border);
-}
-
-.puget-product-content th {
-  font-weight: 600;
-  color: var(--text-primary);
-  background: var(--bg-secondary);
-}
-
-.puget-product-content td {
-  color: var(--text-secondary);
-}
-
-.puget-configurator {
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  border-radius: var(--gsg-radius);
-  padding: 2rem;
-  margin-top: 3rem;
-}
-
-.puget-configurator h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.puget-config-options {
-  display: grid;
-  gap: 1.5rem;
-  margin-bottom: 2rem;
-}
-
-.puget-config-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.puget-config-group[data-field-error-visible="true"] .puget-config-select {
-  border-color: var(--gsg-error);
-}
-
-.puget-config-group[data-field-error-visible="true"] .puget-field-error {
-  display: block;
-  color: var(--gsg-error);
-  font-size: 0.875rem;
-}
-
-.puget-config-label {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--text-secondary);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-.puget-config-select {
-  padding: 0.875rem 1rem;
-  background: var(--bg-tertiary);
-  border: 1px solid var(--border);
-  border-radius: var(--gsg-radius);
-  color: var(--text-primary);
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.puget-config-select:focus {
-  outline: none;
-  border-color: var(--accent);
-}
-
-.puget-field-error {
-  display: none;
-}
-
-.puget-config-summary {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 1.5rem;
-  border-top: 2px solid var(--border);
-}
-
-.puget-config-total {
-  font-size: 1.25rem;
-  font-weight: 600;
-}
-
-.puget-config-price {
-  color: var(--accent);
-  margin-left: 0.5rem;
-}
-
-.puget-add-to-cart {
-  padding: 1rem 2rem;
-  font-size: 1rem;
-}
-
-.puget-add-to-cart:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-</style>
 {{ end }}
