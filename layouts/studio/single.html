@@ -26,7 +26,7 @@
         Coming Soon
       </div>
       {{ else }}
-      {{ partial "gsg-ecommerce/add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+      {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
       {{ end }}
       <p class="plugin-format-note">VST3 &middot; macOS &amp; Windows</p>
     </div>
@@ -70,7 +70,7 @@
     <p>This plugin is in development. <a href="/#signup">Join the waitlist</a> to be notified when it ships.</p>
     {{ else }}
     <div class="plugin-bottom-actions">
-      {{ partial "gsg-ecommerce/add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+      {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
       <p class="plugin-bundle-upsell">Or get all five plugins in the <a href="/plugins/studio/studio-collection/">Studio Collection</a> for $699.</p>
     </div>
     {{ end }}

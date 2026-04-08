@@ -25,7 +25,7 @@
         <span class="bundle-price">${{ .Params.price }}</span>
         <span class="bundle-savings">Save $296 vs. buying individually</span>
       </div>
-      {{ partial "gsg-ecommerce/add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary") }}
+      {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary") }}
       <a href="{{ .Permalink }}" class="bundle-details-link">View bundle details</a>
     </div>
   </div>
@@ -55,7 +55,7 @@
         {{ if eq .Params.status "coming-soon" }}
         <span class="plugin-card-coming-soon">Coming Soon</span>
         {{ else }}
-        {{ partial "gsg-ecommerce/add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Add to Cart" "class" "btn-primary btn-sm") }}
+        {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Add to Cart" "class" "btn-primary btn-sm") }}
         {{ end }}
       </div>
     </div>
