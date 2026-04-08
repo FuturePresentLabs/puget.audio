@@ -42,39 +42,7 @@ options:
       - value: "custom"
         label: "Custom RAL Match"
         price: 75
-  - name: "Lid"
-    key: "lid"
-    price_modifier: true
-    choices:
-      - value: "none"
-        label: "No Lid"
-        price: 0
-      - value: "hinged"
-        label: "Hinged Lid"
-        price: 89
-      - value: "removable"
-        label: "Removable Lid"
-        price: 89
-  - name: "Handle"
-    key: "handle"
-    price_modifier: true
-    choices:
-      - value: "none"
-        label: "No Handle"
-        price: 0
-      - value: "handle"
-        label: "Carrying Handle"
-        price: 45
-  - name: "Mounting"
-    key: "mounting"
-    price_modifier: true
-    choices:
-      - value: "feet"
-        label: "Rubber Feet"
-        price: 0
-      - value: "rack"
-        label: "Rack Ears"
-        price: 35
+
 ---
 
 # Cornucopia Eurorack Case
@@ -131,26 +99,16 @@ Choose your finish:
 - Standard colors: Included
 - Custom RAL match: +$75
 
-### Accessories
+### What's Included
 
-Add functionality:
+Every Cornucopia case includes:
 
-- **Lid** — $89
-  - Protects modules during transport
-  - Hinged or removable
-  - Matching finish
-
-- **Carrying Handle** — $45
-  - Ergonomic, load-rated
-  - Quick-release for rack mounting
-
-- **Rack Ears** — $35
-  - 19" rack mount kit
-  - Includes hardware
-
-- **Extra Bus Board** — $65
-  - For power-hungry systems
-  - 16 additional headers
+- Threaded rails (pre-installed)
+- Bus board with 16 headers
+- Power entry panel with switch
+- Rubber feet (4)
+- M3 screws (25 pack)
+- User guide
 
 ## Technical Specifications
 
@@ -168,7 +126,7 @@ Add functionality:
 - Threaded rails (pre-installed)
 - Bus board with 16 headers
 - Power entry panel with switch
-- Rubber feet (4) or rack ears (2)
+- Rubber feet (4)
 - M3 screws (25 pack)
 - User guide
 
