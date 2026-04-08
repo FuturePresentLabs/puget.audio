@@ -5,7 +5,7 @@
     <header class="puget-product-header">
       <h1 class="puget-product-title">{{ .Title }}</h1>
       {{ with .Params.price }}
-      <div class="puget-product-price">
+      <div class="puget-product-price" data-base-price-cents="{{ mul . 100 }}">
         Starting at ${{ . }}
       </div>
       {{ end }}
@@ -18,20 +18,21 @@
       {{ .Content }}
     </div>
 
-    {{/* Product Configurator */}}
+    {{/* Product Configurator using GSG customization controls */}}
     {{ if .Params.configurable }}
-    <div class="puget-configurator" data-product="{{ .Params.sku }}">
+    <div class="puget-configurator" data-customization-form data-product-sku="{{ .Params.sku }}">
       <h2>Configure Your {{ .Title }}</h2>
       
       <div class="puget-config-options">
         {{ range .Params.options }}
-        <div class="puget-config-group">
+        <div class="puget-config-group" data-customization-field data-field-id="{{ .key }}" data-field-type="select" data-required="true">
           <label class="puget-config-label">{{ .name }}</label>
-          <select class="puget-config-select" data-option="{{ .key }}" data-price-modifier="{{ .price_modifier }}">
+          <select class="puget-config-select" data-customization-input>
             {{ range .choices }}
-            <option value="{{ .value }}" data-price="{{ .price }}">{{ .label }}{{ with .price }} (+${{ . }}){{ end }}</option>
+            <option value="{{ .value }}" data-price-modifier="{{ mul .price 100 }}">{{ .label }}{{ with .price }} (+${{ . }}){{ end }}</option>
             {{ end }}
           </select>
+          <span class="puget-field-error" data-field-error style="display:none;"></span>
         </div>
         {{ end }}
       </div>
@@ -39,9 +40,9 @@
       <div class="puget-config-summary">
         <div class="puget-config-total">
           <span>Total</span>
-          <span class="puget-config-price" data-base-price="{{ .Params.price }}">${{ .Params.price }}</span>
+          <span class="puget-config-price" data-customization-summary data-base-price="{{ .Params.price }}">${{ .Params.price }}</span>
         </div>
-        <button class="puget-btn puget-btn-primary puget-add-to-cart" data-sku="{{ .Params.sku }}">
+        <button class="puget-btn puget-btn-primary puget-add-to-cart" data-add-to-cart data-sku="{{ .Params.sku }}" data-title="{{ .Title }}" data-price-cents="{{ mul .Params.price 100 }}">
           Add to Cart
         </button>
       </div>
@@ -155,6 +156,16 @@
   gap: 0.5rem;
 }
 
+.puget-config-group[data-field-error-visible="true"] .puget-config-select {
+  border-color: var(--gsg-error);
+}
+
+.puget-config-group[data-field-error-visible="true"] .puget-field-error {
+  display: block;
+  color: var(--gsg-error);
+  font-size: 0.875rem;
+}
+
 .puget-config-label {
   font-size: 0.875rem;
   font-weight: 500;
@@ -178,6 +189,10 @@
   border-color: var(--accent);
 }
 
+.puget-field-error {
+  display: none;
+}
+
 .puget-config-summary {
   display: flex;
   justify-content: space-between;
@@ -199,6 +214,11 @@
 .puget-add-to-cart {
   padding: 1rem 2rem;
   font-size: 1rem;
+}
+
+.puget-add-to-cart:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 </style>
 {{ end }}
