@@ -4,7 +4,7 @@ description: "Customizable Eurorack case with modular width options and premium 
 price: 449
 sku: "CORN-001"
 status: "available"
-layout: product
+layout: single
 configurable: true
 options:
   - name: "Width"

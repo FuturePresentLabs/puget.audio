@@ -1,0 +1,53 @@
+{{ define "main" }}
+<article class="puget-product-page">
+  <div class="puget-product-inner">
+
+    <nav class="puget-product-breadcrumb">
+      <a href="/">Home</a> / <a href="/sample-packs/">Sample Packs</a> / <span>{{ .Title }}</span>
+    </nav>
+
+    <header class="puget-product-header">
+      <h1 class="puget-product-title">{{ .Title }}</h1>
+      {{ with .Params.genre }}
+      <div class="samples-product-genre">{{ . }}</div>
+      {{ end }}
+      {{ with .Params.price }}
+      <div class="puget-product-price">${{ . }}</div>
+      {{ end }}
+      {{ if eq .Params.status "coming-soon" }}
+      <div class="samples-coming-soon-notice">
+        <span class="badge-dot"></span>
+        Coming Soon
+      </div>
+      {{ end }}
+      {{ with .Params.sku }}
+      <div class="puget-product-sku">SKU: {{ . }}</div>
+      {{ end }}
+    </header>
+
+    {{/* Quick specs bar */}}
+    {{ if or .Params.sample_count .Params.bpm .Params.format }}
+    <div class="samples-specs-bar">
+      {{ with .Params.sample_count }}<span>{{ . }} Samples</span>{{ end }}
+      {{ with .Params.bpm }}<span>{{ . }} BPM</span>{{ end }}
+      {{ with .Params.format }}<span>{{ . }}</span>{{ end }}
+    </div>
+    {{ end }}
+
+    <div class="puget-product-content">
+      {{ .Content }}
+    </div>
+
+    {{/* CTA */}}
+    <div class="samples-cta">
+      {{ if eq .Params.status "coming-soon" }}
+      <p>Join the waitlist to get notified when this pack drops.</p>
+      <a href="/#signup" class="btn-primary">Join the Waitlist</a>
+      {{ else }}
+      {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+      {{ end }}
+    </div>
+
+  </div>
+</article>
+{{ end }}

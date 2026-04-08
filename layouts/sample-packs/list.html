@@ -1,0 +1,64 @@
+{{ define "main" }}
+<section class="samples-hero">
+  <div class="samples-hero-bg"></div>
+  <div class="samples-hero-content">
+    <h1>{{ .Title }}</h1>
+    <p class="samples-hero-tagline">Production-ready sounds. Recorded through real analog hardware.</p>
+    <p class="samples-hero-description">Every sample pack is built from scratch in our Seattle studio — recorded through real preamps, compressed with real compressors, and mastered at 24-bit / 48kHz. No recycled loops. No generic presets.</p>
+  </div>
+</section>
+
+<section class="samples-grid-section">
+  <h2>Packs</h2>
+  <div class="samples-grid">
+    {{ range .Pages }}
+    <div class="samples-card{{ if eq .Params.status "coming-soon" }} coming-soon{{ end }}">
+      <a href="{{ .Permalink }}" class="samples-card-link">
+        <div class="samples-card-image">
+          <div class="samples-card-placeholder" data-genre="{{ .Params.genre | urlize }}">
+            <span class="samples-card-icon">{{ .Params.genre | default "SP" }}</span>
+          </div>
+        </div>
+        <div class="samples-card-body">
+          <h3>{{ .Title }}</h3>
+          {{ with .Params.genre }}
+          <p class="samples-card-genre">{{ . }}</p>
+          {{ end }}
+          <p class="samples-card-desc">{{ .Description | truncate 150 }}</p>
+          {{ with .Params.sample_count }}
+          <p class="samples-card-meta">{{ . }} samples &middot; {{ $.Params.format }}</p>
+          {{ end }}
+        </div>
+      </a>
+      <div class="samples-card-footer">
+        {{ if eq .Params.status "coming-soon" }}
+        <span class="samples-card-coming-soon">Coming Soon</span>
+        {{ else }}
+        <span class="samples-card-price">${{ .Params.price }}</span>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+
+<section class="samples-quality">
+  <div class="samples-quality-inner">
+    <h2>Studio Quality, Every Sample</h2>
+    <div class="samples-quality-grid">
+      <div class="samples-quality-card">
+        <h3>Analog Signal Chain</h3>
+        <p>Recorded through real preamps and compressors. The harmonic saturation and transient response that makes analog gear special.</p>
+      </div>
+      <div class="samples-quality-card">
+        <h3>24-bit / 48kHz</h3>
+        <p>Full dynamic range, no artifacts. Every sample mastered for maximum headroom and clarity in your mix.</p>
+      </div>
+      <div class="samples-quality-card">
+        <h3>100% Royalty-Free</h3>
+        <p>Use in released tracks, sync placements, or live performances. No additional licensing. No hidden fees.</p>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}

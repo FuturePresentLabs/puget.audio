@@ -1,0 +1,78 @@
+{{ define "main" }}
+<section class="hardware-hero">
+  <div class="hardware-hero-bg"></div>
+  <div class="hardware-hero-content">
+    <h1>{{ .Title }}</h1>
+    <p class="hardware-hero-tagline">Eurorack cases, guitar pedals, and audio hardware engineered in Seattle.</p>
+    <p class="hardware-hero-description">We build professional audio hardware in our Seattle workshop. Every product combines thoughtful industrial design with bulletproof construction.</p>
+  </div>
+</section>
+
+<section class="hardware-grid-section">
+  <h2>Products</h2>
+  <div class="hardware-grid">
+    {{ range where .Pages "Params.status" "available" }}
+    <div class="hardware-card">
+      <a href="{{ .Permalink }}" class="hardware-card-link">
+        <div class="hardware-card-image">
+          <div class="hardware-card-placeholder">
+            <span class="hardware-card-icon">HW</span>
+          </div>
+        </div>
+        <div class="hardware-card-body">
+          <h3>{{ .Title }}</h3>
+          <p class="hardware-card-desc">{{ .Description }}</p>
+        </div>
+      </a>
+      <div class="hardware-card-footer">
+        {{ with .Params.price }}
+        <span class="hardware-card-price">From ${{ . }}</span>
+        {{ end }}
+        <span class="hardware-card-cta">Configure &rarr;</span>
+      </div>
+    </div>
+    {{ end }}
+
+    {{/* Coming Soon: Pedals */}}
+    <div class="hardware-card coming-soon">
+      <div class="hardware-card-link">
+        <div class="hardware-card-image">
+          <div class="hardware-card-placeholder">
+            <span class="hardware-card-icon">PD</span>
+          </div>
+        </div>
+        <div class="hardware-card-body">
+          <h3>Guitar Pedals</h3>
+          <p class="hardware-card-desc">Hand-assembled effects pedals with circuit-accurate modeling. Each design is validated as a software model before the first enclosure is machined.</p>
+        </div>
+      </div>
+      <div class="hardware-card-footer">
+        <span class="hardware-card-coming-soon">Coming Soon</span>
+      </div>
+    </div>
+
+    {{/* Coming Soon: Studio Gear */}}
+    <div class="hardware-card coming-soon">
+      <div class="hardware-card-link">
+        <div class="hardware-card-image">
+          <div class="hardware-card-placeholder">
+            <span class="hardware-card-icon">SG</span>
+          </div>
+        </div>
+        <div class="hardware-card-body">
+          <h3>Studio Gear</h3>
+          <p class="hardware-card-desc">Professional studio equipment for producers and engineers. Designed and built in Seattle.</p>
+        </div>
+      </div>
+      <div class="hardware-card-footer">
+        <span class="hardware-card-coming-soon">Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hardware-warranty">
+  <p>All hardware includes a <strong>2-year warranty</strong> and Seattle-based support.</p>
+  <p>Questions? <a href="mailto:hardware@puget.audio">hardware@puget.audio</a></p>
+</section>
+{{ end }}
