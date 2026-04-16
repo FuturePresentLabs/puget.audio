@@ -1,23 +1,72 @@
 {{ define "main" }}
+{{/* Sample Pack Library SEO — CollectionPage schema */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Sample Packs — Puget Audio",
+  "description": "{{ .Description }}",
+  "url": "{{ .Permalink }}",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Puget Audio",
+    "url": "{{ .Site.BaseURL }}"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "numberOfItems": {{ len .Pages }},
+    "itemListElement": [
+      {{ range $i, $p := .Pages }}{{ if $i }},{{ end }}
+      {
+        "@type": "ListItem",
+        "position": {{ add $i 1 }},
+        "item": {
+          "@type": "Product",
+          "name": "{{ $p.Title }}",
+          "description": "{{ $p.Description }}",
+          "url": "{{ $p.Permalink }}",
+          {{ with $p.Params.cover_image }}"image": "{{ . | absURL }}",{{ end }}
+          "offers": {
+            "@type": "Offer",
+            "price": "{{ $p.Params.price }}",
+            "priceCurrency": "USD",
+            "availability": "{{ if eq $p.Params.status "coming-soon" }}https://schema.org/PreOrder{{ else }}https://schema.org/InStock{{ end }}"
+          }
+        }
+      }
+      {{ end }}
+    ]
+  }
+}
+</script>
+
 <section class="samples-hero">
   <div class="samples-hero-bg"></div>
   <div class="samples-hero-content">
     <h1>{{ .Title }}</h1>
     <p class="samples-hero-tagline">Production-ready sounds. Recorded through real analog hardware.</p>
-    <p class="samples-hero-description">Every sample pack is built from scratch in our Seattle studio — recorded through real preamps, compressed with real compressors, and mastered at 24-bit / 48kHz. No recycled loops. No generic presets.</p>
+    <p class="samples-hero-description">Every sample pack is built from scratch in our Seattle studio — recorded through real analog synthesizers and hardware, captured at 24-bit / 48kHz. No recycled loops. No generic presets.</p>
   </div>
 </section>
 
+{{ $available := where .Pages "Params.status" "!=" "coming-soon" }}
+{{ $comingSoon := where .Pages "Params.status" "coming-soon" }}
+
+{{ if gt (len $available) 0 }}
 <section class="samples-grid-section">
-  <h2>Packs</h2>
+  <h2>Available Now</h2>
   <div class="samples-grid">
-    {{ range .Pages }}
-    <div class="samples-card{{ if eq .Params.status "coming-soon" }} coming-soon{{ end }}">
+    {{ range $available }}
+    <div class="samples-card">
       <a href="{{ .Permalink }}" class="samples-card-link">
         <div class="samples-card-image">
+          {{ with .Params.cover_image }}
+          <img src="{{ . }}" alt="{{ $.Title }} cover art" class="samples-card-cover-img" loading="lazy" width="400" height="400">
+          {{ else }}
           <div class="samples-card-placeholder" data-genre="{{ .Params.genre | urlize }}">
             <span class="samples-card-icon">{{ .Params.genre | default "SP" }}</span>
           </div>
+          {{ end }}
         </div>
         <div class="samples-card-body">
           <h3>{{ .Title }}</h3>
@@ -25,22 +74,60 @@
           <p class="samples-card-genre">{{ . }}</p>
           {{ end }}
           <p class="samples-card-desc">{{ .Description | truncate 150 }}</p>
-          {{ with .Params.sample_count }}
-          <p class="samples-card-meta">{{ . }} samples &middot; {{ $.Params.format }}</p>
-          {{ end }}
+          <div class="samples-card-meta-row">
+            {{ with .Params.sample_count }}<span class="samples-card-meta">{{ . }} samples</span>{{ end }}
+            {{ with .Params.instrument }}<span class="samples-card-meta">{{ . }}</span>{{ end }}
+            {{ with .Params.format }}<span class="samples-card-meta">{{ . }}</span>{{ end }}
+          </div>
         </div>
       </a>
       <div class="samples-card-footer">
-        {{ if eq .Params.status "coming-soon" }}
-        <span class="samples-card-coming-soon">Coming Soon</span>
-        {{ else }}
         <span class="samples-card-price">${{ .Params.price }}</span>
-        {{ end }}
+        {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Add to Cart" "class" "btn-sm") }}
       </div>
     </div>
     {{ end }}
   </div>
 </section>
+{{ end }}
+
+{{ if gt (len $comingSoon) 0 }}
+<section class="samples-grid-section samples-coming-soon-section">
+  <h2>Coming Soon</h2>
+  <div class="samples-grid">
+    {{ range $comingSoon }}
+    <div class="samples-card coming-soon">
+      <a href="{{ .Permalink }}" class="samples-card-link">
+        <div class="samples-card-image">
+          {{ with .Params.cover_image }}
+          <img src="{{ . }}" alt="{{ $.Title }} cover art" class="samples-card-cover-img" loading="lazy" width="400" height="400">
+          {{ else }}
+          <div class="samples-card-placeholder" data-genre="{{ .Params.genre | urlize }}">
+            <span class="samples-card-icon">{{ .Params.genre | default "SP" }}</span>
+          </div>
+          {{ end }}
+        </div>
+        <div class="samples-card-body">
+          <h3>{{ .Title }}</h3>
+          {{ with .Params.genre }}
+          <p class="samples-card-genre">{{ . }}</p>
+          {{ end }}
+          <p class="samples-card-desc">{{ .Description | truncate 150 }}</p>
+          <div class="samples-card-meta-row">
+            {{ with .Params.sample_count }}<span class="samples-card-meta">{{ . }} samples</span>{{ end }}
+            {{ with .Params.instrument }}<span class="samples-card-meta">{{ . }}</span>{{ end }}
+            {{ with .Params.format }}<span class="samples-card-meta">{{ . }}</span>{{ end }}
+          </div>
+        </div>
+      </a>
+      <div class="samples-card-footer">
+        <span class="samples-card-coming-soon">Coming Soon</span>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
 
 <section class="samples-quality">
   <div class="samples-quality-inner">
@@ -48,7 +135,7 @@
     <div class="samples-quality-grid">
       <div class="samples-quality-card">
         <h3>Analog Signal Chain</h3>
-        <p>Recorded through real preamps and compressors. The harmonic saturation and transient response that makes analog gear special.</p>
+        <p>Recorded through real synthesizers, preamps, and compressors. The harmonic saturation and transient response that makes analog gear special.</p>
       </div>
       <div class="samples-quality-card">
         <h3>24-bit / 48kHz</h3>
@@ -56,7 +143,7 @@
       </div>
       <div class="samples-quality-card">
         <h3>100% Royalty-Free</h3>
-        <p>Use in released tracks, sync placements, or live performances. No additional licensing. No hidden fees.</p>
+        <p>Use in released tracks, games, films, sync placements, or live performances. No additional licensing. No hidden fees.</p>
       </div>
     </div>
   </div>
