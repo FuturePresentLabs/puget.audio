@@ -1,0 +1,432 @@
+/* Puget Audio Shop/Cart/Checkout Styles */
+
+/* Page Layout */
+.puget-page {
+  min-height: 100vh;
+  padding: 120px 2rem 4rem;
+  background: var(--bg-primary);
+}
+
+.puget-page-inner {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.puget-page-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+/* Empty Cart State */
+.puget-cart-empty {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.puget-empty-icon {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.puget-empty-message {
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+/* Cart Contents */
+.puget-cart-contents {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--gsg-radius);
+  padding: 2rem;
+}
+
+.puget-cart-items {
+  margin-bottom: 2rem;
+}
+
+/* Cart Item */
+.puget-cart-item {
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.puget-cart-item:last-child {
+  border-bottom: none;
+}
+
+.puget-cart-item-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.puget-cart-item-price {
+  color: var(--text-secondary);
+  font-family: monospace;
+}
+
+.puget-cart-item-qty {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.puget-cart-item-qty button {
+  width: 28px;
+  height: 28px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.puget-cart-item-qty button:hover {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+.puget-cart-item-total {
+  font-weight: 600;
+  color: var(--accent);
+  font-family: monospace;
+}
+
+.puget-cart-item-remove {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  transition: color 0.2s;
+}
+
+.puget-cart-item-remove:hover {
+  color: var(--gsg-error);
+}
+
+/* Cart Summary */
+.puget-cart-summary {
+  border-top: 2px solid var(--border);
+  padding-top: 1.5rem;
+}
+
+.puget-cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.puget-cart-total-row {
+  font-size: 1.25rem;
+  font-weight: 600;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
+  margin-top: 1rem;
+}
+
+.puget-cart-total-amount {
+  color: var(--accent);
+  font-family: monospace;
+}
+
+/* Buttons */
+.puget-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.875rem 1.5rem;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: var(--gsg-radius);
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+
+.puget-btn-primary {
+  background: var(--accent);
+  color: var(--bg-primary);
+}
+
+.puget-btn-primary:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.puget-btn-secondary {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+}
+
+.puget-btn-secondary:hover {
+  background: var(--border);
+}
+
+.puget-btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.puget-btn-ghost:hover {
+  color: var(--text-primary);
+}
+
+.puget-checkout-btn {
+  width: 100%;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.puget-continue-shopping {
+  display: block;
+  text-align: center;
+  margin-top: 1rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.875rem;
+}
+
+.puget-continue-shopping:hover {
+  color: var(--accent);
+}
+
+/* Checkout Page */
+.puget-checkout-page .puget-page-inner {
+  max-width: 1000px;
+}
+
+.puget-checkout-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 3rem;
+}
+
+@media (max-width: 768px) {
+  .puget-checkout-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Checkout Summary Sidebar */
+.puget-checkout-summary {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--gsg-radius);
+  padding: 1.5rem;
+  height: fit-content;
+  position: sticky;
+  top: 100px;
+}
+
+.puget-checkout-summary-title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.puget-checkout-items {
+  margin-bottom: 1.5rem;
+}
+
+.puget-checkout-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.puget-checkout-item-name {
+  color: var(--text-secondary);
+}
+
+.puget-checkout-item-price {
+  color: var(--text-primary);
+  font-family: monospace;
+}
+
+.puget-checkout-summary-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 2px solid var(--border);
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+/* Checkout Form */
+.puget-checkout-form-wrap {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--gsg-radius);
+  padding: 2rem;
+}
+
+.puget-fieldset {
+  border: none;
+  margin-bottom: 2rem;
+}
+
+.puget-legend {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+}
+
+.puget-field {
+  margin-bottom: 1.25rem;
+}
+
+.puget-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 480px) {
+  .puget-field-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+.puget-label {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.puget-input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--gsg-radius);
+  color: var(--text-primary);
+  font-size: 1rem;
+  transition: all 0.2s;
+}
+
+.puget-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.puget-input::placeholder {
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.puget-checkout-error {
+  background: rgba(231, 76, 90, 0.1);
+  border: 1px solid var(--gsg-error);
+  border-radius: var(--gsg-radius);
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--gsg-error);
+  font-size: 0.875rem;
+}
+
+.puget-place-order-btn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.puget-btn-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.puget-checkout-secure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-size: 0.8125rem;
+  color: var(--text-secondary);
+}
+
+/* Thanks Page */
+.puget-thanks-page {
+  text-align: center;
+}
+
+.puget-thanks-icon {
+  color: var(--gsg-success);
+  margin-bottom: 1.5rem;
+}
+
+.puget-thanks-message {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin-bottom: 2rem;
+}
+
+.puget-thanks-details {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--gsg-radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: left;
+}
+
+.puget-thanks-next {
+  margin-bottom: 2rem;
+}
+
+.puget-thanks-next h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.puget-thanks-steps {
+  list-style: none;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.puget-thanks-steps li {
+  padding: 0.75rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--text-secondary);
+}
+
+.puget-thanks-steps li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
+
+.puget-thanks-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}

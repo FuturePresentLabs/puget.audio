@@ -1,54 +1,54 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Studio Plugins on Puget Audio</title><link>https://puget.audio/plugins/studio/</link><description>Recent content in Studio Plugins on Puget Audio</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 24 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://puget.audio/plugins/studio/index.xml" rel="self" type="application/rss+xml"/><item><title>Puget Passive EQ</title><link>https://puget.audio/plugins/studio/passive-eq/</link><pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate><guid>https://puget.audio/plugins/studio/passive-eq/</guid><description>&lt;p&gt;Based on the Pultec EQP-1A program equalizer. The textbook case for why WDF modeling matters. It&amp;rsquo;s a passive LC equalizer — literally inductors and capacitors in a ladder network — followed by a single 12AX7 tube makeup gain stage. This is the exact circuit topology Wave Digital Filters were invented to model with mathematical precision.&lt;/p&gt;
-&lt;h2 id="the-boost-and-cut-trick"&gt;The boost-and-cut trick&lt;/h2&gt;
-&lt;p&gt;The famous &amp;ldquo;boost and cut at the same frequency&amp;rdquo; move? It&amp;rsquo;s not programmed. It&amp;rsquo;s not a DSP hack. It falls out of the circuit topology naturally — because we modeled the actual passive network, and that&amp;rsquo;s what passive networks do.&lt;/p&gt;</description></item><item><title>Puget Opto Compressor</title><link>https://puget.audio/plugins/studio/opto-compressor/</link><pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate><guid>https://puget.audio/plugins/studio/opto-compressor/</guid><description>&lt;p&gt;Based on the Teletronix LA-2A leveling amplifier. Every major studio has a pair. The most revered optical compressor ever built — two tube gain stages, a passive interstage network, and the T4B electro-optical attenuator that gives it that unmistakable program-dependent character.&lt;/p&gt;
-&lt;h2 id="the-t4b-why-it-sounds-like-nothing-else"&gt;The T4B: why it sounds like nothing else&lt;/h2&gt;
-&lt;p&gt;The T4B is a cadmium sulfide photoresistor driven by an electroluminescent panel. Its attack and release behavior is fundamentally nonlinear and program-dependent — loud transients hit harder and recover differently than sustained material.&lt;/p&gt;</description></item><item><title>Puget FET Limiter</title><link>https://puget.audio/plugins/studio/fet-limiter/</link><pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate><guid>https://puget.audio/plugins/studio/fet-limiter/</guid><description>&lt;p&gt;Based on the UREI 1176LN limiting amplifier. The fastest compressor in the room. The gain reduction element is a single JFET used as a voltage-variable resistor — which maps naturally to a nonlinear one-port in our WDF tree. The rest is discrete Class A transistor amplifier stages, transformer I/O, and the four ratio settings that change the feedback topology.&lt;/p&gt;
-&lt;h2 id="all-buttons-in"&gt;All Buttons In&lt;/h2&gt;
-&lt;p&gt;The &amp;ldquo;All Buttons In&amp;rdquo; mode — where all four ratio buttons are pressed simultaneously — isn&amp;rsquo;t a preset. It&amp;rsquo;s what happens when you wire all four feedback paths in parallel.&lt;/p&gt;</description></item><item><title>Puget Variable-Mu</title><link>https://puget.audio/plugins/studio/variable-mu/</link><pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate><guid>https://puget.audio/plugins/studio/variable-mu/</guid><description>&lt;p&gt;Based on the Fairchild 670 limiter. The holy grail. Originals sell for $40,000+ when they surface. Twenty tubes, eleven transformers, and the 6386 remote-cutoff triode that makes variable-mu compression possible.&lt;/p&gt;
-&lt;h2 id="how-variable-mu-works"&gt;How variable-mu works&lt;/h2&gt;
-&lt;p&gt;The gain reduction happens by biasing push-pull tube stages — as the control voltage changes, the tube&amp;rsquo;s amplification factor (μ) changes with it. Smooth, musical, and harmonically complex in a way that VCA and FET designs can&amp;rsquo;t replicate.&lt;/p&gt;</description></item><item><title>Puget Channel</title><link>https://puget.audio/plugins/studio/channel/</link><pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate><guid>https://puget.audio/plugins/studio/channel/</guid><description>&lt;p&gt;Based on the Neve 1073 channel amplifier. The most recognized preamp in recording history. All transformers and inductors — transformer-coupled Class A discrete preamp, inductor-based 3-band EQ with high-pass filter.&lt;/p&gt;
-&lt;h2 id="every-component-that-matters"&gt;Every component that matters&lt;/h2&gt;
-&lt;p&gt;Every component that gives it that signature sound — the transformers, the hand-wound inductors, the tantalum capacitors — is a WDF element in our model. Nothing is approximated. Nothing is left out.&lt;/p&gt;
-&lt;h2 id="real-inductors-not-filter-coefficients"&gt;Real inductors, not filter coefficients&lt;/h2&gt;
-&lt;p&gt;The inductor-based EQ is classic WDF territory. Real inductors have frequency-dependent losses, saturation characteristics, and Q factors that interact with the source impedance. We don&amp;rsquo;t approximate these — we model the inductor as a physical component with its real-world parameters.&lt;/p&gt;</description></item><item><title>Puget Studio Collection</title><link>https://puget.audio/plugins/studio/studio-collection/</link><pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate><guid>https://puget.audio/plugins/studio/studio-collection/</guid><description>&lt;h2 id="the-five-tools-that-built-modern-recording-modeled-from-the-circuit-up"&gt;The five tools that built modern recording. Modeled from the circuit up.&lt;/h2&gt;
-&lt;p&gt;The program equalizer shapes the tone. The FET limiter catches the transients. The opto compressor levels the dynamics. The variable-mu glues the bus. The channel strip does everything in between.&lt;/p&gt;
-&lt;p&gt;An engineer can mix an entire record with these five tools. Generations of them have.&lt;/p&gt;
-&lt;h2 id="whats-included"&gt;What&amp;rsquo;s included&lt;/h2&gt;
-&lt;table&gt;
- &lt;thead&gt;
- &lt;tr&gt;
- &lt;th&gt;Plugin&lt;/th&gt;
- &lt;th&gt;Circuit Reference&lt;/th&gt;
- &lt;th&gt;Type&lt;/th&gt;
- &lt;/tr&gt;
- &lt;/thead&gt;
- &lt;tbody&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;a href="https://puget.audio/plugins/studio/passive-eq/"&gt;Puget Passive EQ&lt;/a&gt;&lt;/td&gt;
- &lt;td&gt;EQP-1A style&lt;/td&gt;
- &lt;td&gt;Equalizer&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;a href="https://puget.audio/plugins/studio/opto-compressor/"&gt;Puget Opto Compressor&lt;/a&gt;&lt;/td&gt;
- &lt;td&gt;LA-2A style&lt;/td&gt;
- &lt;td&gt;Compressor&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;a href="https://puget.audio/plugins/studio/fet-limiter/"&gt;Puget FET Limiter&lt;/a&gt;&lt;/td&gt;
- &lt;td&gt;1176LN style&lt;/td&gt;
- &lt;td&gt;Limiter&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;a href="https://puget.audio/plugins/studio/variable-mu/"&gt;Puget Variable-Mu&lt;/a&gt;&lt;/td&gt;
- &lt;td&gt;670 style&lt;/td&gt;
- &lt;td&gt;Compressor/Limiter&lt;/td&gt;
- &lt;/tr&gt;
- &lt;tr&gt;
- &lt;td&gt;&lt;a href="https://puget.audio/plugins/studio/channel/"&gt;Puget Channel&lt;/a&gt;&lt;/td&gt;
- &lt;td&gt;1073 style&lt;/td&gt;
- &lt;td&gt;Preamp/EQ&lt;/td&gt;
- &lt;/tr&gt;
- &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;h2 id="699--save-296"&gt;$699 — Save $296&lt;/h2&gt;
-&lt;p&gt;That&amp;rsquo;s roughly $140 per plugin vs. $199 individually. Five perpetual licenses, VST3 format, macOS and Windows.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Studio Plugins on Puget Audio</title>
+    <link>https://puget.audio/plugins/studio/</link>
+    <description>Recent content in Studio Plugins on Puget Audio</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 24 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://puget.audio/plugins/studio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Puget Passive EQ</title>
+      <link>https://puget.audio/plugins/studio/passive-eq/</link>
+      <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://puget.audio/plugins/studio/passive-eq/</guid>
+      <description>&lt;p&gt;Based on the Pultec EQP-1A program equalizer. The textbook case for why WDF modeling matters. It&amp;rsquo;s a passive LC equalizer — literally inductors and capacitors in a ladder network — followed by a single 12AX7 tube makeup gain stage. This is the exact circuit topology Wave Digital Filters were invented to model with mathematical precision.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-boost-and-cut-trick&#34;&gt;The boost-and-cut trick&lt;/h2&gt;&#xA;&lt;p&gt;The famous &amp;ldquo;boost and cut at the same frequency&amp;rdquo; move? It&amp;rsquo;s not programmed. It&amp;rsquo;s not a DSP hack. It falls out of the circuit topology naturally — because we modeled the actual passive network, and that&amp;rsquo;s what passive networks do.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Puget Opto Compressor</title>
+      <link>https://puget.audio/plugins/studio/opto-compressor/</link>
+      <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://puget.audio/plugins/studio/opto-compressor/</guid>
+      <description>&lt;p&gt;Based on the Teletronix LA-2A leveling amplifier. Every major studio has a pair. The most revered optical compressor ever built — two tube gain stages, a passive interstage network, and the T4B electro-optical attenuator that gives it that unmistakable program-dependent character.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-t4b-why-it-sounds-like-nothing-else&#34;&gt;The T4B: why it sounds like nothing else&lt;/h2&gt;&#xA;&lt;p&gt;The T4B is a cadmium sulfide photoresistor driven by an electroluminescent panel. Its attack and release behavior is fundamentally nonlinear and program-dependent — loud transients hit harder and recover differently than sustained material.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Puget FET Limiter</title>
+      <link>https://puget.audio/plugins/studio/fet-limiter/</link>
+      <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://puget.audio/plugins/studio/fet-limiter/</guid>
+      <description>&lt;p&gt;Based on the UREI 1176LN limiting amplifier. The fastest compressor in the room. The gain reduction element is a single JFET used as a voltage-variable resistor — which maps naturally to a nonlinear one-port in our WDF tree. The rest is discrete Class A transistor amplifier stages, transformer I/O, and the four ratio settings that change the feedback topology.&lt;/p&gt;&#xA;&lt;h2 id=&#34;all-buttons-in&#34;&gt;All Buttons In&lt;/h2&gt;&#xA;&lt;p&gt;The &amp;ldquo;All Buttons In&amp;rdquo; mode — where all four ratio buttons are pressed simultaneously — isn&amp;rsquo;t a preset. It&amp;rsquo;s what happens when you wire all four feedback paths in parallel.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Puget Variable-Mu</title>
+      <link>https://puget.audio/plugins/studio/variable-mu/</link>
+      <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://puget.audio/plugins/studio/variable-mu/</guid>
+      <description>&lt;p&gt;Based on the Fairchild 670 limiter. The holy grail. Originals sell for $40,000+ when they surface. Twenty tubes, eleven transformers, and the 6386 remote-cutoff triode that makes variable-mu compression possible.&lt;/p&gt;&#xA;&lt;h2 id=&#34;how-variable-mu-works&#34;&gt;How variable-mu works&lt;/h2&gt;&#xA;&lt;p&gt;The gain reduction happens by biasing push-pull tube stages — as the control voltage changes, the tube&amp;rsquo;s amplification factor (μ) changes with it. Smooth, musical, and harmonically complex in a way that VCA and FET designs can&amp;rsquo;t replicate.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Puget Channel</title>
+      <link>https://puget.audio/plugins/studio/channel/</link>
+      <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://puget.audio/plugins/studio/channel/</guid>
+      <description>&lt;p&gt;Based on the Neve 1073 channel amplifier. The most recognized preamp in recording history. All transformers and inductors — transformer-coupled Class A discrete preamp, inductor-based 3-band EQ with high-pass filter.&lt;/p&gt;&#xA;&lt;h2 id=&#34;every-component-that-matters&#34;&gt;Every component that matters&lt;/h2&gt;&#xA;&lt;p&gt;Every component that gives it that signature sound — the transformers, the hand-wound inductors, the tantalum capacitors — is a WDF element in our model. Nothing is approximated. Nothing is left out.&lt;/p&gt;&#xA;&lt;h2 id=&#34;real-inductors-not-filter-coefficients&#34;&gt;Real inductors, not filter coefficients&lt;/h2&gt;&#xA;&lt;p&gt;The inductor-based EQ is classic WDF territory. Real inductors have frequency-dependent losses, saturation characteristics, and Q factors that interact with the source impedance. We don&amp;rsquo;t approximate these — we model the inductor as a physical component with its real-world parameters.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Puget Studio Collection</title>
+      <link>https://puget.audio/plugins/studio/studio-collection/</link>
+      <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://puget.audio/plugins/studio/studio-collection/</guid>
+      <description>&lt;h2 id=&#34;the-five-tools-that-built-modern-recording-modeled-from-the-circuit-up&#34;&gt;The five tools that built modern recording. Modeled from the circuit up.&lt;/h2&gt;&#xA;&lt;p&gt;The program equalizer shapes the tone. The FET limiter catches the transients. The opto compressor levels the dynamics. The variable-mu glues the bus. The channel strip does everything in between.&lt;/p&gt;&#xA;&lt;p&gt;An engineer can mix an entire record with these five tools. Generations of them have.&lt;/p&gt;&#xA;&lt;h2 id=&#34;whats-included&#34;&gt;What&amp;rsquo;s included&lt;/h2&gt;&#xA;&lt;table&gt;&#xA;  &lt;thead&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;th&gt;Plugin&lt;/th&gt;&#xA;          &lt;th&gt;Circuit Reference&lt;/th&gt;&#xA;          &lt;th&gt;Type&lt;/th&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/thead&gt;&#xA;  &lt;tbody&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;a href=&#34;https://puget.audio/plugins/studio/passive-eq/&#34;&gt;Puget Passive EQ&lt;/a&gt;&lt;/td&gt;&#xA;          &lt;td&gt;EQP-1A style&lt;/td&gt;&#xA;          &lt;td&gt;Equalizer&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;a href=&#34;https://puget.audio/plugins/studio/opto-compressor/&#34;&gt;Puget Opto Compressor&lt;/a&gt;&lt;/td&gt;&#xA;          &lt;td&gt;LA-2A style&lt;/td&gt;&#xA;          &lt;td&gt;Compressor&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;a href=&#34;https://puget.audio/plugins/studio/fet-limiter/&#34;&gt;Puget FET Limiter&lt;/a&gt;&lt;/td&gt;&#xA;          &lt;td&gt;1176LN style&lt;/td&gt;&#xA;          &lt;td&gt;Limiter&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;a href=&#34;https://puget.audio/plugins/studio/variable-mu/&#34;&gt;Puget Variable-Mu&lt;/a&gt;&lt;/td&gt;&#xA;          &lt;td&gt;670 style&lt;/td&gt;&#xA;          &lt;td&gt;Compressor/Limiter&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;      &lt;tr&gt;&#xA;          &lt;td&gt;&lt;a href=&#34;https://puget.audio/plugins/studio/channel/&#34;&gt;Puget Channel&lt;/a&gt;&lt;/td&gt;&#xA;          &lt;td&gt;1073 style&lt;/td&gt;&#xA;          &lt;td&gt;Preamp/EQ&lt;/td&gt;&#xA;      &lt;/tr&gt;&#xA;  &lt;/tbody&gt;&#xA;&lt;/table&gt;&#xA;&lt;h2 id=&#34;699--save-296&#34;&gt;$699 — Save $296&lt;/h2&gt;&#xA;&lt;p&gt;That&amp;rsquo;s roughly $140 per plugin vs. $199 individually. Five perpetual licenses, VST3 format, macOS and Windows.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

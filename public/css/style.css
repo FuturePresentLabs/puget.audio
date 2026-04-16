@@ -253,6 +253,11 @@ body {
   margin: 0 auto;
 }
 
+.product-grid.product-grid-3 {
+  max-width: 1200px;
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .product-card {
   background: var(--bg-tertiary);
   border: 1px solid var(--border);
@@ -544,6 +549,16 @@ body {
   
   .product-grid {
     grid-template-columns: 1fr;
+  }
+
+  .product-grid.product-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .product-grid.product-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -4848,17 +4863,1109 @@ body {
   .featured-card {
     grid-template-columns: 1fr;
   }
-  
+
   .featured-visual {
     min-height: 160px;
   }
-  
+
   .featured-icon {
     font-size: 4rem;
   }
-  
+
   .collections-grid {
     grid-template-columns: 1fr;
     max-width: 300px;
+  }
+}
+
+/* ========================================
+   HARDWARE SECTION
+   ======================================== */
+
+/* --- Hardware Hero --- */
+.hardware-hero {
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hardware-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 169, 110, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(201, 169, 110, 0.04) 0%, transparent 40%),
+    var(--bg-primary);
+  z-index: -1;
+}
+
+.hardware-hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hardware-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #fff 0%, #a0a0a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hardware-hero-tagline {
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+.hardware-hero-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* --- Hardware Grid --- */
+.hardware-grid-section {
+  padding: 4rem 2rem;
+  background: var(--bg-primary);
+}
+
+.hardware-grid-section h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2.5rem;
+  color: var(--text-primary);
+}
+
+.hardware-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hardware-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.hardware-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(201, 169, 110, 0.2);
+}
+
+.hardware-card.coming-soon {
+  opacity: 0.6;
+}
+
+.hardware-card.coming-soon:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+.hardware-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  flex: 1;
+}
+
+.hardware-card-image {
+  height: 180px;
+  overflow: hidden;
+}
+
+.hardware-card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.hardware-card-icon {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.4;
+  letter-spacing: 0.05em;
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+}
+
+.hardware-card-body {
+  padding: 1.25rem 1.5rem 0.5rem;
+}
+
+.hardware-card-body h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.hardware-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.hardware-card-footer {
+  padding: 1rem 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.hardware-card-price {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.hardware-card-cta {
+  font-size: 0.85rem;
+  color: var(--accent);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.hardware-card-coming-soon {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  padding: 0.4rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+/* --- Hardware Warranty Footer --- */
+.hardware-warranty {
+  padding: 3rem 2rem;
+  text-align: center;
+  border-top: 1px solid var(--border);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.hardware-warranty p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.hardware-warranty strong {
+  color: var(--text-primary);
+}
+
+.hardware-warranty a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.hardware-warranty a:hover {
+  border-color: var(--accent);
+}
+
+/* ========================================
+   Hardware Product Page (Single)
+   ======================================== */
+
+.puget-product-page {
+  min-height: 100vh;
+  padding: 120px 2rem 4rem;
+  background: var(--bg-primary);
+}
+
+.puget-product-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* --- Breadcrumb --- */
+.puget-product-breadcrumb {
+  padding-bottom: 2rem;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.puget-product-breadcrumb a {
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.puget-product-breadcrumb a:hover {
+  color: var(--accent);
+}
+
+/* --- Header --- */
+.puget-product-header {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.puget-product-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+.puget-product-price {
+  font-size: 1.5rem;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.puget-product-sku {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+  letter-spacing: 0.04em;
+}
+
+/* --- Product Content (rendered markdown) --- */
+.puget-product-content {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.puget-product-content h1 {
+  display: none;
+}
+
+.puget-product-content h2 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.puget-product-content h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  color: var(--text-primary);
+}
+
+.puget-product-content p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1rem;
+}
+
+.puget-product-content strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.puget-product-content ul,
+.puget-product-content ol {
+  color: var(--text-secondary);
+  padding-left: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.puget-product-content li {
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.puget-product-content li strong {
+  color: var(--text-primary);
+}
+
+.puget-product-content a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.puget-product-content a:hover {
+  border-color: var(--accent);
+}
+
+.puget-product-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+.puget-product-content em {
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.puget-product-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  font-size: 0.9rem;
+}
+
+.puget-product-content th {
+  text-align: left;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--border);
+  color: var(--accent);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.8rem;
+  background: var(--bg-secondary);
+}
+
+.puget-product-content td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-secondary);
+}
+
+/* --- Configurator --- */
+.puget-configurator {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.puget-configurator::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+}
+
+.puget-configurator h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.puget-config-options {
+  display: grid;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.puget-config-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.puget-config-group[data-field-error-visible="true"] .puget-config-select {
+  border-color: var(--gsg-error);
+}
+
+.puget-config-group[data-field-error-visible="true"] .puget-field-error {
+  display: block;
+  color: var(--gsg-error);
+  font-size: 0.875rem;
+}
+
+.puget-config-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.puget-config-select {
+  padding: 0.875rem 1rem;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--gsg-radius);
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a0a0a8' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.puget-config-select:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.puget-config-select:hover {
+  border-color: rgba(201, 169, 110, 0.4);
+}
+
+.puget-field-error {
+  display: none;
+}
+
+.puget-config-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+  border-top: 2px solid var(--border);
+}
+
+.puget-config-total {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.puget-config-price {
+  color: var(--accent);
+  margin-left: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.puget-add-to-cart {
+  padding: 1rem 2.5rem;
+  font-size: 1rem;
+  background: var(--accent);
+  color: var(--bg-primary);
+  border: none;
+  border-radius: var(--gsg-radius);
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: all 0.3s ease;
+}
+
+.puget-add-to-cart:hover {
+  background: #d4b87a;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.puget-add-to-cart:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ========================================
+   Responsive - Hardware Section
+   ======================================== */
+
+@media (max-width: 768px) {
+  .hardware-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .puget-product-page {
+    padding: 100px 1.25rem 3rem;
+  }
+
+  .puget-product-title {
+    font-size: 2rem;
+  }
+
+  .puget-configurator {
+    padding: 1.5rem;
+  }
+
+  .puget-config-summary {
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .puget-add-to-cart {
+    width: 100%;
+  }
+
+  .puget-product-content table {
+    font-size: 0.8rem;
+  }
+
+  .puget-product-content th,
+  .puget-product-content td {
+    padding: 0.5rem 0.6rem;
+  }
+}
+
+/* ========================================
+   SAMPLE PACKS SECTION
+   ======================================== */
+
+/* --- Sample Packs Hero --- */
+.samples-hero {
+  padding: 8rem 2rem 4rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.samples-hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(99, 102, 241, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 40% at 80% 80%, rgba(201, 169, 110, 0.04) 0%, transparent 40%),
+    var(--bg-primary);
+  z-index: -1;
+}
+
+.samples-hero-content {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.samples-hero h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #fff 0%, #a0a0a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.samples-hero-tagline {
+  font-size: 1.15rem;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+}
+
+.samples-hero-description {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* --- Sample Packs Grid --- */
+.samples-grid-section {
+  padding: 4rem 2rem;
+  background: var(--bg-primary);
+}
+
+.samples-grid-section h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2.5rem;
+  color: var(--text-primary);
+}
+
+.samples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.samples-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.samples-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+.samples-card.coming-soon {
+  opacity: 0.75;
+}
+
+.samples-card.coming-soon:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+.samples-card-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  flex: 1;
+}
+
+.samples-card-image {
+  height: 180px;
+  overflow: hidden;
+}
+
+.samples-card-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #14141e 0%, #1a1a2e 50%, #141418 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+}
+
+.samples-card-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(99, 102, 241, 0.03) 0px,
+      rgba(99, 102, 241, 0.03) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+}
+
+.samples-card-icon {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  opacity: 0.6;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+.samples-card-body {
+  padding: 1.25rem 1.5rem 0.5rem;
+}
+
+.samples-card-body h3 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+  color: var(--text-primary);
+}
+
+.samples-card-genre {
+  font-size: 0.8rem;
+  color: #a5b4fc;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.samples-card-desc {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.samples-card-meta {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  opacity: 0.7;
+}
+
+.samples-card-footer {
+  padding: 1rem 1.5rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+}
+
+.samples-card-price {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.samples-card-coming-soon {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #a5b4fc;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  border-radius: 4px;
+  background: rgba(99, 102, 241, 0.1);
+}
+
+/* --- Sample Pack Product Page Extras --- */
+.samples-product-genre {
+  font-size: 0.9rem;
+  color: #a5b4fc;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+
+.samples-coming-soon-notice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  border-radius: 100px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #a5b4fc;
+  margin-bottom: 1rem;
+}
+
+.samples-coming-soon-notice .badge-dot {
+  background: #a5b4fc;
+}
+
+.samples-specs-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  padding: 1.25rem 0;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.samples-specs-bar span {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.samples-cta {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--border);
+  text-align: center;
+}
+
+.samples-cta p {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+/* --- Quality Section --- */
+.samples-quality {
+  padding: 5rem 2rem;
+  background: var(--bg-secondary);
+}
+
+.samples-quality-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.samples-quality h2 {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.samples-quality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.samples-quality-card {
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: border-color 0.3s ease;
+}
+
+.samples-quality-card:hover {
+  border-color: rgba(99, 102, 241, 0.25);
+}
+
+.samples-quality-card h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.samples-quality-card p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* ========================================
+   Responsive - Sample Packs Section
+   ======================================== */
+
+@media (max-width: 768px) {
+  .samples-grid {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .samples-specs-bar {
+    gap: 1rem;
+  }
+
+  .samples-quality-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ========================================
+   Sample Pack — Cover Image Support
+   ======================================== */
+
+/* Card cover image in library grid */
+.samples-card-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.samples-card-image {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  overflow: hidden;
+}
+
+/* Card meta row */
+.samples-card-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.samples-card-meta-row .samples-card-meta {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+/* Card footer with add-to-cart */
+.samples-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* ========================================
+   Sample Pack — Product Page Hero
+   ======================================== */
+
+.sample-pack-page {
+  padding-top: 100px;
+}
+
+.sample-pack-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+/* Cover image — square */
+.sample-pack-cover {
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-tertiary);
+}
+
+.sample-pack-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sample-pack-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #14141e 0%, #1a1a2e 50%, #141418 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.sample-pack-cover-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(99, 102, 241, 0.03) 0px,
+      rgba(99, 102, 241, 0.03) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+}
+
+.sample-pack-cover-icon {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  opacity: 0.6;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+/* Product info panel */
+.sample-pack-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sample-pack-info .puget-product-header {
+  padding-top: 0;
+}
+
+.sample-pack-tagline {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.sample-pack-purchase {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.sample-pack-purchase .puget-product-price {
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+/* Related packs section */
+.sample-pack-related {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.sample-pack-related h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+/* Coming soon section styling */
+.samples-coming-soon-section {
+  opacity: 0.85;
+}
+
+/* ========================================
+   Responsive — Sample Pack Product Page
+   ======================================== */
+
+@media (max-width: 768px) {
+  .sample-pack-hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sample-pack-cover {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .sample-pack-purchase {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .sample-pack-purchase .puget-add-to-cart {
+    width: 100%;
   }
 }

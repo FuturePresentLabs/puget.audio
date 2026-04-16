@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WDF vs. Convolution: Two Approaches to Amp Modeling | Puget Audio</title>
+  <meta name="description" content="Why Wave Digital Filters capture the dynamic feel of real amps while convolution and neural approaches hit fundamental limits.">
+  <meta name="keywords" content="audio plugins, VST3 plugins, analog emulation, wave digital filter, guitar pedal, studio equipment, PNW audio, professional audio">
+  <link rel="canonical" href="https://puget.audio/blog/wdf-vs-convolution/">
+
+  
+  <meta property="og:title" content="WDF vs. Convolution: Two Approaches to Amp Modeling | Puget Audio">
+  <meta property="og:description" content="Why Wave Digital Filters capture the dynamic feel of real amps while convolution and neural approaches hit fundamental limits.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://puget.audio/blog/wdf-vs-convolution/">
+  <meta property="og:image" content="https://puget.audio/images/puget-og.jpg">
+  <meta property="og:site_name" content="Puget Audio">
+
+  
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@pugetaudio">
+
+  
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  
+  
+
+  <link rel="stylesheet" href="/css/style.css">
+  
+  <link rel="stylesheet" href="/css/shop.css">
+  
+  
+  
+  
+  
+  
+
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-NX7QPG0SE3"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-NX7QPG0SE3');
+  </script>
+</head>
+<body>
+  
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo">Puget Audio</a>
+      <div class="nav-links">
+        <a href="/sample-packs/">Sample Packs</a>
+        <a href="/plugins/">Plugins</a>
+        <a href="/blog/">Blog</a>
+        <a href="https://tools.puget.audio/" target="_blank" rel="noopener" class="nav-external">Tools ↗</a>
+        
+<a href="/cart/" class="cart-nav-link" aria-label="Shopping Cart">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="21" r="1"/>
+    <circle cx="20" cy="21" r="1"/>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+  </svg>
+  <span class="cart-count" data-gsg-cart-count style="display:none;">0</span>
+</a>
+
+<style>
+.cart-nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.cart-nav-link:hover {
+  color: var(--accent);
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  background: var(--accent);
+  color: var(--bg-primary);
+  font-size: 11px;
+  font-weight: 600;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    
+<section class="plugins-hero">
+  <div class="plugins-hero-bg"></div>
+  <div class="plugins-hero-content">
+    <h1>WDF vs. Convolution: Two Approaches to Amp Modeling</h1>
+    
+    <p class="plugins-hero-meta">March 19, 2026</p>
+    
+    
+    <div class="plugins-hero-description">
+      <p>Why Wave Digital Filters capture the dynamic feel of real amps while convolution and neural approaches hit fundamental limits.</p>
+    </div>
+    
+  </div>
+</section>
+
+
+
+<section class="plugins-cta">
+  <div class="plugin-content" style="max-width: 800px; margin: 0 auto; text-align: left;">
+    <p>There are two fundamentally different philosophies behind modern amp and pedal simulation. They can produce results that sound similar on a spec sheet. They behave completely differently under your hands.</p>
+<p>Understanding the difference will change how you evaluate every plugin you buy.</p>
+<hr>
+<h2 id="the-snapshot-approach-convolution-and-irs">The snapshot approach: convolution and IRs</h2>
+<p>Convolution reverb came out of a simple insight: if you can capture a room&rsquo;s impulse response — the way it responds to a sharp transient — you can mathematically convolve any audio signal with that response and hear what it would have sounded like in that room. The math is well-understood, the results are excellent, and it scales beautifully to modern hardware.</p>
+<p>People applied the same logic to guitar gear. Capture a cabinet&rsquo;s frequency response with a measurement microphone, load it into a DAW as an IR, done. Cabinet IRs are genuinely great. A static cabinet with no moving parts responds the same way to every transient, so a snapshot of its frequency behavior is a faithful representation of what it does.</p>
+<p>The problem is when people tried to apply this to the <em>rest</em> of the signal chain — preamps, power stages, pedals. Here, the snapshot assumption collapses.</p>
+<p>A 1959 Plexi doesn&rsquo;t have a static frequency response. It has a <em>dynamic</em> one. The power supply sags when you hit a loud chord, so the next note has less headroom and more compression. The output transformer saturates differently depending on how much current the power tubes are pulling. The power supply voltage sags under load, changing how hard the tubes are being driven. The output transformer saturates differently at different current levels.</p>
+<p>None of this is captured in a convolution measurement. An IR of a cranked Marshall is a picture of that Marshall at one moment, at one volume, with one guitar, at one pick velocity. Move any of those variables and the snapshot is wrong.</p>
+<h2 id="the-neural-approach-learning-to-mimic">The neural approach: learning to mimic</h2>
+<p>Neural network amp modeling — the technology behind a number of popular hardware and software products — takes a different tack. Instead of capturing a single snapshot, you run a device through thousands of test signals, record the output, and train a network to map inputs to outputs. Done well, this produces models that generalize reasonably well across settings and playing dynamics.</p>
+<p>It sounds better than static convolution. And for players who want a black-box &ldquo;sounds like a Marshall&rdquo; solution, it often delivers.</p>
+<p>But there&rsquo;s a fundamental ceiling on what mimicry can achieve.</p>
+<p>A neural model doesn&rsquo;t know that the voltage sag at high SPL comes from the power supply&rsquo;s capacitance being overwhelmed by transient current draw. It doesn&rsquo;t know that the particular breakup character of a cathode-biased EL84 comes from the way cathode current affects the tube&rsquo;s operating point. It has learned a very sophisticated pattern that correlates inputs to outputs — but it has no model of <em>why</em>.</p>
+<p>This shows up in several ways. Neural models can hallucinate — produce plausible-sounding but physically impossible behavior at settings that weren&rsquo;t well-represented in training data. They can&rsquo;t be modified at the component level; there&rsquo;s no way to ask what the amp would sound like with a different output transformer. And they can&rsquo;t model gear that no one has captured — obscure prototypes, custom shop builds, historical circuits where the original hardware no longer exists.</p>
+<h2 id="wdf-build-the-circuit-let-the-physics-compute-the-sound">WDF: build the circuit, let the physics compute the sound</h2>
+<p>Wave Digital Filters start from the schematic.</p>
+<p>The core idea, formalized by Alfred Fettweis in 1986, is that any analog circuit can be represented as a network of digital elements that obey the same energy-flow relationships as their physical counterparts. A capacitor stores energy over time. A resistor dissipates it as heat. A diode passes current asymmetrically based on a nonlinear voltage-current relationship. An inductor resists changes in current.</p>
+<p>Connect these digital elements in the same topology as the original schematic, drive the network with your guitar signal, and read the output. The sound isn&rsquo;t programmed in — it emerges from the same physics that produces the sound in the physical device.</p>
+<p>This is what makes WDF models behave differently in practice. When you dig in with your pick and the supply voltage momentarily drops under the current load, the diode clipping threshold shifts — because the circuit&rsquo;s operating point shifts. Roll back your guitar&rsquo;s volume and the plugin responds to the lower signal level the same way the hardware does — the input stage&rsquo;s operating point changes, headroom opens up, the character shifts.</p>
+<p>One honest caveat: a real pickup is an inductor, and its inductance forms a resonant circuit with the pedal&rsquo;s input impedance. That interaction affects frequency response, not just level — it&rsquo;s part of why humbuckers and single-coils feel different through the same pedal. A plugin receiving a post-ADC signal has already lost that information; the audio interface presents a fixed, low source impedance regardless of what guitar you&rsquo;re playing. Modeling that interaction accurately would require the plugin to know your pickup&rsquo;s specs. No plugin does this well yet, including ours.</p>
+<p>What WDF does get right is everything downstream of that interface — and that&rsquo;s most of the circuit. None of it is programmed. It&rsquo;s just the physics.</p>
+<h2 id="the-practical-tradeoffs">The practical tradeoffs</h2>
+<p>This isn&rsquo;t an argument that WDF is easy or that other approaches have no merit.</p>
+<p>Convolution IRs are genuinely excellent for static linear components — cabinets, acoustic spaces, plate reverbs. Use them for that. The problem is pretending they model the dynamic parts of the signal chain.</p>
+<p>Neural modeling is improving rapidly. For players who want a good-sounding &ldquo;this amp at this setting&rdquo; model and aren&rsquo;t interested in component-level accuracy, it&rsquo;s a legitimate choice.</p>
+<p>WDF has its own costs. Modeling complex circuits with multiple interacting nonlinear elements — tubes, transistors, diodes all in the same network — requires careful solver design to stay stable and real-time. Getting the Gummel-Poon parameters right for a specific transistor requires either measurement of physical units or careful extraction from datasheets. It takes more engineering work per model.</p>
+<p>But the result is a plugin that ages well. As you discover new settings, new guitars, new playing styles, the model keeps responding correctly — because it&rsquo;s not guessing from a learned pattern. It&rsquo;s running the circuit.</p>
+<h2 id="why-it-matters-for-how-you-play">Why it matters for how you play</h2>
+<p>The practical difference shows up in two places.</p>
+<p><strong>Dynamics.</strong> WDF models respond to pick attack, volume knob position, and output level the way hardware does — because the same physics governs both. Neural and IR-based models can approximate this, but they&rsquo;re approximating. The WDF model is computing it.</p>
+<p><strong>Exploration.</strong> When a circuit-accurate model behaves unexpectedly, it&rsquo;s usually telling you something true about the original circuit. That happy accident with the volume rolled off and the gain maxed? That&rsquo;s a real behavior of the physical circuit, not a training artifact. You can trust it.</p>
+<hr>
+<p>Every Puget Audio plugin is built on <a href="https://pedalkernel.com">PedalKernel</a>, an open-source WDF engine. We write a netlist — the actual component values from the original schematic — and the engine compiles it into a real-time audio processor. No curve fitting. No training data. Just the circuit, running as math.</p>
+<p><a href="https://puget.audio/plugins/legends/">Browse the Legends collection →</a></p>
+
+  </div>
+</section>
+
+
+
+  </main>
+
+  
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-brand">Puget Audio &middot; Seattle, WA</p>
+      <p class="footer-tagline">We don't approximate analog. We simulate it.</p>
+      <p class="footer-copy">&copy; 2026 Puget Audio. All rights reserved.</p>
+      <p class="footer-parent" style="font-size: 0.75rem; color: var(--text-secondary); opacity: 0.6; margin-top: 1rem;"><a href="https://fpl.dev" style="color: inherit; text-decoration: none;">A Future Present Labs Brand</a></p>
+    </div>
+  </footer>
+
+  
+  <script>
+    var GSG_PUBLIC_KEY = "your-fluidpay-public-key";
+    var VENDOR_API = "https:\/\/api.gsgmfg.com";
+    var BRAND_KEY = "puget";
+  </script>
+  
+  
+  
+  
+</body>
+</html>
