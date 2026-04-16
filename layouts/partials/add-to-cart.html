@@ -1,10 +1,12 @@
 {{/* Add to Cart Button - GSG Ecommerce compatible */}}
-<button 
-  class="puget-add-to-cart {{ .class }}" 
+{{ $productType := partial "product-type.html" .sku }}
+<button
+  class="puget-add-to-cart {{ .class }}"
   data-add-to-cart
   data-sku="{{ .sku }}"
   data-title="{{ .title }}"
   data-price-cents="{{ mul .price 100 }}"
+  data-product-type="{{ $productType }}"
   {{ with .image }}data-image="{{ . }}"{{ end }}
 >
   {{ .label }}

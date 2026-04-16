@@ -1,0 +1,21 @@
+{{/*
+  product-type: Derive product category from SKU prefix.
+
+  Usage: {{ partial "product-type.html" "SP-LASER-001" }}
+  Returns: "sample-pack", "plugin", "hardware", or "unknown"
+
+  SKU prefix mapping:
+    SP-*     → sample-pack
+    puget-*  → plugin
+    CORN-*   → hardware
+*/}}
+{{- $sku := . -}}
+{{- $type := "unknown" -}}
+{{- if hasPrefix $sku "SP-" -}}
+  {{- $type = "sample-pack" -}}
+{{- else if hasPrefix $sku "puget-" -}}
+  {{- $type = "plugin" -}}
+{{- else if hasPrefix $sku "CORN-" -}}
+  {{- $type = "hardware" -}}
+{{- end -}}
+{{- return $type -}}
