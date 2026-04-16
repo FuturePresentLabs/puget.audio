@@ -38,6 +38,11 @@ theme = 'puget-theme'
     weight = 10
 
   [[menu.main]]
+    name = 'Sample Packs'
+    url = '/sample-packs/'
+    weight = 11
+
+  [[menu.main]]
     name = 'Plugins'
     url = '/plugins/'
     weight = 12

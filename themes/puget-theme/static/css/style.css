@@ -5777,3 +5777,195 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* ========================================
+   Sample Pack — Cover Image Support
+   ======================================== */
+
+/* Card cover image in library grid */
+.samples-card-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.samples-card-image {
+  aspect-ratio: 1 / 1;
+  height: auto;
+  overflow: hidden;
+}
+
+/* Card meta row */
+.samples-card-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.samples-card-meta-row .samples-card-meta {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+  opacity: 0.7;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+}
+
+/* Card footer with add-to-cart */
+.samples-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* ========================================
+   Sample Pack — Product Page Hero
+   ======================================== */
+
+.sample-pack-page {
+  padding-top: 100px;
+}
+
+.sample-pack-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  margin-bottom: 3rem;
+}
+
+/* Cover image — square */
+.sample-pack-cover {
+  aspect-ratio: 1 / 1;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--bg-tertiary);
+}
+
+.sample-pack-cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.sample-pack-cover-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #14141e 0%, #1a1a2e 50%, #141418 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.sample-pack-cover-placeholder::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      rgba(99, 102, 241, 0.03) 0px,
+      rgba(99, 102, 241, 0.03) 2px,
+      transparent 2px,
+      transparent 8px
+    );
+}
+
+.sample-pack-cover-icon {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #a5b4fc;
+  opacity: 0.6;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  z-index: 1;
+}
+
+/* Product info panel */
+.sample-pack-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.sample-pack-info .puget-product-header {
+  padding-top: 0;
+}
+
+.sample-pack-tagline {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+}
+
+.sample-pack-purchase {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.sample-pack-purchase .puget-product-price {
+  font-size: 2rem;
+  margin-bottom: 0;
+}
+
+/* Related packs section */
+.sample-pack-related {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.sample-pack-related h2 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+}
+
+/* Coming soon section styling */
+.samples-coming-soon-section {
+  opacity: 0.85;
+}
+
+/* ========================================
+   Responsive — Sample Pack Product Page
+   ======================================== */
+
+@media (max-width: 768px) {
+  .sample-pack-hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .sample-pack-cover {
+    max-width: 400px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .sample-pack-purchase {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .sample-pack-purchase .puget-add-to-cart {
+    width: 100%;
+  }
+}

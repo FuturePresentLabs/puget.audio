@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Title }}{{ if not .IsHome }} | {{ .Site.Title }}{{ end }}</title>
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ .Site.Params.seo.description }}{{ end }}">
+  {{ with .Params.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ else }}{{ with .Site.Params.seo.keywords }}<meta name="keywords" content="{{ delimit . ", " }}">{{ end }}{{ end }}
+  <link rel="canonical" href="{{ .Permalink }}">
 
   {{/* Open Graph */}}
   <meta property="og:title" content="{{ .Title }}{{ if not .IsHome }} | {{ .Site.Title }}{{ end }}">
@@ -73,6 +75,7 @@
     <div class="nav-inner">
       <a href="/" class="nav-logo">Puget Audio</a>
       <div class="nav-links">
+        <a href="/sample-packs/">Sample Packs</a>
         <a href="/plugins/">Plugins</a>
         <a href="/blog/">Blog</a>
         <a href="https://tools.puget.audio/" target="_blank" rel="noopener" class="nav-external">Tools ↗</a>

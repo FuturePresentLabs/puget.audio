@@ -1,52 +1,190 @@
 {{ define "main" }}
-<article class="puget-product-page">
+{{/* Sample Pack SEO — MusicRecording + Product schema */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ .Title }}",
+  "description": "{{ .Description }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "Puget Audio"
+  },
+  "category": "Sample Pack",
+  {{ with .Params.cover_image }}"image": "{{ . | absURL }}",{{ end }}
+  "offers": {
+    "@type": "Offer",
+    "price": "{{ .Params.price }}",
+    "priceCurrency": "USD",
+    "availability": "{{ if eq .Params.status "coming-soon" }}https://schema.org/PreOrder{{ else }}https://schema.org/InStock{{ end }}",
+    "seller": {
+      "@type": "Organization",
+      "name": "Puget Audio"
+    }
+  },
+  "sku": "{{ .Params.sku }}"
+  {{ with .Params.instrument }},
+  "material": "Recorded on {{ . }}"
+  {{ end }}
+}
+</script>
+
+{{/* BreadcrumbList schema for SEO */}}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "{{ .Site.BaseURL }}" },
+    { "@type": "ListItem", "position": 2, "name": "Sample Packs", "item": "{{ "sample-packs/" | absURL }}" },
+    { "@type": "ListItem", "position": 3, "name": "{{ .Title }}" }
+  ]
+}
+</script>
+
+{{/* FAQPage schema for additional SEO */}}
+{{ with .Params.format }}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What format are the samples in?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "All samples are delivered in {{ . }} format, compatible with any DAW or sampler."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these samples royalty-free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, all Puget Audio sample packs are 100% royalty-free for use in released tracks, games, films, sync placements, and live performances."
+      }
+    }
+    {{ with $.Params.instrument }},
+    {
+      "@type": "Question",
+      "name": "What hardware was used to create these samples?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every sample was recorded on a {{ . }} through a 100% analog signal path."
+      }
+    }
+    {{ end }}
+  ]
+}
+</script>
+{{ end }}
+
+<article class="puget-product-page sample-pack-page">
   <div class="puget-product-inner">
 
-    <nav class="puget-product-breadcrumb">
+    <nav class="puget-product-breadcrumb" aria-label="Breadcrumb">
       <a href="/">Home</a> / <a href="/sample-packs/">Sample Packs</a> / <span>{{ .Title }}</span>
     </nav>
 
-    <header class="puget-product-header">
-      <h1 class="puget-product-title">{{ .Title }}</h1>
-      {{ with .Params.genre }}
-      <div class="samples-product-genre">{{ . }}</div>
-      {{ end }}
-      {{ with .Params.price }}
-      <div class="puget-product-price">${{ . }}</div>
-      {{ end }}
-      {{ if eq .Params.status "coming-soon" }}
-      <div class="samples-coming-soon-notice">
-        <span class="badge-dot"></span>
-        Coming Soon
+    <div class="sample-pack-hero">
+      {{/* Cover image area — square aspect ratio */}}
+      <div class="sample-pack-cover">
+        {{ with .Params.cover_image }}
+        <img src="{{ . }}" alt="{{ $.Title }} cover art" class="sample-pack-cover-img" loading="eager" width="500" height="500">
+        {{ else }}
+        <div class="sample-pack-cover-placeholder" data-genre="{{ $.Params.genre | urlize }}">
+          <span class="sample-pack-cover-icon">{{ $.Params.genre | default "SP" }}</span>
+        </div>
+        {{ end }}
       </div>
-      {{ end }}
-      {{ with .Params.sku }}
-      <div class="puget-product-sku">SKU: {{ . }}</div>
-      {{ end }}
-    </header>
 
-    {{/* Quick specs bar */}}
-    {{ if or .Params.sample_count .Params.bpm .Params.format }}
-    <div class="samples-specs-bar">
-      {{ with .Params.sample_count }}<span>{{ . }} Samples</span>{{ end }}
-      {{ with .Params.bpm }}<span>{{ . }} BPM</span>{{ end }}
-      {{ with .Params.format }}<span>{{ . }}</span>{{ end }}
+      <div class="sample-pack-info">
+        <header class="puget-product-header">
+          {{ with .Params.genre }}
+          <div class="samples-product-genre">{{ . }}</div>
+          {{ end }}
+          <h1 class="puget-product-title">{{ .Title }}</h1>
+          <p class="sample-pack-tagline">{{ .Description }}</p>
+
+          {{/* Quick specs bar */}}
+          {{ if or .Params.sample_count .Params.bpm .Params.format .Params.instrument }}
+          <div class="samples-specs-bar">
+            {{ with .Params.sample_count }}<span>{{ . }} Samples</span>{{ end }}
+            {{ with .Params.instrument }}<span>{{ . }}</span>{{ end }}
+            {{ with .Params.bpm }}<span>{{ . }} BPM</span>{{ end }}
+            {{ with .Params.format }}<span>{{ . }}</span>{{ end }}
+          </div>
+          {{ end }}
+
+          {{ if eq .Params.status "coming-soon" }}
+          <div class="samples-coming-soon-notice">
+            <span class="badge-dot"></span>
+            Coming Soon
+          </div>
+          {{ else }}
+          <div class="sample-pack-purchase">
+            <div class="puget-product-price">${{ .Params.price }}</div>
+            {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+          </div>
+          {{ end }}
+        </header>
+      </div>
     </div>
-    {{ end }}
 
     <div class="puget-product-content">
       {{ .Content }}
     </div>
 
-    {{/* CTA */}}
+    {{/* Bottom CTA */}}
     <div class="samples-cta">
       {{ if eq .Params.status "coming-soon" }}
       <p>Join the waitlist to get notified when this pack drops.</p>
       <a href="/#signup" class="btn-primary">Join the Waitlist</a>
       {{ else }}
-      {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+      <p>Ready to add these sounds to your library?</p>
+      {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Buy Now — $%v" .Params.price) "class" "btn-primary btn-lg") }}
       {{ end }}
     </div>
+
+    {{/* Related packs */}}
+    {{ $related := where (where .Site.RegularPages "Section" "sample-packs") ".File.UniqueID" "!=" .File.UniqueID }}
+    {{ if gt (len $related) 0 }}
+    <div class="sample-pack-related">
+      <h2>More Sample Packs</h2>
+      <div class="samples-grid">
+        {{ range $related }}
+        <div class="samples-card{{ if eq .Params.status "coming-soon" }} coming-soon{{ end }}">
+          <a href="{{ .Permalink }}" class="samples-card-link">
+            <div class="samples-card-image">
+              {{ with .Params.cover_image }}
+              <img src="{{ . }}" alt="{{ $.Title }} cover" class="samples-card-cover-img" loading="lazy" width="400" height="400">
+              {{ else }}
+              <div class="samples-card-placeholder" data-genre="{{ .Params.genre | urlize }}">
+                <span class="samples-card-icon">{{ .Params.genre | default "SP" }}</span>
+              </div>
+              {{ end }}
+            </div>
+            <div class="samples-card-body">
+              <h3>{{ .Title }}</h3>
+              {{ with .Params.genre }}
+              <p class="samples-card-genre">{{ . }}</p>
+              {{ end }}
+              <p class="samples-card-desc">{{ .Description | truncate 120 }}</p>
+            </div>
+          </a>
+          <div class="samples-card-footer">
+            {{ if eq .Params.status "coming-soon" }}
+            <span class="samples-card-coming-soon">Coming Soon</span>
+            {{ else }}
+            <span class="samples-card-price">${{ .Params.price }}</span>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
 
   </div>
 </article>
