@@ -17,6 +17,20 @@ Professional-grade effect emulations for your DAW. Each plugin models the actual
 
 ---
 
+## [Sample Packs](/sample-packs/)
+
+Professional sample libraries recorded from real analog hardware.
+
+### [Lasers Vol 1](/sample-packs/puget-lasers-vol-1/)
+
+**$15** — 133 samples from a live Moog DFAM session. Pure analog drum samples, captured not emulated.
+
+75 one-shots. 8 loops. 41 phrases. Includes MPC expansion with 64-pad drum program.
+
+[View Details →](/sample-packs/puget-lasers-vol-1/)
+
+---
+
 ## [Hardware](/hardware/)
 
 Physical audio equipment built in our Seattle workshop.

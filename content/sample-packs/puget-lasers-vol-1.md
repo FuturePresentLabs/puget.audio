@@ -1,15 +1,15 @@
 ---
-title: "Puget Lasers Vol. 1"
-description: "128 laser one-shot samples recorded on an all-analog Moog DFAM synthesizer. Zips, zaps, sweeps, and sci-fi textures for music production, sound design, and game audio."
-price: 10
+title: "Lasers Vol 1 — Moog DFAM Analog Sample Pack"
+description: "133 samples from a live Moog DFAM session. Pure analog drum samples, captured not emulated."
+price: 15
 sku: "SP-LASER-001"
 status: "available"
-sample_count: "128"
+sample_count: "133"
 format: "WAV 24-bit / 48kHz"
 genre: "Sound Design"
 tags: ["laser", "sci-fi", "sound-effects", "one-shots", "moog", "dfam", "analog", "zaps", "sound-design", "game-audio", "synth", "electronic"]
-cover_image: "/images/sample-packs/puget-lasers-vol-1.jpg"
-og_image: "/images/sample-packs/puget-lasers-vol-1.jpg"
+cover_image: "/images/lasers-cover.png"
+og_image: "/images/lasers-cover.png"
 instrument: "Moog DFAM"
 date: 2026-04-16
 keywords:
@@ -25,56 +25,57 @@ keywords:
   - puget audio sample pack
 ---
 
-128 laser one-shots captured straight off a Moog DFAM — the all-analog semi-modular percussion synthesizer. No software. No digital oscillators. Pure analog signal path from start to finish.
+Moog DFAM. Captured, not emulated.
 
-## What's Inside
+One synth. One take. Pure analog drum samples.
 
-### Laser Zips
+Lasers Vol 1 is 133 samples pulled from a live Moog DFAM session. No VST. No preset recall. No post-processing mood board. Just a real analog drum machine doing what it does when you leave it alone and let it cook — sweeps that pitch into oblivion, zaps that feel like they have teeth, kicks with that slightly wrong harmonic weight that software can imitate but never quite land.
 
-Short, punchy laser bursts with tight transients. Perfect for percussive accents, UI sounds, and rhythmic layering:
+This isn't another kicks-and-snares drum kit. This is the sci-fi underbelly of the DFAM. Laser sweeps. Pitched zaps. Rising impacts. Percussion that sounds like it came off a tape that fell behind a rack. You're not going to find these in a Splice subscription.
 
-- **Quick Zips** — 24 fast, snappy laser bursts
-- **Rising Zips** — 16 upward pitch sweeps with analog character
-- **Falling Zips** — 16 descending zips with natural decay
+## What's in the box
 
-### Laser Zaps
+- **Sweep** — 69 Rising, falling, filtered. Short bursts to long tails.
+- **Percussion** — 25 Analog hits, clicks, weird little transients with personality.
+- **Zap** — 16 Bright, pitched, mean. Sci-fi in a bottle.
+- **Kick** — 12 Punchy with that real analog overtone character.
+- **Snare** — 5 Crisp, noisy, imperfect in the right way.
+- **Impact** — 5 Sub-heavy. For drops, transitions, and bad decisions.
+- **Sub Hit** — 1 One. That's all you need.
 
-Harder-hitting laser impacts with more body and resonance:
+75 one-shots. 8 loops. 41 phrases. Three demo tracks at 115 BPM.
 
-- **Hard Zaps** — 20 aggressive, punchy laser hits
-- **Soft Zaps** — 12 rounded, warmer zap textures
-- **Resonant Zaps** — 8 filter-swept zaps with harmonic overtones
+## MPC users — this was built for you.
 
-### Sweeps & Textures
+Includes a 64-pad MPC drum program and MPC expansion. Color-coded pads, pre-mapped, tested, and ready to load on:
 
-Longer, evolving sounds for transitions, risers, and atmospheric layers:
+- MPC One / One+
+- MPC Live / Live II
+- MPC X / X SE
+- MPC Key 61 / Key 37
+- MPC Software / MPC Beats
 
-- **Laser Sweeps** — 16 frequency sweeps from sub to sizzle
-- **Sci-Fi Textures** — 8 sustained, evolving analog tones
-- **Glitch Hits** — 8 chaotic, unpredictable burst patterns
+.xpm format, MPC-V 2.1. Drop the kit folder on your MPC, load it, play it. No manual assignment. No file wrangling at 2am. Every pad already knows what it is.
 
-## Signal Chain
+Most sample packs treat MPC support like an afterthought. This one didn't.
 
-Every sample is a single take from the DFAM's analog output — no processing, no effects chain, no cleanup. What you hear is exactly what the machine produced:
+## The details that actually matter
 
-- **Source:** Moog DFAM (Drummer From Another Mother)
-- **Signal Path:** 100% analog — dual oscillators, analog noise, ladder filter
-- **Captured at:** 24-bit / 48kHz
-- **Processing:** None. Raw analog output.
-
-## Why the DFAM
-
-The DFAM isn't a typical synthesizer. It's a semi-modular analog percussion synth with no presets, no MIDI, and no digital anything. Every sound is the result of hands on knobs — voltage-controlled oscillators through Moog's classic transistor ladder filter. The result is sounds with real analog warmth, imperfect tuning drift, and harmonic content that software can't replicate.
+- Round-robin variants, up to 16 per sound
+- Smart-named every single file
+- LUFS-normalized per category (-15 to -17 LUFS)
+- ACID and INFO chunks embedded
+- Zero-crossing snapped on every slice
 
 ## Technical Specifications
 
 | Spec | Detail |
 |------|--------|
-| Sample Count | 128 one-shots |
-| Format | WAV 24-bit / 48kHz |
+| Sample Count | 133 samples (75 one-shots, 8 loops, 41 phrases) |
+| Format | WAV 24-bit / 48kHz, mono |
 | Source | Moog DFAM (all-analog) |
-| Total Size | ~180 MB |
-| Key-Labeled | N/A (percussive / FX) |
+| Total Size | 82 MB |
+| Demo Tracks | 3 tracks at 115 BPM (~49 seconds each) |
 | Royalty-Free | Yes |
 
 ## Use Cases
@@ -95,8 +96,15 @@ Works with any DAW or sampler that reads WAV files:
 - Logic Pro
 - Bitwig Studio
 - Reaper
-- Kontakt, Battery, or any sampler
+- Reason
+- Studio One
+- Maschine
+- MPC (all models)
 
 ## License
 
 All samples are **100% royalty-free** for use in your productions. Use them in released tracks, games, films, sync placements, or live performances — no additional licensing required.
+
+Two hard rules: don't use them to train AI or ML models, and don't repackage them as a standalone sample pack.
+
+**$15** — Instant download. 133 sounds from an analog synth. Go make something weird.
