@@ -25,6 +25,8 @@ keywords:
   - puget audio sample pack
 ---
 
+{{< soundcloud url="https://soundcloud.com/puget-audio/sets/puget-lasers-vol-1-moog-dfam" height="300" >}}
+
 Moog DFAM. Captured, not emulated.
 
 One synth. One take. Pure analog drum samples.
