@@ -2,136 +2,136 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on Puget Audio</title>
-    <link>http://127.0.0.1:1414/tags/</link>
+    <link>https://puget.audio/tags/</link>
     <description>Recent content in Tags on Puget Audio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 16 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://127.0.0.1:1414/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://puget.audio/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Analog</title>
-      <link>http://127.0.0.1:1414/tags/analog/</link>
+      <link>https://puget.audio/tags/analog/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/analog/</guid>
+      <guid>https://puget.audio/tags/analog/</guid>
       <description></description>
     </item>
     <item>
       <title>Dfam</title>
-      <link>http://127.0.0.1:1414/tags/dfam/</link>
+      <link>https://puget.audio/tags/dfam/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/dfam/</guid>
+      <guid>https://puget.audio/tags/dfam/</guid>
       <description></description>
     </item>
     <item>
       <title>Electronic</title>
-      <link>http://127.0.0.1:1414/tags/electronic/</link>
+      <link>https://puget.audio/tags/electronic/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/electronic/</guid>
+      <guid>https://puget.audio/tags/electronic/</guid>
       <description></description>
     </item>
     <item>
       <title>Game-Audio</title>
-      <link>http://127.0.0.1:1414/tags/game-audio/</link>
+      <link>https://puget.audio/tags/game-audio/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/game-audio/</guid>
+      <guid>https://puget.audio/tags/game-audio/</guid>
       <description></description>
     </item>
     <item>
       <title>Laser</title>
-      <link>http://127.0.0.1:1414/tags/laser/</link>
+      <link>https://puget.audio/tags/laser/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/laser/</guid>
+      <guid>https://puget.audio/tags/laser/</guid>
       <description></description>
     </item>
     <item>
       <title>Moog</title>
-      <link>http://127.0.0.1:1414/tags/moog/</link>
+      <link>https://puget.audio/tags/moog/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/moog/</guid>
+      <guid>https://puget.audio/tags/moog/</guid>
       <description></description>
     </item>
     <item>
       <title>One-Shots</title>
-      <link>http://127.0.0.1:1414/tags/one-shots/</link>
+      <link>https://puget.audio/tags/one-shots/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/one-shots/</guid>
+      <guid>https://puget.audio/tags/one-shots/</guid>
       <description></description>
     </item>
     <item>
       <title>Sci-Fi</title>
-      <link>http://127.0.0.1:1414/tags/sci-fi/</link>
+      <link>https://puget.audio/tags/sci-fi/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/sci-fi/</guid>
+      <guid>https://puget.audio/tags/sci-fi/</guid>
       <description></description>
     </item>
     <item>
       <title>Sound-Design</title>
-      <link>http://127.0.0.1:1414/tags/sound-design/</link>
+      <link>https://puget.audio/tags/sound-design/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/sound-design/</guid>
+      <guid>https://puget.audio/tags/sound-design/</guid>
       <description></description>
     </item>
     <item>
       <title>Sound-Effects</title>
-      <link>http://127.0.0.1:1414/tags/sound-effects/</link>
+      <link>https://puget.audio/tags/sound-effects/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/sound-effects/</guid>
+      <guid>https://puget.audio/tags/sound-effects/</guid>
       <description></description>
     </item>
     <item>
       <title>Synth</title>
-      <link>http://127.0.0.1:1414/tags/synth/</link>
+      <link>https://puget.audio/tags/synth/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/synth/</guid>
+      <guid>https://puget.audio/tags/synth/</guid>
       <description></description>
     </item>
     <item>
       <title>Zaps</title>
-      <link>http://127.0.0.1:1414/tags/zaps/</link>
+      <link>https://puget.audio/tags/zaps/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/zaps/</guid>
+      <guid>https://puget.audio/tags/zaps/</guid>
       <description></description>
     </item>
     <item>
       <title>Atmospherics</title>
-      <link>http://127.0.0.1:1414/tags/atmospherics/</link>
+      <link>https://puget.audio/tags/atmospherics/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/atmospherics/</guid>
+      <guid>https://puget.audio/tags/atmospherics/</guid>
       <description></description>
     </item>
     <item>
       <title>Bass</title>
-      <link>http://127.0.0.1:1414/tags/bass/</link>
+      <link>https://puget.audio/tags/bass/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/bass/</guid>
+      <guid>https://puget.audio/tags/bass/</guid>
       <description></description>
     </item>
     <item>
       <title>Breaks</title>
-      <link>http://127.0.0.1:1414/tags/breaks/</link>
+      <link>https://puget.audio/tags/breaks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/breaks/</guid>
+      <guid>https://puget.audio/tags/breaks/</guid>
       <description></description>
     </item>
     <item>
       <title>Dnb</title>
-      <link>http://127.0.0.1:1414/tags/dnb/</link>
+      <link>https://puget.audio/tags/dnb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/dnb/</guid>
+      <guid>https://puget.audio/tags/dnb/</guid>
       <description></description>
     </item>
     <item>
       <title>Drum-and-Bass</title>
-      <link>http://127.0.0.1:1414/tags/drum-and-bass/</link>
+      <link>https://puget.audio/tags/drum-and-bass/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/drum-and-bass/</guid>
+      <guid>https://puget.audio/tags/drum-and-bass/</guid>
       <description></description>
     </item>
     <item>
       <title>Reese</title>
-      <link>http://127.0.0.1:1414/tags/reese/</link>
+      <link>https://puget.audio/tags/reese/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/tags/reese/</guid>
+      <guid>https://puget.audio/tags/reese/</guid>
       <description></description>
     </item>
   </channel>

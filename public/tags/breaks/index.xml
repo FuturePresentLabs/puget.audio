@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Breaks on Puget Audio</title>
-    <link>http://127.0.0.1:1414/tags/breaks/</link>
+    <link>https://puget.audio/tags/breaks/</link>
     <description>Recent content in Breaks on Puget Audio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <atom:link href="http://127.0.0.1:1414/tags/breaks/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://puget.audio/tags/breaks/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>DnB Essentials Vol. 1</title>
-      <link>http://127.0.0.1:1414/sample-packs/dnb-essentials/</link>
+      <link>https://puget.audio/sample-packs/dnb-essentials/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/sample-packs/dnb-essentials/</guid>
+      <guid>https://puget.audio/sample-packs/dnb-essentials/</guid>
       <description>DnB Essentials Vol. 1 A comprehensive drum &amp;amp; bass sample pack built from the ground up in our Seattle studio. Every sound recorded through real analog signal chains — no recycled loops, no generic presets.&#xA;What&amp;rsquo;s Inside Drum Breaks &amp;amp; One-Shots Tight, punchy breaks and individual hits designed for modern DnB production:&#xA;Kick Drums — 40+ kicks from deep subs to punchy mid-range Snares &amp;amp; Claps — 60+ snares, rim shots, and layered claps Hi-Hats — 50+ hats, rides, and metallic textures Full Breaks — 30+ processed breakbeat loops at 170-178 BPM Percussion — 40+ shakers, tambourines, and ghost hits Bass Sub-frequency weight and mid-range aggression:</description>
     </item>
   </channel>

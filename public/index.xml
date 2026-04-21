@@ -2,143 +2,143 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Puget Audio</title>
-    <link>http://127.0.0.1:1414/</link>
+    <link>https://puget.audio/</link>
     <description>Recent content on Puget Audio</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 16 Apr 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://127.0.0.1:1414/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://puget.audio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Puget Passive EQ</title>
-      <link>http://127.0.0.1:1414/plugins/studio/passive-eq/</link>
+      <link>https://puget.audio/plugins/studio/passive-eq/</link>
       <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/plugins/studio/passive-eq/</guid>
+      <guid>https://puget.audio/plugins/studio/passive-eq/</guid>
       <description>Based on the Pultec EQP-1A program equalizer. The textbook case for why WDF modeling matters. It&amp;rsquo;s a passive LC equalizer — literally inductors and capacitors in a ladder network — followed by a single 12AX7 tube makeup gain stage. This is the exact circuit topology Wave Digital Filters were invented to model with mathematical precision.&#xA;The boost-and-cut trick The famous &amp;ldquo;boost and cut at the same frequency&amp;rdquo; move? It&amp;rsquo;s not programmed.</description>
     </item>
     <item>
       <title>Puget Opto Compressor</title>
-      <link>http://127.0.0.1:1414/plugins/studio/opto-compressor/</link>
+      <link>https://puget.audio/plugins/studio/opto-compressor/</link>
       <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/plugins/studio/opto-compressor/</guid>
+      <guid>https://puget.audio/plugins/studio/opto-compressor/</guid>
       <description>Based on the Teletronix LA-2A leveling amplifier. Every major studio has a pair. The most revered optical compressor ever built — two tube gain stages, a passive interstage network, and the T4B electro-optical attenuator that gives it that unmistakable program-dependent character.&#xA;The T4B: why it sounds like nothing else The T4B is a cadmium sulfide photoresistor driven by an electroluminescent panel. Its attack and release behavior is fundamentally nonlinear and program-dependent — loud transients hit harder and recover differently than sustained material.</description>
     </item>
     <item>
       <title>Puget FET Limiter</title>
-      <link>http://127.0.0.1:1414/plugins/studio/fet-limiter/</link>
+      <link>https://puget.audio/plugins/studio/fet-limiter/</link>
       <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/plugins/studio/fet-limiter/</guid>
+      <guid>https://puget.audio/plugins/studio/fet-limiter/</guid>
       <description>Based on the UREI 1176LN limiting amplifier. The fastest compressor in the room. The gain reduction element is a single JFET used as a voltage-variable resistor — which maps naturally to a nonlinear one-port in our WDF tree. The rest is discrete Class A transistor amplifier stages, transformer I/O, and the four ratio settings that change the feedback topology.&#xA;All Buttons In The &amp;ldquo;All Buttons In&amp;rdquo; mode — where all four ratio buttons are pressed simultaneously — isn&amp;rsquo;t a preset.</description>
     </item>
     <item>
       <title>Puget Variable-Mu</title>
-      <link>http://127.0.0.1:1414/plugins/studio/variable-mu/</link>
+      <link>https://puget.audio/plugins/studio/variable-mu/</link>
       <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/plugins/studio/variable-mu/</guid>
+      <guid>https://puget.audio/plugins/studio/variable-mu/</guid>
       <description>Based on the Fairchild 670 limiter. The holy grail. Originals sell for $40,000+ when they surface. Twenty tubes, eleven transformers, and the 6386 remote-cutoff triode that makes variable-mu compression possible.&#xA;How variable-mu works The gain reduction happens by biasing push-pull tube stages — as the control voltage changes, the tube&amp;rsquo;s amplification factor (μ) changes with it. Smooth, musical, and harmonically complex in a way that VCA and FET designs can&amp;rsquo;t replicate.</description>
     </item>
     <item>
       <title>Puget Channel</title>
-      <link>http://127.0.0.1:1414/plugins/studio/channel/</link>
+      <link>https://puget.audio/plugins/studio/channel/</link>
       <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/plugins/studio/channel/</guid>
+      <guid>https://puget.audio/plugins/studio/channel/</guid>
       <description>Based on the Neve 1073 channel amplifier. The most recognized preamp in recording history. All transformers and inductors — transformer-coupled Class A discrete preamp, inductor-based 3-band EQ with high-pass filter.&#xA;Every component that matters Every component that gives it that signature sound — the transformers, the hand-wound inductors, the tantalum capacitors — is a WDF element in our model. Nothing is approximated. Nothing is left out.&#xA;Real inductors, not filter coefficients The inductor-based EQ is classic WDF territory.</description>
     </item>
     <item>
       <title>Puget Studio Collection</title>
-      <link>http://127.0.0.1:1414/plugins/studio/studio-collection/</link>
+      <link>https://puget.audio/plugins/studio/studio-collection/</link>
       <pubDate>Tue, 24 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/plugins/studio/studio-collection/</guid>
+      <guid>https://puget.audio/plugins/studio/studio-collection/</guid>
       <description>The five tools that built modern recording. Modeled from the circuit up. The program equalizer shapes the tone. The FET limiter catches the transients. The opto compressor levels the dynamics. The variable-mu glues the bus. The channel strip does everything in between.&#xA;An engineer can mix an entire record with these five tools. Generations of them have.&#xA;What&amp;rsquo;s included Plugin Circuit Reference Type Puget Passive EQ EQP-1A style Equalizer Puget Opto Compressor LA-2A style Compressor Puget FET Limiter 1176LN style Limiter Puget Variable-Mu 670 style Compressor/Limiter Puget Channel 1073 style Preamp/EQ $699 — Save $296 That&amp;rsquo;s roughly $140 per plugin vs.</description>
     </item>
     <item>
       <title>Lasers Vol 1 — Moog DFAM Analog Sample Pack</title>
-      <link>http://127.0.0.1:1414/sample-packs/puget-lasers-vol-1/</link>
+      <link>https://puget.audio/sample-packs/puget-lasers-vol-1/</link>
       <pubDate>Thu, 16 Apr 2026 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/sample-packs/puget-lasers-vol-1/</guid>
+      <guid>https://puget.audio/sample-packs/puget-lasers-vol-1/</guid>
       <description>Moog DFAM. Captured, not emulated.&#xA;One synth. One take. Pure analog drum samples.&#xA;Lasers Vol 1 is 133 samples pulled from a live Moog DFAM session. No VST. No preset recall. No post-processing mood board. Just a real analog drum machine doing what it does when you leave it alone and let it cook — sweeps that pitch into oblivion, zaps that feel like they have teeth, kicks with that slightly wrong harmonic weight that software can imitate but never quite land.</description>
     </item>
     <item>
       <title>WDF vs. Convolution: Two Approaches to Amp Modeling</title>
-      <link>http://127.0.0.1:1414/blog/wdf-vs-convolution/</link>
+      <link>https://puget.audio/blog/wdf-vs-convolution/</link>
       <pubDate>Thu, 19 Mar 2026 16:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/blog/wdf-vs-convolution/</guid>
+      <guid>https://puget.audio/blog/wdf-vs-convolution/</guid>
       <description>There are two fundamentally different philosophies behind modern amp and pedal simulation. They can produce results that sound similar on a spec sheet. They behave completely differently under your hands.&#xA;Understanding the difference will change how you evaluate every plugin you buy.&#xA;The snapshot approach: convolution and IRs Convolution reverb came out of a simple insight: if you can capture a room&amp;rsquo;s impulse response — the way it responds to a sharp transient — you can mathematically convolve any audio signal with that response and hear what it would have sounded like in that room.</description>
     </item>
     <item>
       <title>What Is WDF? The Tech Behind Plugins That Actually Sound Like Real Pedals</title>
-      <link>http://127.0.0.1:1414/blog/what-is-wdf/</link>
+      <link>https://puget.audio/blog/what-is-wdf/</link>
       <pubDate>Mon, 02 Mar 2026 09:31:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/blog/what-is-wdf/</guid>
+      <guid>https://puget.audio/blog/what-is-wdf/</guid>
       <description>You&amp;rsquo;ve probably noticed that some amp sims and pedal plugins sound eerily close to the real thing, while others feel flat and lifeless no matter how much you tweak them. The difference often comes down to how the plugin models the original circuit — and a technology called Wave Digital Filters is quietly behind some of the most realistic-sounding plugins available today.&#xA;Here&amp;rsquo;s what WDF is, why it matters to your tone, and why we use it at Puget Audio.</description>
     </item>
     <item>
       <title>Germanium vs Silicon: What Your Diodes Actually Do to Your Signal</title>
-      <link>http://127.0.0.1:1414/blog/germanium-vs-silicon-diodes/</link>
+      <link>https://puget.audio/blog/germanium-vs-silicon-diodes/</link>
       <pubDate>Sat, 28 Feb 2026 10:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/blog/germanium-vs-silicon-diodes/</guid>
+      <guid>https://puget.audio/blog/germanium-vs-silicon-diodes/</guid>
       <description>Every guitarist has an opinion about germanium versus silicon. Germanium is &amp;ldquo;warm&amp;rdquo; and &amp;ldquo;organic.&amp;rdquo; Silicon is &amp;ldquo;bright&amp;rdquo; and &amp;ldquo;aggressive.&amp;rdquo; But what are these diodes actually doing to your signal, and why does the material matter so much?&#xA;It comes down to a single number, a curve, and the weather.&#xA;What a clipping diode does When your guitar signal is quiet, the diodes in your pedal aren&amp;rsquo;t doing anything. They&amp;rsquo;re just sitting there.</description>
     </item>
     <item>
       <title>Why Your Klon Clone Doesn&#39;t Sound Like a Klon</title>
-      <link>http://127.0.0.1:1414/blog/klon-centaur-circuit-topology/</link>
+      <link>https://puget.audio/blog/klon-centaur-circuit-topology/</link>
       <pubDate>Sat, 28 Feb 2026 10:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/blog/klon-centaur-circuit-topology/</guid>
+      <guid>https://puget.audio/blog/klon-centaur-circuit-topology/</guid>
       <description>The Klon Centaur is the most cloned pedal in history. There are hundreds of versions out there — from $30 Amazon specials to $200 boutique &amp;ldquo;tributes&amp;rdquo; — and guitarists have been arguing about whether any of them truly nail the original since the schematic leaked in 2009.&#xA;Here&amp;rsquo;s the thing: most of them get it wrong, and it&amp;rsquo;s not because they&amp;rsquo;re using the wrong brand of resistor. It&amp;rsquo;s because the Klon&amp;rsquo;s magic lives in its topology — how the circuit is wired — and that&amp;rsquo;s exactly what most clones simplify away.</description>
     </item>
     <item>
       <title>Amp Sag: Why Your Tube Amp Breathes</title>
-      <link>http://127.0.0.1:1414/blog/amp-sag-tube-amps/</link>
+      <link>https://puget.audio/blog/amp-sag-tube-amps/</link>
       <pubDate>Fri, 27 Feb 2026 10:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/blog/amp-sag-tube-amps/</guid>
+      <guid>https://puget.audio/blog/amp-sag-tube-amps/</guid>
       <description>If you&amp;rsquo;ve ever played through a vintage Fender Deluxe or an old Marshall and felt like the amp was pushing back against you — compressing when you dig in, opening up when you ease off — that&amp;rsquo;s not your imagination. That&amp;rsquo;s voltage sag, and it&amp;rsquo;s one of the biggest reasons tube amps feel alive in a way that solid-state amps and most digital models don&amp;rsquo;t.&#xA;What&amp;rsquo;s actually happening inside the amp Your tube amp runs on a high-voltage power supply — typically 300 to 500 volts DC, generated from wall power by a transformer and a rectifier.</description>
     </item>
     <item>
       <title>The Secret Life of Your Delay Pedal</title>
-      <link>http://127.0.0.1:1414/blog/analog-delay-secret-life/</link>
+      <link>https://puget.audio/blog/analog-delay-secret-life/</link>
       <pubDate>Fri, 27 Feb 2026 10:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/blog/analog-delay-secret-life/</guid>
+      <guid>https://puget.audio/blog/analog-delay-secret-life/</guid>
       <description>If you&amp;rsquo;ve ever compared a Boss DM-2 or Electro-Harmonix Memory Man to a clean digital delay, you already know they don&amp;rsquo;t sound the same. The analog delay is darker, warmer, and slightly unstable — the repeats decay into a murky wash that sits behind your dry signal instead of competing with it.&#xA;Most people chalk this up to &amp;ldquo;analog magic&amp;rdquo; and leave it at that. But the real story is more interesting.</description>
     </item>
     <item>
       <title>Cart</title>
-      <link>http://127.0.0.1:1414/cart/</link>
+      <link>https://puget.audio/cart/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/cart/</guid>
+      <guid>https://puget.audio/cart/</guid>
       <description></description>
     </item>
     <item>
       <title>Checkout</title>
-      <link>http://127.0.0.1:1414/checkout/</link>
+      <link>https://puget.audio/checkout/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/checkout/</guid>
+      <guid>https://puget.audio/checkout/</guid>
       <description></description>
     </item>
     <item>
       <title>Cornucopia Eurorack Case</title>
-      <link>http://127.0.0.1:1414/hardware/cornucopia/</link>
+      <link>https://puget.audio/hardware/cornucopia/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/hardware/cornucopia/</guid>
+      <guid>https://puget.audio/hardware/cornucopia/</guid>
       <description>Cornucopia Eurorack Case A Eurorack case system designed for musicians who want flexibility without compromise. Built from premium aluminum with a modular width system that grows with your setup.&#xA;Base Configuration Starting at $449&#xA;Width Options Select the perfect size for your rig:&#xA;84HP — $449&#xA;Compact, portable Fits in a backpack Perfect for small systems or sub-mixers 104HP — $549&#xA;The sweet spot Room for a complete voice Most popular choice 126HP — $649</description>
     </item>
     <item>
       <title>DnB Essentials Vol. 1</title>
-      <link>http://127.0.0.1:1414/sample-packs/dnb-essentials/</link>
+      <link>https://puget.audio/sample-packs/dnb-essentials/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/sample-packs/dnb-essentials/</guid>
+      <guid>https://puget.audio/sample-packs/dnb-essentials/</guid>
       <description>DnB Essentials Vol. 1 A comprehensive drum &amp;amp; bass sample pack built from the ground up in our Seattle studio. Every sound recorded through real analog signal chains — no recycled loops, no generic presets.&#xA;What&amp;rsquo;s Inside Drum Breaks &amp;amp; One-Shots Tight, punchy breaks and individual hits designed for modern DnB production:&#xA;Kick Drums — 40+ kicks from deep subs to punchy mid-range Snares &amp;amp; Claps — 60+ snares, rim shots, and layered claps Hi-Hats — 50+ hats, rides, and metallic textures Full Breaks — 30+ processed breakbeat loops at 170-178 BPM Percussion — 40+ shakers, tambourines, and ghost hits Bass Sub-frequency weight and mid-range aggression:</description>
     </item>
     <item>
       <title>Shop</title>
-      <link>http://127.0.0.1:1414/products/</link>
+      <link>https://puget.audio/products/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/products/</guid>
+      <guid>https://puget.audio/products/</guid>
       <description>Available Now Lasers Vol 1 $15 · Sample pack · Instant download&#xA;133 samples from a live Moog DFAM session. Not emulated — sampled. Sweeps, zaps, kicks, and percussion captured at 24-bit / 48 kHz, with MPC expansion included.&#xA;View details →&#xA;Cornucopia Eurorack Case From $449 · Hardware · Built to order in Seattle&#xA;A 7U Eurorack case in three widths (84 / 104 / 126 HP) and six powder-coat finishes.</description>
     </item>
     <item>
       <title>Thank You!</title>
-      <link>http://127.0.0.1:1414/thanks/</link>
+      <link>https://puget.audio/thanks/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://127.0.0.1:1414/thanks/</guid>
+      <guid>https://puget.audio/thanks/</guid>
       <description></description>
     </item>
   </channel>

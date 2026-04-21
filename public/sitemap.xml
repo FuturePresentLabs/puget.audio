@@ -2,129 +2,129 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://127.0.0.1:1414/plugins/studio/passive-eq/</loc>
+    <loc>https://puget.audio/plugins/studio/passive-eq/</loc>
     <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/studio/opto-compressor/</loc>
+    <loc>https://puget.audio/plugins/studio/opto-compressor/</loc>
     <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/studio/fet-limiter/</loc>
+    <loc>https://puget.audio/plugins/studio/fet-limiter/</loc>
     <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/studio/variable-mu/</loc>
+    <loc>https://puget.audio/plugins/studio/variable-mu/</loc>
     <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/studio/channel/</loc>
+    <loc>https://puget.audio/plugins/studio/channel/</loc>
     <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/studio/studio-collection/</loc>
+    <loc>https://puget.audio/plugins/studio/studio-collection/</loc>
     <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/analog/</loc>
+    <loc>https://puget.audio/tags/analog/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/dfam/</loc>
+    <loc>https://puget.audio/tags/dfam/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/electronic/</loc>
+    <loc>https://puget.audio/tags/electronic/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/game-audio/</loc>
+    <loc>https://puget.audio/tags/game-audio/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/laser/</loc>
+    <loc>https://puget.audio/tags/laser/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/sample-packs/puget-lasers-vol-1/</loc>
+    <loc>https://puget.audio/sample-packs/puget-lasers-vol-1/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/moog/</loc>
+    <loc>https://puget.audio/tags/moog/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/one-shots/</loc>
+    <loc>https://puget.audio/tags/one-shots/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/</loc>
+    <loc>https://puget.audio/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/sample-packs/</loc>
+    <loc>https://puget.audio/sample-packs/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/sci-fi/</loc>
+    <loc>https://puget.audio/tags/sci-fi/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/sound-design/</loc>
+    <loc>https://puget.audio/tags/sound-design/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/sound-effects/</loc>
+    <loc>https://puget.audio/tags/sound-effects/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/synth/</loc>
+    <loc>https://puget.audio/tags/synth/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/</loc>
+    <loc>https://puget.audio/tags/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/zaps/</loc>
+    <loc>https://puget.audio/tags/zaps/</loc>
     <lastmod>2026-04-16T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/blog/</loc>
+    <loc>https://puget.audio/blog/</loc>
     <lastmod>2026-03-19T16:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/blog/wdf-vs-convolution/</loc>
+    <loc>https://puget.audio/blog/wdf-vs-convolution/</loc>
     <lastmod>2026-03-19T16:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/blog/what-is-wdf/</loc>
+    <loc>https://puget.audio/blog/what-is-wdf/</loc>
     <lastmod>2026-03-02T09:31:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/blog/germanium-vs-silicon-diodes/</loc>
+    <loc>https://puget.audio/blog/germanium-vs-silicon-diodes/</loc>
     <lastmod>2026-02-28T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/blog/klon-centaur-circuit-topology/</loc>
+    <loc>https://puget.audio/blog/klon-centaur-circuit-topology/</loc>
     <lastmod>2026-02-28T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/blog/amp-sag-tube-amps/</loc>
+    <loc>https://puget.audio/blog/amp-sag-tube-amps/</loc>
     <lastmod>2026-02-27T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/blog/analog-delay-secret-life/</loc>
+    <loc>https://puget.audio/blog/analog-delay-secret-life/</loc>
     <lastmod>2026-02-27T10:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/</loc>
+    <loc>https://puget.audio/plugins/</loc>
     <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/studio/</loc>
+    <loc>https://puget.audio/plugins/studio/</loc>
     <lastmod>2026-02-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/atmospherics/</loc>
+    <loc>https://puget.audio/tags/atmospherics/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/bass/</loc>
+    <loc>https://puget.audio/tags/bass/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/breaks/</loc>
+    <loc>https://puget.audio/tags/breaks/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/cart/</loc>
+    <loc>https://puget.audio/cart/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/checkout/</loc>
+    <loc>https://puget.audio/checkout/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/hardware/cornucopia/</loc>
+    <loc>https://puget.audio/hardware/cornucopia/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/dnb/</loc>
+    <loc>https://puget.audio/tags/dnb/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/sample-packs/dnb-essentials/</loc>
+    <loc>https://puget.audio/sample-packs/dnb-essentials/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/drum-and-bass/</loc>
+    <loc>https://puget.audio/tags/drum-and-bass/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/hardware/</loc>
+    <loc>https://puget.audio/hardware/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/continuum/</loc>
+    <loc>https://puget.audio/plugins/continuum/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/legends/</loc>
+    <loc>https://puget.audio/plugins/legends/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/tags/reese/</loc>
+    <loc>https://puget.audio/tags/reese/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/products/</loc>
+    <loc>https://puget.audio/products/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/thanks/</loc>
+    <loc>https://puget.audio/thanks/</loc>
   </url><url>
-    <loc>http://127.0.0.1:1414/plugins/amps/</loc>
+    <loc>https://puget.audio/plugins/amps/</loc>
   </url>
 </urlset>
