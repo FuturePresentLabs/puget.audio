@@ -66,6 +66,7 @@
   <div class="launch-shop-grid">
     {{ range $hardware }}
     {{ $comingSoon := eq .Params.status "coming-soon" }}
+    {{ $page := . }}
     <a href="{{ .Permalink }}" class="launch-shop-card{{ if $comingSoon }} is-coming-soon{{ end }}">
       <div class="launch-shop-card-image">
         {{ with .Params.images }}
@@ -73,14 +74,14 @@
           {{ $imgResource := resources.Get $firstImg }}
           {{ if $imgResource }}
             {{ $c := $imgResource.Fill "600x450 center" }}
-            <img src="{{ $c.RelPermalink }}" alt="{{ $.Title }}" loading="lazy" />
+            <img src="{{ $c.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />
           {{ else }}
             {{ $img := resources.Get "images/puget_mixing_desk.png" }}
-            {{ if $img }}{{ $c := $img.Fill "600x450 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $.Title }}" loading="lazy" />{{ end }}
+            {{ if $img }}{{ $c := $img.Fill "600x450 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />{{ end }}
           {{ end }}
         {{ else }}
           {{ $img := resources.Get "images/puget_mixing_desk.png" }}
-          {{ if $img }}{{ $c := $img.Fill "600x450 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $.Title }}" loading="lazy" />{{ end }}
+          {{ if $img }}{{ $c := $img.Fill "600x450 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />{{ end }}
         {{ end }}
       </div>
       <div class="launch-shop-card-body">
