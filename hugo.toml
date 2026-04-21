@@ -27,7 +27,9 @@ theme = ['puget-theme', 'gsg-ecommerce']
     base = "https://api.gsgmfg.com"
 
   [params.fluidpay]
-    tokenizerScript = ""
+    # Sandbox defaults — swap to https://app.fluidpay.com for production.
+    tokenizerScript = "https://sandbox.fluidpay.com/tokenizer/tokenizer.js"
+    tokenizerUrl = "https://sandbox.fluidpay.com"
     publicKey = ""
 
 [menu]

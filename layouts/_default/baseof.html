@@ -50,8 +50,9 @@
   </script>
   {{ end }}
 
-  <link rel="stylesheet" href="/css/style.css">
+  {{/* Load vendored gsg-ecommerce CSS first so puget-theme overrides win cascade */}}
   {{ partial "gsg-ecommerce/head.html" . }}
+  <link rel="stylesheet" href="/css/style.css">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-NX7QPG0SE3"></script>

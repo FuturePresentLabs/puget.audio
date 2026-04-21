@@ -1,0 +1,19 @@
+{{/*
+  Local override of themes/gsg-ecommerce/layouts/partials/gsg-ecommerce/scripts.html.
+  Adds tokenizerUrl for the FluidPay iframe integration on the checkout page.
+*/}}
+<script>
+  window.GSG_ECOMMERCE_CONFIG = {
+    apiBase: "{{ with .Site.Params.api.base }}{{ . }}{{ else }}{{ end }}",
+    currency: "{{ with .Site.Params.currency }}{{ . }}{{ else }}USD{{ end }}",
+    brandName: "{{ with .Site.Params.brand.name }}{{ . }}{{ else }}Store{{ end }}"
+    {{ with .Site.Params.fluidpay }}
+    ,fluidpay: {
+      tokenizerScript: "{{ .tokenizerScript }}",
+      tokenizerUrl: "{{ .tokenizerUrl }}",
+      publicKey: "{{ .publicKey }}"
+    }
+    {{ end }}
+  };
+</script>
+<script src="/js/gsg-ecommerce.js"></script>
