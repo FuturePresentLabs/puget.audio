@@ -6,6 +6,21 @@
       <a href="/">Home</a> / <a href="/hardware/">Hardware</a> / <span>{{ .Title }}</span>
     </nav>
 
+    {{/* Product Images */}}
+    {{ with .Params.images }}
+    <div class="puget-product-images">
+      {{ range . }}
+      {{ $img := resources.Get . }}
+      {{ if $img }}
+      <div class="puget-product-image">
+        {{ $resized := $img.Fit "800x600" }}
+        <img src="{{ $resized.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
+      </div>
+      {{ end }}
+      {{ end }}
+    </div>
+    {{ end }}
+
     <header class="puget-product-header">
       <h1 class="puget-product-title">{{ .Title }}</h1>
       {{ with .Params.price }}
