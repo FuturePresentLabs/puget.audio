@@ -1,0 +1,41 @@
+{{/*
+  Local override of themes/gsg-ecommerce/layouts/gsg-ecommerce/cart.html.
+  Points the empty-cart CTA at the Shop page (products overview) instead of
+  the plugins collection, which is mostly coming-soon at launch.
+*/}}
+{{ define "main" }}
+<div class="gsg-page gsg-cart-page">
+  <div class="gsg-page-inner">
+    <h1 class="gsg-page-title">Your Cart</h1>
+
+    <!-- Empty cart state -->
+    <div class="gsg-cart-empty" data-gsg-cart-empty>
+      <div class="gsg-empty-icon">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="9" cy="21" r="1"/>
+          <circle cx="20" cy="21" r="1"/>
+          <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
+        </svg>
+      </div>
+      <p class="gsg-empty-message">Your cart is empty.</p>
+      <a href="/products/" class="gsg-btn gsg-btn-secondary">Continue Shopping</a>
+    </div>
+
+    <!-- Cart items -->
+    <div class="gsg-cart-contents" data-gsg-cart-contents style="display:none;">
+      <div class="gsg-cart-items" data-gsg-cart-items>
+        <!-- Items rendered by JS -->
+      </div>
+
+      <div class="gsg-cart-summary">
+        <div class="gsg-cart-summary-row gsg-cart-total-row">
+          <span class="gsg-cart-total-label">Total</span>
+          <span class="gsg-cart-total-amount" data-gsg-cart-total>$0.00</span>
+        </div>
+        <a href="/checkout/" class="gsg-btn gsg-btn-primary gsg-checkout-btn">Proceed to Checkout</a>
+        <a href="/products/" class="gsg-continue-shopping">Continue Shopping</a>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}

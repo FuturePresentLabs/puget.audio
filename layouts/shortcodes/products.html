@@ -1,38 +1,65 @@
+{{/*
+  Homepage product grid.
+
+  Showcases what's live today (Lasers sample pack, Cornucopia Eurorack case)
+  and what's on deck (Puget Legends VST). Cards link directly to the buying
+  flow where applicable.
+*/}}
+{{ $lasers := site.GetPage "/sample-packs/puget-lasers-vol-1" }}
+{{ $cornucopia := site.GetPage "/hardware/cornucopia" }}
+{{ $legendsFlag := index site.Data.features.collections "legends" }}
+{{ $legendsComingSoon := and $legendsFlag $legendsFlag.coming_soon }}
+
 <section id="products" class="products">
-  <h2>Studio-Grade Audio Tools</h2>
+  <h2>Available Now</h2>
   <div class="product-grid product-grid-3">
-    <a href="/plugins/" class="product-card featured" style="text-decoration:none;color:inherit;">
+
+    {{/* Lasers Sample Pack */}}
+    {{ with $lasers }}
+    <a href="{{ .Permalink }}" class="product-card" style="text-decoration:none;color:inherit;">
       <div class="product-image">
-        {{ $product := resources.Get "images/puget_producer_workflow.png" }}
-        {{ $productCropped := $product.Fill "400x300 center" }}
-        <img src="{{ $productCropped.RelPermalink }}" alt="VST3 Plugins" width="400" height="300" />
+        {{ with .Params.cover_image }}
+        <img src="{{ . }}" alt="Lasers Vol 1 cover" width="400" height="300" />
+        {{ else }}
+        {{ $samples := resources.Get "images/puget_recording_session.png" }}
+        {{ $samplesCropped := $samples.Fill "400x300 center" }}
+        <img src="{{ $samplesCropped.RelPermalink }}" alt="Lasers sample pack" width="400" height="300" />
+        {{ end }}
       </div>
-      <h3>VST3 Plugins</h3>
-      <p class="price">From $49</p>
-      <p class="description">Professional effect emulations for your DAW. Circuit-accurate models that respond like the real thing.</p>
-      <span class="badge">5 Plugins Available</span>
+      <h3>Lasers Vol 1</h3>
+      <p class="price">${{ .Params.price }}</p>
+      <p class="description">133 analog drum samples captured from a live Moog DFAM session. Not emulated. Sampled.</p>
+      <span class="badge">Sample Pack &middot; Instant Download</span>
     </a>
-    <a href="/hardware/" class="product-card" style="text-decoration:none;color:inherit;">
+    {{ end }}
+
+    {{/* Cornucopia Eurorack Case */}}
+    {{ with $cornucopia }}
+    <a href="{{ .Permalink }}" class="product-card" style="text-decoration:none;color:inherit;">
       <div class="product-image">
         {{ $detail := resources.Get "images/puget_mixing_desk.png" }}
         {{ $detailCropped := $detail.Fill "400x300 center" }}
-        <img src="{{ $detailCropped.RelPermalink }}" alt="Hardware" width="400" height="300" />
+        <img src="{{ $detailCropped.RelPermalink }}" alt="Cornucopia Eurorack case" width="400" height="300" />
       </div>
-      <h3>Hardware</h3>
-      <p class="price">From $449</p>
-      <p class="description">Eurorack cases, guitar pedals, and audio equipment built in our Seattle workshop.</p>
-      <span class="badge">Cornucopia Available</span>
+      <h3>Cornucopia</h3>
+      <p class="price">From ${{ .Params.price }}</p>
+      <p class="description">A 7U Eurorack case in three widths and six finishes. Configure it, build it, ship it from Seattle.</p>
+      <span class="badge">Hardware &middot; Built to Order</span>
     </a>
-    <a href="/sample-packs/" class="product-card" style="text-decoration:none;color:inherit;">
+    {{ end }}
+
+    {{/* Puget Legends VST (coming soon) */}}
+    <a href="/plugins/legends/" class="product-card{{ if $legendsComingSoon }} coming-soon{{ end }}" style="text-decoration:none;color:inherit;">
       <div class="product-image">
-        {{ $samples := resources.Get "images/puget_recording_session.png" }}
-        {{ $samplesCropped := $samples.Fill "400x300 center" }}
-        <img src="{{ $samplesCropped.RelPermalink }}" alt="Sample Packs" width="400" height="300" />
+        {{ $product := resources.Get "images/puget_producer_workflow.png" }}
+        {{ $productCropped := $product.Fill "400x300 center" }}
+        <img src="{{ $productCropped.RelPermalink }}" alt="Puget Legends VST" width="400" height="300" />
       </div>
-      <h3>Sample Packs</h3>
-      <p class="price">From $29</p>
-      <p class="description">Production-ready sounds recorded through real analog hardware. Drum breaks, bass, synths, and FX.</p>
-      <span class="badge">Coming Soon</span>
+      <h3>Puget Legends</h3>
+      <p class="price">$49 &middot; at launch</p>
+      <p class="description">Five iconic guitar pedal circuits, rebuilt from the schematic as a VST3 plugin. Overdrive, fuzz, and boost &mdash; simulated, not sampled.</p>
+      <span class="badge">{{ if $legendsComingSoon }}Coming Soon{{ else }}VST3 Plugin{{ end }}</span>
     </a>
+
   </div>
 </section>

@@ -1,0 +1,22 @@
+{{/*
+  Waitlist / notify-me form for coming-soon products.
+
+  Params (via dict):
+    interest    - string tag sent with the signup (e.g. "legends", "continuum")
+    label       - form heading (default "Get notified at launch")
+    button      - submit button text (default "Notify Me")
+    class       - extra class on the submit button (default "btn-primary")
+*/}}
+{{ $interest := .interest | default "general" }}
+{{ $label := .label | default "Get notified at launch" }}
+{{ $button := .button | default "Notify Me" }}
+{{ $class := .class | default "btn-primary" }}
+<form class="puget-notify-form" action="https://api.gsgmfg.com/waitlist" method="POST">
+  <label for="puget-notify-{{ $interest }}" class="puget-notify-label">{{ $label }}</label>
+  <div class="puget-notify-row">
+    <input type="email" id="puget-notify-{{ $interest }}" name="email" placeholder="you@example.com" required />
+    <input type="hidden" name="interest" value="{{ $interest }}" />
+    <button type="submit" class="{{ $class }}">{{ $button }}</button>
+  </div>
+  <p class="puget-notify-note">We&rsquo;ll only email you about this release.</p>
+</form>

@@ -1,64 +1,49 @@
 ---
-title: "Products"
-description: "Professional audio plugins and hardware engineered in Seattle"
+title: "Shop"
+description: "Sample packs, hardware, and plugins from Puget Audio — simulated, sampled, and built in Seattle."
 ---
 
-## Studio-Grade Audio Tools
-
-We build professional audio equipment for musicians, producers, and engineers. Everything we make shares the same DNA — thoughtful design, premium components, and circuit-accurate engineering.
-
----
-
-## [VST3 Plugins](/plugins/)
-
-Professional-grade effect emulations for your DAW. Each plugin models the actual physics of analog circuits — not impulse responses, not curve fitting, but real component-level simulation using our Wave Digital Filter engine.
-
-[Browse Plugins →](/plugins/)
-
----
-
-## [Sample Packs](/sample-packs/)
-
-Professional sample libraries recorded from real analog hardware.
+## Available Now
 
 ### [Lasers Vol 1](/sample-packs/puget-lasers-vol-1/)
 
-**$15** — 133 samples from a live Moog DFAM session. Pure analog drum samples, captured not emulated.
+**$15** · Sample pack · Instant download
 
-75 one-shots. 8 loops. 41 phrases. Includes MPC expansion with 64-pad drum program.
+133 samples from a live Moog DFAM session. Not emulated — sampled. Sweeps, zaps, kicks, and percussion captured at 24-bit / 48 kHz, with MPC expansion included.
 
-[View Details →](/sample-packs/puget-lasers-vol-1/)
-
----
-
-## [Hardware](/hardware/)
-
-Physical audio equipment built in our Seattle workshop.
-
-### Eurorack Cases
-
-**[Cornucopia](/hardware/cornucopia/)** — Customizable Eurorack case system
-- 84HP / 104HP / 126HP widths
-- Premium aluminum construction
-- Custom powder coat colors
-- Starting at $449
-
-[Configure a Case →](/hardware/cornucopia/)
-
-### Guitar Pedals
-
-Hand-assembled effects pedals with original circuit designs. Each pedal exists as a validated software model before the first enclosure is machined.
-
-*Coming soon.*
-
-### Studio Equipment
-
-Professional studio gear for producers and engineers.
-
-*Coming soon.*
+[View details →](/sample-packs/puget-lasers-vol-1/)
 
 ---
 
-*All hardware includes a 2-year warranty and Seattle-based support.*
+### [Cornucopia Eurorack Case](/hardware/cornucopia/)
 
-*Join the mailing list to be first to know about new releases.*
+**From $449** · Hardware · Built to order in Seattle
+
+A 7U Eurorack case in three widths (84 / 104 / 126 HP) and six powder-coat finishes. Aluminum construction, threaded rails, bus board included. Configure it, we build it.
+
+[Configure a case →](/hardware/cornucopia/)
+
+---
+
+## Coming Soon
+
+### [Puget Legends](/plugins/legends/) — VST3 plugin, $49 at launch
+
+Five iconic guitar pedal circuits, rebuilt from the schematic as a VST3 plugin. Overdrive, fuzz, and boost — simulated at the component level, not captured, not sampled.
+
+[Join the waitlist →](/plugins/legends/)
+
+---
+
+## The Rest of the Roadmap
+
+We like all these concepts, they're just not live yet. Each has a page so you can read the thinking — and get notified when they ship.
+
+- **[Puget Studio](/plugins/studio/)** — Five studio-grade processors (Passive EQ, Opto Comp, FET Limiter, Variable-Mu, Channel)
+- **[Puget Continuum](/plugins/continuum/)** — Six analog modulation & time effects with proprietary BBD modeling
+- **[Puget Amps](/plugins/amps/)** — Four tube amp families, one engine
+- **[DnB Essentials Vol. 1](/sample-packs/dnb-essentials/)** — 500+ samples through an analog signal chain
+
+---
+
+*[Join the mailing list](/#signup) to be first when new products drop.*

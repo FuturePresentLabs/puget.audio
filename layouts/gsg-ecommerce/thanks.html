@@ -1,0 +1,36 @@
+{{/*
+  Local override: thanks page, post-order. Points the follow-up links at the
+  Shop and homepage instead of the mostly-coming-soon plugins collection.
+*/}}
+{{ define "main" }}
+<div class="gsg-page gsg-thanks-page">
+  <div class="gsg-page-inner">
+    <div class="gsg-thanks-icon">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    </div>
+    <h1 class="gsg-page-title">Thank You!</h1>
+    <p class="gsg-thanks-message">Your order has been received and is being processed.</p>
+
+    <div class="gsg-thanks-details" data-gsg-thanks-details>
+      <!-- Populated by JS with order summary -->
+    </div>
+
+    <div class="gsg-thanks-next">
+      <h2>What's Next</h2>
+      <ul class="gsg-thanks-steps">
+        <li>Check your email for your order confirmation and any download links or license keys</li>
+        <li>Hardware orders ship from Seattle &mdash; you&rsquo;ll get a tracking number once it leaves the workshop</li>
+        <li>Digital goods are delivered instantly via the link in your confirmation email</li>
+      </ul>
+    </div>
+
+    <div class="gsg-thanks-actions">
+      <a href="/products/" class="gsg-btn gsg-btn-secondary">Keep Shopping</a>
+      <a href="/" class="gsg-btn gsg-btn-ghost">Return to Homepage</a>
+    </div>
+  </div>
+</div>
+{{ end }}

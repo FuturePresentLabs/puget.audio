@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $flag := index .Site.Data.features.collections "legends" }}
+{{ $comingSoon := and $flag $flag.coming_soon }}
 
 {{/* ========================================
    HERO SECTION
@@ -9,13 +11,23 @@
     <div class="legends-glow-orb"></div>
   </div>
   <div class="legends-hero-content">
+    {{ if $comingSoon }}
+    <div class="coming-badge">
+      <span class="badge-dot"></span>
+      Coming Soon
+    </div>
+    {{ end }}
     <h1 class="legends-hero-title">The Puget<br>Legends Collection</h1>
     <p class="legends-hero-names">GOLDENROD &middot; RATKING &middot; MUFF &middot; AUSTIN &middot; SCREAMER</p>
     <p class="legends-hero-subhead">Five circuits that changed music. Rebuilt from the schematic.</p>
     <p class="legends-hero-description">Not sampled. Not captured. Not profiled. Simulated&mdash;component by component.</p>
 
     <div class="legends-hero-cta">
+      {{ if $comingSoon }}
+      {{ partial "notify-form.html" (dict "interest" "legends" "label" "Get notified when Legends drops" "button" "Notify Me") }}
+      {{ else }}
       {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" "Puget Legends Collection" "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+      {{ end }}
     </div>
   </div>
 </section>
@@ -268,14 +280,18 @@
    PRICING
    ======================================== */}}
 <section class="legends-pricing">
-  <h2>Simple Pricing</h2>
+  <h2>{{ if $comingSoon }}At Launch{{ else }}Simple Pricing{{ end }}</h2>
   <div class="legends-pricing-grid">
 
     <div class="legends-price-card legends-price-card--featured">
       <span class="legends-price-label">The Legends Collection</span>
       <span class="legends-price-amount">${{ .Params.price }}</span>
       <span class="legends-price-note">All five pedals &middot; one-time purchase</span>
+      {{ if $comingSoon }}
+      {{ partial "notify-form.html" (dict "interest" "legends" "label" "Early-bird pricing for the waitlist" "button" "Join the Waitlist") }}
+      {{ else }}
       {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" "Puget Legends Collection" "label" "Add to Cart" "class" "btn-primary") }}
+      {{ end }}
     </div>
 
   </div>
@@ -294,9 +310,13 @@
    BOTTOM CTA
    ======================================== */}}
 <section class="legends-bottom-cta">
-  <h2>Get the Legends Collection.</h2>
+  <h2>{{ if $comingSoon }}Be first in line.{{ else }}Get the Legends Collection.{{ end }}</h2>
   <p>Five iconic circuits. One purchase. No subscriptions.</p>
+  {{ if $comingSoon }}
+  {{ partial "notify-form.html" (dict "interest" "legends" "label" "Early access &amp; launch-day pricing" "button" "Notify Me") }}
+  {{ else }}
   {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" "Puget Legends Collection" "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+  {{ end }}
   <p class="legends-bottom-note">Perpetual license. Free updates. No iLok.</p>
   <p class="legends-disclaimer">All product names, trademarks, and registered trademarks are property of their respective owners. These names are used solely to identify the products whose circuits inspired these models. Puget Audio is not affiliated with or endorsed by any of these companies.</p>
 </section>

@@ -1,80 +1,54 @@
 baseURL = 'https://puget.audio'
 languageCode = 'en-us'
 title = 'Puget Audio'
-theme = 'puget-theme'
+theme = ['puget-theme', 'gsg-ecommerce']
 
 [params]
-  tagline = "Professional Audio Hardware for Creators"
-  description = "Premium audio interfaces and guitar effects pedals engineered in the Pacific Northwest"
+  tagline = "The sound of analog. Without the cost."
+  description = "Analog-authentic plugins, samples, and hardware from Seattle. We simulate analog when it makes music better — and sample it when nothing else will do."
   selling = true
   stock_display_cap = 50
-  price = 299.00
   currency = "USD"
-  
+
   [params.brand]
     name = "Puget Audio"
     key = "puget"
     logo = "/images/puget-logo.svg"
-  
+
   [params.seo]
-    description = "Puget Audio - Professional audio interfaces and guitar effects pedals engineered in the Pacific Northwest"
-    keywords = ["audio plugins", "VST3 plugins", "analog emulation", "wave digital filter", "guitar pedal", "studio equipment", "PNW audio", "professional audio"]
-  
+    description = "Analog-authentic audio tools from Seattle. Sample packs recorded through real analog hardware, circuit-accurate Wave Digital Filter plugins, and custom Eurorack gear — without the 2026 price of the original iron."
+    keywords = ["analog sample pack", "moog dfam samples", "eurorack case", "analog emulation", "VST3 plugins", "wave digital filter", "analog simulation", "analog sampling", "puget audio", "seattle audio"]
+
   [params.social]
     image = "/images/puget-og.jpg"
     twitter = "@pugetaudio"
-  
+
   [params.api]
     base = "https://api.gsgmfg.com"
-  
+
   [params.fluidpay]
-    tokenizerScript = "https://app.fluidpay.com/tokenizer/tokenizer.js"
-    publicKey = "your-fluidpay-public-key"
+    tokenizerScript = ""
+    publicKey = ""
 
 [menu]
   [[menu.main]]
-    name = 'Products'
-    url = '/#products'
+    name = 'Sample Packs'
+    url = '/sample-packs/'
     weight = 10
 
   [[menu.main]]
-    name = 'Sample Packs'
-    url = '/sample-packs/'
-    weight = 11
+    name = 'Hardware'
+    url = '/hardware/'
+    weight = 20
 
   [[menu.main]]
     name = 'Plugins'
     url = '/plugins/'
-    weight = 12
-
-  [[menu.main]]
-    name = 'Studio'
-    url = '/plugins/studio/'
-    weight = 15
-
-  [[menu.main]]
-    name = 'Legends'
-    url = '/plugins/legends/'
-    weight = 17
-
-  [[menu.main]]
-    name = 'Continuum'
-    url = '/plugins/continuum/'
-    weight = 18
-
-  [[menu.main]]
-    name = 'Features'
-    url = '/#features'
-    weight = 20
-
-  [[menu.main]]
-    name = 'Sound'
-    url = '/#demos'
     weight = 30
 
   [[menu.main]]
-    name = 'Specs'
-    url = '/#specs'
+    name = 'Blog'
+    url = '/blog/'
     weight = 40
 
 [taxonomies]

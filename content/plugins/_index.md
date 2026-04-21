@@ -1,65 +1,49 @@
 ---
 title: "Plugins"
-description: "Explore our four product lines: Studio plugins, Legends pedals, Continuum modulation effects, and Amps — all built with Wave Digital Filter technology"
+description: "Four plugin lines, one philosophy: simulate the physics, don't approximate the sound. Puget Legends VST is up first."
 layout: "collections"
 og_image: "/images/puget-og.jpg"
 ---
 
-## Our Collections
+## Our Plugin Lines
 
-We build professional audio tools across four product lines. Each one shares the same foundation: circuit-accurate modeling using Wave Digital Filter technology.
-
----
-
-### [Continuum](/plugins/continuum/)
-
-**Analog modulation and time effects. Circuit-modeled from the component up.**
-
-Six iconic effect circuits — chorus, delay, phaser, vibe, flanger, reverb — featuring patent-pending BBD modeling.
-
-[Explore Continuum →](/plugins/continuum/)
+We're building four plugin collections on the same foundation: circuit-accurate modeling using Wave Digital Filters. **Puget Legends is up first.** The rest are on the roadmap — each has a page you can read and a waitlist you can join.
 
 ---
 
-### [Studio](/plugins/studio/)
+### [Legends](/plugins/legends/) — *Up next at launch*
 
-**Professional VST3 plugins for your DAW**
-
-Five studio-grade processors modeled from legendary analog circuits:
-
-- **Passive EQ** — Pultec EQP-1A tube equalizer
-- **Opto Compressor** — Teletronix LA-2A optical leveling
-- **FET Limiter** — UREI 1176LN fast peak limiter
-- **Variable-Mu** — Fairchild 670 stereo compressor
-- **Channel** — Neve 1073 preamp/EQ
-
-[Explore Studio →](/plugins/studio/)
-
----
-
-### [Legends](/plugins/legends/)
-
-**Iconic guitar pedals, rebuilt from the schematic**
-
-Five legendary guitar effect circuits, modeled at the component level:
-
-- Overdrive, fuzz, and modulation classics
-- Component-accurate WDF models
-- The circuits that defined rock, blues, and metal
+**Iconic guitar pedals, rebuilt from the schematic.** Five drive and fuzz circuits modeled at the component level. The circuits that defined rock, blues, and metal — without the eBay prices or dead batteries.
 
 [Explore Legends →](/plugins/legends/)
 
 ---
 
-### [Amps](/plugins/amps/)
+### [Continuum](/plugins/continuum/) — *Coming soon*
 
-**Four amp families. One engine.**
+**Analog modulation and time effects.** Six iconic effect circuits — chorus, delay, phaser, vibe, flanger, reverb — with proprietary BBD modeling down to the bucket-brigade.
 
-Tube amp simulations that clean up, sag, and respond like the real thing:
+[Explore Continuum →](/plugins/continuum/)
 
-- British, American, and boutique voicings
-- Every component simulated
-- Real power amp dynamics
+---
+
+### [Studio](/plugins/studio/) — *Coming soon*
+
+**Professional VST3 plugins for your DAW.** Five studio-grade processors modeled from legendary analog circuits:
+
+- **Passive EQ** — EQP-1A style tube equalizer
+- **Opto Compressor** — LA-2A style optical leveling
+- **FET Limiter** — 1176LN style fast peak limiter
+- **Variable-Mu** — 670 style stereo compressor
+- **Channel** — 1073 style preamp/EQ
+
+[Explore Studio →](/plugins/studio/)
+
+---
+
+### [Amps](/plugins/amps/) — *Coming soon*
+
+**Four amp families. One engine.** Tube amp simulations that clean up, sag, and respond like the real thing. British, American, and boutique voicings — every component simulated.
 
 [Explore Amps →](/plugins/amps/)
 
@@ -67,7 +51,7 @@ Tube amp simulations that clean up, sag, and respond like the real thing:
 
 ## Why Wave Digital Filters?
 
-All our products use the same underlying technology: Wave Digital Filters (WDF). Instead of sampling or curve-fitting, we model the actual physics of analog circuits — resistors, capacitors, tubes, and transformers — one component at a time.
+All our plugins use the same underlying technology: Wave Digital Filters (WDF). Instead of sampling or curve-fitting, we model the actual physics of analog circuits — resistors, capacitors, tubes, and transformers — one component at a time.
 
 The result is the kind of nonlinear behavior, harmonic saturation, and dynamic response that makes analog gear special. When you turn a knob, you're adjusting a modeled component, not interpolating between presets.
 

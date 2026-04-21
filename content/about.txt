@@ -1,11 +1,15 @@
-Puget Audio builds professional audio tools for musicians who care about how things work.
+Puget Audio builds audio tools for musicians who love analog and still have to ship tracks.
 
-We don't approximate analog. We simulate it.
+We love analog. In 2026 the iron is expensive, scarce, and not always practical. Our goal is simple: hand you the sound — the saturation, the dynamics, the little character things — without the rack, the reshell, or the insurance rider.
 
-Every product starts with the same question: what would this circuit do if we modeled every component exactly? The resistors, capacitors, transistors — all interacting in real time, just like the hardware.
+So we do two things.
 
-The result is software that responds to your playing like analog gear. Because under the hood, it is analog. Just transformed into mathematics.
+We simulate analog when the math gets us closer than a capture. Our plugins model actual circuit physics — resistors, capacitors, tubes, transformers — in real time. When you turn a knob, you're changing a component value in a simulated circuit, the same way the original hardware works.
+
+We sample analog when nothing else will do. Some sounds only exist on the hardware. When that's true, we hook up the real synth, print 24-bit / 48 kHz through a real signal chain, and put the gear we used right on the box.
+
+We also build a little hardware of our own — Eurorack cases, in Seattle, in small batches, in the colors you actually want.
 
 Based in Seattle. Rooted in open technology.
 
-Serious tools for serious musicians.
+Built by people who play the stuff they make.

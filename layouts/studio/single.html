@@ -1,4 +1,7 @@
 {{ define "main" }}
+{{ $flag := index .Site.Data.features.collections "studio" }}
+{{ $collComingSoon := and $flag $flag.coming_soon }}
+{{ $isComingSoon := or $collComingSoon (eq .Params.status "coming-soon") }}
 <article class="plugin-page">
   {{/* Breadcrumb */}}
   <nav class="plugin-breadcrumb">
@@ -20,11 +23,12 @@
         <span class="plugin-price">${{ .Params.price }}</span>
         <span class="plugin-license-type">Perpetual license</span>
       </div>
-      {{ if eq .Params.status "coming-soon" }}
+      {{ if $isComingSoon }}
       <div class="plugin-coming-soon-notice">
         <span class="badge-dot"></span>
         Coming Soon
       </div>
+      {{ partial "notify-form.html" (dict "interest" (printf "studio-%s" .Params.sku) "label" (printf "Get notified when %s ships" .Title) "button" "Notify Me") }}
       {{ else }}
       {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
       {{ end }}
@@ -66,8 +70,9 @@
 
   {{/* Bottom CTA */}}
   <div class="plugin-bottom-cta">
-    {{ if eq .Params.status "coming-soon" }}
-    <p>This plugin is in development. <a href="/#signup">Join the waitlist</a> to be notified when it ships.</p>
+    {{ if $isComingSoon }}
+    <p>This plugin is in development. Join the waitlist to be notified when it ships.</p>
+    {{ partial "notify-form.html" (dict "interest" (printf "studio-%s" .Params.sku) "label" "Get notified at launch" "button" "Notify Me") }}
     {{ else }}
     <div class="plugin-bottom-actions">
       {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}

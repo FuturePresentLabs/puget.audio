@@ -1,25 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hardware on Puget Audio</title><link>https://puget.audio/hardware/</link><description>Recent content in Hardware on Puget Audio</description><generator>Hugo</generator><language>en-us</language><atom:link href="https://puget.audio/hardware/index.xml" rel="self" type="application/rss+xml"/><item><title>Cornucopia Eurorack Case</title><link>https://puget.audio/hardware/cornucopia/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://puget.audio/hardware/cornucopia/</guid><description>&lt;h1 id="cornucopia-eurorack-case"&gt;Cornucopia Eurorack Case&lt;/h1&gt;
-&lt;p&gt;A Eurorack case system designed for musicians who want flexibility without compromise. Built from premium aluminum with a modular width system that grows with your setup.&lt;/p&gt;
-&lt;h2 id="base-configuration"&gt;Base Configuration&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Starting at $449&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id="width-options"&gt;Width Options&lt;/h3&gt;
-&lt;p&gt;Select the perfect size for your rig:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;84HP&lt;/strong&gt; — $449&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Compact, portable&lt;/li&gt;
-&lt;li&gt;Fits in a backpack&lt;/li&gt;
-&lt;li&gt;Perfect for small systems or sub-mixers&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;104HP&lt;/strong&gt; — $549&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The sweet spot&lt;/li&gt;
-&lt;li&gt;Room for a complete voice&lt;/li&gt;
-&lt;li&gt;Most popular choice&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;126HP&lt;/strong&gt; — $649&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Hardware on Puget Audio</title>
+    <link>http://127.0.0.1:1414/hardware/</link>
+    <description>Recent content in Hardware on Puget Audio</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <atom:link href="http://127.0.0.1:1414/hardware/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cornucopia Eurorack Case</title>
+      <link>http://127.0.0.1:1414/hardware/cornucopia/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://127.0.0.1:1414/hardware/cornucopia/</guid>
+      <description>Cornucopia Eurorack Case A Eurorack case system designed for musicians who want flexibility without compromise. Built from premium aluminum with a modular width system that grows with your setup.&#xA;Base Configuration Starting at $449&#xA;Width Options Select the perfect size for your rig:&#xA;84HP — $449&#xA;Compact, portable Fits in a backpack Perfect for small systems or sub-mixers 104HP — $549&#xA;The sweet spot Room for a complete voice Most popular choice 126HP — $649</description>
+    </item>
+  </channel>
+</rss>
