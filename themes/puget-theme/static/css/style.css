@@ -5548,11 +5548,6 @@ body {
   flex: 1;
 }
 
-.samples-card-image {
-  height: 180px;
-  overflow: hidden;
-}
-
 .samples-card-placeholder {
   width: 100%;
   height: 100%;

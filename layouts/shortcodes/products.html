@@ -27,10 +27,16 @@
     <a href="{{ .Permalink }}" class="launch-shop-card{{ if $comingSoon }} is-coming-soon{{ end }}">
       <div class="launch-shop-card-image">
         {{ with .Params.cover_image }}
-        <img src="{{ . }}" alt="{{ $title }} cover" loading="lazy" />
+          {{ $coverImg := resources.Get . }}
+          {{ if $coverImg }}
+            {{ $resized := $coverImg.Fill "600x600 center" }}
+            <img src="{{ $resized.RelPermalink }}" alt="{{ $title }} cover" loading="lazy" />
+          {{ else }}
+            <img src="{{ . }}" alt="{{ $title }} cover" loading="lazy" />
+          {{ end }}
         {{ else }}
         {{ $placeholder := resources.Get "images/puget_recording_session.png" }}
-        {{ if $placeholder }}{{ $c := $placeholder.Fill "600x450 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $title }}" loading="lazy" />{{ end }}
+        {{ if $placeholder }}{{ $c := $placeholder.Fill "600x600 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $title }}" loading="lazy" />{{ end }}
         {{ end }}
       </div>
       <div class="launch-shop-card-body">
