@@ -6830,7 +6830,7 @@ body {
 }
 
 .launch-shop-card-image {
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 1 / 1;
   background: var(--bg-tertiary);
   overflow: hidden;
   position: relative;
