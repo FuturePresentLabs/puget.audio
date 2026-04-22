@@ -6379,6 +6379,15 @@ body {
   display: block;
 }
 
+/* Sample-pack cards use square cover art — show it 1:1 without cropping. */
+.launch-shop-card--square .launch-shop-card-image {
+  aspect-ratio: 1 / 1;
+}
+
+.launch-shop-card--square .launch-shop-card-image img {
+  object-fit: contain;
+}
+
 .launch-shop-card.is-coming-soon .launch-shop-card-image img { opacity: 0.55; }
 
 .launch-shop-card-body {

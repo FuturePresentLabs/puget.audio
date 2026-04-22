@@ -12,7 +12,7 @@
 
 {{/* ----------------------------- Sample Packs ----------------------------- */}}
 {{ $samplePacks := where .Site.RegularPages "Section" "sample-packs" }}
-<section id="products" class="launch-shop-section">
+<section id="products" class="launch-shop-section launch-shop-section--samples">
   <div class="launch-shop-header">
     <div>
       <div class="launch-shop-kicker">Sample Packs</div>
@@ -24,19 +24,19 @@
     {{ range $samplePacks }}
     {{ $comingSoon := eq .Params.status "coming-soon" }}
     {{ $title := .Title }}
-    <a href="{{ .Permalink }}" class="launch-shop-card{{ if $comingSoon }} is-coming-soon{{ end }}">
+    <a href="{{ .Permalink }}" class="launch-shop-card launch-shop-card--square{{ if $comingSoon }} is-coming-soon{{ end }}">
       <div class="launch-shop-card-image">
         {{ with .Params.cover_image }}
           {{ $coverImg := resources.Get . }}
           {{ if $coverImg }}
-            {{ $resized := $coverImg.Fill "600x600 center" }}
+            {{ $resized := $coverImg.Fit "600x600" }}
             <img src="{{ $resized.RelPermalink }}" alt="{{ $title }} cover" loading="lazy" />
           {{ else }}
             <img src="{{ . }}" alt="{{ $title }} cover" loading="lazy" />
           {{ end }}
         {{ else }}
         {{ $placeholder := resources.Get "images/puget_recording_session.png" }}
-        {{ if $placeholder }}{{ $c := $placeholder.Fill "600x600 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $title }}" loading="lazy" />{{ end }}
+        {{ if $placeholder }}{{ $c := $placeholder.Fit "600x600" }}<img src="{{ $c.RelPermalink }}" alt="{{ $title }}" loading="lazy" />{{ end }}
         {{ end }}
       </div>
       <div class="launch-shop-card-body">
