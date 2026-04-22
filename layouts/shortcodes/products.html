@@ -109,9 +109,18 @@
 </section>
 {{ end }}
 
-{{/* ------------------------------- Plugins ------------------------------- */}}
-{{ $plugins := slice "legends" "continuum" "studio" "amps" }}
-<section class="launch-shop-section">
+{{/* ------------------------------- Plugins -------------------------------
+  Homepage plugin row: emoji-forward collection-item cards. Legends is the
+  only active launch product (marked as "Up next") — the rest ship with a
+  grey "Coming Soon" badge so the launch focus stays on Legends.
+*/}}
+{{ $plugins := slice
+  (dict "key" "legends"   "emoji" "⚡" "tagline" "Iconic guitar pedals"    "price" "$49"   "status" "up-next")
+  (dict "key" "continuum" "emoji" "〰" "tagline" "BBD modulation & time"    "price" "$79"   "status" "coming-soon")
+  (dict "key" "studio"    "emoji" "◈" "tagline" "Studio processors"        "price" "$699"  "status" "coming-soon")
+  (dict "key" "amps"      "emoji" "▲" "tagline" "Tube amp simulations"     "price" "$249"  "status" "coming-soon")
+}}
+<section class="launch-shop-section launch-shop-section--plugins">
   <div class="launch-shop-header">
     <div>
       <div class="launch-shop-kicker">Plugins</div>
@@ -119,28 +128,31 @@
     </div>
     <a href="/plugins/" class="launch-shop-link">All plugins &rarr;</a>
   </div>
-  <div class="launch-shop-grid">
+  <div class="launch-shop-plugin-grid">
     {{ range $plugins }}
-    {{ $key := . }}
-    {{ $flag := index $features.collections $key }}
-    {{ $comingSoon := and $flag $flag.coming_soon }}
+    {{ $key := .key }}
+    {{ $status := .status }}
+    {{ $comingSoon := eq $status "coming-soon" }}
+    {{ $upNext := eq $status "up-next" }}
     {{ $page := site.GetPage (printf "/plugins/%s" $key) }}
     {{ if $page }}
-    {{ $badge := cond $comingSoon "Coming Soon" "Available" }}
-    {{ $priceDisplay := cond (eq $key "legends") "$49" (cond (eq $key "continuum") "$79" (cond (eq $key "studio") "$699" "$249")) }}
-    <a href="{{ $page.Permalink }}" class="launch-shop-card{{ if $comingSoon }} is-coming-soon{{ end }}">
-      <div class="launch-shop-card-image">
-        {{ $img := resources.Get "images/puget_producer_workflow.png" }}
-        {{ if $img }}{{ $c := $img.Fill "600x450 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />{{ end }}
+    <a href="{{ $page.Permalink }}" class="collection-item collection-item--large{{ if $comingSoon }} is-coming-soon{{ end }}{{ if $upNext }} is-up-next{{ end }}">
+      <div class="collection-item-visual {{ $key }}">
+        <span>{{ .emoji }}</span>
       </div>
-      <div class="launch-shop-card-body">
-        <div class="launch-shop-card-kicker">{{ $key | title }} &middot; VST3</div>
-        <div class="launch-shop-card-title">{{ replace $page.Title "The Puget " "" | replaceRE " —.*" "" | replaceRE " Plugins$" "" }}</div>
-        <p class="launch-shop-card-desc">{{ $page.Description | truncate 140 }}</p>
-      </div>
-      <div class="launch-shop-card-footer">
-        <span class="launch-shop-card-badge">{{ $badge }}</span>
-        <span class="launch-shop-card-price">{{ $priceDisplay }}</span>
+      <div class="collection-item-body">
+        <h3>{{ $key | title }}</h3>
+        <p>{{ .tagline }}</p>
+        {{ if $comingSoon }}
+          <span class="collection-item-badge">Coming Soon</span>
+        {{ else if $upNext }}
+          <div class="collection-item-row">
+            <span class="collection-item-badge collection-item-badge--up-next">Up next</span>
+            <span class="collection-item-price">{{ .price }}</span>
+          </div>
+        {{ else }}
+          <span class="collection-item-price">{{ .price }}</span>
+        {{ end }}
       </div>
     </a>
     {{ end }}
