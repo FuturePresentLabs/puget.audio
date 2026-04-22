@@ -5,7 +5,7 @@ draft: false
 description: "The Klon Centaur's secret isn't the components — it's the circuit topology. How the three-signal-path design creates that signature transparent overdrive."
 ---
 
-The Klon Centaur is the most cloned pedal in history. There are hundreds of versions out there — from $30 Amazon specials to $200 boutique "tributes" — and guitarists have been arguing about whether any of them truly nail the original since the schematic leaked in 2009.
+The Klon Centaur is the most cloned pedal in history. There are hundreds of versions out there — from $30 Amazon specials to $200 boutique "tributes" — and guitarists have been arguing about whether any of them truly nail the original ever since the schematic finally made its way online.
 
 Here's the thing: most of them get it wrong, and it's not because they're using the wrong brand of resistor. It's because the Klon's magic lives in its topology — how the circuit is wired — and that's exactly what most clones simplify away.
 

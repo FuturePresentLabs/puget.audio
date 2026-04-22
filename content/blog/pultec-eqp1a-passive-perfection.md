@@ -18,7 +18,7 @@ The answer is in the physics.
 
 ## Eugene Shenk and the Pulse Technique
 
-The Pultec story begins with Eugene Shenk, a Russian immigrant who founded Pulse Techniques in 1951. Shenk wasn't a musician. He was an engineer who understood inductors, capacitors, and tubes.
+The Pultec story begins with Eugene Shenk, who founded Pulse Techniques in the early 1950s. Shenk wasn't a musician. He was an engineer who understood inductors, capacitors, and tubes.
 
 The EQP-1A was his masterpiece.
 
@@ -43,7 +43,7 @@ The EQP-1A's equalizer section is a passive inductor-capacitor (LC) ladder netwo
 - Capacitors: Various values for frequency selection
 - Resistors: For Q and level control
 
-This is the textbook use case for Wave Digital Filters. WDFs were literally developed to model LC ladder networks with mathematical precision.
+This is the textbook use case for Wave Digital Filters. WDFs are particularly well-suited to LC ladder networks — the reactive components and their loading interactions are exactly what the formalism is built to preserve.
 
 ### The Controls
 
@@ -135,11 +135,9 @@ Original Pultecs had hand-wound inductors with ±10% tolerance. No two units sou
 
 ## The Market Today
 
-Original Pultec EQP-1As sell for $4,000–$8,000. Reissues from Pulse Techniques (the original company, revived) cost $3,000+. Universal Audio's plugin is $149.
+Original Pultec EQP-1As trade in the thousands. Reissues still land well into four figures. Mainstream plugin versions sit in the low hundreds.
 
-Our Puget Passive EQ: $59–$99.
-
-Not because we're cutting corners. Because WDF modeling is efficient once the component library exists. The hard work is the math, not the marketing.
+The Puget Passive EQ ships as part of the [Studio bundle](/plugins/studio/). Not because we're cutting corners — because WDF modeling is efficient once the component library exists. The hard work is the math, not the marketing.
 
 ---
 
@@ -151,6 +149,4 @@ That's what we built.
 
 ---
 
-*The Puget Passive EQ is available as part of the [Studio Essentials bundle](/products) or standalone.*
-
-*Want to understand the math? The [WDF whitepaper](/docs/wdf-whitepaper) walks through the LC ladder implementation.*
+*The Puget Passive EQ ships as part of the [Studio bundle](/plugins/studio/). Want more on the math? Start with [What is WDF?](/blog/what-is-wdf/).*
