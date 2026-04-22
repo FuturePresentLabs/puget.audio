@@ -1,0 +1,16 @@
+{{/*
+  Default single-page layout.
+
+  Renders .Content inside a themed, padded container. Root pages like
+  content/products.md (Shop) rely on this — without it, Hugo falls back to a
+  bare <article> with no container/padding, and the page looks unstyled.
+
+  Pages rendered inside their own shortcodes (hero, products, etc.) will
+  visually dominate, which is intentional — this layout just sets a safe
+  fallback shell.
+*/}}
+{{ define "main" }}
+<article class="prose-page">
+  {{ .Content }}
+</article>
+{{ end }}

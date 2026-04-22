@@ -5469,6 +5469,115 @@ body {
    SAMPLE PACKS SECTION
    ======================================== */
 
+/* --- Shop Hero (/products/) --- */
+.shop-hero {
+  padding: 8rem 2rem 3rem;
+  text-align: center;
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(201, 169, 110, 0.08) 0%, transparent 50%),
+    var(--bg-primary);
+}
+
+.shop-hero-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.shop-hero-kicker {
+  color: var(--accent);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 1rem;
+}
+
+.shop-hero-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  background: linear-gradient(180deg, #fff 0%, #a0a0a8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.shop-hero-description {
+  color: var(--text-secondary);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* --- Prose fallback (any root single page without a custom layout) --- */
+.prose-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 7rem 1.5rem 4rem;
+  color: var(--text-primary);
+}
+
+.prose-page h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.prose-page h2 {
+  font-size: 1.5rem;
+  margin: 2.5rem 0 1rem;
+  color: var(--text-primary);
+}
+
+.prose-page h3 {
+  font-size: 1.15rem;
+  margin: 1.5rem 0 0.5rem;
+  color: var(--text-primary);
+}
+
+.prose-page p {
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
+  line-height: 1.65;
+}
+
+.prose-page a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+  transition: border-color 0.2s ease;
+}
+
+.prose-page a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.prose-page ul {
+  margin: 0 0 1.25rem 1.25rem;
+  color: var(--text-secondary);
+}
+
+.prose-page li {
+  margin-bottom: 0.5rem;
+}
+
+.prose-page hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+/* When a prose-page only contains shortcode-rendered sections, strip the
+   container padding so the full-bleed shortcodes (shop-hero, products) can
+   edge to edge. */
+.prose-page:has(> .shop-hero),
+.prose-page:has(> .launch-shop-section) {
+  max-width: none;
+  padding: 0;
+}
+
 /* --- Sample Packs Hero --- */
 .samples-hero {
   padding: 8rem 2rem 4rem;
