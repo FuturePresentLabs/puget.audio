@@ -7175,6 +7175,60 @@ body {
   text-align: center;
 }
 
+/* Inline success state after a successful fetch submission */
+.puget-notify-success {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem;
+  background: rgba(201, 169, 110, 0.05);
+  border: 1px solid rgba(201, 169, 110, 0.25);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.puget-notify-success-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto 0.9rem;
+  border-radius: 50%;
+  background: rgba(201, 169, 110, 0.12);
+  color: var(--accent);
+}
+
+.puget-notify-success-heading {
+  color: var(--text-primary);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+}
+
+.puget-notify-success-body {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.puget-notify-success-body strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+/* Inline error message (appended below the row, before any helper note) */
+.puget-notify-error {
+  margin-top: 0.1rem;
+  padding: 0.5rem 0.75rem;
+  background: rgba(231, 76, 90, 0.08);
+  border: 1px solid rgba(231, 76, 90, 0.3);
+  border-radius: 6px;
+  color: #e74c5a;
+  font-size: 0.82rem;
+  text-align: center;
+}
+
 @media (max-width: 520px) {
   .puget-notify-row {
     grid-template-columns: 1fr;

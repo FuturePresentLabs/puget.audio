@@ -11,7 +11,7 @@
 {{ $label := .label | default "Get notified at launch" }}
 {{ $button := .button | default "Notify Me" }}
 {{ $class := .class | default "btn-primary" }}
-<form class="puget-notify-form" action="https://api.gsgmfg.com/waitlist" method="POST">
+<form class="puget-notify-form" action="https://api.gsgmfg.com/waitlist" method="POST" onsubmit="return false;">
   <label for="puget-notify-{{ $interest }}" class="puget-notify-label">{{ $label | safeHTML }}</label>
   <div class="puget-notify-row">
     <input type="email" id="puget-notify-{{ $interest }}" name="email" placeholder="you@example.com" required />
