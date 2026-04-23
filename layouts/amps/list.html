@@ -15,14 +15,17 @@
     <p class="amps-hero-description">Four amp families. One engine. Every component simulated.</p>
 
     <div class="amps-hero-cta">
-      <form class="amps-email-form" action="https://api.gsgmfg.com/waitlist" method="POST" onsubmit="return false;">
-        <label for="amps-email-hero" class="amps-email-label">Get notified when SWAMPALL drops</label>
-        <div class="amps-email-row">
-          <input type="email" id="amps-email-hero" name="email" placeholder="you@example.com" required />
-          <input type="hidden" name="interest" value="amps-swampall" />
-          <button type="submit" class="btn-primary">Notify Me</button>
-        </div>
-      </form>
+      <div class="newsletter-cta amps-email-cta" data-newsletter-root data-newsletter-variant="amps-swampall">
+        <form class="amps-email-form" data-newsletter-form novalidate>
+          <label for="amps-email-hero" class="amps-email-label">Get notified when SWAMPALL drops</label>
+          <div class="amps-email-row">
+            <input type="email" id="amps-email-hero" name="email" placeholder="you@example.com" required autocomplete="email" data-newsletter-input />
+            <button type="submit" class="btn-primary" data-newsletter-submit>Notify Me</button>
+          </div>
+          <p class="puget-notify-error" data-newsletter-error hidden></p>
+          <p class="puget-notify-success" data-newsletter-success hidden>You&rsquo;re on the list. We&rsquo;ll email you when SWAMPALL drops.</p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
@@ -220,13 +223,16 @@
 <section class="amps-bottom-cta">
   <h2>SWAMPALL is coming.</h2>
   <p>Don&rsquo;t miss it.</p>
-  <form class="amps-email-form" action="https://api.gsgmfg.com/waitlist" method="POST" onsubmit="return false;">
-    <div class="amps-email-row">
-      <input type="email" name="email" placeholder="you@example.com" required />
-      <input type="hidden" name="interest" value="amps-swampall" />
-      <button type="submit" class="btn-primary">Notify Me</button>
-    </div>
-  </form>
+  <div class="newsletter-cta amps-email-cta" data-newsletter-root data-newsletter-variant="amps-swampall">
+    <form class="amps-email-form" data-newsletter-form novalidate>
+      <div class="amps-email-row">
+        <input type="email" name="email" placeholder="you@example.com" required autocomplete="email" data-newsletter-input />
+        <button type="submit" class="btn-primary" data-newsletter-submit>Notify Me</button>
+      </div>
+      <p class="puget-notify-error" data-newsletter-error hidden></p>
+      <p class="puget-notify-success" data-newsletter-success hidden>You&rsquo;re on the list. We&rsquo;ll email you when SWAMPALL drops.</p>
+    </form>
+  </div>
   <p class="amps-bottom-note">No spam. Just a heads-up when it drops.</p>
 </section>
 

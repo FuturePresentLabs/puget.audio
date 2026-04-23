@@ -7175,52 +7175,55 @@ body {
   text-align: center;
 }
 
-/* Inline success state after a successful fetch submission */
-.puget-notify-success {
+/* Newsletter / waitlist root wrapper (GSG newsletter.js contract) */
+.newsletter-cta {
   max-width: 440px;
-  margin: 0 auto;
-  padding: 1.75rem 1.5rem;
-  background: rgba(201, 169, 110, 0.05);
-  border: 1px solid rgba(201, 169, 110, 0.25);
-  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.newsletter-cta[hidden] { display: none; }
+
+/* Loading state: button gets a subtle pulsing opacity while the fetch runs */
+.newsletter-cta--loading [data-newsletter-submit] {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+/* Success state — muted the label/helper so the success message reads first */
+.newsletter-cta--success .puget-notify-label,
+.newsletter-cta--success .amps-email-label,
+.newsletter-cta--success .puget-notify-note,
+.newsletter-cta--success .signup-note {
+  opacity: 0.5;
+}
+
+.newsletter-cta--success .puget-notify-row,
+.newsletter-cta--success .amps-email-row,
+.newsletter-cta--success .signup-form input[type="email"],
+.newsletter-cta--success .signup-form button {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* Pre-seeded success paragraph, revealed by newsletter.js via [hidden] toggle */
+.puget-notify-success {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: rgba(201, 169, 110, 0.08);
+  border: 1px solid rgba(201, 169, 110, 0.28);
+  border-radius: 6px;
+  color: var(--accent);
+  font-size: 0.88rem;
+  line-height: 1.5;
   text-align: center;
 }
 
-.puget-notify-success-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  margin: 0 auto 0.9rem;
-  border-radius: 50%;
-  background: rgba(201, 169, 110, 0.12);
-  color: var(--accent);
-}
-
-.puget-notify-success-heading {
-  color: var(--text-primary);
-  font-size: 1.05rem;
-  font-weight: 600;
-  margin-bottom: 0.35rem;
-}
-
-.puget-notify-success-body {
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  line-height: 1.55;
-  margin: 0;
-}
-
-.puget-notify-success-body strong {
-  color: var(--text-primary);
-  font-weight: 600;
-}
-
-/* Inline error message (appended below the row, before any helper note) */
+/* Pre-seeded error paragraph, revealed by newsletter.js */
 .puget-notify-error {
-  margin-top: 0.1rem;
-  padding: 0.5rem 0.75rem;
+  margin-top: 0.75rem;
+  padding: 0.6rem 0.85rem;
   background: rgba(231, 76, 90, 0.08);
   border: 1px solid rgba(231, 76, 90, 0.3);
   border-radius: 6px;
@@ -7228,6 +7231,9 @@ body {
   font-size: 0.82rem;
   text-align: center;
 }
+
+.puget-notify-success[hidden],
+.puget-notify-error[hidden] { display: none; }
 
 @media (max-width: 520px) {
   .puget-notify-row {
