@@ -88,14 +88,30 @@
     </nav>
 
     <div class="sample-pack-hero">
-      {{/* Cover image area — square aspect ratio */}}
+      {{/* Cover image area — square aspect ratio, run through the Hugo image pipeline */}}
       <div class="sample-pack-cover">
-        {{ with .Params.cover_image }}
-        <img src="{{ . }}" alt="{{ $.Title }} cover art" class="sample-pack-cover-img" loading="eager" width="500" height="500">
+        {{ $coverPath := .Params.cover_image }}
+        {{ $cover := "" }}
+        {{ with $coverPath }}{{ $cover = resources.Get . }}{{ end }}
+        {{ if $cover }}
+          {{ $small  := $cover.Fit "560x560 webp q82" }}
+          {{ $medium := $cover.Fit "840x840 webp q82" }}
+          {{ $large  := $cover.Fit "1120x1120 webp q82" }}
+          <img
+            src="{{ $medium.RelPermalink }}"
+            srcset="{{ $small.RelPermalink }} 560w, {{ $medium.RelPermalink }} 840w, {{ $large.RelPermalink }} 1120w"
+            sizes="(max-width: 760px) 86vw, 500px"
+            width="{{ $medium.Width }}"
+            height="{{ $medium.Height }}"
+            alt="{{ .Title }} cover art"
+            class="sample-pack-cover-img"
+            loading="eager" />
+        {{ else if $coverPath }}
+          <img src="{{ $coverPath }}" alt="{{ .Title }} cover art" class="sample-pack-cover-img" loading="eager">
         {{ else }}
-        <div class="sample-pack-cover-placeholder" data-genre="{{ $.Params.genre | urlize }}">
-          <span class="sample-pack-cover-icon">{{ $.Params.genre | default "SP" }}</span>
-        </div>
+          <div class="sample-pack-cover-placeholder" data-genre="{{ .Params.genre | urlize }}">
+            <span class="sample-pack-cover-icon">{{ .Params.genre | default "SP" }}</span>
+          </div>
         {{ end }}
       </div>
 
@@ -157,12 +173,16 @@
         <div class="samples-card{{ if eq .Params.status "coming-soon" }} coming-soon{{ end }}">
           <a href="{{ .Permalink }}" class="samples-card-link">
             <div class="samples-card-image">
-              {{ with .Params.cover_image }}
-              <img src="{{ . }}" alt="{{ $.Title }} cover" class="samples-card-cover-img" loading="lazy" width="400" height="400">
+              {{ $rc := "" }}{{ with .Params.cover_image }}{{ $rc = resources.Get . }}{{ end }}
+              {{ if $rc }}
+                {{ $thumb := $rc.Fit "480x480 webp q82" }}
+                <img src="{{ $thumb.RelPermalink }}" alt="{{ .Title }} cover" class="samples-card-cover-img" loading="lazy" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}">
+              {{ else if .Params.cover_image }}
+                <img src="{{ .Params.cover_image }}" alt="{{ .Title }} cover" class="samples-card-cover-img" loading="lazy" width="400" height="400">
               {{ else }}
-              <div class="samples-card-placeholder" data-genre="{{ .Params.genre | urlize }}">
-                <span class="samples-card-icon">{{ .Params.genre | default "SP" }}</span>
-              </div>
+                <div class="samples-card-placeholder" data-genre="{{ .Params.genre | urlize }}">
+                  <span class="samples-card-icon">{{ .Params.genre | default "SP" }}</span>
+                </div>
               {{ end }}
             </div>
             <div class="samples-card-body">

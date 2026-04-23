@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $flag := index .Site.Data.features.collections "studio" }}
+{{ $collComingSoon := and $flag $flag.coming_soon }}
 <section class="plugins-hero">
   <div class="plugins-hero-bg"></div>
   <div class="plugins-hero-content">
@@ -15,6 +17,7 @@
 {{/* Bundle card */}}
 {{ $bundle := .GetPage "studio-collection" }}
 {{ with $bundle }}
+{{ $bundleComingSoon := or $collComingSoon (eq .Params.status "coming-soon") }}
 <section class="bundle-highlight">
   <div class="bundle-card">
     <div class="bundle-info">
@@ -25,7 +28,11 @@
         <span class="bundle-price">${{ .Params.price }}</span>
         <span class="bundle-savings">Save $296 vs. buying individually</span>
       </div>
+      {{ if $bundleComingSoon }}
+      {{ partial "notify-form.html" (dict "interest" "studio-collection" "label" "Early-bird pricing for the waitlist" "button" "Join the Waitlist") }}
+      {{ else }}
       {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary") }}
+      {{ end }}
       <a href="{{ .Permalink }}" class="bundle-details-link">View bundle details</a>
     </div>
   </div>
@@ -37,7 +44,8 @@
   <h2>Individual Plugins</h2>
   <div class="plugins-grid">
     {{ range where .Pages "Params.product_type" "plugin" }}
-    <div class="plugin-card{{ if eq .Params.status "coming-soon" }} coming-soon{{ end }}">
+    {{ $cardComingSoon := or $collComingSoon (eq .Params.status "coming-soon") }}
+    <div class="plugin-card{{ if $cardComingSoon }} coming-soon{{ end }}">
       <a href="{{ .Permalink }}" class="plugin-card-link">
         <div class="plugin-card-image">
           <div class="plugin-card-placeholder">
@@ -52,7 +60,7 @@
       </a>
       <div class="plugin-card-footer">
         <span class="plugin-card-price">${{ .Params.price }}</span>
-        {{ if eq .Params.status "coming-soon" }}
+        {{ if $cardComingSoon }}
         <span class="plugin-card-coming-soon">Coming Soon</span>
         {{ else }}
         {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Add to Cart" "class" "btn-primary btn-sm") }}

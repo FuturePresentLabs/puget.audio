@@ -1,38 +1,161 @@
-<section id="products" class="products">
-  <h2>Studio-Grade Audio Tools</h2>
-  <div class="product-grid product-grid-3">
-    <a href="/plugins/" class="product-card featured" style="text-decoration:none;color:inherit;">
-      <div class="product-image">
-        {{ $product := resources.Get "images/puget_producer_workflow.png" }}
-        {{ $productCropped := $product.Fill "400x300 center" }}
-        <img src="{{ $productCropped.RelPermalink }}" alt="VST3 Plugins" width="400" height="300" />
+{{/*
+  Homepage shop sections — categorized.
+
+  Renders three sections (Sample Packs, Hardware, Plugins) that each iterate
+  over the content tree, so adding another sample pack / hardware item /
+  plugin collection doesn't require editing this shortcode. Coming-soon items
+  stay on the grid with a waitlist badge so the roadmap is visible.
+*/}}
+
+{{/* ---------------------------- helpers ---------------------------- */}}
+{{ $features := site.Data.features }}
+
+{{/* ----------------------------- Sample Packs ----------------------------- */}}
+{{ $samplePacks := where .Site.RegularPages "Section" "sample-packs" }}
+<section id="products" class="launch-shop-section launch-shop-section--samples">
+  <div class="launch-shop-header">
+    <div>
+      <div class="launch-shop-kicker">Sample Packs</div>
+      <h2 class="launch-shop-title">Recorded through analog. Ready for your DAW.</h2>
+    </div>
+    <a href="/sample-packs/" class="launch-shop-link">All sample packs &rarr;</a>
+  </div>
+  <div class="launch-shop-grid">
+    {{ range $samplePacks }}
+    {{ $comingSoon := eq .Params.status "coming-soon" }}
+    {{ $title := .Title }}
+    <a href="{{ .Permalink }}" class="launch-shop-card launch-shop-card--square{{ if $comingSoon }} is-coming-soon{{ end }}">
+      <div class="launch-shop-card-image">
+        {{ with .Params.cover_image }}
+          {{ $coverImg := resources.Get . }}
+          {{ if $coverImg }}
+            {{ $resized := $coverImg.Fit "600x600" }}
+            <img src="{{ $resized.RelPermalink }}" alt="{{ $title }} cover" loading="lazy" />
+          {{ else }}
+            <img src="{{ . }}" alt="{{ $title }} cover" loading="lazy" />
+          {{ end }}
+        {{ else }}
+        {{ $placeholder := resources.Get "images/puget_recording_session.png" }}
+        {{ if $placeholder }}{{ $c := $placeholder.Fit "600x600" }}<img src="{{ $c.RelPermalink }}" alt="{{ $title }}" loading="lazy" />{{ end }}
+        {{ end }}
       </div>
-      <h3>VST3 Plugins</h3>
-      <p class="price">From $49</p>
-      <p class="description">Professional effect emulations for your DAW. Circuit-accurate models that respond like the real thing.</p>
-      <span class="badge">5 Plugins Available</span>
-    </a>
-    <a href="/hardware/" class="product-card" style="text-decoration:none;color:inherit;">
-      <div class="product-image">
-        {{ $detail := resources.Get "images/puget_mixing_desk.png" }}
-        {{ $detailCropped := $detail.Fill "400x300 center" }}
-        <img src="{{ $detailCropped.RelPermalink }}" alt="Hardware" width="400" height="300" />
+      <div class="launch-shop-card-body">
+        {{ with .Params.genre }}<div class="launch-shop-card-kicker">{{ . }}</div>{{ end }}
+        <div class="launch-shop-card-title">{{ $title | replaceRE " — .*" "" }}</div>
+        <p class="launch-shop-card-desc">{{ .Description | truncate 140 }}</p>
       </div>
-      <h3>Hardware</h3>
-      <p class="price">From $449</p>
-      <p class="description">Eurorack cases, guitar pedals, and audio equipment built in our Seattle workshop.</p>
-      <span class="badge">Cornucopia Available</span>
-    </a>
-    <a href="/sample-packs/" class="product-card" style="text-decoration:none;color:inherit;">
-      <div class="product-image">
-        {{ $samples := resources.Get "images/puget_recording_session.png" }}
-        {{ $samplesCropped := $samples.Fill "400x300 center" }}
-        <img src="{{ $samplesCropped.RelPermalink }}" alt="Sample Packs" width="400" height="300" />
+      <div class="launch-shop-card-footer">
+        {{ if $comingSoon }}
+        <span class="launch-shop-card-badge">Coming Soon</span>
+        <span class="launch-shop-card-price">${{ .Params.price }}</span>
+        {{ else }}
+        <span class="launch-shop-card-badge">Instant Download</span>
+        <span class="launch-shop-card-price">${{ .Params.price }}</span>
+        {{ end }}
       </div>
-      <h3>Sample Packs</h3>
-      <p class="price">From $29</p>
-      <p class="description">Production-ready sounds recorded through real analog hardware. Drum breaks, bass, synths, and FX.</p>
-      <span class="badge">Coming Soon</span>
     </a>
+    {{ end }}
+  </div>
+</section>
+
+{{/* ------------------------------ Hardware ------------------------------ */}}
+{{ $hardware := where .Site.RegularPages "Section" "hardware" }}
+{{ if gt (len $hardware) 0 }}
+<section class="launch-shop-section">
+  <div class="launch-shop-header">
+    <div>
+      <div class="launch-shop-kicker">Hardware</div>
+      <h2 class="launch-shop-title">Built in Seattle. Configured by you.</h2>
+    </div>
+    <a href="/hardware/" class="launch-shop-link">All hardware &rarr;</a>
+  </div>
+  <div class="launch-shop-grid">
+    {{ range $hardware }}
+    {{ $comingSoon := eq .Params.status "coming-soon" }}
+    {{ $page := . }}
+    <a href="{{ .Permalink }}" class="launch-shop-card{{ if $comingSoon }} is-coming-soon{{ end }}">
+      <div class="launch-shop-card-image">
+        {{ with .Params.images }}
+          {{ $firstImg := index . 0 }}
+          {{ $imgResource := resources.Get $firstImg }}
+          {{ if $imgResource }}
+            {{ $c := $imgResource.Fill "600x450 center" }}
+            <img src="{{ $c.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />
+          {{ else }}
+            {{ $img := resources.Get "images/puget_mixing_desk.png" }}
+            {{ if $img }}{{ $c := $img.Fill "600x450 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />{{ end }}
+          {{ end }}
+        {{ else }}
+          {{ $img := resources.Get "images/puget_mixing_desk.png" }}
+          {{ if $img }}{{ $c := $img.Fill "600x450 center" }}<img src="{{ $c.RelPermalink }}" alt="{{ $page.Title }}" loading="lazy" />{{ end }}
+        {{ end }}
+      </div>
+      <div class="launch-shop-card-body">
+        <div class="launch-shop-card-kicker">Eurorack &middot; 7U</div>
+        <div class="launch-shop-card-title">{{ .Title }}</div>
+        <p class="launch-shop-card-desc">{{ .Description | truncate 140 }}</p>
+      </div>
+      <div class="launch-shop-card-footer">
+        {{ if $comingSoon }}
+        <span class="launch-shop-card-badge">Coming Soon</span>
+        {{ else }}
+        <span class="launch-shop-card-badge">Built to Order</span>
+        {{ end }}
+        <span class="launch-shop-card-price">From ${{ .Params.price }}</span>
+      </div>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{/* ------------------------------- Plugins -------------------------------
+  Homepage plugin row: emoji-forward collection-item cards. Legends is the
+  only active launch product (marked as "Up next") — the rest ship with a
+  grey "Coming Soon" badge so the launch focus stays on Legends.
+*/}}
+{{ $plugins := slice
+  (dict "key" "legends"   "emoji" "⚡" "tagline" "Iconic guitar pedals"    "price" "$49"   "status" "up-next")
+  (dict "key" "continuum" "emoji" "〰" "tagline" "BBD modulation & time"    "price" "$79"   "status" "coming-soon")
+  (dict "key" "studio"    "emoji" "◈" "tagline" "Studio processors"        "price" "$699"  "status" "coming-soon")
+  (dict "key" "amps"      "emoji" "▲" "tagline" "Tube amp simulations"     "price" "$249"  "status" "coming-soon")
+}}
+<section class="launch-shop-section launch-shop-section--plugins">
+  <div class="launch-shop-header">
+    <div>
+      <div class="launch-shop-kicker">Plugins</div>
+      <h2 class="launch-shop-title">Simulated analog. Circuit by circuit.</h2>
+    </div>
+    <a href="/plugins/" class="launch-shop-link">All plugins &rarr;</a>
+  </div>
+  <div class="launch-shop-plugin-grid">
+    {{ range $plugins }}
+    {{ $key := .key }}
+    {{ $status := .status }}
+    {{ $comingSoon := eq $status "coming-soon" }}
+    {{ $upNext := eq $status "up-next" }}
+    {{ $page := site.GetPage (printf "/plugins/%s" $key) }}
+    {{ if $page }}
+    <a href="{{ $page.Permalink }}" class="collection-item collection-item--large{{ if $comingSoon }} is-coming-soon{{ end }}{{ if $upNext }} is-up-next{{ end }}">
+      <div class="collection-item-visual {{ $key }}">
+        <span>{{ .emoji }}</span>
+      </div>
+      <div class="collection-item-body">
+        <h3>{{ $key | title }}</h3>
+        <p>{{ .tagline }}</p>
+        {{ if $comingSoon }}
+          <span class="collection-item-badge">Coming Soon</span>
+        {{ else if $upNext }}
+          <div class="collection-item-row">
+            <span class="collection-item-badge collection-item-badge--up-next">Up next</span>
+            <span class="collection-item-price">{{ .price }}</span>
+          </div>
+        {{ else }}
+          <span class="collection-item-price">{{ .price }}</span>
+        {{ end }}
+      </div>
+    </a>
+    {{ end }}
+    {{ end }}
   </div>
 </section>

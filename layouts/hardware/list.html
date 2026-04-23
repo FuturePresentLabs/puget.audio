@@ -15,9 +15,22 @@
     <div class="hardware-card">
       <a href="{{ .Permalink }}" class="hardware-card-link">
         <div class="hardware-card-image">
-          <div class="hardware-card-placeholder">
-            <span class="hardware-card-icon">HW</span>
-          </div>
+          {{ with .Params.images }}
+            {{ $firstImg := index . 0 }}
+            {{ $imgResource := resources.Get $firstImg }}
+            {{ if $imgResource }}
+              {{ $resized := $imgResource.Fill "400x300 center" }}
+              <img src="{{ $resized.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
+            {{ else }}
+              <div class="hardware-card-placeholder">
+                <span class="hardware-card-icon">HW</span>
+              </div>
+            {{ end }}
+          {{ else }}
+            <div class="hardware-card-placeholder">
+              <span class="hardware-card-icon">HW</span>
+            </div>
+          {{ end }}
         </div>
         <div class="hardware-card-body">
           <h3>{{ .Title }}</h3>

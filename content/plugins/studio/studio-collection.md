@@ -34,9 +34,9 @@ An engineer can mix an entire record with these five tools. Generations of them 
 | [Puget Variable-Mu](/plugins/studio/variable-mu/) | 670 style | Compressor/Limiter |
 | [Puget Channel](/plugins/studio/channel/) | 1073 style | Preamp/EQ |
 
-## $699 — Save $296
+## $699 for the full bundle
 
-That's roughly $140 per plugin vs. $199 individually. Five perpetual licenses, VST3 format, macOS and Windows.
+Five perpetual licenses in one purchase — Passive EQ, Opto Compressor, FET Limiter, Variable-Mu, and Channel. VST3, macOS and Windows.
 
 No subscriptions. No iLok. No dongles. Buy once, use forever.
 

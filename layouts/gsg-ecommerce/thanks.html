@@ -1,0 +1,127 @@
+{{/*
+  Thanks page — reads ?order=<id> from the URL, fetches
+  GET /orders/{order_id}, renders items + totals + status. Clears
+  the cart and any checkout session state on successful render.
+
+  Falls back to a generic thank-you if no order id is present
+  (e.g. someone arrives here directly).
+*/}}
+{{ define "main" }}
+<div class="gsg-page gsg-thanks-page">
+  <div class="gsg-page-inner">
+    <div class="gsg-thanks-icon">
+      <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+        <polyline points="22 4 12 14.01 9 11.01"/>
+      </svg>
+    </div>
+    <h1 class="gsg-page-title">Thank You!</h1>
+    <p class="gsg-thanks-message" data-thanks-message>Your order has been received and is being processed.</p>
+
+    <div class="gsg-thanks-details" data-thanks-details hidden></div>
+    <div class="gsg-thanks-error" data-thanks-error hidden></div>
+
+    <div class="gsg-thanks-next">
+      <h2>What&rsquo;s Next</h2>
+      <ul class="gsg-thanks-steps">
+        <li>Check your email for your order confirmation and any download links or license keys.</li>
+        <li>Hardware orders ship from Seattle &mdash; you&rsquo;ll get a tracking number once it leaves the workshop.</li>
+        <li>Digital goods are delivered instantly via the link in your confirmation email.</li>
+      </ul>
+    </div>
+
+    <div class="gsg-thanks-actions">
+      <a href="/products/" class="gsg-btn gsg-btn-secondary">Keep Shopping</a>
+      <a href="/" class="gsg-btn gsg-btn-ghost">Return to Homepage</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var api = window.GSGApi;
+  var Cart = window.GSGCart;
+
+  function qp(name) {
+    var m = new RegExp('[?&]' + name + '=([^&]+)').exec(location.search);
+    return m ? decodeURIComponent(m[1]) : '';
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str == null ? '' : String(str)));
+    return div.innerHTML;
+  }
+
+  function formatCents(cents) {
+    var n = Number(cents) || 0;
+    return '$' + (n / 100).toFixed(2);
+  }
+
+  var detailsEl = document.querySelector('[data-thanks-details]');
+  var errorEl = document.querySelector('[data-thanks-error]');
+  var messageEl = document.querySelector('[data-thanks-message]');
+
+  var orderId = qp('order') || qp('order_id') || qp('transaction_id') || '';
+  if (!orderId) {
+    try { orderId = localStorage.getItem('lastOrderId') || ''; } catch (_) {}
+  }
+
+  function renderOrder(order) {
+    if (!order) return;
+    var items = order.items || order.cart || [];
+    var total = order.total_cents != null ? order.total_cents : order.total;
+    var email = order.email || '';
+    var html = '<div class="gsg-thanks-order">';
+    if (email) {
+      html += '<p class="gsg-thanks-email">Confirmation sent to <strong>' + escapeHtml(email) + '</strong></p>';
+    }
+    if (items.length) {
+      html += '<div class="gsg-thanks-items">';
+      for (var i = 0; i < items.length; i++) {
+        var it = items[i];
+        var lineTotal = (it.price_cents != null ? it.price_cents : 0) * (it.qty != null ? it.qty : 1);
+        html += '<div class="gsg-thanks-item">';
+        html += '  <span>' + escapeHtml(it.title || it.sku) + (it.qty && it.qty > 1 ? (' &times; ' + it.qty) : '') + '</span>';
+        html += '  <span>' + formatCents(lineTotal) + '</span>';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+    if (total != null) {
+      html += '<div class="gsg-thanks-total"><span>Total</span><span>' + formatCents(total) + '</span></div>';
+    }
+    if (order.status && order.status !== 'paid' && order.status !== 'completed') {
+      html += '<p class="gsg-thanks-status">Status: <strong>' + escapeHtml(order.status) + '</strong></p>';
+    }
+    html += '</div>';
+    detailsEl.innerHTML = html;
+    detailsEl.hidden = false;
+  }
+
+  if (!orderId) {
+    // Nothing to fetch — generic thank-you already shown.
+    return;
+  }
+
+  // Clear the cart + checkout session now that we've hit a confirmation.
+  if (Cart) Cart.clear();
+  try { sessionStorage.removeItem('checkout.tokenizerSession'); } catch (_) {}
+  try { localStorage.removeItem('lastOrderId'); } catch (_) {}
+  try { localStorage.removeItem('lastOrderValue'); } catch (_) {}
+
+  if (!api) return;
+
+  api.get('/orders/' + encodeURIComponent(orderId)).then(function (order) {
+    renderOrder(order);
+  }).catch(function () {
+    if (errorEl) {
+      errorEl.textContent = 'We couldn\'t load your order summary right now. Your confirmation email has the details.';
+      errorEl.hidden = false;
+    }
+  });
+})();
+</script>
+{{ end }}

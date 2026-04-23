@@ -1,0 +1,58 @@
+{{/*
+  GSG Add to Cart button.
+
+  Emits the canonical data-* attributes the GSG integration guide
+  specifies (data-add-to-cart, data-sku, data-price-cents,
+  data-marked-price-cents, data-title, data-image, data-qty). The
+  site-level gsg-ecommerce.js binds to these in the capture phase
+  and handles the cart add.
+
+  Parameters (dict):
+    sku            - Product SKU (required)
+    price          - Product price in DOLLARS (e.g. 49.00). Converted
+                     to cents for you. Required unless price_cents set.
+    price_cents    - Price in integer cents. If provided, wins over price.
+    marked_price   - Optional "was" price in dollars (strike-through).
+    marked_price_cents - Optional "was" price in cents.
+    title          - Product title
+    image          - Product image URL (optional)
+    qty            - Default quantity (default 1)
+    qty_selector   - CSS selector for a quantity <input> to read at click time
+    label          - Button text (default "Add to Cart — $price")
+    class          - Additional CSS classes
+*/}}
+{{ $sku := .sku }}
+{{ $title := .title }}
+{{ $image := .image | default "" }}
+{{ $class := .class | default "" }}
+{{ $qty := .qty | default 1 }}
+{{ $type := .type | default "digital" }}
+
+{{/* Resolve price_cents: prefer explicit, else multiply dollar price by 100 */}}
+{{ $priceCents := 0 }}
+{{ if .price_cents }}{{ $priceCents = .price_cents }}{{ else if .price }}{{ $priceCents = mul (float .price) 100 | int }}{{ end }}
+
+{{ $markedCents := 0 }}
+{{ if .marked_price_cents }}{{ $markedCents = .marked_price_cents }}{{ else if .marked_price }}{{ $markedCents = mul (float .marked_price) 100 | int }}{{ end }}
+{{ if eq $markedCents 0 }}{{ $markedCents = $priceCents }}{{ end }}
+
+{{/* Pretty price for the default label (e.g. "Add to Cart — $49.00") */}}
+{{ $priceDisplay := printf "$%.2f" (div (float $priceCents) 100.0) }}
+{{ $label := .label | default (printf "Add to Cart — %s" $priceDisplay) }}
+
+<button
+  type="button"
+  class="gsg-add-to-cart {{ $class }}"
+  data-add-to-cart
+  data-sku="{{ $sku }}"
+  data-title="{{ $title }}"
+  data-price-cents="{{ $priceCents }}"
+  data-marked-price-cents="{{ $markedCents }}"
+  data-image="{{ $image }}"
+  data-qty="{{ $qty }}"
+  data-type="{{ $type }}"
+  {{ with .qty_selector }}data-qty-selector="{{ . }}"{{ end }}
+>
+  <span class="gsg-atc-label">{{ $label }}</span>
+  <span class="gsg-atc-added" aria-hidden="true">Added!</span>
+</button>

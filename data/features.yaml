@@ -1,14 +1,16 @@
 # Feature flags for Puget Audio
+#
+# `available: true` shows Add to Cart. `coming_soon: true` shows Notify Me / waitlist.
+# Pages themselves stay published so we can link to them and keep marketing live.
 
 # Featured collection on the main plugins page
 featured_collection: legends
 
-# Collection availability
-# When false, shows "Coming Soon" button instead of "Add to Cart"
+# Plugin collections
 collections:
   legends:
-    available: true
-    coming_soon: false
+    available: false
+    coming_soon: true
   continuum:
     available: false
     coming_soon: true
@@ -18,3 +20,18 @@ collections:
   amps:
     available: false
     coming_soon: true
+
+# Sample packs
+sample_packs:
+  lasers:
+    available: true
+    coming_soon: false
+  dnb_essentials:
+    available: false
+    coming_soon: true
+
+# Hardware
+hardware:
+  cornucopia:
+    available: true
+    coming_soon: false

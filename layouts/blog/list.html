@@ -1,40 +1,112 @@
 {{ define "main" }}
-<section class="plugins-hero">
-  <div class="plugins-hero-bg"></div>
-  <div class="plugins-hero-content">
-    <h1>{{ .Title }}</h1>
-    <p class="plugins-hero-tagline">Thoughts on audio engineering, circuit modeling, and building tools for creators.</p>
+{{ $posts := .Pages }}
+{{ $featured := index $posts 0 }}
+{{ $rest := after 1 $posts }}
+{{ $count := len $posts }}
+{{ $latest := $featured.Date.Format "January 2006" }}
+
+<section class="blog-hero">
+  <div class="blog-hero-bg">
+    <div class="blog-hero-grid"></div>
+    <div class="blog-hero-glow"></div>
+  </div>
+  <div class="blog-hero-content">
+    <div class="blog-hero-kicker">Field Notes &middot; Puget Audio</div>
+    <h1 class="blog-hero-title">Circuit stories, honestly told.</h1>
+    <p class="blog-hero-description">
+      Dispatches on how analog gear works, why it sounds the way it does, and how we rebuild it in software &mdash; from tube bias to charge-coupled delay.
+    </p>
+    <div class="blog-hero-meta">
+      <span><strong>{{ $count }}</strong> article{{ if ne $count 1 }}s{{ end }}</span>
+      <span class="blog-hero-divider">&bull;</span>
+      <span>Latest: <strong>{{ $latest }}</strong></span>
+      <span class="blog-hero-divider">&bull;</span>
+      <span>Written by people who <em>play</em> what they build</span>
+    </div>
   </div>
 </section>
 
-<section class="plugins-grid-section">
-  <div class="plugins-grid">
-    {{ range .Pages }}
-    <article class="plugin-card">
-      <a href="{{ .Permalink }}" class="plugin-card-link">
-        <div class="plugin-card-image">
-          {{ if .Params.featured_image }}
-          <img src="{{ .Params.featured_image }}" alt="{{ .Title }}" />
-          {{ else }}
-          <div class="plugin-card-placeholder">
-            <span class="plugin-card-icon">~</span>
+{{ if $featured }}
+<section class="blog-featured">
+  <a href="{{ $featured.Permalink }}" class="blog-featured-card">
+    <div class="blog-featured-accent"></div>
+    <div class="blog-featured-body">
+      <div class="blog-featured-meta">
+        <span class="blog-featured-badge">Latest Post</span>
+        <span>{{ $featured.Date.Format "Jan 2, 2006" }}</span>
+        <span class="blog-featured-dot">&bull;</span>
+        <span>{{ $featured.ReadingTime }} min read</span>
+      </div>
+      <h2 class="blog-featured-title">{{ $featured.Title }}</h2>
+      <p class="blog-featured-desc">{{ with $featured.Params.description }}{{ . }}{{ else }}{{ $featured.Summary | truncate 220 }}{{ end }}</p>
+      <span class="blog-featured-cta">Read the article &rarr;</span>
+    </div>
+    <div class="blog-featured-visual" aria-hidden="true">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="bfgrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#c9a96e" stop-opacity="0.6"/>
+            <stop offset="100%" stop-color="#c9a96e" stop-opacity="0.05"/>
+          </linearGradient>
+        </defs>
+        <g fill="none" stroke="url(#bfgrad)" stroke-width="1.5">
+          <circle cx="100" cy="100" r="70"/>
+          <circle cx="100" cy="100" r="46"/>
+          <circle cx="100" cy="100" r="22"/>
+          <line x1="20" y1="100" x2="180" y2="100"/>
+          <line x1="100" y1="20" x2="100" y2="180"/>
+        </g>
+        <g fill="#c9a96e" opacity="0.85">
+          <circle cx="100" cy="30" r="2.5"/>
+          <circle cx="100" cy="170" r="2.5"/>
+          <circle cx="30" cy="100" r="2.5"/>
+          <circle cx="170" cy="100" r="2.5"/>
+        </g>
+      </svg>
+    </div>
+  </a>
+</section>
+{{ end }}
+
+{{ if gt (len $rest) 0 }}
+<section class="blog-archive">
+  <div class="blog-archive-header">
+    <div class="blog-archive-kicker">The Archive</div>
+    <h2 class="blog-archive-title">More from the bench</h2>
+  </div>
+  <div class="blog-grid">
+    {{ range $i, $p := $rest }}
+    <article class="blog-card">
+      <a href="{{ .Permalink }}" class="blog-card-link">
+        <div class="blog-card-accent"></div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-card-number">{{ printf "%02d" (add $i 2) }}</span>
+            <span>{{ .Date.Format "Jan 2, 2006" }}</span>
+            <span class="blog-card-dot">&bull;</span>
+            <span>{{ .ReadingTime }} min</span>
           </div>
-          {{ end }}
-        </div>
-        <div class="plugin-card-body">
-          <h3>{{ .Title }}</h3>
-          {{ if .Date }}
-          <p class="plugin-card-subtitle">{{ .Date.Format "January 2, 2006" }}</p>
-          {{ end }}
-          {{ if .Params.description }}
-          <p class="plugin-card-desc">{{ .Params.description }}</p>
-          {{ else }}
-          <p class="plugin-card-desc">{{ .Summary | truncate 150 }}</p>
-          {{ end }}
+          <h3 class="blog-card-title">{{ .Title }}</h3>
+          <p class="blog-card-desc">{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary | truncate 140 }}{{ end }}</p>
+          <span class="blog-card-cta">Read &rarr;</span>
         </div>
       </a>
     </article>
     {{ end }}
+  </div>
+</section>
+{{ end }}
+
+<section class="blog-newsletter">
+  <div class="blog-newsletter-inner">
+    <div class="blog-newsletter-kicker">Stay tuned</div>
+    <h2 class="blog-newsletter-title">New gear, new writing, no spam.</h2>
+    <p class="blog-newsletter-description">Launch notices, build reports, and the occasional deep dive into the circuits we&rsquo;re chasing this month.</p>
+    {{ partial "notify-form.html" (dict
+      "interest" "blog"
+      "label" "Get new posts in your inbox"
+      "button" "Subscribe")
+    }}
   </div>
 </section>
 {{ end }}

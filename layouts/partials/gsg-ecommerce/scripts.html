@@ -1,0 +1,32 @@
+{{/*
+  GSG e-commerce bootstrap.
+
+  Emits window.GSG_CONFIG exactly in the shape the integration guide calls
+  for, loads our site-level gsg-ecommerce.js (which owns the cart under
+  `gsg.cart.v3`, cents pricing, line_ids, cart-rules sync, and
+  data-add-to-cart wiring), and loads the newsletter handler.
+*/}}
+{{ $brand := .Site.Params.brand }}
+{{ $api := .Site.Params.api }}
+{{ $fp := .Site.Params.fluidpay }}
+<script>
+  window.GSG_CONFIG = {
+    API_BASE: {{ with $api.base }}{{ . | jsonify }}{{ else }}"https://api.gsgmfg.com"{{ end }},
+    STOREFRONT: {{ with $brand.name }}{{ . | jsonify }}{{ else }}"Puget Audio"{{ end }},
+    STOREFRONT_KEY: {{ with $brand.key }}{{ . | jsonify }}{{ else }}"puget"{{ end }},
+    FLUIDPAY_PUBLIC_KEY: {{ with $fp.publicKey }}{{ . | jsonify }}{{ else }}""{{ end }},
+    FLUIDPAY_TOKENIZER_URL: {{ with $fp.tokenizerScript }}{{ . | jsonify }}{{ else }}"https://app.fluidpay.com/tokenizer/tokenizer.js"{{ end }},
+    PAYMENT_GATEWAY: "fluidpay"
+  };
+</script>
+
+{{/* Pre-load the Fluid Pay tokenizer on every page. Cheap and makes
+     checkout snappier. */}}
+{{ with $fp.tokenizerScript }}
+<script src="{{ . }}" async></script>
+{{ end }}
+
+<script src="/js/gsg-ecommerce.js" defer></script>
+<script src="/js/puget-shop.js" defer></script>
+<script src="/js/newsletter.js" defer></script>
+<script src="/js/attribution.js" defer></script>

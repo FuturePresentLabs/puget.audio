@@ -1,0 +1,32 @@
+{{/*
+  Waitlist / notify-me form for coming-soon products.
+
+  Built on the GSG newsletter.js contract — the handler finds the form via
+  [data-newsletter-root] and drives it with the [data-newsletter-*] hooks.
+  No `action` attribute: newsletter.js owns the endpoint list and the request
+  shape (POST email + storefront to /newsletter/{signup,subscribe,}).
+
+  Params (via dict):
+    interest    - tag sent via data-newsletter-variant (e.g. "legends")
+    label       - form heading (default "Get notified at launch")
+    button      - submit button text (default "Notify Me")
+    class       - extra class on the submit button (default "btn-primary")
+    success     - success message text (default inline)
+*/}}
+{{ $interest := .interest | default "general" }}
+{{ $label := .label | default "Get notified at launch" }}
+{{ $button := .button | default "Notify Me" }}
+{{ $class := .class | default "btn-primary" }}
+{{ $success := .success | default "You&rsquo;re on the list. We&rsquo;ll email you when there&rsquo;s news." }}
+<div class="newsletter-cta puget-notify-cta" data-newsletter-root data-newsletter-variant="{{ $interest }}">
+  <form class="puget-notify-form" data-newsletter-form novalidate>
+    <label for="puget-notify-{{ $interest }}" class="puget-notify-label">{{ $label | safeHTML }}</label>
+    <div class="puget-notify-row">
+      <input type="email" id="puget-notify-{{ $interest }}" name="email" placeholder="you@example.com" required autocomplete="email" data-newsletter-input />
+      <button type="submit" class="{{ $class }}" data-newsletter-submit>{{ $button }}</button>
+    </div>
+    <p class="puget-notify-error" data-newsletter-error hidden></p>
+    <p class="puget-notify-success" data-newsletter-success hidden>{{ $success | safeHTML }}</p>
+    <p class="puget-notify-note">We&rsquo;ll only email you about this release.</p>
+  </form>
+</div>

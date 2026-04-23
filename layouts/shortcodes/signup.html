@@ -6,9 +6,13 @@
   </div>
   <h2>Get Updates</h2>
   <p class="signup-subtitle">Be first to know when we launch.</p>
-  <form class="signup-form" action="https://api.gsgmfg.com/waitlist" method="POST">
-    <input type="email" name="email" placeholder="Enter your email" required />
-    <button type="submit" class="btn-primary">Join List</button>
-  </form>
+  <div class="newsletter-cta signup-cta" data-newsletter-root data-newsletter-variant="homepage">
+    <form class="signup-form" data-newsletter-form novalidate>
+      <input type="email" name="email" placeholder="Enter your email" required autocomplete="email" data-newsletter-input />
+      <button type="submit" class="btn-primary" data-newsletter-submit>Join List</button>
+      <p class="puget-notify-error" data-newsletter-error hidden></p>
+      <p class="puget-notify-success" data-newsletter-success hidden>You&rsquo;re on the list. We&rsquo;ll be in touch.</p>
+    </form>
+  </div>
   <p class="signup-note">No spam. Just updates on our progress.</p>
 </section>

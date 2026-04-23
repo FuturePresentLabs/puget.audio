@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $flag := index .Site.Data.features.collections "continuum" }}
+{{ $comingSoon := and $flag $flag.coming_soon }}
 
 {{/* ========================================
    HERO SECTION
@@ -20,7 +22,11 @@
         <span class="continuum-hero-price">${{ .Params.price }}</span>
         <span class="continuum-hero-price-note">one-time &middot; all six effects</span>
       </div>
+      {{ if $comingSoon }}
+      {{ partial "notify-form.html" (dict "interest" "continuum" "label" "Get notified when Continuum drops" "button" "Notify Me") }}
+      {{ else }}
       {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" "Puget Continuum Collection" "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+      {{ end }}
     </div>
   </div>
 </section>
@@ -158,7 +164,11 @@
       <span class="continuum-price-label">The Continuum Collection</span>
       <span class="continuum-price-amount">${{ .Params.price }}</span>
       <span class="continuum-price-note">All six effects &middot; one-time purchase</span>
+      {{ if $comingSoon }}
+      {{ partial "notify-form.html" (dict "interest" "continuum" "label" "Early-bird pricing for the waitlist" "button" "Join the Waitlist") }}
+      {{ else }}
       {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" "Puget Continuum Collection" "label" "Add to Cart" "class" "btn-primary") }}
+      {{ end }}
     </div>
 
   </div>
@@ -207,9 +217,13 @@
    BOTTOM CTA
    ======================================== */}}
 <section class="continuum-bottom-cta">
-  <h2>Get the Continuum.</h2>
+  <h2>{{ if $comingSoon }}Get on the waitlist.{{ else }}Get the Continuum.{{ end }}</h2>
   <p>Six iconic effects. One purchase. No subscriptions.</p>
+  {{ if $comingSoon }}
+  {{ partial "notify-form.html" (dict "interest" "continuum" "label" "Early access &amp; launch-day pricing" "button" "Notify Me") }}
+  {{ else }}
   {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" "Puget Continuum Collection" "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+  {{ end }}
   <p class="continuum-bottom-note">Perpetual license. Free updates. No iLok.</p>
   <p class="continuum-disclaimer">All product names, trademarks, and registered trademarks are property of their respective owners. These names are used solely to identify the products whose circuits inspired these models. Puget Audio is not affiliated with or endorsed by any of these companies.</p>
 </section>

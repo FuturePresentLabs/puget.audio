@@ -1,0 +1,668 @@
+{{/*
+  Checkout page — implements the GSG integration guide flow:
+    1) POST /invoices  (or /invoices/resume if lastOrderId exists)
+    2) FluidPay tokenizer submits card details → returns a token
+    3) POST /payments/fluidpay/direct with { order_id, payment_token,
+       rendered_total_cents, idempotency_key, billing_address }
+    4) Redirect to /thanks/?order=<order_id>
+
+  Fields:
+    Contact  — email / name (required)
+    Shipping — revealed automatically when the cart has a physical item
+               (client-side only; driven by cart item.type === "physical").
+               Always rendered in the DOM so we can submit without a roundtrip.
+    Payment  — FluidPay tokenizer iframe. Billing fields are collected
+               inside the iframe (settings.billing.show = true), not on
+               this page.
+*/}}
+{{ define "main" }}
+<div class="gsg-page gsg-checkout-page">
+  <div class="gsg-page-inner">
+    <h1 class="gsg-page-title">Checkout</h1>
+
+    <div class="gsg-checkout-empty" data-gsg-checkout-empty hidden>
+      <p>Your cart is empty.</p>
+      <a href="/products/" class="gsg-btn gsg-btn-secondary">Continue Shopping</a>
+    </div>
+
+    <div class="gsg-checkout-layout" data-gsg-checkout-layout>
+      <aside class="gsg-checkout-summary">
+        <h2 class="gsg-checkout-summary-title">Order Summary</h2>
+        <div class="gsg-checkout-items" data-gsg-checkout-items></div>
+        <div class="gsg-checkout-summary-total">
+          <span>Total</span>
+          <span data-cart-total>$0.00</span>
+        </div>
+      </aside>
+
+      <div class="gsg-checkout-form-wrap">
+        <form class="gsg-checkout-form" data-checkout-form novalidate>
+
+          <fieldset class="gsg-fieldset">
+            <legend class="gsg-legend">Contact Information</legend>
+            <div class="gsg-field">
+              <label for="gsg-email" class="gsg-label">Email</label>
+              <input type="email" id="gsg-email" name="email" required class="gsg-input" placeholder="you@example.com" autocomplete="email">
+            </div>
+            <div class="gsg-field-row">
+              <div class="gsg-field">
+                <label for="gsg-first-name" class="gsg-label">First Name</label>
+                <input type="text" id="gsg-first-name" name="first_name" required class="gsg-input" autocomplete="given-name">
+              </div>
+              <div class="gsg-field">
+                <label for="gsg-last-name" class="gsg-label">Last Name</label>
+                <input type="text" id="gsg-last-name" name="last_name" required class="gsg-input" autocomplete="family-name">
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="gsg-fieldset gsg-shipping-fieldset" data-shipping-fieldset hidden>
+            <legend class="gsg-legend">Shipping Address</legend>
+            <p class="gsg-fieldset-note">For Cornucopia and any other physical orders. We ship from Seattle.</p>
+            <div class="gsg-field">
+              <label for="gsg-ship-address1" class="gsg-label">Address</label>
+              <input type="text" id="gsg-ship-address1" name="ship_address1" class="gsg-input" placeholder="Street address" autocomplete="shipping address-line1" data-ship-required>
+            </div>
+            <div class="gsg-field">
+              <label for="gsg-ship-address2" class="gsg-label">Apt, Suite, etc. <span class="gsg-label-optional">optional</span></label>
+              <input type="text" id="gsg-ship-address2" name="ship_address2" class="gsg-input" autocomplete="shipping address-line2">
+            </div>
+            <div class="gsg-field-row">
+              <div class="gsg-field">
+                <label for="gsg-ship-city" class="gsg-label">City</label>
+                <input type="text" id="gsg-ship-city" name="ship_city" class="gsg-input" autocomplete="shipping address-level2" data-ship-required>
+              </div>
+              <div class="gsg-field">
+                <label for="gsg-ship-region" class="gsg-label">State / Region</label>
+                <input type="text" id="gsg-ship-region" name="ship_region" class="gsg-input" autocomplete="shipping address-level1" data-ship-required>
+              </div>
+            </div>
+            <div class="gsg-field-row">
+              <div class="gsg-field">
+                <label for="gsg-ship-postal" class="gsg-label">ZIP / Postal</label>
+                <input type="text" id="gsg-ship-postal" name="ship_postal" class="gsg-input" autocomplete="shipping postal-code" inputmode="numeric" data-ship-required>
+              </div>
+              <div class="gsg-field">
+                <label for="gsg-ship-country" class="gsg-label">Country</label>
+                <select id="gsg-ship-country" name="ship_country" class="gsg-input" autocomplete="shipping country" data-ship-required>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="DE">Germany</option>
+                  <option value="FR">France</option>
+                  <option value="NL">Netherlands</option>
+                  <option value="AU">Australia</option>
+                  <option value="JP">Japan</option>
+                  <option value="OTHER">Other &mdash; email us and we'll arrange</option>
+                </select>
+              </div>
+            </div>
+            <div class="gsg-field">
+              <label for="gsg-ship-phone" class="gsg-label">Phone <span class="gsg-label-optional">optional, for shipping updates</span></label>
+              <input type="tel" id="gsg-ship-phone" name="ship_phone" class="gsg-input" autocomplete="shipping tel" placeholder="+1 (555) 123-4567">
+            </div>
+          </fieldset>
+
+          <fieldset class="gsg-fieldset gsg-shipping-method-fieldset" data-shipping-method-fieldset hidden>
+            <legend class="gsg-legend">Shipping Method</legend>
+            <div class="gsg-field" data-shipping-method-options>
+              <p class="gsg-fieldset-note" data-shipping-method-loading>Loading options&hellip;</p>
+            </div>
+          </fieldset>
+
+          <fieldset class="gsg-fieldset gsg-discount-fieldset">
+            <legend class="gsg-legend">Discount Code <span class="gsg-label-optional">optional</span></legend>
+            <div class="gsg-field-row">
+              <div class="gsg-field">
+                <input type="text" id="gsg-discount-code" name="discount_code" class="gsg-input" placeholder="Enter code" autocomplete="off" data-discount-input>
+              </div>
+              <div class="gsg-field gsg-field--inline-btn">
+                <button type="button" class="gsg-btn gsg-btn-secondary" data-discount-apply>Apply</button>
+              </div>
+            </div>
+            <p class="gsg-discount-feedback" data-discount-feedback hidden></p>
+          </fieldset>
+
+          <fieldset class="gsg-fieldset">
+            <legend class="gsg-legend">Payment</legend>
+            <p class="gsg-fieldset-note">Card details load in a secure frame hosted by FluidPay &mdash; we never see your card.</p>
+            <div id="fluidpay-tokenizer" class="puget-card-container" data-fluidpay-container></div>
+          </fieldset>
+
+          <div class="gsg-checkout-error" data-checkout-error hidden></div>
+
+          <button type="submit" class="gsg-btn gsg-btn-primary gsg-place-order-btn" data-place-order>
+            <span class="gsg-btn-text">Place Order</span>
+            <span class="gsg-btn-loading" hidden>Processing...</span>
+          </button>
+
+          <p class="gsg-checkout-secure">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            Secure checkout. Card data is tokenized by FluidPay &mdash; it never touches our servers.
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var CFG = window.GSG_CONFIG || {};
+  var api = window.GSGApi;
+  var Cart = window.GSGCart;
+  if (!api || !Cart) {
+    console.error('[checkout] GSGApi / GSGCart not loaded');
+    return;
+  }
+
+  var form = document.querySelector('[data-checkout-form]');
+  var emptyEl = document.querySelector('[data-gsg-checkout-empty]');
+  var layoutEl = document.querySelector('[data-gsg-checkout-layout]');
+  var itemsEl = document.querySelector('[data-gsg-checkout-items]');
+  var errorEl = document.querySelector('[data-checkout-error]');
+  var shippingFieldset = document.querySelector('[data-shipping-fieldset]');
+  var placeBtn = document.querySelector('[data-place-order]');
+  var btnText = placeBtn && placeBtn.querySelector('.gsg-btn-text');
+  var btnLoading = placeBtn && placeBtn.querySelector('.gsg-btn-loading');
+
+  var currentOrderId = null;
+  var currentTotalCents = 0;
+  var tokenizer = null;
+  var tokenizerReady = false;
+  var pendingSubmitTimeout = null;
+
+  // -------------------------------------------------------------------
+  // UI helpers
+  // -------------------------------------------------------------------
+  function showError(msg) {
+    if (errorEl) {
+      errorEl.textContent = msg;
+      errorEl.hidden = false;
+    }
+    resetBtn();
+  }
+
+  function clearError() {
+    if (errorEl) { errorEl.hidden = true; errorEl.textContent = ''; }
+  }
+
+  function setLoading() {
+    if (btnText) btnText.hidden = true;
+    if (btnLoading) btnLoading.hidden = false;
+    if (placeBtn) placeBtn.disabled = true;
+    clearError();
+  }
+
+  function resetBtn() {
+    if (btnText) btnText.hidden = false;
+    if (btnLoading) btnLoading.hidden = true;
+    if (placeBtn) placeBtn.disabled = false;
+    if (pendingSubmitTimeout) {
+      clearTimeout(pendingSubmitTimeout);
+      pendingSubmitTimeout = null;
+    }
+  }
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str == null ? '' : String(str)));
+    return div.innerHTML;
+  }
+
+  // -------------------------------------------------------------------
+  // Order summary render
+  // -------------------------------------------------------------------
+  function renderSummary() {
+    var state = Cart.get();
+    if (!state.items.length) {
+      if (layoutEl) layoutEl.hidden = true;
+      if (emptyEl) emptyEl.hidden = false;
+      return false;
+    }
+    if (layoutEl) layoutEl.hidden = false;
+    if (emptyEl) emptyEl.hidden = true;
+
+    var html = '';
+    for (var i = 0; i < state.items.length; i++) {
+      var it = state.items[i];
+      var lineTotal = it.price_cents * it.qty;
+      html += '<div class="gsg-checkout-item">';
+      html += '  <span class="gsg-checkout-item-name">' + escapeHtml(it.title) + '</span>';
+      html += '  <span class="gsg-checkout-item-qty">&times; ' + it.qty + '</span>';
+      html += '  <span class="gsg-checkout-item-price">' + Cart.format(lineTotal) + '</span>';
+      html += '</div>';
+    }
+    if (itemsEl) itemsEl.innerHTML = html;
+
+    // Reveal shipping fieldset if any physical item is present
+    var hasPhysical = false;
+    for (var j = 0; j < state.items.length; j++) {
+      if (state.items[j].type === 'physical') { hasPhysical = true; break; }
+    }
+    if (shippingFieldset) {
+      shippingFieldset.hidden = !hasPhysical;
+      var reqFields = shippingFieldset.querySelectorAll('[data-ship-required]');
+      for (var k = 0; k < reqFields.length; k++) {
+        if (hasPhysical) reqFields[k].setAttribute('required', 'required');
+        else reqFields[k].removeAttribute('required');
+      }
+    }
+    return true;
+  }
+
+  // -------------------------------------------------------------------
+  // FluidPay tokenizer
+  // -------------------------------------------------------------------
+  function buildTokenizerStyles() {
+    var rs = getComputedStyle(document.documentElement);
+    var accent = (rs.getPropertyValue('--accent') || '#c9a96e').trim();
+    var bg = (rs.getPropertyValue('--bg-tertiary') || '#1c1c22').trim();
+    var fg = (rs.getPropertyValue('--text-primary') || '#f5f5f7').trim();
+    var fgMuted = (rs.getPropertyValue('--text-secondary') || '#a0a0a8').trim();
+    var border = (rs.getPropertyValue('--border') || '#2a2a32').trim();
+    return {
+      'body': {
+        'background-color': bg,
+        'color': fg,
+        'font-family': "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif"
+      },
+      'input, select, textarea': {
+        'color': fg,
+        'border-color': border,
+        'background-color': bg
+      },
+      'input:focus, select:focus, textarea:focus': {
+        'border-color': accent,
+        'outline': 'none'
+      },
+      'label': { 'color': fgMuted },
+      'button': {
+        'background-color': accent,
+        'color': bg,
+        'border-color': accent
+      }
+    };
+  }
+
+  function initTokenizer() {
+    if (tokenizerReady) return;
+    if (typeof window.Tokenizer === 'undefined') return;
+    if (!CFG.FLUIDPAY_PUBLIC_KEY) {
+      showError('Payment not configured: missing FLUIDPAY_PUBLIC_KEY.');
+      if (placeBtn) placeBtn.disabled = true;
+      return;
+    }
+    var fp = (CFG.FLUIDPAY_TOKENIZER_URL || '').replace(/\/tokenizer\/.*/, '') || 'https://app.fluidpay.com';
+
+    tokenizer = new Tokenizer({
+      url: fp,
+      apikey: CFG.FLUIDPAY_PUBLIC_KEY,
+      container: '#fluidpay-tokenizer',
+      submission: handleTokenizerResponse,
+      settings: {
+        styles: buildTokenizerStyles(),
+        billing: { show: true }
+      }
+    });
+    tokenizerReady = true;
+  }
+
+  function waitForTokenizer() {
+    if (typeof window.Tokenizer !== 'undefined') { initTokenizer(); return; }
+    var tries = 0;
+    var iv = setInterval(function () {
+      tries++;
+      if (typeof window.Tokenizer !== 'undefined') {
+        clearInterval(iv);
+        initTokenizer();
+      } else if (tries > 60) {
+        clearInterval(iv);
+        showError('Payment form failed to load. Please refresh and try again.');
+      }
+    }, 250);
+  }
+
+  function triggerTokenizer() {
+    if (!tokenizer) { showError('Payment form not ready.'); return; }
+    var methods = ['submit', 'tokenize', 'requestToken', 'process', 'requestPaymentMethod'];
+    var name = null;
+    for (var i = 0; i < methods.length; i++) {
+      if (typeof tokenizer[methods[i]] === 'function') { name = methods[i]; break; }
+    }
+    if (!name) { showError('Payment form not ready.'); return; }
+    tokenizer[name]();
+    // 15s safety net — the tokenizer should call our submission callback.
+    pendingSubmitTimeout = setTimeout(function () {
+      showError('Timed out waiting for the payment form. Please try again.');
+    }, 15000);
+  }
+
+  function handleTokenizerResponse(response) {
+    if (pendingSubmitTimeout) { clearTimeout(pendingSubmitTimeout); pendingSubmitTimeout = null; }
+    var token = (response && (response.token || (response.data && response.data.token))) || '';
+    if (!token) {
+      showError('Card validation failed. Please check your card details.');
+      return;
+    }
+    confirmPayment(token);
+  }
+
+  // -------------------------------------------------------------------
+  // Checkout submit flow
+  // -------------------------------------------------------------------
+  function getAttribution() {
+    try {
+      var raw = localStorage.getItem('attribution.v1');
+      return raw ? JSON.parse(raw) : null;
+    } catch (_) { return null; }
+  }
+
+  function getShippingPayload() {
+    var state = Cart.get();
+    var hasPhysical = false;
+    for (var i = 0; i < state.items.length; i++) {
+      if (state.items[i].type === 'physical') { hasPhysical = true; break; }
+    }
+    if (!hasPhysical) return null;
+    function val(id) {
+      var el = form.querySelector('#' + id);
+      return el ? (el.value || '').trim() : '';
+    }
+    var name = (val('gsg-first-name') + ' ' + val('gsg-last-name')).trim();
+    return {
+      name: name,
+      address1: val('gsg-ship-address1'),
+      address2: val('gsg-ship-address2'),
+      city: val('gsg-ship-city'),
+      region: val('gsg-ship-region'),
+      postalCode: val('gsg-ship-postal'),
+      country: val('gsg-ship-country') || 'US',
+      phone: val('gsg-ship-phone')
+    };
+  }
+
+  function getCartLinesForApi() {
+    var state = Cart.get();
+    var lines = [];
+    for (var i = 0; i < state.items.length; i++) {
+      var it = state.items[i];
+      if (it.qty <= 0) continue;
+      var line = {
+        sku: it.sku,
+        qty: it.qty,
+        line_id: it.line_id,
+        base_price_cents: it.base_price_cents,
+        price_cents: it.price_cents
+      };
+      if (it.customizations && it.customizations.length) {
+        line.customizations = it.customizations.map(function (c) {
+          return {
+            field_id: c.field_id,
+            value: c.value,
+            price_modifier_cents: c.price_modifier_cents || 0
+          };
+        });
+      }
+      lines.push(line);
+    }
+    return lines;
+  }
+
+  function cartTotalCents() {
+    var state = Cart.get();
+    var total = 0;
+    for (var i = 0; i < state.items.length; i++) total += state.items[i].price_cents * state.items[i].qty;
+    return total;
+  }
+
+  function ensureInvoice() {
+    // If we have a recent unpaid order_id, try to resume.
+    var saved = null;
+    try { saved = localStorage.getItem('lastOrderId'); } catch (_) {}
+    if (saved) {
+      return api.post('/invoices/resume', { order_id: saved }).then(function (res) {
+        if (res.status === 200) return res.json();
+        // Stale — fall through and create a new one.
+        try { localStorage.removeItem('lastOrderId'); } catch (_) {}
+        return createInvoice();
+      }).catch(function () {
+        try { localStorage.removeItem('lastOrderId'); } catch (_) {}
+        return createInvoice();
+      }).then(function (data) {
+        if (data && data.status === 'paid') {
+          // Already paid — jump to thanks with the saved id.
+          window.location.href = '/thanks/?order=' + encodeURIComponent(data.order_id || saved);
+          return null;
+        }
+        return data;
+      });
+    }
+    return createInvoice();
+  }
+
+  function createInvoice() {
+    Cart.checkoutClean();
+    var shipping = getShippingPayload();
+    var attribution = getAttribution();
+    var payload = {
+      payment_method: 'fluidpay_direct',
+      currency: 'USD',
+      email: form.querySelector('#gsg-email').value.trim(),
+      cart: getCartLinesForApi(),
+      tax_cents: 0,
+      marketing_opt_out: false,
+      redirect_url: window.location.origin + '/thanks/',
+      storefront: window.location.origin
+    };
+    if (shipping) payload.shipping = shipping;
+    if (selectedShippingMethod) payload.shipping_method = selectedShippingMethod;
+    if (appliedDiscount && appliedDiscount.valid) {
+      payload.discount_code = appliedDiscount.code;
+    } else if (discountInput && discountInput.value) {
+      payload.discount_code = discountInput.value.trim();
+    }
+    if (attribution) {
+      payload.attribution = attribution;
+      if (attribution.ref) payload.referral_code = attribution.ref;
+      if (!payload.discount_code && attribution.discount_code) payload.discount_code = attribution.discount_code;
+    }
+    var idempotencyKey = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random();
+    return api.post('/invoices', payload, {
+      headers: { 'Idempotency-Key': idempotencyKey }
+    }).then(function (res) {
+      if (!res.ok) {
+        return res.text().then(function (txt) {
+          throw new Error('invoice ' + res.status + (txt ? ' ' + txt : ''));
+        });
+      }
+      return res.json();
+    });
+  }
+
+  function confirmPayment(paymentToken) {
+    if (!currentOrderId) {
+      showError('Order reference lost — please refresh and try again.');
+      return;
+    }
+    var idempotencyKey = (crypto && crypto.randomUUID) ? crypto.randomUUID() : String(Date.now()) + Math.random();
+    var payload = {
+      order_id: currentOrderId,
+      payment_token: paymentToken,
+      rendered_total_cents: currentTotalCents,
+      idempotency_key: idempotencyKey
+    };
+    api.post('/payments/fluidpay/direct', payload).then(function (res) {
+      if (res.status === 400) {
+        return res.json().then(function (err) { showError(err && err.detail || 'Payment declined. Please try again.'); });
+      }
+      if (res.status === 404) { showError('Order not found. Refresh and try again.'); return; }
+      if (res.status === 409) { showError('This order has already been paid.'); return; }
+      if (!res.ok) { showError('Payment failed. Please try again or contact support.'); return; }
+      return res.json().then(function (data) {
+        // Success — clear cart + checkout session, redirect.
+        Cart.clear();
+        try { sessionStorage.removeItem('checkout.tokenizerSession'); } catch (_) {}
+        var redirect = (data && (data.redirect_url || data.checkout_url || data.receipt_url))
+          || '/thanks/?order=' + encodeURIComponent(currentOrderId);
+        window.location.href = redirect;
+      });
+    }).catch(function () {
+      showError('Network error. Please try again.');
+    });
+  }
+
+  // -------------------------------------------------------------------
+  // Wire up
+  // -------------------------------------------------------------------
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+    setLoading();
+    // 1) Create (or resume) an invoice, then trigger the tokenizer.
+    ensureInvoice().then(function (invoice) {
+      if (!invoice) return; // Already redirected (paid).
+      currentOrderId = invoice.order_id || invoice.id || invoice.invoice_id;
+      currentTotalCents = Number(invoice.total_cents) || cartTotalCents();
+      if (!currentOrderId) {
+        showError('Could not create order — please try again.');
+        return;
+      }
+      try { localStorage.setItem('lastOrderId', currentOrderId); } catch (_) {}
+      try { localStorage.setItem('lastOrderValue', String(currentTotalCents)); } catch (_) {}
+      // Fire analytics
+      api.post('/session/events/payment', { amount_cents: currentTotalCents }).catch(function () {});
+      triggerTokenizer();
+    }).catch(function (err) {
+      console.error('[checkout] ensureInvoice failed', err);
+      showError('We couldn’t start your order. Please try again.');
+    });
+  }, true);
+
+  // -------------------------------------------------------------------
+  // Shipping options + discounts
+  // -------------------------------------------------------------------
+  var shippingMethodFieldset = document.querySelector('[data-shipping-method-fieldset]');
+  var shippingOptionsEl = document.querySelector('[data-shipping-method-options]');
+  var discountInput = document.querySelector('[data-discount-input]');
+  var discountApplyBtn = document.querySelector('[data-discount-apply]');
+  var discountFeedback = document.querySelector('[data-discount-feedback]');
+  var selectedShippingMethod = null;
+  var appliedDiscount = null;
+
+  function renderShippingOptions(methods) {
+    if (!shippingOptionsEl) return;
+    if (!methods || !methods.length) {
+      shippingMethodFieldset.hidden = true;
+      return;
+    }
+    shippingMethodFieldset.hidden = false;
+    var html = '';
+    for (var i = 0; i < methods.length; i++) {
+      var m = methods[i];
+      var id = 'ship-opt-' + i;
+      var checked = i === 0 ? 'checked' : '';
+      var priceLabel = (m.price_cents != null) ? Cart.format(m.price_cents) : '';
+      html += '<label class="gsg-shipping-option">';
+      html += '  <input type="radio" name="shipping_method" id="' + id + '" value="' + escapeHtml(m.method || '') + '" data-shipping-price-cents="' + (m.price_cents || 0) + '" ' + checked + '>';
+      html += '  <span class="gsg-shipping-option-label">' + escapeHtml(m.label || m.method || 'Shipping') + '</span>';
+      if (priceLabel) html += '  <span class="gsg-shipping-option-price">' + priceLabel + '</span>';
+      html += '</label>';
+    }
+    shippingOptionsEl.innerHTML = html;
+    selectedShippingMethod = methods[0];
+
+    var radios = shippingOptionsEl.querySelectorAll('input[type="radio"]');
+    for (var j = 0; j < radios.length; j++) {
+      radios[j].addEventListener('change', function (e) {
+        var idx = parseInt(e.target.id.split('-').pop(), 10);
+        selectedShippingMethod = methods[idx] || null;
+      });
+    }
+  }
+
+  function fetchShippingOptions() {
+    if (!shippingOptionsEl) return;
+    var state = Cart.get();
+    var hasPhysical = false;
+    for (var i = 0; i < state.items.length; i++) {
+      if (state.items[i].type === 'physical') { hasPhysical = true; break; }
+    }
+    if (!hasPhysical) { if (shippingMethodFieldset) shippingMethodFieldset.hidden = true; return; }
+
+    api.post('/shipping/options', { cart: getCartLinesForApi() }).then(function (res) {
+      if (!res.ok) throw new Error('shipping ' + res.status);
+      return res.json();
+    }).then(function (data) {
+      renderShippingOptions(data && data.methods ? data.methods : []);
+    }).catch(function () {
+      // On failure, fall back to the generic GET list.
+      api.get('/shipping/options').then(function (data) {
+        renderShippingOptions(data && data.methods ? data.methods : []);
+      }).catch(function () {
+        if (shippingMethodFieldset) {
+          shippingMethodFieldset.hidden = false;
+          shippingOptionsEl.innerHTML = '<p class="gsg-fieldset-note">Shipping options unavailable right now &mdash; we\'ll email you a quote after your order is placed.</p>';
+        }
+      });
+    });
+  }
+
+  function applyDiscount() {
+    if (!discountInput) return;
+    var code = (discountInput.value || '').trim();
+    if (!code) return;
+    var amount = cartTotalCents();
+    if (!discountFeedback) return;
+    discountFeedback.hidden = false;
+    discountFeedback.textContent = 'Checking…';
+    discountFeedback.className = 'gsg-discount-feedback is-loading';
+
+    api.post('/discounts', { code: code, amount_cents: amount }).then(function (res) {
+      if (!res.ok) throw new Error('discount ' + res.status);
+      return res.json();
+    }).then(function (data) {
+      if (data && data.valid) {
+        appliedDiscount = data;
+        discountFeedback.className = 'gsg-discount-feedback is-valid';
+        var msg = data.percent_off ? ('Applied: ' + data.percent_off + '% off') :
+                  (data.discount_cents ? ('Applied: ' + Cart.format(data.discount_cents) + ' off') : 'Applied.');
+        discountFeedback.textContent = msg;
+      } else {
+        appliedDiscount = null;
+        discountFeedback.className = 'gsg-discount-feedback is-invalid';
+        discountFeedback.textContent = (data && data.message) || 'This code isn\'t valid.';
+      }
+    }).catch(function () {
+      appliedDiscount = null;
+      discountFeedback.className = 'gsg-discount-feedback is-invalid';
+      discountFeedback.textContent = 'Could not validate code. Try again in a moment.';
+    });
+  }
+
+  if (discountApplyBtn) discountApplyBtn.addEventListener('click', applyDiscount);
+
+  document.addEventListener('cart:updated', renderSummary);
+  document.addEventListener('cart:updated', fetchShippingOptions);
+  document.addEventListener('DOMContentLoaded', function () {
+    if (!renderSummary()) return;
+    waitForTokenizer();
+    fetchShippingOptions();
+    api.post('/session/events/checkout', { stage: 'form' }).catch(function () {});
+  });
+  if (document.readyState !== 'loading') {
+    if (renderSummary()) {
+      waitForTokenizer();
+      fetchShippingOptions();
+      api.post('/session/events/checkout', { stage: 'form' }).catch(function () {});
+    }
+  }
+})();
+</script>
+{{ end }}

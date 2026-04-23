@@ -45,9 +45,7 @@ Connect these digital elements in the same topology as the original schematic, d
 
 This is what makes WDF models behave differently in practice. When you dig in with your pick and the supply voltage momentarily drops under the current load, the diode clipping threshold shifts — because the circuit's operating point shifts. Roll back your guitar's volume and the plugin responds to the lower signal level the same way the hardware does — the input stage's operating point changes, headroom opens up, the character shifts.
 
-One honest caveat: a real pickup is an inductor, and its inductance forms a resonant circuit with the pedal's input impedance. That interaction affects frequency response, not just level — it's part of why humbuckers and single-coils feel different through the same pedal. A plugin receiving a post-ADC signal has already lost that information; the audio interface presents a fixed, low source impedance regardless of what guitar you're playing. Modeling that interaction accurately would require the plugin to know your pickup's specs. No plugin does this well yet, including ours.
-
-What WDF does get right is everything downstream of that interface — and that's most of the circuit. None of it is programmed. It's just the physics.
+The honest limit is everything *upstream* of your audio interface. A real pickup is an inductor that resonates with whatever it's plugged into, and by the time the signal reaches a plugin the interface has already flattened that interaction. No plugin can fully recover it — ours included. What WDF does get right is everything downstream of the ADC, and that's most of the circuit. None of it is programmed. It's just the physics.
 
 ## The practical tradeoffs
 

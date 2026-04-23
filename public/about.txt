@@ -1,11 +1,5 @@
-Puget Audio builds professional audio tools for musicians who care about how things work.
+We love analog. In 2026 the real thing is expensive.
 
-We don't approximate analog. We simulate it.
+So we simulate it when the math gets closer than a capture. We sample it when only the hardware will do. And we build our own small-batch gear in Seattle when a physical box is the right answer.
 
-Every product starts with the same question: what would this circuit do if we modeled every component exactly? The resistors, capacitors, transistors — all interacting in real time, just like the hardware.
-
-The result is software that responds to your playing like analog gear. Because under the hood, it is analog. Just transformed into mathematics.
-
-Based in Seattle. Rooted in open technology.
-
-Serious tools for serious musicians.
+Rooted in open technology. Built by people who play what they make.

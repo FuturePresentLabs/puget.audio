@@ -6,6 +6,9 @@ sku: "CORN-001"
 status: "available"
 layout: single
 configurable: true
+images:
+  - "/images/hardware/cornucopia-01.jpg"
+  - "/images/hardware/cornucopia-02.jpg"
 options:
   - name: "Width"
     key: "width"

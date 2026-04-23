@@ -1,4 +1,6 @@
 {{ define "main" }}
+{{ $flag := index .Site.Data.features.collections "legends" }}
+{{ $comingSoon := and $flag $flag.coming_soon }}
 
 {{/* ========================================
    HERO SECTION
@@ -9,13 +11,23 @@
     <div class="legends-glow-orb"></div>
   </div>
   <div class="legends-hero-content">
+    {{ if $comingSoon }}
+    <div class="coming-badge">
+      <span class="badge-dot"></span>
+      Coming Soon
+    </div>
+    {{ end }}
     <h1 class="legends-hero-title">The Puget<br>Legends Collection</h1>
-    <p class="legends-hero-names">GOLDENROD &middot; RATKING &middot; MUFF &middot; AUSTIN &middot; SCREAMER</p>
-    <p class="legends-hero-subhead">Five circuits that changed music. Rebuilt from the schematic.</p>
+    <p class="legends-hero-names">GOLDENROD &middot; RATKING &middot; SCREAMER &middot; SUPER</p>
+    <p class="legends-hero-subhead">Four circuits that changed music. Rebuilt from the schematic.</p>
     <p class="legends-hero-description">Not sampled. Not captured. Not profiled. Simulated&mdash;component by component.</p>
 
     <div class="legends-hero-cta">
+      {{ if $comingSoon }}
+      {{ partial "notify-form.html" (dict "interest" "legends" "label" "Get notified when Legends drops" "button" "Notify Me") }}
+      {{ else }}
       {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" "Puget Legends Collection" "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+      {{ end }}
     </div>
   </div>
 </section>
@@ -47,7 +59,7 @@
         </svg>
       </div>
       <h3>It cleans up like the real thing.</h3>
-      <p>Roll back your guitar volume and GOLDENROD transitions from overdrive to clean boost. AUSTIN goes from biting treble boost to warm, clean sparkle. This is the single biggest thing every other pedal plugin gets wrong. We get it right because we model the actual circuit interaction between your guitar&rsquo;s output impedance and the pedal&rsquo;s input stage.</p>
+      <p>Roll back your guitar volume and GOLDENROD transitions from overdrive to clean boost. SCREAMER goes from full-throated drive to sparkly edge-of-breakup. This is the single biggest thing every other pedal plugin gets wrong. We get it right because we model the actual circuit interaction between your guitar&rsquo;s output impedance and the pedal&rsquo;s input stage.</p>
     </div>
 
     <div class="legends-diff-card">
@@ -57,7 +69,7 @@
         </svg>
       </div>
       <h3>It responds like the real thing.</h3>
-      <p>Pick dynamics, string attack, volume knob position&mdash;the circuit responds to all of it because it&rsquo;s processing signal through simulated components, not looking up a pre-baked response curve. MUFF&rsquo;s sustain blooms and breathes. RATKING&rsquo;s filter sweeps interact with the gain stage. The feel is the physics.</p>
+      <p>Pick dynamics, string attack, volume knob position&mdash;the circuit responds to all of it because it&rsquo;s processing signal through simulated components, not looking up a pre-baked response curve. SUPER&rsquo;s asymmetric clipping opens up as you dig in. RATKING&rsquo;s filter sweeps interact with the gain stage. The feel is the physics.</p>
     </div>
 
     <div class="legends-diff-card">
@@ -68,7 +80,7 @@
         </svg>
       </div>
       <h3>It can be modded like the real thing.</h3>
-      <p>Open circuit view. Swap diode types in GOLDENROD. Change the transistor in AUSTIN. Push MUFF&rsquo;s sustain into infinite feedback. Every mod that exists on a forum thread, available in one click&mdash;plus mods that would destroy the original hardware. Your pedal. Your circuit. Your rules.</p>
+      <p>Open circuit view. Swap the clipping diodes in GOLDENROD from germanium to silicon. Flip SUPER&rsquo;s asymmetric stage for a symmetric one. Push RATKING&rsquo;s filter past where the original pot could go. Every mod that exists on a forum thread, available in one click&mdash;plus mods that would destroy the original hardware. Your pedal. Your circuit. Your rules.</p>
     </div>
 
   </div>
@@ -109,34 +121,6 @@
       </div>
     </div>
 
-    {{/* MUFF */}}
-    <div class="legends-card legends-card--muff">
-      <div class="legends-card-visual">
-        <div class="legends-card-enclosure"></div>
-        <span class="legends-card-name">MUFF</span>
-      </div>
-      <div class="legends-card-body">
-        <p class="legends-card-tagline">&ldquo;The wall of sound.&rdquo;</p>
-        <p class="legends-card-tones">Fuzz &middot; Sustain &middot; Crushing Distortion</p>
-        <p class="legends-card-detail">Four-stage clipping with variable tone stack. The sustain control pushes the circuit from articulate fuzz into infinite, blooming distortion. Models the complete signal path including the tone circuit&rsquo;s midrange scoop and the unique character of the clipping stages.</p>
-        <p class="legends-card-modeled">Modeled After: <span>Big Muff Pi</span></p>
-      </div>
-    </div>
-
-    {{/* AUSTIN */}}
-    <div class="legends-card legends-card--austin">
-      <div class="legends-card-visual">
-        <div class="legends-card-enclosure"></div>
-        <span class="legends-card-name">AUSTIN</span>
-      </div>
-      <div class="legends-card-body">
-        <p class="legends-card-tagline">&ldquo;The treble that cuts through the mix.&rdquo;</p>
-        <p class="legends-card-tones">Treble Booster &middot; Edge of Breakup &middot; British Tone</p>
-        <p class="legends-card-detail">Single germanium transistor with a high-pass filter network. The secret weapon of British blues and hard rock guitarists. Pushes your amp into sweet, singing overdrive while retaining clarity and bite. The tone that defined an era.</p>
-        <p class="legends-card-modeled">Modeled After: <span>Dallas Rangemaster</span></p>
-      </div>
-    </div>
-
     {{/* SCREAMER */}}
     <div class="legends-card legends-card--screamer">
       <div class="legends-card-visual">
@@ -147,7 +131,21 @@
         <p class="legends-card-tagline">&ldquo;The midrange hump that cuts.&rdquo;</p>
         <p class="legends-card-tones">Overdrive &middot; Boost &middot; Amp Pusher</p>
         <p class="legends-card-detail">Single op-amp with symmetrical clipping and the legendary passive tone control. The famous midrange emphasis pushes your signal through any mix. Models the complete circuit including the input buffer, gain stage, and the tone stack&rsquo;s unique frequency response.</p>
-        <p class="legends-card-modeled">Modeled After: <span>Tube Screamer</span></p>
+        <p class="legends-card-modeled">Modeled After: <span>Ibanez TS808</span></p>
+      </div>
+    </div>
+
+    {{/* SUPER */}}
+    <div class="legends-card legends-card--super">
+      <div class="legends-card-visual">
+        <div class="legends-card-enclosure"></div>
+        <span class="legends-card-name">SUPER</span>
+      </div>
+      <div class="legends-card-body">
+        <p class="legends-card-tagline">&ldquo;Asymmetric drive, a little more bite.&rdquo;</p>
+        <p class="legends-card-tones">Overdrive &middot; Asymmetric Clipping &middot; Amp Pusher</p>
+        <p class="legends-card-detail">Op-amp gain stage into an asymmetric silicon-diode clipper &mdash; one diode in one direction, two in series in the other. The uneven clipping rounds one side of the waveform and hard-limits the other, producing slightly more bite and a different harmonic blend than a symmetric circuit. Models the JFET buffer, gain stage, and tone network.</p>
+        <p class="legends-card-modeled">Modeled After: <span>BOSS SD-1</span></p>
       </div>
     </div>
 
@@ -203,8 +201,8 @@
       <p>Swap the clipping diodes in GOLDENROD. Hear the overdrive turn from warm and compressed to tight and bright.</p>
     </div>
     <div class="legends-circuit-example">
-      <span class="legends-circuit-swap">AC128 &rarr; BC108</span>
-      <p>Change the transistor in AUSTIN. Go from vintage germanium warmth to silicon bite.</p>
+      <span class="legends-circuit-swap">Asymmetric &rarr; Symmetric</span>
+      <p>Flip SUPER&rsquo;s asymmetric diode stage to a symmetric one. Same gain, different character &mdash; louder and tighter.</p>
     </div>
     <div class="legends-circuit-example">
       <span class="legends-circuit-swap">LM308 &rarr; OP07</span>
@@ -268,14 +266,18 @@
    PRICING
    ======================================== */}}
 <section class="legends-pricing">
-  <h2>Simple Pricing</h2>
+  <h2>{{ if $comingSoon }}At Launch{{ else }}Simple Pricing{{ end }}</h2>
   <div class="legends-pricing-grid">
 
     <div class="legends-price-card legends-price-card--featured">
       <span class="legends-price-label">The Legends Collection</span>
       <span class="legends-price-amount">${{ .Params.price }}</span>
-      <span class="legends-price-note">All five pedals &middot; one-time purchase</span>
+      <span class="legends-price-note">All four pedals &middot; one-time purchase</span>
+      {{ if $comingSoon }}
+      {{ partial "notify-form.html" (dict "interest" "legends" "label" "Early-bird pricing for the waitlist" "button" "Join the Waitlist") }}
+      {{ else }}
       {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" "Puget Legends Collection" "label" "Add to Cart" "class" "btn-primary") }}
+      {{ end }}
     </div>
 
   </div>
@@ -294,11 +296,15 @@
    BOTTOM CTA
    ======================================== */}}
 <section class="legends-bottom-cta">
-  <h2>Get the Legends Collection.</h2>
-  <p>Five iconic circuits. One purchase. No subscriptions.</p>
+  <h2>{{ if $comingSoon }}Be first in line.{{ else }}Get the Legends Collection.{{ end }}</h2>
+  <p>Four iconic circuits. One purchase. No subscriptions.</p>
+  {{ if $comingSoon }}
+  {{ partial "notify-form.html" (dict "interest" "legends" "label" "Early access &amp; launch-day pricing" "button" "Notify Me") }}
+  {{ else }}
   {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" "Puget Legends Collection" "label" (printf "Add to Cart — $%v" .Params.price) "class" "btn-primary btn-lg") }}
+  {{ end }}
   <p class="legends-bottom-note">Perpetual license. Free updates. No iLok.</p>
-  <p class="legends-disclaimer">All product names, trademarks, and registered trademarks are property of their respective owners. These names are used solely to identify the products whose circuits inspired these models. Puget Audio is not affiliated with or endorsed by any of these companies.</p>
+  <p class="legends-disclaimer">Klon&reg; and Klon Centaur&reg; are trademarks of Klon LLC. ProCo&reg; and RAT&reg; are trademarks of Kustom Musical Products / ProCo Sound. Ibanez&reg;, Tube Screamer&reg;, and TS808&reg; are trademarks of Hoshino Gakki Co., Ltd. BOSS&reg; and SD-1&reg; are trademarks of Roland Corporation. All other product names, logos, and brands are property of their respective owners. These names are used solely to identify the products whose circuits inspired our models. Puget Audio is not affiliated with, authorized by, endorsed by, or sponsored by any of these companies.</p>
 </section>
 
 {{ end }}

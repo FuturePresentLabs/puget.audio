@@ -8,7 +8,7 @@ sample_count: "133"
 format: "WAV 24-bit / 48kHz"
 genre: "Sound Design"
 tags: ["laser", "sci-fi", "sound-effects", "one-shots", "moog", "dfam", "analog", "zaps", "sound-design", "game-audio", "synth", "electronic"]
-cover_image: "/images/lasers-cover.png"
+cover_image: "images/sample-packs/puget-lasers-vol-1.png"
 og_image: "/images/lasers-cover.png"
 instrument: "Moog DFAM"
 date: 2026-04-16

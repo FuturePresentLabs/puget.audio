@@ -9,6 +9,7 @@ bpm: "170-178"
 format: "WAV 24-bit / 48kHz"
 genre: "Drum & Bass"
 tags: ["dnb", "drum-and-bass", "breaks", "bass", "reese", "atmospherics"]
+cover_image: "images/sample-packs/dnb-essentials-vol-1.png"
 ---
 
 # DnB Essentials Vol. 1

@@ -18,7 +18,7 @@ The answer is in the circuit.
 
 ## The Original: Ibanez TS-808 (1979–1985)
 
-Designed by Susumu Tamura at Maxon (Ibanez's Japanese partner), the original TS-808 wasn't trying to be legendary. It was trying to solve a practical problem: guitarists wanted tube amp overdrive at volumes that wouldn't wake the neighbors.
+Designed at Maxon (Ibanez's Japanese partner) in the late 1970s, the original TS-808 wasn't trying to be legendary. It was trying to solve a practical problem: guitarists wanted tube amp overdrive at volumes that wouldn't wake the neighbors.
 
 ### The Circuit
 
@@ -137,8 +137,4 @@ It's not "like" a Tube Screamer. It **is** a Tube Screamer, transformed into cod
 
 Not because it's the "best" overdrive. Because it's the *right* overdrive — warm, midrange-focused, responsive.
 
-When you load our Puget Tube Screamer plugin, you're not just getting a distortion effect. You're getting four decades of guitar history, captured in mathematics.
-
----
-
-*Want to hear the difference circuit-accurate modeling makes? [Try the Puget Tube Screamer](/products) free for 14 days.*
+When you load SCREAMER inside [Puget Legends](/plugins/legends/), you're not just getting a distortion effect. You're getting four decades of guitar history, captured in mathematics.

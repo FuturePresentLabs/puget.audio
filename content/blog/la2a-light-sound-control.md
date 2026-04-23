@@ -20,9 +20,7 @@ Understanding why requires understanding light.
 
 ## Jim Lawrence and the T4 Cell
 
-The LA-2A was designed in the early 1960s by Jim Lawrence at Teletronix. Lawrence wasn't a traditional audio engineer — he was a radar technician who understood photocells and electroluminescent panels.
-
-His innovation: the T4 cell.
+The LA-2A was designed in the early 1960s by Jim Lawrence at Teletronix. His innovation wasn't a new topology so much as a new *sensor*: the T4 cell, built around the same photoresistor-and-glowing-panel tricks that were turning up in industrial control systems at the time.
 
 ### How It Works
 
@@ -145,7 +143,7 @@ The "character" isn't added. It emerges.
 
 ## In Context
 
-The LA-2A pairs naturally with the Pultec EQP-1A — hence our [Studio Essentials bundle](/products). The combination:
+The LA-2A pairs naturally with the Pultec EQP-1A — both are part of our [Studio bundle](/plugins/studio/). The combination:
 - Pultec shapes the tone
 - LA-2A controls the dynamics
 - Both add "vibe" through tubes and transformers
@@ -156,14 +154,8 @@ This is the sound of analog recording. Not because it's "better" — because it'
 
 ## The Legacy
 
-60 years after its introduction, the LA-2A is still in daily use in major studios. Not as a vintage curiosity. As a working tool.
+Six decades after its introduction, the LA-2A is still in daily use in major studios. Not as a vintage curiosity. As a working tool.
 
-Universal Audio sells new units for $3,000+. Originals fetch $4,000–$6,000. The plugin is $149.
+Hardware reissues run into the thousands. Originals run much higher. The mainstream plugin versions sit in the low hundreds.
 
-Our Puget Opto Compressor: $79–$119.
-
-Same physics. Same light. Same sound. Just simulated.
-
----
-
-*The Puget Opto Compressor is available standalone or in the [Studio Essentials bundle](/products) with the Passive EQ.*
+Our take — the Puget Opto Compressor — ships as part of the [Studio bundle](/plugins/studio/). Same physics. Same light. Same sound. Just simulated.
