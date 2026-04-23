@@ -304,27 +304,22 @@
     return t;
   }
 
-  function hasPhysicalItem(cart) {
-    for (var i = 0; i < cart.items.length; i++) {
-      if (cart.items[i].type === 'physical') return true;
+  // The cart items carry a client-side `type` ("digital" | "physical") that
+  // drives whether the shipping/billing fields show. The backend /orders
+  // contract only knows sku/title/price/quantity/image, so strip the extra
+  // field before POSTing.
+  function stripClientFields(items) {
+    var out = [];
+    for (var i = 0; i < items.length; i++) {
+      out.push({
+        sku: items[i].sku,
+        title: items[i].title,
+        price: items[i].price,
+        quantity: items[i].quantity,
+        image: items[i].image || ''
+      });
     }
-    return false;
-  }
-
-  function readAddress(form, prefix) {
-    function v(name) {
-      var el = form.querySelector('[name="' + prefix + '_' + name + '"]');
-      return el ? (el.value || '').trim() : '';
-    }
-    return {
-      address1: v('address1'),
-      address2: v('address2'),
-      city: v('city'),
-      state: v('state'),
-      postal: v('postal'),
-      country: v('country'),
-      phone: prefix === 'ship' ? v('phone') : ''
-    };
+    return out;
   }
 
   var tokenizer = new Tokenizer({
@@ -364,24 +359,21 @@
       return;
     }
 
+    // IMPORTANT: keep this payload exactly matched to the vendored
+    // /orders contract — { email, first_name, last_name, items, total }.
+    // Do not add fields without backend support.
+    //
+    // The FluidPay `token` and the collected shipping/billing addresses
+    // are intentionally NOT sent. The DOM collects them because we want
+    // the UI in place; wire them into the payload once the backend
+    // contract adds the corresponding fields.
     var order = {
       email: form.querySelector('#gsg-email').value,
       first_name: form.querySelector('#gsg-first-name').value,
       last_name: form.querySelector('#gsg-last-name').value,
-      items: cart.items,
-      total: cartTotal(cart),
-      payment_token: token,
-      requires_shipping: hasPhysicalItem(cart)
+      items: stripClientFields(cart.items),
+      total: cartTotal(cart)
     };
-
-    if (order.requires_shipping) {
-      var ship = readAddress(form, 'ship');
-      var billingSameEl = form.querySelector('[data-gsg-billing-same]');
-      var billingSame = billingSameEl ? billingSameEl.checked : true;
-      order.shipping_address = ship;
-      order.billing_address = billingSame ? ship : readAddress(form, 'bill');
-      order.billing_same_as_shipping = billingSame;
-    }
 
     try {
       localStorage.setItem('gsg_last_order', JSON.stringify(order));
