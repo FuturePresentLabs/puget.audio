@@ -1,7 +1,5 @@
-We love analog. In 2026 the iron is expensive.
+We love analog. In 2026 the real thing is expensive.
 
-So we simulate it when the math gets closer than a capture. And we sample it when only the hardware will do.
-
-A little Seattle-built hardware too, in small batches.
+So we simulate it when the math gets closer than a capture. We sample it when only the hardware will do. And we build our own small-batch gear in Seattle when a physical box is the right answer.
 
 Rooted in open technology. Built by people who play what they make.
