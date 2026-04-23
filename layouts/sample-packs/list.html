@@ -40,95 +40,135 @@
 }
 </script>
 
+{{/* ========================================
+   HERO — keep the existing kickered headline
+   ======================================== */}}
 <section class="samples-hero">
   <div class="samples-hero-bg"></div>
   <div class="samples-hero-content">
+    <div class="samples-hero-kicker">Sample Packs &middot; Puget Audio</div>
     <h1>{{ .Title }}</h1>
     <p class="samples-hero-tagline">Production-ready sounds. Recorded through real analog hardware.</p>
-    <p class="samples-hero-description">Every sample pack is built from scratch in our Seattle studio — recorded through real analog synthesizers and hardware, captured at 24-bit / 48kHz. No recycled loops. No generic presets.</p>
+    <p class="samples-hero-description">Every pack is built from scratch in our Seattle studio &mdash; tracked through real synths, real preamps, real iron &mdash; and delivered at 24-bit / 48&nbsp;kHz. No recycled loops. No generic presets.</p>
+    <div class="samples-hero-meta">
+      <span><strong>{{ len .Pages }}</strong> release{{ if ne (len .Pages) 1 }}s{{ end }}</span>
+      <span class="samples-hero-dot">&bull;</span>
+      <span>24-bit / 48&nbsp;kHz</span>
+      <span class="samples-hero-dot">&bull;</span>
+      <span>100% royalty-free</span>
+    </div>
   </div>
 </section>
 
-{{ $available := where .Pages "Params.status" "!=" "coming-soon" }}
-{{ $comingSoon := where .Pages "Params.status" "coming-soon" }}
+{{/* ========================================
+   RELEASE FLOW — album-cover scroll layout
+   ========================================
+   Each pack renders as a big editorial row: large square cover on
+   one side, copy + specs + CTA on the other. Alternates sides via
+   :nth-child styling in CSS so the scroll has rhythm.
 
-{{ if gt (len $available) 0 }}
-<section class="samples-grid-section">
-  <h2>Available Now</h2>
-  <div class="samples-grid">
-    {{ range $available }}
-    <div class="samples-card">
-      <a href="{{ .Permalink }}" class="samples-card-link">
-        <div class="samples-card-image">
-          {{ with .Params.cover_image }}
-          <img src="{{ . }}" alt="{{ $.Title }} cover art" class="samples-card-cover-img" loading="lazy" width="400" height="400">
-          {{ else }}
-          <div class="samples-card-placeholder" data-genre="{{ .Params.genre | urlize }}">
-            <span class="samples-card-icon">{{ .Params.genre | default "SP" }}</span>
+   Images run through resources.Get + .Fit so Hugo resizes and
+   caches them once instead of shipping the 1–2 MB source PNGs.
+*/}}
+<section class="samples-release-flow">
+  {{ range $i, $p := .Pages }}
+  {{ $comingSoon := eq $p.Params.status "coming-soon" }}
+  {{ $title := $p.Title }}
+
+  {{/* Resolve cover via the asset pipeline if possible */}}
+  {{ $coverPath := $p.Params.cover_image }}
+  {{ $cover := "" }}
+  {{ with $coverPath }}{{ $cover = resources.Get . }}{{ end }}
+
+  <article class="samples-release{{ if $comingSoon }} is-coming-soon{{ end }}">
+    <a href="{{ $p.Permalink }}" class="samples-release-cover-link" aria-label="{{ $title }} — view details">
+      <div class="samples-release-cover">
+        {{ if $cover }}
+          {{ $small  := $cover.Fit "480x480 webp q82" }}
+          {{ $medium := $cover.Fit "720x720 webp q82" }}
+          {{ $large  := $cover.Fit "960x960 webp q82" }}
+          <img
+            src="{{ $medium.RelPermalink }}"
+            srcset="{{ $small.RelPermalink }} 480w, {{ $medium.RelPermalink }} 720w, {{ $large.RelPermalink }} 960w"
+            sizes="(max-width: 760px) 86vw, 480px"
+            width="{{ $medium.Width }}"
+            height="{{ $medium.Height }}"
+            alt="{{ $title }} cover art"
+            loading="lazy" />
+        {{ else if $coverPath }}
+          <img src="{{ $coverPath }}" alt="{{ $title }} cover art" loading="lazy" />
+        {{ else }}
+          <div class="samples-release-placeholder" data-genre="{{ $p.Params.genre | urlize }}">
+            <span>{{ $p.Params.genre | default "SP" }}</span>
           </div>
-          {{ end }}
+        {{ end }}
+        {{ if $comingSoon }}
+        <div class="samples-release-cover-badge">Coming Soon</div>
+        {{ end }}
+      </div>
+    </a>
+
+    <div class="samples-release-body">
+      <div class="samples-release-meta">
+        <span class="samples-release-number">{{ printf "%02d" (add $i 1) }}</span>
+        {{ with $p.Params.genre }}<span class="samples-release-genre">{{ . }}</span>{{ end }}
+        {{ if $comingSoon }}<span class="samples-release-status samples-release-status--soon">Coming soon</span>{{ else }}<span class="samples-release-status samples-release-status--available">Available now</span>{{ end }}
+      </div>
+
+      <h2 class="samples-release-title"><a href="{{ $p.Permalink }}">{{ replace $title " — " "<br>" | safeHTML }}</a></h2>
+
+      <p class="samples-release-desc">{{ $p.Description }}</p>
+
+      <dl class="samples-release-specs">
+        {{ with $p.Params.sample_count }}
+        <div class="samples-release-spec">
+          <dt>Samples</dt><dd>{{ . }}</dd>
         </div>
-        <div class="samples-card-body">
-          <h3>{{ .Title }}</h3>
-          {{ with .Params.genre }}
-          <p class="samples-card-genre">{{ . }}</p>
-          {{ end }}
-          <p class="samples-card-desc">{{ .Description | truncate 150 }}</p>
-          <div class="samples-card-meta-row">
-            {{ with .Params.sample_count }}<span class="samples-card-meta">{{ . }} samples</span>{{ end }}
-            {{ with .Params.instrument }}<span class="samples-card-meta">{{ . }}</span>{{ end }}
-            {{ with .Params.format }}<span class="samples-card-meta">{{ . }}</span>{{ end }}
-          </div>
+        {{ end }}
+        {{ with $p.Params.format }}
+        <div class="samples-release-spec">
+          <dt>Format</dt><dd>{{ . }}</dd>
         </div>
-      </a>
-      <div class="samples-card-footer">
-        <span class="samples-card-price">${{ .Params.price }}</span>
-        {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Add to Cart" "class" "btn-sm") }}
+        {{ end }}
+        {{ with $p.Params.bpm }}
+        <div class="samples-release-spec">
+          <dt>BPM</dt><dd>{{ . }}</dd>
+        </div>
+        {{ end }}
+        {{ with $p.Params.instrument }}
+        <div class="samples-release-spec">
+          <dt>Source</dt><dd>{{ . }}</dd>
+        </div>
+        {{ end }}
+      </dl>
+
+      <div class="samples-release-cta">
+        {{ if $comingSoon }}
+          <span class="samples-release-price samples-release-price--muted">${{ $p.Params.price }} at launch</span>
+          {{ partial "notify-form.html" (dict
+            "interest" (printf "sample-pack-%s" ($p.File.BaseFileName))
+            "label" "Be first in line when it drops"
+            "button" "Notify Me") }}
+        {{ else }}
+          <span class="samples-release-price">${{ $p.Params.price }}</span>
+          {{ partial "add-to-cart.html" (dict
+            "sku" $p.Params.sku
+            "price" $p.Params.price
+            "title" $title
+            "image" $coverPath
+            "label" "Add to Cart"
+            "class" "btn-primary") }}
+          <a href="{{ $p.Permalink }}" class="samples-release-more">Hear it &amp; see the full track list &rarr;</a>
+        {{ end }}
       </div>
     </div>
-    {{ end }}
-  </div>
+  </article>
+  {{ end }}
 </section>
-{{ end }}
 
-{{ if gt (len $comingSoon) 0 }}
-<section class="samples-grid-section samples-coming-soon-section">
-  <h2>Coming Soon</h2>
-  <div class="samples-grid">
-    {{ range $comingSoon }}
-    <div class="samples-card coming-soon">
-      <a href="{{ .Permalink }}" class="samples-card-link">
-        <div class="samples-card-image">
-          {{ with .Params.cover_image }}
-          <img src="{{ . }}" alt="{{ $.Title }} cover art" class="samples-card-cover-img" loading="lazy" width="400" height="400">
-          {{ else }}
-          <div class="samples-card-placeholder" data-genre="{{ .Params.genre | urlize }}">
-            <span class="samples-card-icon">{{ .Params.genre | default "SP" }}</span>
-          </div>
-          {{ end }}
-        </div>
-        <div class="samples-card-body">
-          <h3>{{ .Title }}</h3>
-          {{ with .Params.genre }}
-          <p class="samples-card-genre">{{ . }}</p>
-          {{ end }}
-          <p class="samples-card-desc">{{ .Description | truncate 150 }}</p>
-          <div class="samples-card-meta-row">
-            {{ with .Params.sample_count }}<span class="samples-card-meta">{{ . }} samples</span>{{ end }}
-            {{ with .Params.instrument }}<span class="samples-card-meta">{{ . }}</span>{{ end }}
-            {{ with .Params.format }}<span class="samples-card-meta">{{ . }}</span>{{ end }}
-          </div>
-        </div>
-      </a>
-      <div class="samples-card-footer">
-        <span class="samples-card-coming-soon">Coming Soon</span>
-      </div>
-    </div>
-    {{ end }}
-  </div>
-</section>
-{{ end }}
-
+{{/* ========================================
+   STUDIO QUALITY — unchanged
+   ======================================== */}}
 <section class="samples-quality">
   <div class="samples-quality-inner">
     <h2>Studio Quality, Every Sample</h2>
@@ -138,7 +178,7 @@
         <p>Recorded through real synthesizers, preamps, and compressors. The harmonic saturation and transient response that makes analog gear special.</p>
       </div>
       <div class="samples-quality-card">
-        <h3>24-bit / 48kHz</h3>
+        <h3>24-bit / 48&nbsp;kHz</h3>
         <p>Full dynamic range, no artifacts. Every sample mastered for maximum headroom and clarity in your mix.</p>
       </div>
       <div class="samples-quality-card">
