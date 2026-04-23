@@ -3669,64 +3669,36 @@ body {
   color: #888;
 }
 
-/* MONSOON - Blue, silver */
-/* MUFF - Deep violet, thick and sustaining */
-.legends-card--muff {
-  border-color: rgba(139, 92, 246, 0.2);
+/* SUPER - Bright yellow, asymmetric drive */
+.legends-card--super {
+  border-color: rgba(250, 204, 21, 0.25);
 }
 
-.legends-card--muff:hover {
-  border-color: rgba(139, 92, 246, 0.5);
-  box-shadow: 0 20px 40px rgba(139, 92, 246, 0.1);
+.legends-card--super:hover {
+  border-color: rgba(250, 204, 21, 0.55);
+  box-shadow: 0 20px 40px rgba(250, 204, 21, 0.14);
 }
 
-.legends-card--muff .legends-card-visual {
-  background: linear-gradient(135deg, #4c1d95 0%, #7c3aed 50%, #a78bfa 100%);
+.legends-card--super .legends-card-visual {
+  background: linear-gradient(135deg, #b45309 0%, #eab308 45%, #facc15 75%, #fde68a 100%);
 }
 
-.legends-card--muff .legends-card-enclosure {
+.legends-card--super .legends-card-enclosure {
   background:
-    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.06) 0%, transparent 50%),
-    linear-gradient(180deg, rgba(76, 29, 149, 0.15) 0%, transparent 60%);
+    radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 55%),
+    radial-gradient(circle at 75% 80%, rgba(180, 83, 9, 0.2) 0%, transparent 55%);
 }
 
-.legends-card--muff .legends-card-name {
-  color: #ede9fe;
-  text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+.legends-card--super .legends-card-name {
+  color: #1c1208;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.18em;
 }
 
-.legends-card--muff .legends-card-tones {
-  color: #a78bfa;
-}
-
-/* AUSTIN - Red Mesa, Texas heat */
-.legends-card--austin {
-  border-color: rgba(220, 38, 38, 0.2);
-}
-
-.legends-card--austin:hover {
-  border-color: rgba(220, 38, 38, 0.5);
-  box-shadow: 0 20px 40px rgba(220, 38, 38, 0.15);
-}
-
-.legends-card--austin .legends-card-visual {
-  background: linear-gradient(135deg, #7f1d1d 0%, #dc2626 40%, #ea580c 70%, #fbbf24 100%);
-}
-
-.legends-card--austin .legends-card-enclosure {
-  background:
-    radial-gradient(circle at 25% 30%, rgba(251, 191, 36, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 75% 70%, rgba(127, 29, 29, 0.2) 0%, transparent 50%),
-    linear-gradient(180deg, rgba(220, 38, 38, 0.1) 0%, transparent 60%);
-}
-
-.legends-card--austin .legends-card-name {
-  color: #fef3c7;
-  text-shadow: 0 2px 8px rgba(127, 29, 29, 0.6);
-}
-
-.legends-card--austin .legends-card-tones {
-  color: #f87171;
+.legends-card--super .legends-card-tones {
+  color: #eab308;
 }
 
 /* SCREAMER - Classic green, midrange punch */
