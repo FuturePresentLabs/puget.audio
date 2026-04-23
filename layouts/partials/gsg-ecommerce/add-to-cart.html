@@ -1,0 +1,29 @@
+{{/*
+  Local override of themes/gsg-ecommerce/layouts/partials/gsg-ecommerce/add-to-cart.html.
+
+  Adds one extra hook over the vendored version: a `type` param that tags the
+  item as "digital" or "physical". puget-shop.js picks it up from the button's
+  data-gsg-type attribute and stores it on the cart item, so the checkout page
+  can decide whether to require a shipping address. Defaults to "digital" so
+  sample packs and plugins keep working without any caller changes.
+*/}}
+{{ $sku := .sku }}
+{{ $price := .price }}
+{{ $title := .title }}
+{{ $image := .image | default "" }}
+{{ $class := .class | default "" }}
+{{ $type := .type | default "digital" }}
+{{ $label := .label | default (printf "Add to Cart — $%s" (string $price)) }}
+
+<button
+  class="gsg-add-to-cart {{ $class }}"
+  data-gsg-sku="{{ $sku }}"
+  data-gsg-price="{{ $price }}"
+  data-gsg-title="{{ $title }}"
+  data-gsg-image="{{ $image }}"
+  data-gsg-type="{{ $type }}"
+  type="button"
+>
+  <span class="gsg-atc-label">{{ $label }}</span>
+  <span class="gsg-atc-added" aria-hidden="true">Added!</span>
+</button>

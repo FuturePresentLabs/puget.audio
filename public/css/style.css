@@ -5309,6 +5309,72 @@ body {
   border-radius: 6px;
 }
 
+/* Shipping / billing fieldsets — hidden by default, revealed for physical orders */
+.gsg-shipping-fieldset[hidden],
+.gsg-billing-fieldset[hidden] { display: none; }
+
+.gsg-fieldset-note {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  margin: -0.5rem 0 1rem;
+  line-height: 1.5;
+}
+
+.gsg-label-optional {
+  color: var(--text-secondary);
+  font-size: 0.7rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  margin-left: 0.35rem;
+  opacity: 0.7;
+}
+
+/* <select> styled to match .gsg-input */
+select.gsg-input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23a0a0a8' d='M1.41 0L6 4.58 10.59 0 12 1.41l-6 6-6-6z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+select.gsg-input option {
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+}
+
+/* "Same as shipping" checkbox row */
+.gsg-checkbox-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0;
+  color: var(--text-primary);
+  font-size: 0.92rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.gsg-checkbox-row input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  cursor: pointer;
+  margin: 0;
+}
+
+.gsg-billing-fields[hidden] { display: none; }
+
+.gsg-billing-fields {
+  margin-top: 0.75rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
 /* FluidPay tokenizer iframe container */
 .puget-card-help {
   margin-bottom: 0.65rem;
@@ -6624,7 +6690,7 @@ body {
 .samples-release-cover-badge {
   position: absolute;
   top: 1rem;
-  left: 1rem;
+  right: 1rem;
   padding: 0.35rem 0.75rem;
   background: rgba(13, 13, 15, 0.78);
   backdrop-filter: blur(8px);

@@ -32,7 +32,7 @@
     return n;
   }
 
-  function addItem(sku, title, price, image) {
+  function addItem(sku, title, price, image, type) {
     var cart = readCart();
     var existing = null;
     for (var i = 0; i < cart.items.length; i++) {
@@ -40,13 +40,16 @@
     }
     if (existing) {
       existing.quantity += 1;
+      // If a previously-added item didn't have a type (older cart state), upgrade it.
+      if (type && !existing.type) { existing.type = type; }
     } else {
       cart.items.push({
         sku: sku,
         title: title,
         price: parseFloat(price),
         quantity: 1,
-        image: image || ''
+        image: image || '',
+        type: type || 'digital'
       });
     }
     writeCart(cart);
@@ -112,11 +115,12 @@
     var price = btn.getAttribute('data-gsg-price');
     var title = btn.getAttribute('data-gsg-title');
     var image = btn.getAttribute('data-gsg-image') || '';
+    var type = btn.getAttribute('data-gsg-type') || 'digital';
     if (!sku || !price) return;
 
     e.stopImmediatePropagation();
 
-    addItem(sku, title, price, image);
+    addItem(sku, title, price, image, type);
 
     // On-button feedback (vendored CSS already styles .gsg-atc-success).
     btn.classList.add('gsg-atc-success');

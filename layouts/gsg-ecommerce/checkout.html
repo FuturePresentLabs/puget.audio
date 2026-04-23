@@ -2,11 +2,14 @@
   Local override of themes/gsg-ecommerce/layouts/gsg-ecommerce/checkout.html.
 
   Differences from vendored:
-    - Custom CC inputs replaced with a FluidPay tokenizer iframe container
+    - Custom CC inputs replaced with a FluidPay tokenizer iframe
       (card data never touches our server — we POST the token instead).
     - Empty-cart CTA points at /products/ (shop) instead of /plugins/.
     - Inline bootstrap script owns the submit flow and supersedes the
       vendored handleCheckout for tokenized checkout.
+    - Shipping + billing address fieldsets render only when the cart
+      contains at least one physical item (type === "physical"). For
+      all-digital carts the form stays as email + name + card.
 */}}
 {{ define "main" }}
 {{ $fp := .Site.Params.fluidpay }}
@@ -34,6 +37,7 @@
 
       <div class="gsg-checkout-form-wrap">
         <form class="gsg-checkout-form" data-gsg-checkout-form data-puget-checkout-form novalidate>
+
           <fieldset class="gsg-fieldset">
             <legend class="gsg-legend">Contact Information</legend>
             <div class="gsg-field">
@@ -48,6 +52,102 @@
               <div class="gsg-field">
                 <label for="gsg-last-name" class="gsg-label">Last Name</label>
                 <input type="text" id="gsg-last-name" name="last_name" required class="gsg-input" autocomplete="family-name">
+              </div>
+            </div>
+          </fieldset>
+
+          {{/* Shipping / billing — revealed by JS when the cart has a physical item */}}
+          <fieldset class="gsg-fieldset gsg-shipping-fieldset" data-gsg-shipping-fieldset hidden>
+            <legend class="gsg-legend">Shipping Address</legend>
+            <p class="gsg-fieldset-note">For Cornucopia and any other physical orders. We ship from Seattle.</p>
+            <div class="gsg-field">
+              <label for="gsg-ship-address1" class="gsg-label">Address</label>
+              <input type="text" id="gsg-ship-address1" name="ship_address1" class="gsg-input" placeholder="Street address" autocomplete="shipping address-line1" data-ship-required>
+            </div>
+            <div class="gsg-field">
+              <label for="gsg-ship-address2" class="gsg-label">Apt, Suite, etc. <span class="gsg-label-optional">optional</span></label>
+              <input type="text" id="gsg-ship-address2" name="ship_address2" class="gsg-input" autocomplete="shipping address-line2">
+            </div>
+            <div class="gsg-field-row">
+              <div class="gsg-field">
+                <label for="gsg-ship-city" class="gsg-label">City</label>
+                <input type="text" id="gsg-ship-city" name="ship_city" class="gsg-input" autocomplete="shipping address-level2" data-ship-required>
+              </div>
+              <div class="gsg-field">
+                <label for="gsg-ship-state" class="gsg-label">State / Region</label>
+                <input type="text" id="gsg-ship-state" name="ship_state" class="gsg-input" autocomplete="shipping address-level1" data-ship-required>
+              </div>
+            </div>
+            <div class="gsg-field-row">
+              <div class="gsg-field">
+                <label for="gsg-ship-postal" class="gsg-label">ZIP / Postal</label>
+                <input type="text" id="gsg-ship-postal" name="ship_postal" class="gsg-input" autocomplete="shipping postal-code" inputmode="numeric" data-ship-required>
+              </div>
+              <div class="gsg-field">
+                <label for="gsg-ship-country" class="gsg-label">Country</label>
+                <select id="gsg-ship-country" name="ship_country" class="gsg-input" autocomplete="shipping country" data-ship-required>
+                  <option value="US">United States</option>
+                  <option value="CA">Canada</option>
+                  <option value="GB">United Kingdom</option>
+                  <option value="DE">Germany</option>
+                  <option value="FR">France</option>
+                  <option value="NL">Netherlands</option>
+                  <option value="AU">Australia</option>
+                  <option value="JP">Japan</option>
+                  <option value="OTHER">Other &mdash; email us and we'll arrange</option>
+                </select>
+              </div>
+            </div>
+            <div class="gsg-field">
+              <label for="gsg-ship-phone" class="gsg-label">Phone <span class="gsg-label-optional">optional, for shipping updates</span></label>
+              <input type="tel" id="gsg-ship-phone" name="ship_phone" class="gsg-input" autocomplete="shipping tel" placeholder="+1 (555) 123-4567">
+            </div>
+          </fieldset>
+
+          <fieldset class="gsg-fieldset gsg-billing-fieldset" data-gsg-billing-fieldset hidden>
+            <legend class="gsg-legend">Billing Address</legend>
+            <label class="gsg-checkbox-row">
+              <input type="checkbox" id="gsg-billing-same" name="billing_same_as_shipping" checked data-gsg-billing-same />
+              <span>Same as shipping address</span>
+            </label>
+            <div class="gsg-billing-fields" data-gsg-billing-fields hidden>
+              <div class="gsg-field">
+                <label for="gsg-bill-address1" class="gsg-label">Address</label>
+                <input type="text" id="gsg-bill-address1" name="bill_address1" class="gsg-input" autocomplete="billing address-line1" data-bill-required>
+              </div>
+              <div class="gsg-field">
+                <label for="gsg-bill-address2" class="gsg-label">Apt, Suite, etc. <span class="gsg-label-optional">optional</span></label>
+                <input type="text" id="gsg-bill-address2" name="bill_address2" class="gsg-input" autocomplete="billing address-line2">
+              </div>
+              <div class="gsg-field-row">
+                <div class="gsg-field">
+                  <label for="gsg-bill-city" class="gsg-label">City</label>
+                  <input type="text" id="gsg-bill-city" name="bill_city" class="gsg-input" autocomplete="billing address-level2" data-bill-required>
+                </div>
+                <div class="gsg-field">
+                  <label for="gsg-bill-state" class="gsg-label">State / Region</label>
+                  <input type="text" id="gsg-bill-state" name="bill_state" class="gsg-input" autocomplete="billing address-level1" data-bill-required>
+                </div>
+              </div>
+              <div class="gsg-field-row">
+                <div class="gsg-field">
+                  <label for="gsg-bill-postal" class="gsg-label">ZIP / Postal</label>
+                  <input type="text" id="gsg-bill-postal" name="bill_postal" class="gsg-input" autocomplete="billing postal-code" inputmode="numeric" data-bill-required>
+                </div>
+                <div class="gsg-field">
+                  <label for="gsg-bill-country" class="gsg-label">Country</label>
+                  <select id="gsg-bill-country" name="bill_country" class="gsg-input" autocomplete="billing country" data-bill-required>
+                    <option value="US">United States</option>
+                    <option value="CA">Canada</option>
+                    <option value="GB">United Kingdom</option>
+                    <option value="DE">Germany</option>
+                    <option value="FR">France</option>
+                    <option value="NL">Netherlands</option>
+                    <option value="AU">Australia</option>
+                    <option value="JP">Japan</option>
+                    <option value="OTHER">Other</option>
+                  </select>
+                </div>
               </div>
             </div>
           </fieldset>
@@ -80,6 +180,79 @@
     </div>
   </div>
 </div>
+
+<script>
+(function () {
+  'use strict';
+  // Conditionally reveal shipping/billing fieldsets when the cart has a
+  // physical item. Runs regardless of whether FluidPay is configured so the
+  // form stays consistent in demo/dev.
+  function hasPhysicalItem() {
+    try {
+      var raw = localStorage.getItem('gsg_cart');
+      if (!raw) return false;
+      var cart = JSON.parse(raw);
+      if (!cart || !cart.items) return false;
+      for (var i = 0; i < cart.items.length; i++) {
+        if (cart.items[i] && cart.items[i].type === 'physical') return true;
+      }
+    } catch (e) {}
+    return false;
+  }
+
+  function setAddressRequired(scope, required) {
+    var fields = scope.querySelectorAll('[data-ship-required], [data-bill-required]');
+    for (var i = 0; i < fields.length; i++) {
+      if (required) {
+        fields[i].setAttribute('required', 'required');
+      } else {
+        fields[i].removeAttribute('required');
+      }
+    }
+  }
+
+  function init() {
+    var form = document.querySelector('[data-puget-checkout-form]');
+    if (!form) return;
+    var shipFieldset = form.querySelector('[data-gsg-shipping-fieldset]');
+    var billFieldset = form.querySelector('[data-gsg-billing-fieldset]');
+    var billFields = form.querySelector('[data-gsg-billing-fields]');
+    var billSameCheckbox = form.querySelector('[data-gsg-billing-same]');
+
+    if (hasPhysicalItem()) {
+      if (shipFieldset) shipFieldset.hidden = false;
+      if (billFieldset) billFieldset.hidden = false;
+      setAddressRequired(form, true);
+      // Billing fields hidden by default because "same as shipping" is checked.
+    }
+
+    if (billSameCheckbox && billFields) {
+      billSameCheckbox.addEventListener('change', function () {
+        billFields.hidden = billSameCheckbox.checked;
+        var billOnly = billFields.querySelectorAll('[data-bill-required]');
+        for (var i = 0; i < billOnly.length; i++) {
+          if (billSameCheckbox.checked) {
+            billOnly[i].removeAttribute('required');
+          } else {
+            billOnly[i].setAttribute('required', 'required');
+          }
+        }
+      });
+      // Initial state: if checkbox is checked, clear billing required.
+      if (billSameCheckbox.checked) {
+        var billOnly = billFields.querySelectorAll('[data-bill-required]');
+        for (var i = 0; i < billOnly.length; i++) billOnly[i].removeAttribute('required');
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
 
 {{ if $fluidpayReady }}
 <script src="{{ $fp.tokenizerScript }}"></script>
@@ -131,6 +304,29 @@
     return t;
   }
 
+  function hasPhysicalItem(cart) {
+    for (var i = 0; i < cart.items.length; i++) {
+      if (cart.items[i].type === 'physical') return true;
+    }
+    return false;
+  }
+
+  function readAddress(form, prefix) {
+    function v(name) {
+      var el = form.querySelector('[name="' + prefix + '_' + name + '"]');
+      return el ? (el.value || '').trim() : '';
+    }
+    return {
+      address1: v('address1'),
+      address2: v('address2'),
+      city: v('city'),
+      state: v('state'),
+      postal: v('postal'),
+      country: v('country'),
+      phone: prefix === 'ship' ? v('phone') : ''
+    };
+  }
+
   var tokenizer = new Tokenizer({
     url: fp.tokenizerUrl || 'https://sandbox.fluidpay.com',
     apikey: fp.publicKey,
@@ -146,18 +342,13 @@
     }
   });
 
-  // Intercept the submit BEFORE the vendored handler runs. Use capture phase +
-  // stopImmediatePropagation so we fully own the flow on configured sites.
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     e.stopImmediatePropagation();
-
-    // Basic native validation for contact fields.
     if (!form.checkValidity()) {
       form.reportValidity();
       return;
     }
-
     setLoading();
     try {
       tokenizer.submit();
@@ -179,8 +370,18 @@
       last_name: form.querySelector('#gsg-last-name').value,
       items: cart.items,
       total: cartTotal(cart),
-      payment_token: token
+      payment_token: token,
+      requires_shipping: hasPhysicalItem(cart)
     };
+
+    if (order.requires_shipping) {
+      var ship = readAddress(form, 'ship');
+      var billingSameEl = form.querySelector('[data-gsg-billing-same]');
+      var billingSame = billingSameEl ? billingSameEl.checked : true;
+      order.shipping_address = ship;
+      order.billing_address = billingSame ? ship : readAddress(form, 'bill');
+      order.billing_same_as_shipping = billingSame;
+    }
 
     try {
       localStorage.setItem('gsg_last_order', JSON.stringify(order));
@@ -188,7 +389,6 @@
 
     var apiBase = config.apiBase;
     if (!apiBase) {
-      // Demo mode — still redirect so the thanks page can render from localStorage.
       setTimeout(function () {
         try { localStorage.setItem('gsg_cart', JSON.stringify({ items: [] })); } catch (e) {}
         window.location.href = '/thanks/';
