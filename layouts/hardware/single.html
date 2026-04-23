@@ -112,9 +112,12 @@
         var cfg = currentConfig();
         if (totalEl) totalEl.textContent = '$' + cfg.price.toFixed(2);
         if (cartBtn) {
-          cartBtn.setAttribute('data-gsg-sku', cfg.sku);
-          cartBtn.setAttribute('data-gsg-title', cfg.title);
-          cartBtn.setAttribute('data-gsg-price', cfg.price.toFixed(2));
+          var cents = Math.round(cfg.price * 100);
+          cartBtn.setAttribute('data-sku', cfg.sku);
+          cartBtn.setAttribute('data-title', cfg.title);
+          cartBtn.setAttribute('data-price-cents', cents);
+          cartBtn.setAttribute('data-marked-price-cents', cents);
+          cartBtn.setAttribute('data-type', 'physical');
           var label = cartBtn.querySelector('.gsg-atc-label');
           if (label) label.textContent = 'Add to Cart — $' + cfg.price.toFixed(2);
         }

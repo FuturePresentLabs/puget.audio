@@ -1,72 +1,14 @@
-/* puget-shop.js
+/**
+ * puget-shop.js — UX-only layer on top of gsg-ecommerce.js.
  *
- * Site-level cart interaction layer that sits on top of the vendored
- * gsg-ecommerce module. It owns the click-to-add interaction directly so
- * nothing depends on the vendored binding succeeding on every page, and
- * gives shoppers a clear toast when something lands in the cart.
- *
- * Storage key (`gsg_cart`) is shared with gsg-ecommerce.js so the cart
- * page, checkout page, and thanks page keep working exactly as before.
+ * Cart state, API client, and data-attribute wiring all live in
+ * gsg-ecommerce.js. This file exists to show the site-specific
+ * "Added to cart" toast when a cart:item-added event fires. Nothing
+ * here owns state.
  */
 (function () {
   'use strict';
 
-  var STORAGE_KEY = 'gsg_cart';
-
-  // -- Cart model -----------------------------------------------------------
-  function readCart() {
-    try {
-      var raw = localStorage.getItem(STORAGE_KEY);
-      if (raw) { return JSON.parse(raw); }
-    } catch (_) {}
-    return { items: [] };
-  }
-
-  function writeCart(cart) {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch (_) {}
-  }
-
-  function cartCount(cart) {
-    var n = 0;
-    for (var i = 0; i < cart.items.length; i++) { n += cart.items[i].quantity; }
-    return n;
-  }
-
-  function addItem(sku, title, price, image, type) {
-    var cart = readCart();
-    var existing = null;
-    for (var i = 0; i < cart.items.length; i++) {
-      if (cart.items[i].sku === sku) { existing = cart.items[i]; break; }
-    }
-    if (existing) {
-      existing.quantity += 1;
-      // If a previously-added item didn't have a type (older cart state), upgrade it.
-      if (type && !existing.type) { existing.type = type; }
-    } else {
-      cart.items.push({
-        sku: sku,
-        title: title,
-        price: parseFloat(price),
-        quantity: 1,
-        image: image || '',
-        type: type || 'digital'
-      });
-    }
-    writeCart(cart);
-    updateBadges();
-    return cart;
-  }
-
-  function updateBadges() {
-    var n = cartCount(readCart());
-    var badges = document.querySelectorAll('[data-gsg-cart-count]');
-    for (var i = 0; i < badges.length; i++) {
-      badges[i].textContent = n;
-      badges[i].style.display = n > 0 ? '' : 'none';
-    }
-  }
-
-  // -- Toast UI -------------------------------------------------------------
   function ensureToastRoot() {
     var root = document.getElementById('puget-toast-root');
     if (root) return root;
@@ -95,56 +37,14 @@
     requestAnimationFrame(function () { toast.classList.add('is-visible'); });
     setTimeout(function () {
       toast.classList.remove('is-visible');
-      setTimeout(function () { if (toast.parentNode) { toast.parentNode.removeChild(toast); } }, 300);
+      setTimeout(function () { if (toast.parentNode) toast.parentNode.removeChild(toast); }, 300);
     }, 3600);
   }
 
-  // -- Click handler --------------------------------------------------------
-  // Capture phase on document with stopImmediatePropagation prevents the
-  // vendored gsg-ecommerce click binding from also firing (which would
-  // double-add the item).
-  function onDocClick(e) {
-    var target = e.target;
-    while (target && target !== document && !(target.classList && target.classList.contains('gsg-add-to-cart'))) {
-      target = target.parentNode;
-    }
-    if (!target || target === document) return;
+  document.addEventListener('cart:item-added', function (e) {
+    var detail = e.detail || {};
+    showToast(detail.title || 'Item');
+  });
 
-    var btn = target;
-    var sku = btn.getAttribute('data-gsg-sku');
-    var price = btn.getAttribute('data-gsg-price');
-    var title = btn.getAttribute('data-gsg-title');
-    var image = btn.getAttribute('data-gsg-image') || '';
-    var type = btn.getAttribute('data-gsg-type') || 'digital';
-    if (!sku || !price) return;
-
-    e.stopImmediatePropagation();
-
-    addItem(sku, title, price, image, type);
-
-    // On-button feedback (vendored CSS already styles .gsg-atc-success).
-    btn.classList.add('gsg-atc-success');
-    setTimeout(function () { btn.classList.remove('gsg-atc-success'); }, 1600);
-
-    showToast(title || 'Item');
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      document.addEventListener('click', onDocClick, true);
-      updateBadges();
-    });
-  } else {
-    document.addEventListener('click', onDocClick, true);
-    updateBadges();
-  }
-
-  // Expose a minimal API for the hardware configurator or any future caller
-  // that needs to add an item programmatically without a click.
-  window.pugetShop = {
-    addItem: addItem,
-    getCart: readCart,
-    updateBadges: updateBadges,
-    showToast: showToast
-  };
+  window.pugetShop = { showToast: showToast };
 })();

@@ -1,14 +1,15 @@
 {{/*
-  Local override of themes/gsg-ecommerce/layouts/gsg-ecommerce/cart.html.
-  Points the empty-cart CTA at the Shop page (products overview) instead of
-  the plugins collection, which is mostly coming-soon at launch.
+  Cart page — renders live from `window.GSGCart` using the
+  gsg.cart.v3 schema (items in integer cents, line_id identified).
+  Items, totals, and promo messages are injected by the inline
+  script below; the server-rendered markup is an empty shell.
 */}}
 {{ define "main" }}
 <div class="gsg-page gsg-cart-page">
   <div class="gsg-page-inner">
     <h1 class="gsg-page-title">Your Cart</h1>
 
-    <!-- Empty cart state -->
+    {{/* Empty state */}}
     <div class="gsg-cart-empty" data-gsg-cart-empty>
       <div class="gsg-empty-icon">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -21,16 +22,15 @@
       <a href="/products/" class="gsg-btn gsg-btn-secondary">Continue Shopping</a>
     </div>
 
-    <!-- Cart items -->
-    <div class="gsg-cart-contents" data-gsg-cart-contents style="display:none;">
-      <div class="gsg-cart-items" data-gsg-cart-items>
-        <!-- Items rendered by JS -->
-      </div>
+    {{/* Populated state */}}
+    <div class="gsg-cart-contents" data-gsg-cart-contents hidden>
+      <div class="gsg-cart-rules" data-gsg-cart-rules hidden></div>
+      <div class="gsg-cart-items" data-gsg-cart-items></div>
 
       <div class="gsg-cart-summary">
         <div class="gsg-cart-summary-row gsg-cart-total-row">
           <span class="gsg-cart-total-label">Total</span>
-          <span class="gsg-cart-total-amount" data-gsg-cart-total>$0.00</span>
+          <span class="gsg-cart-total-amount" data-cart-total>$0.00</span>
         </div>
         <a href="/checkout/" class="gsg-btn gsg-btn-primary gsg-checkout-btn">Proceed to Checkout</a>
         <a href="/products/" class="gsg-continue-shopping">Continue Shopping</a>
@@ -38,4 +38,132 @@
     </div>
   </div>
 </div>
+
+<script>
+(function () {
+  'use strict';
+
+  var emptyEl = document.querySelector('[data-gsg-cart-empty]');
+  var contentsEl = document.querySelector('[data-gsg-cart-contents]');
+  var itemsEl = document.querySelector('[data-gsg-cart-items]');
+  var rulesEl = document.querySelector('[data-gsg-cart-rules]');
+  var totalEl = document.querySelector('[data-cart-total]');
+
+  function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str == null ? '' : String(str)));
+    return div.innerHTML;
+  }
+
+  function renderItems(state) {
+    var items = state.items || [];
+    if (!items.length) {
+      if (emptyEl) emptyEl.hidden = false;
+      if (contentsEl) contentsEl.hidden = true;
+      if (totalEl) totalEl.textContent = '$0.00';
+      return;
+    }
+    if (emptyEl) emptyEl.hidden = true;
+    if (contentsEl) contentsEl.hidden = false;
+
+    var html = '';
+    for (var i = 0; i < items.length; i++) {
+      var item = items[i];
+      var lineTotal = item.price_cents * item.qty;
+      html += '<div class="gsg-cart-item" data-line-id="' + escapeHtml(item.line_id) + '">';
+      if (item.image) {
+        html += '  <div class="gsg-cart-item-image"><img src="' + escapeHtml(item.image) + '" alt="" loading="lazy"></div>';
+      }
+      html += '  <div class="gsg-cart-item-info">';
+      html += '    <span class="gsg-cart-item-title">' + escapeHtml(item.title) + '</span>';
+      html += '    <span class="gsg-cart-item-sku">' + escapeHtml(item.sku) + '</span>';
+      if (item.customizations && item.customizations.length) {
+        html += '    <ul class="gsg-cart-item-customizations">';
+        for (var c = 0; c < item.customizations.length; c++) {
+          html += '<li>' + escapeHtml(item.customizations[c].field_id) + ': ' + escapeHtml(item.customizations[c].value) + '</li>';
+        }
+        html += '    </ul>';
+      }
+      html += '  </div>';
+      html += '  <div class="gsg-cart-item-qty">';
+      html += '    <input type="number" min="0" max="99" value="' + item.qty + '" ' +
+              'data-cart-qty data-line-id="' + escapeHtml(item.line_id) + '" data-sku="' + escapeHtml(item.sku) + '" ' +
+              'aria-label="Quantity">';
+      html += '  </div>';
+      html += '  <div class="gsg-cart-item-price">' + window.GSGCart.format(lineTotal) + '</div>';
+      html += '  <button class="gsg-cart-item-remove" data-cart-remove data-line-id="' + escapeHtml(item.line_id) + '" ' +
+              'data-sku="' + escapeHtml(item.sku) + '" type="button" aria-label="Remove item">';
+      html += '    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+      html += '  </button>';
+      html += '</div>';
+    }
+    itemsEl.innerHTML = html;
+  }
+
+  function renderRules(state) {
+    if (!rulesEl) return;
+    var messages = state.rule_messages || [];
+    var err = state.cart_rules_error;
+    if (!messages.length && !err) {
+      rulesEl.hidden = true;
+      rulesEl.innerHTML = '';
+      return;
+    }
+    rulesEl.hidden = false;
+    var html = '';
+    for (var i = 0; i < messages.length; i++) {
+      html += '<div class="gsg-cart-rule-msg">' + escapeHtml(messages[i]) + '</div>';
+    }
+    if (err) {
+      html += '<div class="gsg-cart-rule-error">' + escapeHtml(err) + '</div>';
+    }
+    rulesEl.innerHTML = html;
+  }
+
+  function render() {
+    if (!window.GSGCart) return;
+    var state = window.GSGCart.get();
+    renderItems(state);
+    renderRules(state);
+  }
+
+  // Enforce live stock caps from /catalog/{sku} for each unique SKU
+  function enforceStock() {
+    if (!window.GSGApi) return;
+    var state = window.GSGCart.get();
+    var skus = {};
+    for (var i = 0; i < state.items.length; i++) skus[state.items[i].sku] = true;
+    Object.keys(skus).forEach(function (sku) {
+      window.GSGApi.get('/catalog/' + encodeURIComponent(sku)).then(function (data) {
+        var max = Number(data && data.stock != null ? data.stock : 0);
+        if (!max || max <= 0) return;
+        var inputs = document.querySelectorAll('input[data-cart-qty][data-sku="' + sku + '"]');
+        for (var j = 0; j < inputs.length; j++) {
+          inputs[j].max = max;
+          if (Number(inputs[j].value) > max) {
+            inputs[j].value = max;
+            var lineId = inputs[j].getAttribute('data-line-id');
+            if (lineId) window.GSGCart.setQtyByLineId(lineId, max);
+          }
+        }
+      }).catch(function () {});
+    });
+  }
+
+  document.addEventListener('cart:updated', render);
+  document.addEventListener('DOMContentLoaded', function () {
+    render();
+    enforceStock();
+  });
+  if (document.readyState !== 'loading') {
+    render();
+    enforceStock();
+  }
+
+  // Analytics: cart-view
+  if (window.GSGApi) {
+    window.GSGApi.post('/session/events/cart-view', {}).catch(function () {});
+  }
+})();
+</script>
 {{ end }}
