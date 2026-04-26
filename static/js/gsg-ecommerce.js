@@ -462,6 +462,10 @@
       var sku = target.getAttribute('data-sku');
       var qty = parseInt(target.value, 10);
       if (isNaN(qty) || qty < 0) return;
+      // qty=0 must not silently remove the item — the cart UI surfaces an
+      // inline confirmation prompt and calls removeByLineId only when the
+      // user confirms.
+      if (qty === 0) return;
       if (lineId) setQtyByLineId(lineId, qty);
       else if (sku) setQty(sku, qty);
     }

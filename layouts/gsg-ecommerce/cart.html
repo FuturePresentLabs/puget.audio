@@ -85,10 +85,21 @@
         html += '    </ul>';
       }
       html += '  </div>';
-      html += '  <div class="gsg-cart-item-qty">';
-      html += '    <input type="number" min="0" max="99" value="' + item.qty + '" ' +
+      html += '  <div class="gsg-cart-item-qty" data-qty-wrap data-line-id="' + escapeHtml(item.line_id) + '" data-stored-qty="' + item.qty + '">';
+      html += '    <div class="gsg-qty-stepper">';
+      html += '      <button class="gsg-qty-btn" data-qty-dec type="button" aria-label="Decrease quantity">&minus;</button>';
+      html += '      <input type="number" class="gsg-qty-input" min="0" max="99" value="' + item.qty + '" inputmode="numeric" ' +
               'data-cart-qty data-line-id="' + escapeHtml(item.line_id) + '" data-sku="' + escapeHtml(item.sku) + '" ' +
               'aria-label="Quantity">';
+      html += '      <button class="gsg-qty-btn" data-qty-inc type="button" aria-label="Increase quantity">+</button>';
+      html += '    </div>';
+      html += '    <div class="gsg-qty-confirm" data-qty-confirm hidden>';
+      html += '      <span class="gsg-qty-confirm-text">Remove this item?</span>';
+      html += '      <div class="gsg-qty-confirm-actions">';
+      html += '        <button type="button" class="gsg-qty-confirm-yes" data-qty-confirm-remove>Remove</button>';
+      html += '        <button type="button" class="gsg-qty-confirm-no" data-qty-confirm-cancel>Cancel</button>';
+      html += '      </div>';
+      html += '    </div>';
       html += '  </div>';
       html += '  <div class="gsg-cart-item-price">' + window.GSGCart.format(lineTotal) + '</div>';
       html += '  <button class="gsg-cart-item-remove" data-cart-remove data-line-id="' + escapeHtml(item.line_id) + '" ' +
@@ -148,6 +159,83 @@
         }
       }).catch(function () {});
     });
+  }
+
+  function findQtyWrap(node) {
+    while (node && node !== itemsEl && node !== document) {
+      if (node.matches && node.matches('[data-qty-wrap]')) return node;
+      node = node.parentNode;
+    }
+    return null;
+  }
+
+  function setConfirmVisible(wrap, visible) {
+    if (!wrap) return;
+    var confirmEl = wrap.querySelector('[data-qty-confirm]');
+    if (confirmEl) confirmEl.hidden = !visible;
+    wrap.classList.toggle('gsg-qty-pending-remove', !!visible);
+  }
+
+  function handleQtyClick(e) {
+    var t = e.target;
+    while (t && t !== itemsEl && !(t.matches && (
+      t.matches('[data-qty-inc]') || t.matches('[data-qty-dec]') ||
+      t.matches('[data-qty-confirm-remove]') || t.matches('[data-qty-confirm-cancel]')
+    ))) {
+      t = t.parentNode;
+    }
+    if (!t || t === itemsEl) return;
+
+    var wrap = findQtyWrap(t);
+    if (!wrap) return;
+    var input = wrap.querySelector('input[data-cart-qty]');
+    var lineId = wrap.getAttribute('data-line-id');
+
+    if (t.matches('[data-qty-confirm-remove]')) {
+      e.preventDefault();
+      if (lineId && window.GSGCart) window.GSGCart.removeByLineId(lineId);
+      return;
+    }
+
+    if (t.matches('[data-qty-confirm-cancel]')) {
+      e.preventDefault();
+      var stored = wrap.getAttribute('data-stored-qty');
+      if (input && stored != null) input.value = stored;
+      setConfirmVisible(wrap, false);
+      return;
+    }
+
+    if (!input) return;
+    var current = parseInt(input.value, 10);
+    if (isNaN(current)) current = parseInt(wrap.getAttribute('data-stored-qty'), 10) || 0;
+    var max = parseInt(input.getAttribute('max'), 10) || 99;
+    var next = t.matches('[data-qty-inc]')
+      ? Math.min(max, current + 1)
+      : Math.max(0, current - 1);
+
+    if (next === current) return;
+    input.value = next;
+    if (next === 0) {
+      setConfirmVisible(wrap, true);
+    } else {
+      setConfirmVisible(wrap, false);
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
+
+  function handleQtyInput(e) {
+    var t = e.target;
+    if (!t || !t.matches || !t.matches('input[data-cart-qty]')) return;
+    var wrap = findQtyWrap(t);
+    if (!wrap) return;
+    var v = parseInt(t.value, 10);
+    if (v === 0) setConfirmVisible(wrap, true);
+    else if (!isNaN(v)) setConfirmVisible(wrap, false);
+  }
+
+  if (itemsEl) {
+    itemsEl.addEventListener('click', handleQtyClick);
+    itemsEl.addEventListener('input', handleQtyInput);
   }
 
   document.addEventListener('cart:updated', render);
