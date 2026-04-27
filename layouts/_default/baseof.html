@@ -67,7 +67,13 @@
   {{/* Site navigation */}}
   <nav class="site-nav">
     <div class="nav-inner">
-      <a href="/" class="nav-logo">Puget Audio</a>
+      {{ $logoImg := resources.Get "images/puget-logo.png" }}
+      {{ if $logoImg }}
+        {{ $logoResized := $logoImg.Resize "120x" }}
+        <a href="/" class="nav-logo"><img src="{{ $logoResized.RelPermalink }}" alt="Puget Audio" height="40"></a>
+      {{ else }}
+        <a href="/" class="nav-logo">Puget Audio</a>
+      {{ end }}
       <div class="nav-links">
         {{ range .Site.Menus.main }}
           <a href="{{ .URL }}">{{ .Name }}</a>
