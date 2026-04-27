@@ -13,7 +13,7 @@ theme = ['puget-theme', 'gsg-ecommerce']
   [params.brand]
     name = "Puget Audio"
     key = "puget"
-    logo = "/images/puget-logo.svg"
+    logo = "/images/puget-logo.png"
 
   [params.seo]
     description = "Analog-authentic audio tools from Seattle. Sample packs recorded through real analog hardware, circuit-accurate Wave Digital Filter plugins, and custom Eurorack gear — without the 2026 price of the original iron."
