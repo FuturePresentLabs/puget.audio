@@ -8165,3 +8165,35 @@ select.gsg-input option {
   font-size: 2rem;
   margin-bottom: 2rem;
 }
+
+/* Home page reviews section */
+.home-reviews-section {
+  padding: 4rem 0;
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.home-reviews-section h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.home-reviews-section > .container > .muted {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+}
+
+.home-reviews-section .reviews-block {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.home-reviews-section .reviews-cta {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}

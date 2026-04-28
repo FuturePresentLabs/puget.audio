@@ -1,0 +1,19 @@
+{{/* Reviews section for homepage - shows all reviews across all products */}}
+<section class="reviews-section home-reviews-section">
+  <div class="container">
+    <h2>What people are saying</h2>
+    <p class="muted">Verified reviews from producers and musicians</p>
+    
+    <div class="reviews-block" id="reviews-global" data-review-global data-storefront="puget-audio">
+      <div class="reviews-section__list" data-review-list>
+        <p class="muted" data-review-empty>Loading reviews…</p>
+      </div>
+      <p class="reviews-section__error hidden" data-review-error>We couldn't load reviews right now. Please try again in a moment.</p>
+    </div>
+    
+    <div class="reviews-cta">
+      <a href="/reviews/" class="btn btn-secondary">Read all reviews</a>
+      <button type="button" class="btn" data-review-trigger="request">Add your review</button>
+    </div>
+  </div>
+</section>

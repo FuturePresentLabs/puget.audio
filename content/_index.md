@@ -7,6 +7,8 @@ description: "Serious tools for serious musicians. Built in Seattle."
 
 {{< products >}}
 
+{{< reviews >}}
+
 {{< about >}}
 
 {{< signup >}}
