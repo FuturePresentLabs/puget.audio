@@ -12,7 +12,7 @@ theme = ['puget-theme', 'gsg-ecommerce']
 
   [params.brand]
     name = "Puget Audio"
-    key = "puget"
+    key = "puget-audio"
     logo = "/images/puget-logo.png"
 
   [params.seo]
