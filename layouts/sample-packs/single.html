@@ -148,7 +148,15 @@
           {{ else }}
           <div class="sample-pack-purchase">
             <div class="puget-product-price">${{ .Params.price }}</div>
-            {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Add to Cart" "class" "btn-primary btn-lg") }}
+            {{ $coverImageTop := "" }}
+            {{ with .Params.cover_image }}
+              {{ $imgTop := resources.Get . }}
+              {{ if $imgTop }}
+                {{ $resizedTop := $imgTop.Resize "200x" }}
+                {{ $coverImageTop = $resizedTop.RelPermalink }}
+              {{ end }}
+            {{ end }}
+            {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Add to Cart" "class" "btn-primary btn-lg" "image" $coverImageTop) }}
           </div>
           {{ end }}
         </header>
@@ -169,7 +177,15 @@
       <a href="/#signup" class="btn-primary">Join the Waitlist</a>
       {{ else }}
       <p>Ready to add these sounds to your library?</p>
-      {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Buy Now" "class" "btn-primary btn-lg") }}
+      {{ $coverImage := "" }}
+      {{ with .Params.cover_image }}
+        {{ $img := resources.Get . }}
+        {{ if $img }}
+          {{ $resized := $img.Resize "200x" }}
+          {{ $coverImage = $resized.RelPermalink }}
+        {{ end }}
+      {{ end }}
+      {{ partial "add-to-cart.html" (dict "sku" .Params.sku "price" .Params.price "title" .Title "label" "Buy Now" "class" "btn-primary btn-lg" "image" $coverImage) }}
       {{ end }}
     </div>
 
