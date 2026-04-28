@@ -11,11 +11,11 @@
 {{ $fp := .Site.Params.fluidpay }}
 <script>
   window.GSG_CONFIG = {
-    API_BASE: {{ with $api.base }}{{ . | jsonify }}{{ else }}"https://api.gsgmfg.com"{{ end }},
-    STOREFRONT: {{ with $brand.name }}{{ . | jsonify }}{{ else }}"Puget Audio"{{ end }},
-    STOREFRONT_KEY: {{ with $brand.key }}{{ . | jsonify }}{{ else }}"puget"{{ end }},
-    FLUIDPAY_PUBLIC_KEY: {{ with $fp.publicKey }}{{ . | jsonify }}{{ else }}""{{ end }},
-    FLUIDPAY_TOKENIZER_URL: {{ with $fp.tokenizerScript }}{{ . | jsonify }}{{ else }}"https://app.fluidpay.com/tokenizer/tokenizer.js"{{ end }},
+    API_BASE: {{ with $api.base }}"{{ . }}"{{ else }}"https://api.gsgmfg.com"{{ end }},
+    STOREFRONT: {{ with $brand.name }}"{{ . }}"{{ else }}"Puget Audio"{{ end }},
+    STOREFRONT_KEY: {{ with $brand.key }}"{{ . }}"{{ else }}"puget"{{ end }},
+    FLUIDPAY_PUBLIC_KEY: {{ with $fp.publicKey }}"{{ . }}"{{ else }}""{{ end }},
+    FLUIDPAY_TOKENIZER_URL: {{ with $fp.tokenizerScript }}"{{ . }}"{{ else }}"https://app.fluidpay.com/tokenizer/tokenizer.js"{{ end }},
     PAYMENT_GATEWAY: "fluidpay"
   };
 </script>
