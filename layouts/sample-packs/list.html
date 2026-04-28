@@ -151,11 +151,16 @@
             "button" "Notify Me") }}
         {{ else }}
           <span class="samples-release-price">${{ $p.Params.price }}</span>
+          {{ $cartImage := "" }}
+          {{ if $cover }}
+            {{ $cartResized := $cover.Resize "200x" }}
+            {{ $cartImage = $cartResized.RelPermalink }}
+          {{ end }}
           {{ partial "add-to-cart.html" (dict
             "sku" $p.Params.sku
             "price" $p.Params.price
             "title" $title
-            "image" $coverPath
+            "image" $cartImage
             "label" "Add to Cart"
             "class" "btn-primary") }}
           <a href="{{ $p.Permalink }}" class="samples-release-more">Hear it &amp; see the full track list &rarr;</a>
