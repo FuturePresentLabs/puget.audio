@@ -153,10 +153,18 @@
   var CFG = window.GSG_CONFIG || {};
   var api = window.GSGApi;
   var Cart = window.GSGCart;
-  if (!api || !Cart) {
-    console.error('[checkout] GSGApi / GSGCart not loaded');
-    return;
+
+  function initCheckout() {
+    api = window.GSGApi;
+    Cart = window.GSGCart;
+    if (!api || !Cart) {
+      console.error('[checkout] GSGApi / GSGCart not loaded');
+      return;
+    }
+    runCheckout();
   }
+
+  function runCheckout() {
 
   var form = document.querySelector('[data-checkout-form]');
   var emptyEl = document.querySelector('[data-gsg-checkout-empty]');
@@ -662,6 +670,26 @@
       fetchShippingOptions();
       api.post('/session/events/checkout', { stage: 'form' }).catch(function () {});
     }
+  }
+  } // end runCheckout
+
+  // Wait for GSGApi and GSGCart to be available (loaded via deferred scripts)
+  if (window.GSGApi && window.GSGCart) {
+    initCheckout();
+  } else {
+    var checkInterval = setInterval(function() {
+      if (window.GSGApi && window.GSGCart) {
+        clearInterval(checkInterval);
+        initCheckout();
+      }
+    }, 50);
+    // Timeout after 5 seconds
+    setTimeout(function() {
+      clearInterval(checkInterval);
+      if (!window.GSGApi || !window.GSGCart) {
+        console.error('[checkout] GSGApi / GSGCart failed to load after 5s');
+      }
+    }, 5000);
   }
 })();
 </script>
