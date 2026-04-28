@@ -8166,6 +8166,43 @@ select.gsg-input option {
   margin-bottom: 2rem;
 }
 
+/* Reviews section header and actions (vendored classes) */
+.reviews-section__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.reviews-section__header h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.reviews-section__header .muted {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.reviews-section__actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.reviews-section__list {
+  margin-bottom: 1rem;
+}
+
+.reviews-section__error {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  padding: 1rem;
+  background: var(--bg-tertiary);
+  border-radius: var(--gsg-radius);
+}
+
 /* Home page reviews section */
 .home-reviews-section {
   padding: 4rem 0;
