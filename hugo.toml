@@ -24,7 +24,7 @@ theme = ['puget-theme', 'gsg-ecommerce']
     twitter = "@pugetaudio"
 
   [params.api]
-    base = "https://api.gsgmfg.com"
+    base = "https://storeapi.fpl.dev"
 
   [params.fluidpay]
     # Load the production tokenizer — the one that the GSG integration
