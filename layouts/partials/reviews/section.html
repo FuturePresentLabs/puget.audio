@@ -1,0 +1,405 @@
+{{- $ctx := .ctx -}}
+{{- $sku := .sku | default "" -}}
+{{- $limit := .limit | default (cond (ne $sku "") 8 16) -}}
+{{- $baseId := cond (ne $sku "") (printf "reviews-%s" (urlize $sku)) "reviews-home" -}}
+{{- $addModalId := printf "%s-add" $baseId -}}
+{{- $editModalId := printf "%s-edit" $baseId -}}
+
+{{- $scratch := newScratch -}}
+{{- $scratch.Set "products" (slice) -}}
+{{- range $slug, $prod := $ctx.Site.Data.products -}}
+  {{- $page := $ctx.Site.GetPage (printf "products/%s" $slug) -}}
+  {{- $scratch.Set "products" (
+      ($scratch.Get "products") | append (dict
+        "sku" $prod.sku
+        "title" (or $prod.title $prod.sku)
+        "url" (cond (and $page true) $page.RelPermalink "")
+      )
+    )
+  -}}
+{{- end -}}
+{{- $productList := sort ($scratch.Get "products") "title" -}}
+{{- $productJSON := $productList | jsonify -}}
+
+<div class="reviews-block" id="{{ $baseId }}" data-review-sku="{{ $sku }}">
+  <section class="reviews-section">
+    <div class="reviews-section__header">
+      <div>
+        <h2>What people are saying</h2>
+        <p class="muted" data-review-summary>Loading verified feedback…</p>
+      </div>
+      <div class="reviews-section__actions">
+        <button type="button" class="btn" data-review-trigger="request">Add or edit review</button>
+      </div>
+    </div>
+    <div class="reviews-section__list" data-review-list>
+      <p class="muted" data-review-empty>No reviews yet — be the first to share your experience.</p>
+    </div>
+    <p class="reviews-section__error hidden" data-review-error>We couldn’t load reviews right now. Please try again in a moment.</p>
+  </section>
+
+  {{ partial "reviews/modal.html" (dict "ctx" $ctx "id" $editModalId "title" "Get your review link" "mode" "request" "sku" $sku "products" $productList) }}
+</div>
+
+{{ if $ctx.IsHome }}
+<div class="reviews-cta">
+  <a class="btn" href="/products/">See our products</a>
+</div>
+{{ end }}
+
+<script>
+(function () {
+  const CORE = window.GSGCore || {};
+  const API_BASE = CORE.API_BASE || "https://api.gsgmfg.com";
+  const storefront = CORE.storefront || document.body?.dataset?.storefrontName || document.body?.dataset?.storefront || "web";
+  const storefrontKey = CORE.storefrontKey || document.body?.dataset?.storefront || "web";
+
+  function apiFetch(path, options){
+    if (CORE.request) return CORE.request(path, options);
+    const opts = Object.assign({ credentials: "include" }, options || {});
+    const headers = Object.assign({
+      "X-GSG-Storefront": storefront,
+      "X-GSG-Storefront-Key": storefrontKey
+    }, opts.headers || {});
+    const ref = CORE.getRef ? CORE.getRef() : "";
+    if (ref && !headers["X-GSG-Ref"]) headers["X-GSG-Ref"] = ref;
+    opts.headers = headers;
+    const url = String(path).startsWith("http") ? path : `${API_BASE}${path}`;
+    return fetch(url, opts);
+  }
+  const sectionId = "{{ $baseId }}";
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+
+  const sku = section.dataset.reviewSku || "";
+  const displayLimit = {{ $limit }};
+  const productMeta = {{ $productJSON | safeJS }};
+  const productsBySku = {};
+  productMeta.forEach(p => { productsBySku[p.sku] = p; });
+
+  const listEl = section.querySelector("[data-review-list]");
+  const emptyEl = section.querySelector("[data-review-empty]");
+  const summaryEl = section.querySelector("[data-review-summary]");
+  const errorEl = section.querySelector("[data-review-error]");
+  const requestModal = document.getElementById("{{ $editModalId }}");
+  const modals = requestModal ? [requestModal] : [];
+  const inlineSummaries = sku
+    ? Array.from(document.querySelectorAll("[data-review-summary-inline]")).filter(el => el.dataset.reviewSku === sku)
+    : [];
+  inlineSummaries.forEach(summary => {
+    const inlineText = summary.querySelector("[data-review-inline-text]");
+    if (inlineText && inlineText.tagName === "A") {
+      inlineText.setAttribute("href", `#${sectionId}`);
+    }
+  });
+
+  let reviewsState = [];
+  let activeModal = null;
+  let lastFetchErrored = false;
+
+  function escapeHTML(str) {
+    return String(str || "")
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function starString(score) {
+    const v = Math.max(1, Math.min(5, Number(score) || 5));
+    return "★".repeat(v) + "☆".repeat(5 - v);
+  }
+
+  function formatDate(iso) {
+    try {
+      const d = new Date(iso);
+      if (isNaN(d.getTime())) return "";
+      return d.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+    } catch (_) {
+      return "";
+    }
+  }
+
+  function productLabel(record) {
+    const meta = productsBySku[record.sku];
+    if (!meta) return null;
+    if (meta.url) {
+      return `<a href="${escapeHTML(meta.url)}" class="review-card__product">${escapeHTML(meta.title)}</a>`;
+    }
+    return `<span class="review-card__product">${escapeHTML(meta.title)}</span>`;
+  }
+
+  function renderReviews() {
+    if (!listEl) return;
+    listEl.innerHTML = "";
+    errorEl?.classList.add("hidden");
+    const total = reviewsState.length;
+    if (!total) {
+      emptyEl?.classList.remove("hidden");
+      return;
+    }
+    emptyEl?.classList.add("hidden");
+    const subset = sku ? reviewsState : reviewsState.slice(0, displayLimit);
+    const pieces = subset.map(rec => {
+      const stars = starString(rec.score);
+      const name = escapeHTML(rec.name || "Anonymous");
+      const text = escapeHTML(rec.review_text || "");
+      const reply = rec.reply_text ? `<div class="review-card__reply"><strong>Team response:</strong> ${escapeHTML(rec.reply_text)}</div>` : "";
+      const meta = productLabel(rec);
+      const stamp = formatDate(rec.created_at);
+      const qty = Number(rec.quantity_purchased || 0);
+      const qtyText = qty > 0 ? `<span class="review-card__qty">Bought ${qty}</span>` : "";
+      return `
+        <article class="review-card">
+          <div class="review-card__header">
+            <span class="review-card__stars" aria-label="${rec.score} out of 5 stars">${stars}</span>
+            <span class="review-card__score">${rec.score}/5</span>
+          </div>
+          <h3 class="review-card__name">${name}</h3>
+          ${meta || ""}
+          <p class="review-card__text">${text.replace(/\n+/g, "<br>")}</p>
+          ${reply}
+          <footer class="review-card__footer">
+            ${qtyText}
+            ${stamp ? `<time datetime="${escapeHTML(rec.created_at)}">${stamp}</time>` : ""}
+          </footer>
+        </article>
+      `;
+    });
+    listEl.innerHTML = pieces.join("");
+  }
+
+  function updateSummary() {
+    if (lastFetchErrored) {
+      if (summaryEl) {
+        summaryEl.textContent = "Reviews are unavailable right now.";
+      }
+      inlineSummaries.forEach(summary => {
+        summary.classList.add("is-empty");
+        const starsEl = summary.querySelector("[data-review-inline-stars]");
+        if (starsEl) {
+          starsEl.textContent = "☆☆☆☆☆";
+          starsEl.setAttribute("aria-label", "Reviews unavailable");
+        }
+        const textEl = summary.querySelector("[data-review-inline-text]");
+        if (textEl) {
+          textEl.textContent = "Reviews unavailable — please check back soon";
+        }
+      });
+      return;
+    }
+    if (!reviewsState.length) {
+      if (summaryEl) {
+        summaryEl.textContent = "No reviews yet.";
+      }
+      inlineSummaries.forEach(summary => {
+        summary.classList.add("is-empty");
+        const starsEl = summary.querySelector("[data-review-inline-stars]");
+        if (starsEl) {
+          starsEl.textContent = "☆☆☆☆☆";
+          starsEl.setAttribute("aria-label", "No reviews yet");
+        }
+        const textEl = summary.querySelector("[data-review-inline-text]");
+        if (textEl) {
+          textEl.textContent = "Be the first to review this product";
+        }
+      });
+      return;
+    }
+    inlineSummaries.forEach(summary => {
+      summary.classList.remove("is-empty");
+    });
+    const avg = reviewsState.reduce((acc, r) => acc + Number(r.score || 0), 0) / reviewsState.length;
+    const formatted = avg.toFixed(1).replace(/\.0$/, "");
+    if (summaryEl) {
+      summaryEl.innerHTML = `
+        <strong>${formatted} / 5</strong> average from ${reviewsState.length} verified review${reviewsState.length === 1 ? "" : "s"}.
+      `;
+    }
+    inlineSummaries.forEach(summary => {
+      const starsEl = summary.querySelector("[data-review-inline-stars]");
+      if (starsEl) {
+        const rounded = Math.round(avg || 0);
+        starsEl.textContent = starString(rounded);
+        starsEl.setAttribute("aria-label", `${formatted} out of 5 stars`);
+      }
+      const textEl = summary.querySelector("[data-review-inline-text]");
+      if (textEl) {
+        const reviewLabel = reviewsState.length === 1 ? "review" : "reviews";
+        textEl.textContent = `${formatted} average • ${reviewsState.length} verified ${reviewLabel}`;
+      }
+    });
+  }
+
+  function closeModal(modal) {
+    if (!modal) return;
+    modal.classList.remove("is-active");
+    setTimeout(() => modal.classList.add("hidden"), 150);
+    activeModal = null;
+    document.body.classList.remove("modal-open");
+  }
+
+  function openModal(type) {
+    const target = requestModal;
+    if (!target) return;
+    modals.forEach(m => { if (m !== target) closeModal(m); });
+    target.dispatchEvent(new Event("reviews:reset"));
+    target.classList.remove("hidden");
+    requestAnimationFrame(() => target.classList.add("is-active"));
+    activeModal = target;
+    document.body.classList.add("modal-open");
+    const emailField = target.querySelector('input[name="email"]');
+    emailField?.focus({ preventScroll: true });
+  }
+
+  function bindUpdateForm(modal, form) {
+    const submitBtn = form.querySelector("[data-review-submit]");
+    const messageEl = form.querySelector("[data-review-message]");
+    const emailInput = form.querySelector('input[name="email"]');
+    const defaultLabel = submitBtn?.dataset.reviewPrefillLabel || submitBtn?.textContent || "Email me a link";
+
+    function reset() {
+      form.reset();
+      if (messageEl) {
+        messageEl.textContent = "Enter the email you used at checkout and we’ll send a secure review link.";
+        messageEl.classList.remove("is-error", "is-success");
+      }
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = defaultLabel;
+      }
+    }
+
+    reset();
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      if (messageEl) {
+        messageEl.textContent = "";
+        messageEl.classList.remove("is-error", "is-success");
+      }
+
+      const email = String(emailInput?.value || "").trim();
+      if (!email) {
+        if (messageEl) {
+          messageEl.textContent = "Enter the email you used at checkout.";
+          messageEl.classList.add("is-error");
+        }
+        return;
+      }
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = "Sending…";
+      }
+
+      apiFetch(`/reviews/send-link`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email })
+      })
+        .then(async (res) => {
+          if (res.ok) return res.json().catch(() => ({}));
+          let detail = "";
+          if (res.status === 404) {
+            throw new Error("We couldn't find any shipped orders for that email just yet.");
+          }
+          if (res.status === 401) {
+            throw new Error("That link expired. Request a fresh one.");
+          }
+          if (res.status === 400) {
+            throw new Error("We need a valid email address to continue.");
+          }
+          try {
+            const data = await res.json();
+            detail = data.detail || data.error || "";
+          } catch (_) {}
+          throw new Error(detail || "We couldn’t send the link right now. Please try again in a moment.");
+        })
+        .then(() => {
+          if (messageEl) {
+            messageEl.textContent = "Check your inbox. If we’ve shipped to that address, your secure link will arrive shortly.";
+            messageEl.classList.add("is-success");
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = defaultLabel;
+          }
+          setTimeout(() => closeModal(modal), 1200);
+        })
+        .catch((err) => {
+          if (messageEl) {
+            messageEl.textContent = err?.message || "We couldn’t send the link right now. Please try again.";
+            messageEl.classList.add("is-error");
+          }
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = defaultLabel;
+          }
+        });
+    });
+
+    modal.addEventListener("reviews:reset", reset);
+  }
+
+  function attachFormHandlers() {
+    if (!requestModal) return;
+    const form = requestModal.querySelector("[data-review-form]");
+    if (!form) return;
+    bindUpdateForm(requestModal, form);
+  }
+
+  function fetchReviews() {
+    const url = sku ? `/reviews?sku=${encodeURIComponent(sku)}` : `/reviews`;
+    apiFetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error("Failed to load");
+        return res.json();
+      })
+      .then(data => {
+        lastFetchErrored = false;
+        const list = Array.isArray(data.reviews) ? data.reviews : [];
+        reviewsState = list
+          .map(r => ({
+            sku: r.sku,
+            score: Number(r.score) || 5,
+            name: r.name || "Anonymous",
+            review_text: r.review_text || "",
+            reply_text: r.reply_text || "",
+            created_at: r.created_at || "",
+            quantity_purchased: r.quantity_purchased || 0,
+          }));
+        renderReviews();
+        updateSummary();
+      })
+      .catch(() => {
+        errorEl?.classList.remove("hidden");
+        lastFetchErrored = true;
+        reviewsState = [];
+        renderReviews();
+        updateSummary();
+      });
+  }
+
+  section.querySelectorAll("[data-review-trigger]").forEach(btn => {
+    btn.addEventListener("click", () => openModal(btn.dataset.reviewTrigger));
+  });
+
+  section.parentElement?.addEventListener("click", (event) => {
+    if (!activeModal) return;
+    if (event.target.matches("[data-review-close]") || event.target.closest("[data-review-close]")) {
+      closeModal(activeModal);
+    }
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && activeModal) {
+      closeModal(activeModal);
+    }
+  });
+
+  attachFormHandlers();
+  fetchReviews();
+})();
+</script>

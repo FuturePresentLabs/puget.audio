@@ -121,6 +121,13 @@
           <div class="samples-product-genre">{{ . }}</div>
           {{ end }}
           <h1 class="puget-product-title">{{ .Title }}</h1>
+          
+          {{/* Review Summary Inline */}}
+          <div class="product-rating is-empty" data-review-summary-inline data-review-sku="{{ .Params.sku }}">
+            <span class="product-rating__stars" data-review-inline-stars aria-hidden="true">☆☆☆☆☆</span>
+            <a class="product-rating__text" data-review-inline-text href="#reviews-{{ .Params.sku }}">Checking verified reviews…</a>
+          </div>
+          
           <p class="sample-pack-tagline">{{ .Description }}</p>
 
           {{/* Quick specs bar */}}
@@ -151,6 +158,9 @@
     <div class="puget-product-content">
       {{ .Content }}
     </div>
+
+    {{/* Reviews Section */}}
+    {{ partial "reviews/section.html" (dict "ctx" . "sku" .Params.sku) }}
 
     {{/* Bottom CTA */}}
     <div class="samples-cta">

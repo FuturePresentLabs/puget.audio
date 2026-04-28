@@ -1,0 +1,494 @@
+{{ define "main" }}
+{{ $scratch := newScratch }}
+{{ $scratch.Set "productMap" (dict) }}
+{{ range $slug, $p := site.Data.products }}
+  {{ $sku := upper (or $p.sku "") }}
+  {{ if $sku }}
+    {{ $scratch.SetInMap "productMap" $sku (dict "title" (or $p.title $sku) "slug" $slug) }}
+  {{ end }}
+{{ end }}
+{{ $productMap := $scratch.Get "productMap" }}
+{{ $productJSON := $productMap | jsonify }}
+
+<section class="review-add">
+  <div class="container review-add__wrap">
+    <header class="review-add__header">
+      <h1>{{ .Title }}</h1>
+      <p>Tell other shooters what stood out to you. We’ll verify your purchase by email and product when you submit.</p>
+      <p class="muted">We appreciate your feedback. We hope you enjoy our products as much as we enjoy making them.</p>
+    </header>
+
+    <section class="review-add__card review-add__card--compact" id="purchases-card">
+      <header class="review-add__card-header">
+        <h2>Your shipped items</h2>
+        <p class="muted review-add__email" data-email-wrapper hidden>
+          Matched to <strong data-customer-email></strong>
+        </p>
+      </header>
+      <p class="muted review-add__message" id="purchase-status"></p>
+      <div id="purchase-list" class="review-add__results review-add__results--dense" hidden></div>
+    </section>
+
+    <section id="review-section" class="review-add__card" hidden>
+      <h2>2. Share your experience</h2>
+      <p class="muted review-add__email" data-email-wrapper hidden>
+        Submitting privately as <strong data-customer-email></strong>. We never show your email on the site.
+      </p>
+      <div id="review-dashboard" class="review-add__dashboard" hidden></div>
+      <form id="review-form" class="review-add__form" novalidate>
+        <label>Product
+          <select name="sku" id="review-sku" required>
+            <option value="" disabled selected>Select a product</option>
+          </select>
+        </label>
+        <input type="hidden" name="email" id="review-email">
+        <label>Display name <span class="muted">(optional)</span>
+          <input type="text" name="name" id="review-name" maxlength="120" placeholder="Anonymous">
+        </label>
+        <fieldset class="review-add__rating">
+          <legend>Rating</legend>
+          <div class="rating-options">
+            {{ range seq 5 1 }}
+              <input type="radio" name="score" id="review-score-{{ . }}" value="{{ . }}" aria-label="{{ . }} star{{ if ne . 1 }}s{{ end }}" {{ if eq . 5 }}checked{{ end }}>
+              <label class="rating-star" for="review-score-{{ . }}" title="{{ . }} star{{ if ne . 1 }}s{{ end }}" aria-hidden="true">★</label>
+            {{ end }}
+          </div>
+        </fieldset>
+        <label>Your review
+          <textarea name="review_text" id="review-text" rows="5" maxlength="2000" required placeholder="What stood out to you?"></textarea>
+        </label>
+        <div class="review-add__actions">
+          <button type="submit" class="btn">Submit review</button>
+          <button type="button" class="btn btn-secondary" id="review-cancel" hidden>Cancel</button>
+          <span class="muted" id="review-status"></span>
+        </div>
+      </form>
+    </section>
+  </div>
+</section>
+
+<script>
+(function(){
+  const CORE = window.GSGCore || {};
+  const API_BASE = CORE.API_BASE || "https://api.gsgmfg.com";
+  const storefront = document.body?.dataset?.storefront || CORE.storefront || "web";
+  const REVIEW_ENDPOINT = "/reviews";
+  const MANAGE_ENDPOINT = "/reviews/manage";
+  const productMap = {{ $productJSON | safeJS }};
+
+  const purchaseList = document.getElementById("purchase-list");
+  const purchaseStatus = document.getElementById("purchase-status");
+  const reviewSection = document.getElementById("review-section");
+  const dashboard = document.getElementById("review-dashboard");
+  const reviewForm = document.getElementById("review-form");
+  const reviewEmail = document.getElementById("review-email");
+  const reviewSku = document.getElementById("review-sku");
+  const reviewName = document.getElementById("review-name");
+  const reviewText = document.getElementById("review-text");
+  const reviewStatus = document.getElementById("review-status");
+  const cancelBtn = document.getElementById("review-cancel");
+  const ratingOptions = reviewForm ? reviewForm.querySelectorAll("input[name='score']") : [];
+  const emailWrappers = document.querySelectorAll("[data-email-wrapper]");
+  const emailLabels = document.querySelectorAll("[data-customer-email]");
+
+  const state = {
+    email: "",
+    token: "",
+    purchases: [],
+    basePurchases: [],
+    currentSku: ""
+  };
+
+  const escapeHTML = (str) => String(str || "").replace(/[&<>"']/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c] || c));
+
+  function qs(name){
+    const params = new URLSearchParams(location.search);
+    return params.get(name) || "";
+  }
+
+  function upperSku(value){
+    return String(value || "").trim().toUpperCase();
+  }
+
+  function setStatus(el, message, type){
+    if (!el) return;
+    el.textContent = message || "";
+    el.dataset.state = type || "";
+  }
+
+  function ratingValue(){
+    let selected = 5;
+    ratingOptions.forEach(radio => { if (radio.checked) selected = Number(radio.value || 5); });
+    return selected;
+  }
+
+  function setRating(score){
+    const value = Math.max(1, Math.min(5, Number(score) || 5));
+    ratingOptions.forEach(radio => {
+      radio.checked = Number(radio.value) === value;
+    });
+  }
+
+  function updateEmailUI(){
+    const hasEmail = Boolean(state.email);
+    emailWrappers.forEach(el => { if (el) el.hidden = !hasEmail; });
+    emailLabels.forEach(el => { if (el) el.textContent = state.email; });
+    if (reviewEmail) reviewEmail.value = state.email || "";
+  }
+
+  function mapPurchase(item){
+    const sku = upperSku(item.sku);
+    return {
+      sku,
+      quantity: Number(item.quantity || item.quantity_purchased || 1),
+      review: item.review ? {
+        sku,
+        score: Number(item.review.score) || 5,
+        review_text: item.review.review_text || "",
+        name: item.review.name || "Anonymous",
+        reply_text: item.review.reply_text || "",
+        created_at: item.review.created_at || "",
+        updated_at: item.review.updated_at || ""
+      } : null
+    };
+  }
+
+  function populateSkuOptions(purchases){
+    if (!reviewSku) return;
+    reviewSku.innerHTML = '<option value="" disabled>Select a product</option>';
+    purchases.forEach(item => {
+      const sku = upperSku(item.sku);
+      if (!sku) return;
+      const info = productMap[sku] || {};
+      const option = document.createElement("option");
+      option.value = sku;
+      option.textContent = `${info.title || sku} (Qty ${item.quantity || 1})`;
+      reviewSku.appendChild(option);
+    });
+  }
+
+  function renderPurchaseList(purchases){
+    if (!purchaseList) return;
+    purchaseList.innerHTML = "";
+    if (!purchases.length){
+      purchaseList.hidden = true;
+      return;
+    }
+    const list = document.createElement("ul");
+    list.className = "review-add__purchases";
+    purchases.forEach(item => {
+      const sku = upperSku(item.sku);
+      const info = productMap[sku] || {};
+      const li = document.createElement("li");
+      li.innerHTML = `<strong>${info.title || sku}</strong><span class=\"muted\">SKU: ${sku}</span><span class=\"muted\">Qty ${item.quantity || 1}</span>`;
+      list.appendChild(li);
+    });
+    purchaseList.appendChild(list);
+    purchaseList.hidden = false;
+  }
+
+  function renderDashboard(){
+    if (!dashboard) return;
+    if (!state.token || !state.purchases.length){
+      dashboard.hidden = true;
+      dashboard.innerHTML = '';
+      return;
+    }
+
+    const cards = state.purchases.map(item => {
+      const sku = item.sku;
+      const info = productMap[sku] || {};
+      const review = item.review;
+      const stars = review ? '★'.repeat(Number(review.score) || 5).padEnd(5, '☆') : '';
+      const text = review?.review_text ? `<p>${escapeHTML(review.review_text).replace(/\n/g, '<br>')}</p>` : '<p class="muted">No review yet.</p>';
+      const actions = review
+        ? `<button type="button" class="btn" data-action="edit">Edit review</button><button type="button" class="btn btn-secondary" data-action="delete">Delete</button>`
+        : `<button type="button" class="btn" data-action="add">Add review</button>`;
+      return `
+        <article class="review-manage__card" data-sku="${sku}">
+          <header>
+            <strong>${info.title || sku}</strong>
+            <span class="muted">SKU: ${sku}</span>
+          </header>
+          ${review ? `<div class="review-manage__rating" aria-label="${review.score} out of 5 stars">${stars}</div>` : ''}
+          ${text}
+          <div class="review-manage__actions">${actions}</div>
+        </article>
+      `;
+    }).join('');
+
+    dashboard.innerHTML = cards || '<p class="muted">We didn\'t find any shipped products just yet.</p>';
+    dashboard.hidden = false;
+  }
+
+  function resetForm(){
+    if (!reviewForm) return;
+    state.currentSku = "";
+    reviewForm.dataset.mode = "create";
+    reviewText.value = "";
+    reviewName.value = "";
+    setRating(5);
+    if (reviewSku.options.length) {
+      reviewSku.value = "";
+      reviewSku.disabled = false;
+    }
+    cancelBtn.hidden = true;
+    setStatus(reviewStatus, "", "");
+  }
+
+  function openForm(mode, sku, review){
+    if (!reviewForm) return;
+    const upper = upperSku(sku);
+    state.currentSku = upper;
+    reviewForm.dataset.mode = mode;
+    if (upper) {
+      reviewSku.value = upper;
+      reviewSku.disabled = true;
+    }
+    if (review) {
+      reviewText.value = review.review_text || "";
+      reviewName.value = review.name === "Anonymous" ? "" : (review.name || "");
+      setRating(review.score || 5);
+    } else {
+      reviewText.value = "";
+      reviewName.value = "";
+      setRating(5);
+    }
+    cancelBtn.hidden = false;
+    reviewSection.hidden = false;
+    reviewText.focus({ preventScroll: false });
+  }
+
+  function apiFetch(path, options){
+    if (CORE.request) return CORE.request(path, options);
+    const opts = Object.assign({ credentials: "include" }, options || {});
+    const headers = Object.assign({ "X-GSG-Storefront": storefront }, opts.headers || {});
+    const ref = CORE.getRef ? CORE.getRef() : "";
+    if (ref && !headers["X-GSG-Ref"]) headers["X-GSG-Ref"] = ref;
+    opts.headers = headers;
+    const url = String(path).startsWith("http") ? path : `${API_BASE}${path}`;
+    return fetch(url, opts);
+  }
+
+  function fetchPurchases(email){
+    if (!email) return Promise.resolve([]);
+    return apiFetch(`/reviews/purchases?email=${encodeURIComponent(email)}`)
+      .then(res => {
+        if (!res.ok) throw new Error("lookup-error");
+        return res.json();
+      })
+      .then(data => Array.isArray(data.purchases) ? data.purchases : [])
+      .catch(() => []);
+  }
+
+  function fetchManage(email, token){
+    if (!token) return Promise.resolve(null);
+    const url = new URL(MANAGE_ENDPOINT, API_BASE);
+    url.searchParams.set("email", email);
+    url.searchParams.set("token", token);
+    return apiFetch(url.toString())
+      .then(res => {
+        if (res.status === 401) {
+          const err = new Error("token-expired");
+          err.code = 401;
+          throw err;
+        }
+        if (res.status === 400) {
+          const err = new Error("bad-request");
+          err.code = 400;
+          throw err;
+        }
+        if (!res.ok) throw new Error("manage-error");
+        return res.json();
+      })
+      .catch(err => { throw err; });
+  }
+
+  function refreshDashboard(){
+    updateEmailUI();
+    if (!state.email){
+      renderPurchaseList([]);
+      setStatus(purchaseStatus, "Open the secure link from your inbox to view your shipped items.", "");
+      reviewSection.hidden = true;
+      resetForm();
+      renderDashboard();
+      return;
+    }
+    setStatus(purchaseStatus, "Loading your shipped items…", "loading");
+    Promise.all([
+      fetchPurchases(state.email),
+      fetchManage(state.email, state.token)
+    ]).then(([shipments, managed]) => {
+      state.basePurchases = shipments.map(item => ({ sku: upperSku(item.sku), quantity: Number(item.quantity || 1) }));
+      if (managed && Array.isArray(managed.purchases)) {
+        state.purchases = managed.purchases.map(mapPurchase);
+      } else {
+        state.purchases = state.basePurchases.map(item => ({ ...item, review: null }));
+      }
+      populateSkuOptions(state.purchases);
+      renderPurchaseList(state.basePurchases);
+      if (state.basePurchases.length){
+        setStatus(purchaseStatus, "", "");
+      } else {
+        setStatus(purchaseStatus, "We haven't shipped anything to this email yet. Check back once your order moves.", "");
+      }
+      reviewSection.hidden = !state.token;
+      if (!state.token) {
+        resetForm();
+        setStatus(reviewStatus, "Use the secure link from your email to add or edit reviews.", "error");
+      } else {
+        setStatus(reviewStatus, "", "");
+      }
+      renderDashboard();
+    }).catch(err => {
+      renderPurchaseList([]);
+      if (err.message === "token-expired" || err.code === 401) {
+        state.token = "";
+        reviewSection.hidden = true;
+        resetForm();
+        renderDashboard();
+        setStatus(purchaseStatus, "That secure link expired. Request a new one from any product page.", "error");
+        setStatus(reviewStatus, "Your secure link expired. Request a new one from the reviews page.", "error");
+      } else {
+        setStatus(purchaseStatus, "We couldn't load your purchases right now. Please try again.", "error");
+        setStatus(reviewStatus, "We couldn't load your purchases right now. Please try again.", "error");
+      }
+    });
+  }
+
+  reviewForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    if (!state.token){
+      setStatus(reviewStatus, "Use the secure link from your email to add or edit reviews.", "error");
+      return;
+    }
+
+    const mode = reviewForm.dataset.mode || "create";
+    const sku = upperSku(state.currentSku || reviewSku.value);
+    const email = state.email.trim();
+    const name = reviewName.value.trim();
+    const text = reviewText.value.trim();
+    const score = ratingValue();
+
+    if (!sku || !email || !text){
+      setStatus(reviewStatus, "Please complete the required fields.", "error");
+      return;
+    }
+
+    const payload = {
+      email,
+      token: state.token,
+      sku,
+      name,
+      review_text: text,
+      score
+    };
+
+    setStatus(reviewStatus, mode === "edit" ? "Saving your review…" : "Posting your review…", "loading");
+
+    const endpoint = mode === "edit"
+      ? `${REVIEW_ENDPOINT}/${encodeURIComponent(sku)}`
+      : REVIEW_ENDPOINT;
+    const method = mode === "edit" ? "PUT" : "POST";
+    const request = apiFetch(endpoint, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    request
+      .then(async res => {
+        if (res.status === 401) throw new Error("token-expired");
+        if (!res.ok) {
+          let detail = "";
+          try {
+            const data = await res.json();
+            detail = data.detail || data.error || "";
+          } catch (_) {}
+          throw new Error(detail || "Couldn't save your review right now.");
+        }
+        return res.json().catch(() => ({}));
+      })
+      .then(() => {
+        setStatus(reviewStatus, "Thanks! Your review is saved.", "success");
+        resetForm();
+        refreshDashboard();
+      })
+      .catch(err => {
+        if (err.message === "token-expired") {
+          state.token = "";
+          reviewSection.hidden = true;
+          resetForm();
+          renderDashboard();
+          setStatus(reviewStatus, "Your secure link expired. Request a new one from the reviews page.", "error");
+        } else {
+          setStatus(reviewStatus, err?.message || "Couldn't save your review right now.", "error");
+        }
+      });
+  });
+
+  cancelBtn?.addEventListener("click", () => {
+    resetForm();
+  });
+
+  dashboard?.addEventListener("click", (event) => {
+    const actionBtn = event.target.closest("[data-action]");
+    if (!actionBtn) return;
+    const card = actionBtn.closest("[data-sku]");
+    if (!card) return;
+    const sku = card.dataset.sku;
+    const purchase = state.purchases.find(p => p.sku === sku);
+    if (!purchase) return;
+    const review = purchase.review;
+    const action = actionBtn.dataset.action;
+
+    if (action === "add") {
+      openForm("create", sku, null);
+    } else if (action === "edit") {
+      openForm("edit", sku, review || null);
+    } else if (action === "delete") {
+      if (!state.token) return;
+      setStatus(reviewStatus, "Removing review…", "loading");
+      const url = new URL(`${REVIEW_ENDPOINT}/${encodeURIComponent(sku)}`, API_BASE);
+      url.searchParams.set("email", state.email);
+      url.searchParams.set("token", state.token);
+      apiFetch(url.toString(), { method: "DELETE" })
+        .then(res => {
+          if (res.status === 401) throw new Error("token-expired");
+          if (res.status === 404) throw new Error("We couldn't find that review.");
+          if (!res.ok) throw new Error("delete-error");
+        })
+        .then(() => {
+          setStatus(reviewStatus, "Review removed.", "success");
+          resetForm();
+          refreshDashboard();
+        })
+        .catch(err => {
+          if (err.message === "token-expired") {
+            state.token = "";
+            reviewSection.hidden = true;
+            resetForm();
+            renderDashboard();
+            setStatus(reviewStatus, "Your secure link expired. Request a new one from the reviews page.", "error");
+          } else {
+            setStatus(reviewStatus, err?.message || "Couldn't delete that review right now.", "error");
+          }
+        });
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const emailParam = qs("email").trim();
+    const tokenParam = qs("token").trim();
+    if (emailParam) state.email = emailParam;
+    if (tokenParam) state.token = tokenParam;
+    updateEmailUI();
+    if (state.email) {
+      refreshDashboard();
+    } else {
+      setStatus(purchaseStatus, "Use the secure link from your inbox to manage reviews.", "");
+    }
+  });
+})();
+</script>
+{{ end }}
