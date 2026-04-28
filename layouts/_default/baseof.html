@@ -105,15 +105,5 @@
 
   {{ partial "gsg-ecommerce/scripts.html" . }}
   {{ partial "reviews/modal.html" (dict "id" "review-modal-global") }}
-  
-  {{/* Initialize GSGCore from GSG_CONFIG for vendored scripts */}}
-  <script>
-    window.GSGCore = window.GSGCore || {};
-    if (window.GSG_CONFIG) {
-      window.GSGCore.API_BASE = window.GSG_CONFIG.API_BASE;
-      window.GSGCore.storefront = window.GSG_CONFIG.STOREFRONT;
-      window.GSGCore.storefrontKey = window.GSG_CONFIG.STOREFRONT_KEY;
-    }
-  </script>
 </body>
 </html>

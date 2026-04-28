@@ -30,3 +30,13 @@
 <script src="/js/puget-shop.js" defer></script>
 <script src="/js/newsletter.js" defer></script>
 <script src="/js/attribution.js" defer></script>
+
+{{/* Initialize GSGCore from GSG_CONFIG for vendored scripts that run inline */}}
+<script>
+  window.GSGCore = window.GSGCore || {};
+  if (window.GSG_CONFIG) {
+    window.GSGCore.API_BASE = window.GSG_CONFIG.API_BASE;
+    window.GSGCore.storefront = window.GSG_CONFIG.STOREFRONT;
+    window.GSGCore.storefrontKey = window.GSG_CONFIG.STOREFRONT_KEY;
+  }
+</script>
