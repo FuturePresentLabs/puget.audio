@@ -23,6 +23,17 @@
   {{/* Favicon */}}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
+  {{/* GSG Config - must be before any inline scripts */}}
+  {{ $brand := .Site.Params.brand }}
+  {{ $api := .Site.Params.api }}
+  <script>
+    window.GSG_CONFIG = {
+      API_BASE: {{ with $api.base }}"{{ . }}"{{ else }}"https://api.gsgmfg.com"{{ end }},
+      STOREFRONT: {{ with $brand.name }}"{{ . }}"{{ else }}"Puget Audio"{{ end }},
+      STOREFRONT_KEY: {{ with $brand.key }}"{{ . }}"{{ else }}"puget"{{ end }}
+    };
+  </script>
+
   {{/* Product Schema.org */}}
   {{ if .Params.price }}
   <script type="application/ld+json">

@@ -1,24 +1,14 @@
 {{/*
   GSG e-commerce bootstrap.
 
-  Emits window.GSG_CONFIG exactly in the shape the integration guide calls
-  for, loads our site-level gsg-ecommerce.js (which owns the cart under
+  Loads our site-level gsg-ecommerce.js (which owns the cart under
   `gsg.cart.v3`, cents pricing, line_ids, cart-rules sync, and
   data-add-to-cart wiring), and loads the newsletter handler.
+  
+  Note: GSG_CONFIG is defined in baseof.html head to ensure it's
+  available before any inline scripts.
 */}}
-{{ $brand := .Site.Params.brand }}
-{{ $api := .Site.Params.api }}
 {{ $fp := .Site.Params.fluidpay }}
-<script>
-  window.GSG_CONFIG = {
-    API_BASE: {{ with $api.base }}"{{ . }}"{{ else }}"https://api.gsgmfg.com"{{ end }},
-    STOREFRONT: {{ with $brand.name }}"{{ . }}"{{ else }}"Puget Audio"{{ end }},
-    STOREFRONT_KEY: {{ with $brand.key }}"{{ . }}"{{ else }}"puget"{{ end }},
-    FLUIDPAY_PUBLIC_KEY: {{ with $fp.publicKey }}"{{ . }}"{{ else }}""{{ end }},
-    FLUIDPAY_TOKENIZER_URL: {{ with $fp.tokenizerScript }}"{{ . }}"{{ else }}"https://app.fluidpay.com/tokenizer/tokenizer.js"{{ end }},
-    PAYMENT_GATEWAY: "fluidpay"
-  };
-</script>
 
 {{/* Pre-load the Fluid Pay tokenizer on every page. Cheap and makes
      checkout snappier. */}}
