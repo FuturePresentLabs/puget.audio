@@ -49,10 +49,11 @@
 
 <script>
 (function () {
+  const CFG = window.GSG_CONFIG || {};
   const CORE = window.GSGCore || {};
-  const API_BASE = CORE.API_BASE || "https://api.gsgmfg.com";
-  const storefront = CORE.storefront || document.body?.dataset?.storefrontName || document.body?.dataset?.storefront || "web";
-  const storefrontKey = CORE.storefrontKey || document.body?.dataset?.storefront || "web";
+  const API_BASE = CFG.API_BASE || CORE.API_BASE || "https://api.gsgmfg.com";
+  const storefront = CFG.STOREFRONT || CORE.storefront || document.body?.dataset?.storefrontName || document.body?.dataset?.storefront || "web";
+  const storefrontKey = CFG.STOREFRONT_KEY || CORE.storefrontKey || document.body?.dataset?.storefront || "web";
 
   function apiFetch(path, options){
     if (CORE.request) return CORE.request(path, options);
