@@ -26,11 +26,15 @@
   {{/* GSG Config - must be before any inline scripts */}}
   {{ $brand := .Site.Params.brand }}
   {{ $api := .Site.Params.api }}
+  {{ $fp := .Site.Params.fluidpay }}
   <script>
     window.GSG_CONFIG = {
       API_BASE: {{ with $api.base }}"{{ . }}"{{ else }}"https://api.gsgmfg.com"{{ end }},
       STOREFRONT: {{ with $brand.name }}"{{ . }}"{{ else }}"Puget Audio"{{ end }},
-      STOREFRONT_KEY: {{ with $brand.key }}"{{ . }}"{{ else }}"puget"{{ end }}
+      STOREFRONT_KEY: {{ with $brand.key }}"{{ . }}"{{ else }}"puget"{{ end }},
+      FLUIDPAY_PUBLIC_KEY: {{ with $fp.publicKey }}"{{ . }}"{{ else }}""{{ end }},
+      FLUIDPAY_TOKENIZER_URL: {{ with $fp.tokenizerScript }}"{{ . }}"{{ else }}"https://app.fluidpay.com/tokenizer/tokenizer.js"{{ end }},
+      PAYMENT_GATEWAY: "fluidpay"
     };
   </script>
 
