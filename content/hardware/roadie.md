@@ -6,7 +6,7 @@ sku: "ROAD-001"
 status: "coming_soon"
 layout: single
 images:
-  - "https://static.fpl.dev/2026-05-04-roadie-product.png"
+  - "/images/hardware/roadie.png"
 ---
 
 # Roadie
