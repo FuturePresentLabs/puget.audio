@@ -6,7 +6,7 @@ sku: "EURO-001"
 status: "coming_soon"
 layout: single
 images:
-  - "/images/hardware/euro-tour-01.jpg"
+  - "https://static.fpl.dev/2026-05-04-euro-tour-product.png"
 ---
 
 # Euro Tour
