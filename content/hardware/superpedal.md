@@ -6,7 +6,7 @@ sku: "SUPER-001"
 status: "coming_soon"
 layout: single
 images:
-  - "/images/hardware/superpedal-01.jpg"
+  - "https://static.fpl.dev/2026-05-01-superpedal-clean.png"
 ---
 
 # SuperPedal

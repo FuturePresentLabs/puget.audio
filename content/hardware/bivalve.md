@@ -6,7 +6,7 @@ sku: "BIVALVE-001"
 status: "coming_soon"
 layout: single
 images:
-  - "/images/hardware/bivalve-01.jpg"
+  - "https://static.fpl.dev/2026-05-01-bivalve-clean.png"
 ---
 
 # BiValve

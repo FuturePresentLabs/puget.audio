@@ -6,7 +6,7 @@ sku: "DRUMMER-001"
 status: "coming_soon"
 layout: single
 images:
-  - "/images/hardware/drummerboy-01.jpg"
+  - "https://static.fpl.dev/2026-05-01-drummerboy-clean.png"
 ---
 
 # DrummerBoy
