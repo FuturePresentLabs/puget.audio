@@ -6175,6 +6175,308 @@ select.gsg-input option {
   border-radius: 4px;
 }
 
+/* ===========================================================
+   Hardware Feature Cards (/hardware/ page)
+   Horizontal cards, alternating image-left / image-right.
+   =========================================================== */
+.hardware-grid-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+}
+.hardware-grid-header h2 {
+  margin-bottom: 0.6rem;
+}
+.hardware-grid-intro {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.hw-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.hw-feature {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  grid-template-areas: "media body";
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+}
+.hw-feature:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 28px 60px rgba(0, 0, 0, 0.5);
+  border-color: rgba(201, 169, 110, 0.4);
+}
+.hw-feature:nth-child(even) {
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  grid-template-areas: "body media";
+}
+
+.hw-feature-media {
+  grid-area: media;
+  position: relative;
+  min-height: 340px;
+  background: linear-gradient(135deg, #1f1f25 0%, #15151a 100%);
+  overflow: hidden;
+  display: block;
+  text-decoration: none;
+}
+.hw-feature-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+  display: block;
+}
+.hw-feature:hover .hw-feature-media img {
+  transform: scale(1.04);
+}
+.hw-feature-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, rgba(201, 169, 110, 0.12) 0%, transparent 60%),
+    linear-gradient(135deg, #1f1f25 0%, #15151a 100%);
+}
+.hw-feature-placeholder span {
+  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-size: 4.5rem;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.32;
+  letter-spacing: 0.1em;
+}
+
+.hw-feature-badges {
+  position: absolute;
+  top: 1.1rem;
+  left: 1.1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  z-index: 2;
+}
+.hw-feature-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.4rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(13, 13, 15, 0.85);
+  color: var(--text-primary);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.hw-feature-badge--pre-order {
+  background: rgba(201, 169, 110, 0.95);
+  color: #0d0d0f;
+  border-color: transparent;
+}
+.hw-feature-badge--available {
+  background: rgba(80, 200, 120, 0.95);
+  color: #0d0d0f;
+  border-color: transparent;
+}
+.hw-feature-badge--bundle {
+  background: linear-gradient(135deg, #d4b87a 0%, #c9a96e 100%);
+  color: #0d0d0f;
+  border-color: transparent;
+  box-shadow: 0 4px 20px rgba(201, 169, 110, 0.3);
+}
+.hw-feature-badge--coming-soon {
+  background: rgba(13, 13, 15, 0.85);
+  color: var(--text-secondary);
+}
+.hw-feature-badge--ship {
+  background: rgba(13, 13, 15, 0.85);
+  color: var(--accent);
+}
+
+.hw-feature-body {
+  grid-area: body;
+  padding: 2.25rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.hw-feature-kicker {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 0.6rem;
+}
+.hw-feature-title {
+  font-size: 1.9rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  margin: 0 0 0.6rem;
+  line-height: 1.15;
+}
+.hw-feature-title a {
+  color: var(--text-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.hw-feature-title a:hover {
+  color: var(--accent);
+}
+.hw-feature-hook {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  margin: 0 0 0.9rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+.hw-feature-desc {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin: 0 0 1.4rem;
+}
+.hw-feature-highlights {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.75rem;
+  display: grid;
+  gap: 0.6rem;
+}
+.hw-feature-highlights li {
+  font-size: 0.92rem;
+  color: var(--text-primary);
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.5;
+}
+.hw-feature-highlights li::before {
+  content: "→";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent);
+  font-weight: 700;
+}
+.hw-feature-highlights li strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.hw-feature-highlights li a {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 169, 110, 0.3);
+}
+.hw-feature-highlights li a:hover {
+  border-bottom-color: var(--accent);
+}
+
+.hw-feature-cta-row {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+.hw-feature-price-block {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+}
+.hw-feature-price {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  font-feature-settings: "tnum";
+}
+.hw-feature-price-prefix {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+  margin-right: 0.15rem;
+}
+.hw-feature-price-strike {
+  color: var(--text-secondary);
+  text-decoration: line-through;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+.hw-feature-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+.hw-feature-cta {
+  white-space: nowrap;
+}
+.hw-feature-secondary {
+  font-size: 0.85rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+.hw-feature-secondary:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 880px) {
+  .hw-feature,
+  .hw-feature:nth-child(even) {
+    grid-template-columns: 1fr;
+    grid-template-areas: "media" "body";
+  }
+  .hw-feature-media,
+  .hw-feature-placeholder {
+    min-height: 260px;
+  }
+  .hw-feature-placeholder span {
+    font-size: 3.5rem;
+  }
+  .hw-feature-body {
+    padding: 1.75rem 1.5rem;
+  }
+  .hw-feature-title {
+    font-size: 1.45rem;
+  }
+  .hw-feature-hook {
+    font-size: 0.98rem;
+  }
+  .hw-feature-cta-row {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .hw-feature-actions {
+    justify-content: space-between;
+  }
+  .hw-grid {
+    padding: 0 1rem;
+  }
+}
+
 /* --- Hardware Warranty Footer --- */
 .hardware-warranty {
   padding: 3rem 2rem;

@@ -1,6 +1,15 @@
 ---
 title: "Roadie"
-description: "Expression pedal to CV converter for eurorack"
+description: "Plug in any TRS expression pedal, get clean 0–~4V CV out. Your foot, now controlling anything CV-controllable."
+weight: 40
+card_hook: "Your foot, now in the rack."
+card_format: "Pedal Format · 1590B · 9V center-negative"
+ship_window: "Ships at launch"
+card_highlights:
+  - "**TRS expression pedal in, 0–~4V CV out** — standard eurorack levels."
+  - "**RANGE knob** scales output voltage to whatever your destination wants."
+  - "**TL072 dual-buffered**, clean and reliable."
+  - "**Save $25** when bundled with [Euro Tour](/hardware/preorder-bundle/)."
 price: 75
 sku: "ROAD-001"
 status: "pre_order"

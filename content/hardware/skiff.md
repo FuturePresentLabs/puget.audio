@@ -1,6 +1,15 @@
 ---
 title: "Skiff"
-description: "4U 84HP Eurorack skiff with metal chassis"
+description: "A low-profile 4U, 84HP eurorack skiff. Same Seattle metalwork as Cornucopia — built to sit on a desk or slide into a gig bag."
+weight: 60
+card_hook: "Same metal. Half the height. Gig-bag ready."
+card_format: "Eurorack Skiff · 4U · 84 HP"
+ship_window: "Ships at launch"
+card_highlights:
+  - "**4U × 84HP** — low-profile, desk- or gig-bag-friendly."
+  - "**Threaded rails + bus board** pre-installed."
+  - "**Same metalwork as Cornucopia** — aluminum chassis, Seattle-made."
+  - "**Pairs with standard eurorack supplies** (sold separately)."
 price: 199
 sku: "SKIFF-001"
 status: "pre_order"

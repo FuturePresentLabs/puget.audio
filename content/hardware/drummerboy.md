@@ -1,6 +1,15 @@
 ---
 title: "DrummerBoy"
-description: "4-voice drum module with classic machine models"
+description: "A 4-voice drum module with circuit-accurate models of every drum machine you've ever wanted — 808, 909, Linn, DMX, Simmons, and a Reese bass."
+weight: 30
+card_hook: "Every classic drum machine. One module. Four voices, mix and match."
+card_format: "Eurorack Drum Module · 3U · 16 HP"
+ship_window: "Ships Q1 2027"
+card_highlights:
+  - "**4 voices**, mixable — kicks, snares, hats, claps, cowbell, Simmons toms, Reese bass."
+  - "**808/909/Linn/DMX/Simmons** — full WDF circuit models for every machine."
+  - "**VCV plugin included** — sequence and pattern today, swap to hardware when it ships."
+  - "**Locked at $300** for pre-order. Launch price will be higher."
 price: 300
 sku: "DRUMMER-001"
 status: "pre_order"

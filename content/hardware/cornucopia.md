@@ -1,6 +1,15 @@
 ---
 title: "Cornucopia Eurorack Case"
-description: "Customizable Eurorack case with modular width options and premium finishes"
+description: "A modular Eurorack case system that grows with your rig — three widths, six finishes, built in Seattle."
+weight: 10
+card_hook: "Three widths. Six finishes. One case that grows with your rig."
+card_format: "Eurorack Case · 3U · 84 / 104 / 126 HP"
+ship_window: "Ships in 2–3 weeks"
+card_highlights:
+  - "**Three widths** — 84HP, 104HP, 126HP. Pick the size, pay the difference."
+  - "**Six powder-coat finishes** — including custom RAL match."
+  - "**3mm aluminum, 65mm internal depth** — fits 99% of modules."
+  - "**Made in Seattle · 2-year warranty · Lifetime support.**"
 price: 499
 sku: "CORN-001"
 status: "available"

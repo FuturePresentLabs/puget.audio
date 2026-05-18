@@ -1,6 +1,15 @@
 ---
 title: "Euro Tour"
-description: "Bidirectional audio level translator between pedal and eurorack"
+description: "Bidirectional audio level translator — guitar/pedal in, eurorack out. And back. Two independent channels in one pedal-format box."
+weight: 50
+card_hook: "Pedalboard ↔ eurorack. Both directions, one box."
+card_format: "Pedal Format · 1590BB · 9V center-negative"
+ship_window: "Ships at launch"
+card_highlights:
+  - "**Channel 1:** 1/4\" in → 3.5mm out, gain pot up to eurorack level."
+  - "**Channel 2:** 3.5mm in → 1/4\" out, attenuator down to pedal level."
+  - "**Both at once** — guitar through a modular FX chain, VCO out to your pedalboard."
+  - "**Save $25** when bundled with [Roadie](/hardware/preorder-bundle/)."
 price: 100
 sku: "EURO-001"
 status: "pre_order"

@@ -3,40 +3,50 @@
   <div class="hardware-hero-bg"></div>
   <div class="hardware-hero-content">
     <h1>{{ .Title }}</h1>
-    <p class="hardware-hero-tagline">Eurorack cases, guitar pedals, and audio hardware engineered in Seattle.</p>
-    <p class="hardware-hero-description">We build professional audio hardware in our Seattle workshop. Every product combines thoughtful industrial design with bulletproof construction.</p>
+    <p class="hardware-hero-tagline">Eurorack modules, pedals, and cases — built and assembled in Seattle.</p>
+    <p class="hardware-hero-description">Every product is designed in-house, modeled component-by-component, and built to outlast the trend cycle. 2-year warranty, lifetime support, no DRM.</p>
   </div>
 </section>
 
-{{/* Render in two passes so In-Stock products lead, Pre-orders follow. */}}
 {{ $bundles := where .Pages "Params.product_type" "bundle" }}
 {{ with $bundles }}
-<section class="hardware-grid-section hardware-bundle-section">
-  <h2>Bundles</h2>
-  <div class="hardware-grid">
-    {{ range . }}
+<section class="hardware-grid-section hardware-grid-section--bundles">
+  <div class="hardware-grid-header">
+    <h2>Pre-order Bundle</h2>
+    <p class="hardware-grid-intro">Two pedals, one order, $25 off.</p>
+  </div>
+  <div class="hw-grid">
+    {{ range .ByWeight }}
     {{ partial "hardware-card.html" . }}
     {{ end }}
   </div>
 </section>
 {{ end }}
 
+{{ $inStock := where (where .Pages "Params.status" "available") "Params.product_type" "ne" "bundle" }}
+{{ with $inStock }}
 <section class="hardware-grid-section">
-  <h2>In Stock</h2>
-  <div class="hardware-grid">
-    {{ range where (where .Pages "Params.status" "available") "Params.product_type" "ne" "bundle" }}
+  <div class="hardware-grid-header">
+    <h2>In Stock</h2>
+    <p class="hardware-grid-intro">Configure and order — built to ship in 2–3 weeks.</p>
+  </div>
+  <div class="hw-grid">
+    {{ range .ByWeight }}
     {{ partial "hardware-card.html" . }}
     {{ end }}
   </div>
 </section>
+{{ end }}
 
 {{ $preorders := where (where .Pages "Params.status" "pre_order") "Params.product_type" "ne" "bundle" }}
 {{ with $preorders }}
-<section class="hardware-grid-section">
-  <h2>Pre-order</h2>
-  <p class="hardware-grid-intro">Pay now to reserve your unit. We ship when production wraps.</p>
-  <div class="hardware-grid">
-    {{ range . }}
+<section class="hardware-grid-section hardware-grid-section--preorder">
+  <div class="hardware-grid-header">
+    <h2>Pre-order</h2>
+    <p class="hardware-grid-intro">Pay now to reserve your unit at launch pricing. Eurorack pre-orders include the matching VCV plugin — start patching today.</p>
+  </div>
+  <div class="hw-grid">
+    {{ range .ByWeight }}
     {{ partial "hardware-card.html" . }}
     {{ end }}
   </div>

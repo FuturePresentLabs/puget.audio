@@ -1,6 +1,15 @@
 ---
-title: "Roadie + Euro Tour Pre-order Bundle"
-description: "Pre-order both Roadie and Euro Tour together and save."
+title: "Roadie + Euro Tour Bundle"
+description: "Both pedalboard-to-eurorack pedals, one order. Pre-order pricing locked, $25 off."
+weight: 5
+card_hook: "Pedalboard meets rack. Both directions. $25 off when you pre-order the pair."
+card_format: "Pre-order Bundle · 2 pedals · 1590B + 1590BB"
+ship_window: "Ships together at launch"
+card_highlights:
+  - "**Roadie** ($75) — TRS expression pedal in, 0–~4V CV out."
+  - "**Euro Tour** ($100) — Pedal-level ↔ eurorack-level audio, both ways."
+  - "**Save $25** vs. buying them separately."
+  - "Both built and tested in Seattle. Standard 9V supply."
 price: 150
 marked_price: 175
 sku: "ROAD-EURO-BUNDLE"

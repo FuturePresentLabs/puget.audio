@@ -1,6 +1,15 @@
 ---
 title: "AcidBath"
-description: "TB-303 voice in Eurorack format"
+description: "A complete TB-303-style voice in Eurorack — VCO → diode-ladder VCF → VCA, with accent and slide modeled at the component level."
+weight: 10
+card_hook: "All the squelch. None of the eBay tax."
+card_format: "Eurorack Voice · 3U · TBD HP"
+ship_window: "Ships August 2026"
+card_highlights:
+  - "**Full 303 voice path** — VCO, diode-ladder filter, VCA, accent, slide."
+  - "**Component-level WDF model** — squelches like the real circuit."
+  - "**VCV plugin included** — same DSP, no DRM. Patch today, swap when it ships."
+  - "**Locked at $250** for pre-order. Launch price will be higher."
 price: 250
 sku: "ACID-001"
 status: "pre_order"
