@@ -1,9 +1,18 @@
 ---
 title: "DrummerBoy"
-description: "4-voice drum module with classic machine models"
-price: 349
+description: "A 4-voice drum module with circuit-accurate models of every drum machine you've ever wanted — 808, 909, Linn, DMX, Simmons, and a Reese bass."
+weight: 30
+card_hook: "Every classic drum machine. One module. Four voices, mix and match."
+card_format: "Eurorack Drum Module · 3U · 16 HP"
+ship_window: "Ships Q1 2027"
+card_highlights:
+  - "**4 voices**, mixable — kicks, snares, hats, claps, cowbell, Simmons toms, Reese bass."
+  - "**808/909/Linn/DMX/Simmons** — full WDF circuit models for every machine."
+  - "**VCV plugin included** — sequence and pattern today, swap to hardware when it ships."
+  - "**Locked at $300** for pre-order. Launch price will be higher."
+price: 300
 sku: "DRUMMER-001"
-status: "coming_soon"
+status: "pre_order"
 layout: single
 images:
   - "/images/hardware/drummerboy.png"
@@ -58,7 +67,11 @@ A 4-voice drum module in Eurorack format. Each voice is a complete WDF circuit m
 
 ## Status
 
-**Expected Q4 2026**
+**Pre-order open** — Shipping Q1 2027 (after BiValve). Pay now, lock the launch price.
+
+### DrummerBoy VCV plugin — included with the hardware pre-order
+
+Preview the sound today; get the hardware in Q1 2027. The VCV plugin is our companion software — same DSP engine, same voice models, no DRM. We make it available to hardware pre-order customers as part of the package, so you can sequence DrummerBoy in VCV today and swap to the module when it ships.
 
 ---
 

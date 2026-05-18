@@ -1,9 +1,18 @@
 ---
 title: "BiValve"
-description: "Stereo multi-filter module with 7 legendary circuits"
-price: 299
+description: "Seven legendary filter circuits in true stereo. Moog, MS-20, SSM2044, Polivoks, Steiner-Parker, Wasp, Jupiter-6 — one button."
+weight: 20
+card_hook: "Seven iconic filters. One stereo module. Every circuit, modeled."
+card_format: "Eurorack Stereo Filter · 3U · 10 HP"
+ship_window: "Ships Q4 2026"
+card_highlights:
+  - "**7 circuit-accurate filters** — Moog ladder, MS-20, SSM2044, Polivoks, Steiner-Parker, Wasp, Jupiter-6."
+  - "**True stereo** with a Skew knob — offset cutoff L/R for real motion."
+  - "**VCV plugin included** — start patching all 7 filters today."
+  - "**Locked at $250** for pre-order. Launch price will be higher."
+price: 250
 sku: "BIVALVE-001"
-status: "coming_soon"
+status: "pre_order"
 layout: single
 images:
   - "/images/hardware/bivalve.png"
@@ -42,7 +51,11 @@ Seven legendary filter circuits, modeled circuit-accurate, in stereo. Cycle thro
 
 ## Status
 
-**Expected Q4 2026**
+**Pre-order open** — Shipping Q4 2026. Pay now, lock the launch price.
+
+### BiValve VCV plugin — included with the hardware pre-order
+
+Preview the sound today; get the hardware in Q4. The VCV plugin is our companion software — same DSP engine, same circuit models, no DRM. We make it available to hardware pre-order customers as part of the package, so you can run all seven filters in your rack while the module ships.
 
 ---
 

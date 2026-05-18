@@ -1,7 +1,16 @@
 ---
 title: "Cornucopia Eurorack Case"
-description: "Customizable Eurorack case with modular width options and premium finishes"
-price: 449
+description: "A modular Eurorack case system that grows with your rig — three widths, six finishes, built in Seattle."
+weight: 10
+card_hook: "Three widths. Six finishes. One case that grows with your rig."
+card_format: "Eurorack Case · 3U · 84 / 104 / 126 HP"
+ship_window: "Ships in 2–3 weeks"
+card_highlights:
+  - "**Three widths** — 84HP, 104HP, 126HP. Pick the size, pay the difference."
+  - "**Six powder-coat finishes** — including custom RAL match."
+  - "**3mm aluminum, 65mm internal depth** — fits 99% of modules."
+  - "**Made in Seattle · 2-year warranty · Lifetime support.**"
+price: 499
 sku: "CORN-001"
 status: "available"
 layout: single
@@ -54,23 +63,23 @@ A Eurorack case system designed for musicians who want flexibility without compr
 
 ## Base Configuration
 
-**Starting at $449**
+**Starting at $499**
 
 ### Width Options
 
 Select the perfect size for your rig:
 
-- **84HP** — $449
+- **84HP** — $499
   - Compact, portable
   - Fits in a backpack
   - Perfect for small systems or sub-mixers
 
-- **104HP** — $549  
+- **104HP** — $599
   - The sweet spot
   - Room for a complete voice
   - Most popular choice
 
-- **126HP** — $649
+- **126HP** — $699
   - Maximum flexibility
   - Full system capacity
   - Studio centerpiece

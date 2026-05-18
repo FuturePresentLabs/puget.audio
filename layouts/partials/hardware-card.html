@@ -1,0 +1,72 @@
+{{/* Single hardware feature card. Pass a page as context. */}}
+{{ $status := .Params.status }}
+{{ $isPreOrder := eq $status "pre_order" }}
+{{ $isComingSoon := eq $status "coming_soon" }}
+{{ $isAvailable := eq $status "available" }}
+{{ $isBundle := eq .Params.product_type "bundle" }}
+{{ $statusMod := "" }}
+{{ if $isBundle }}{{ $statusMod = "bundle" }}
+{{ else if $isPreOrder }}{{ $statusMod = "pre-order" }}
+{{ else if $isAvailable }}{{ $statusMod = "available" }}
+{{ else if $isComingSoon }}{{ $statusMod = "coming-soon" }}{{ end }}
+<article class="hw-feature hw-feature--{{ $statusMod }}">
+  <a class="hw-feature-media" href="{{ .Permalink }}" aria-label="{{ .Title }}">
+    {{ with .Params.images }}
+      {{ $firstImg := index . 0 }}
+      {{ $imgResource := resources.Get $firstImg }}
+      {{ if $imgResource }}
+        {{ $resized := $imgResource.Fill "900x700 center" }}
+        <img src="{{ $resized.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
+      {{ else }}
+        <div class="hw-feature-placeholder"><span>{{ substr $.Title 0 2 | upper }}</span></div>
+      {{ end }}
+    {{ else }}
+      <div class="hw-feature-placeholder"><span>{{ substr .Title 0 2 | upper }}</span></div>
+    {{ end }}
+    <div class="hw-feature-badges">
+      {{ if $isBundle }}<span class="hw-feature-badge hw-feature-badge--bundle">Bundle &middot; Save $25</span>
+      {{ else if $isPreOrder }}<span class="hw-feature-badge hw-feature-badge--pre-order">Pre-order</span>
+      {{ else if $isAvailable }}<span class="hw-feature-badge hw-feature-badge--available">In Stock</span>
+      {{ else if $isComingSoon }}<span class="hw-feature-badge hw-feature-badge--coming-soon">Coming Soon</span>{{ end }}
+      {{ with .Params.ship_window }}<span class="hw-feature-badge hw-feature-badge--ship">{{ . }}</span>{{ end }}
+    </div>
+  </a>
+  <div class="hw-feature-body">
+    {{ with .Params.card_format }}<div class="hw-feature-kicker">{{ . }}</div>{{ end }}
+    <h3 class="hw-feature-title"><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+    {{ with .Params.card_hook }}<p class="hw-feature-hook">{{ . }}</p>{{ end }}
+    <p class="hw-feature-desc">{{ .Description }}</p>
+    {{ with .Params.card_highlights }}
+    <ul class="hw-feature-highlights">
+      {{ range . }}<li>{{ . | markdownify }}</li>{{ end }}
+    </ul>
+    {{ end }}
+    <div class="hw-feature-cta-row">
+      <div class="hw-feature-price-block">
+        <span class="hw-feature-price">
+          {{ if .Params.configurable }}<span class="hw-feature-price-prefix">From</span> {{ end }}${{ .Params.price }}
+        </span>
+        {{ with .Params.marked_price }}<span class="hw-feature-price-strike">${{ . }}</span>{{ end }}
+      </div>
+      <div class="hw-feature-actions">
+        {{ if $isPreOrder }}
+          {{ partial "add-to-cart.html" (dict
+              "sku" .Params.sku
+              "price" .Params.price
+              "marked_price" (.Params.marked_price | default .Params.price)
+              "title" .Title
+              "type" "physical"
+              "label" (printf "Pre-order — $%v" .Params.price)
+              "class" "btn-primary hw-feature-cta") }}
+        {{ else if $isAvailable }}
+          <a href="{{ .Permalink }}" class="btn-primary hw-feature-cta">
+            {{ if .Params.configurable }}Configure &rarr;{{ else }}Buy &rarr;{{ end }}
+          </a>
+        {{ else if $isComingSoon }}
+          <a href="{{ .Permalink }}" class="btn-secondary hw-feature-cta">Get notified &rarr;</a>
+        {{ end }}
+        <a href="{{ .Permalink }}" class="hw-feature-secondary">Full details &rarr;</a>
+      </div>
+    </div>
+  </div>
+</article>
