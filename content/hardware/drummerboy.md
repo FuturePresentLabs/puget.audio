@@ -58,7 +58,11 @@ A 4-voice drum module in Eurorack format. Each voice is a complete WDF circuit m
 
 ## Status
 
-**Pre-order open** — Pay now to reserve your unit at launch pricing. Expected Q4 2026.
+**Pre-order open** — Shipping Q1 2027 (after BiValve). Pay now, lock the launch price.
+
+### DrummerBoy VCV plugin — included with the hardware pre-order
+
+Preview the sound today; get the hardware in Q1 2027. The VCV plugin is our companion software — same DSP engine, same voice models, no DRM. We make it available to hardware pre-order customers as part of the package, so you can sequence DrummerBoy in VCV today and swap to the module when it ships.
 
 ---
 

@@ -38,7 +38,11 @@ A complete TB-303-style voice in Eurorack. WDF-modeled diode-ladder filter, acce
 
 ## Status
 
-**Pre-order open** — Ship date TBA. Pay now, lock the launch price.
+**Pre-order open** — Shipping August 2026. Pay now, lock the launch price.
+
+### AcidBath VCV plugin — included with the hardware pre-order
+
+Preview the sound today; get the hardware in August. The VCV plugin is our companion software — same DSP engine, same circuit models, no DRM. We make it available to hardware pre-order customers as part of the package, so you can start patching with AcidBath before the module lands on your doorstep.
 
 ---
 

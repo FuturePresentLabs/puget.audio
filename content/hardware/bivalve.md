@@ -42,7 +42,11 @@ Seven legendary filter circuits, modeled circuit-accurate, in stereo. Cycle thro
 
 ## Status
 
-**Pre-order open** — Pay now to reserve your unit at launch pricing. Expected Q4 2026.
+**Pre-order open** — Shipping Q4 2026. Pay now, lock the launch price.
+
+### BiValve VCV plugin — included with the hardware pre-order
+
+Preview the sound today; get the hardware in Q4. The VCV plugin is our companion software — same DSP engine, same circuit models, no DRM. We make it available to hardware pre-order customers as part of the package, so you can run all seven filters in your rack while the module ships.
 
 ---
 
