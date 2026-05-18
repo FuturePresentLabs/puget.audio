@@ -1,9 +1,9 @@
 ---
 title: "Roadie"
 description: "Expression pedal to CV converter for eurorack"
-price: 129
+price: 75
 sku: "ROAD-001"
-status: "coming_soon"
+status: "pre_order"
 layout: single
 images:
   - "/images/hardware/roadie.png"
@@ -37,8 +37,9 @@ Pedal players modulate things with their feet. Modular doesn't speak expression 
 
 ## Status
 
-**Pre-release** — Demoing 5/16  
-Sign up for the newsletter for production updates.
+**Pre-order open** — Pay now to reserve your unit at launch pricing.
+
+> **Save $25:** Pre-order Roadie + [Euro Tour](/hardware/euro-tour/) together in the **[$150 bundle](/hardware/preorder-bundle/)**.
 
 ---
 

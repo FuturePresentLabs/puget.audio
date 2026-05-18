@@ -71,9 +71,12 @@
   </div>
   <div class="launch-shop-grid">
     {{ range $hardware }}
-    {{ $comingSoon := eq .Params.status "coming-soon" }}
+    {{ $status := .Params.status }}
+    {{ $isPreOrder := eq $status "pre_order" }}
+    {{ $isComingSoon := or (eq $status "coming_soon") (eq $status "coming-soon") }}
+    {{ $isBundle := eq .Params.product_type "bundle" }}
     {{ $page := . }}
-    <a href="{{ .Permalink }}" class="launch-shop-card{{ if $comingSoon }} is-coming-soon{{ end }}">
+    <a href="{{ .Permalink }}" class="launch-shop-card{{ if $isComingSoon }} is-coming-soon{{ end }}{{ if $isPreOrder }} is-pre-order{{ end }}">
       <div class="launch-shop-card-image">
         {{ with .Params.images }}
           {{ $firstImg := index . 0 }}
@@ -91,17 +94,20 @@
         {{ end }}
       </div>
       <div class="launch-shop-card-body">
-        <div class="launch-shop-card-kicker">Eurorack &middot; 7U</div>
         <div class="launch-shop-card-title">{{ .Title }}</div>
         <p class="launch-shop-card-desc">{{ .Description | truncate 140 }}</p>
       </div>
       <div class="launch-shop-card-footer">
-        {{ if $comingSoon }}
-        <span class="launch-shop-card-badge">Coming Soon</span>
+        {{ if $isComingSoon }}
+          <span class="launch-shop-card-badge">Coming Soon</span>
+        {{ else if $isPreOrder }}
+          <span class="launch-shop-card-badge">Pre-order</span>
+        {{ else if $isBundle }}
+          <span class="launch-shop-card-badge">Bundle</span>
         {{ else }}
-        <span class="launch-shop-card-badge">Built to Order</span>
+          <span class="launch-shop-card-badge">In Stock</span>
         {{ end }}
-        <span class="launch-shop-card-price">From ${{ .Params.price }}</span>
+        <span class="launch-shop-card-price">{{ if .Params.configurable }}From {{ end }}${{ .Params.price }}</span>
       </div>
     </a>
     {{ end }}
@@ -114,10 +120,10 @@
   only active launch product (marked as "Up next") — the rest ship with a
   grey "Coming Soon" badge so the launch focus stays on Legends.
 */}}
+{{/* Studio collection hidden pre-launch — not surfaced on the homepage. */}}
 {{ $plugins := slice
   (dict "key" "legends"   "emoji" "⚡" "tagline" "Iconic guitar pedals"    "price" "$49"   "status" "up-next")
   (dict "key" "continuum" "emoji" "〰" "tagline" "BBD modulation & time"    "price" "$79"   "status" "coming-soon")
-  (dict "key" "studio"    "emoji" "◈" "tagline" "Studio processors"        "price" "$699"  "status" "coming-soon")
   (dict "key" "amps"      "emoji" "▲" "tagline" "Tube amp simulations"     "price" "$249"  "status" "coming-soon")
 }}
 <section class="launch-shop-section launch-shop-section--plugins">

@@ -1,0 +1,48 @@
+{{/* Single hardware product card. Pass a page as context. */}}
+{{ $status := .Params.status }}
+{{ $cardClass := "" }}
+{{ if eq $status "pre_order" }}{{ $cardClass = "pre-order" }}{{ end }}
+{{ if eq $status "coming_soon" }}{{ $cardClass = "coming-soon" }}{{ end }}
+<div class="hardware-card {{ $cardClass }}">
+  <a href="{{ .Permalink }}" class="hardware-card-link">
+    <div class="hardware-card-image">
+      {{ with .Params.images }}
+        {{ $firstImg := index . 0 }}
+        {{ $imgResource := resources.Get $firstImg }}
+        {{ if $imgResource }}
+          {{ $resized := $imgResource.Fill "400x300 center" }}
+          <img src="{{ $resized.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
+        {{ else }}
+          <div class="hardware-card-placeholder">
+            <span class="hardware-card-icon">HW</span>
+          </div>
+        {{ end }}
+      {{ else }}
+        <div class="hardware-card-placeholder">
+          <span class="hardware-card-icon">HW</span>
+        </div>
+      {{ end }}
+    </div>
+    <div class="hardware-card-body">
+      <h3>{{ .Title }}</h3>
+      <p class="hardware-card-desc">{{ .Description }}</p>
+    </div>
+  </a>
+  <div class="hardware-card-footer">
+    {{ with .Params.price }}
+    <span class="hardware-card-price">
+      {{ if $.Params.configurable }}From {{ end }}${{ . }}
+      {{ with $.Params.marked_price }}<span class="hardware-card-marked-price">${{ . }}</span>{{ end }}
+    </span>
+    {{ end }}
+    {{ if eq $status "pre_order" }}
+      <span class="hardware-card-cta">Pre-order &rarr;</span>
+    {{ else if eq $status "coming_soon" }}
+      <span class="hardware-card-coming-soon">Coming Soon</span>
+    {{ else if .Params.configurable }}
+      <span class="hardware-card-cta">Configure &rarr;</span>
+    {{ else }}
+      <span class="hardware-card-cta">Buy &rarr;</span>
+    {{ end }}
+  </div>
+</div>

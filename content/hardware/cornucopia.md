@@ -1,7 +1,7 @@
 ---
 title: "Cornucopia Eurorack Case"
 description: "Customizable Eurorack case with modular width options and premium finishes"
-price: 449
+price: 499
 sku: "CORN-001"
 status: "available"
 layout: single
@@ -54,23 +54,23 @@ A Eurorack case system designed for musicians who want flexibility without compr
 
 ## Base Configuration
 
-**Starting at $449**
+**Starting at $499**
 
 ### Width Options
 
 Select the perfect size for your rig:
 
-- **84HP** — $449
+- **84HP** — $499
   - Compact, portable
   - Fits in a backpack
   - Perfect for small systems or sub-mixers
 
-- **104HP** — $549  
+- **104HP** — $599
   - The sweet spot
   - Room for a complete voice
   - Most popular choice
 
-- **126HP** — $649
+- **126HP** — $699
   - Maximum flexibility
   - Full system capacity
   - Studio centerpiece

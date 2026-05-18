@@ -35,3 +35,35 @@ hardware:
   cornucopia:
     available: true
     coming_soon: false
+  roadie:
+    available: false
+    coming_soon: false
+    pre_order: true
+  euro_tour:
+    available: false
+    coming_soon: false
+    pre_order: true
+  bivalve:
+    available: false
+    coming_soon: false
+    pre_order: true
+  drummerboy:
+    available: false
+    coming_soon: false
+    pre_order: true
+  acidbath:
+    available: false
+    coming_soon: false
+    pre_order: true
+  skiff:
+    available: false
+    coming_soon: false
+    pre_order: true
+  preorder_bundle:
+    available: false
+    coming_soon: false
+    pre_order: true
+  superpedal:
+    available: false
+    coming_soon: false
+    pre_order: false # retired pre-launch — content file is draft

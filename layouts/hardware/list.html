@@ -8,81 +8,40 @@
   </div>
 </section>
 
-<section class="hardware-grid-section">
-  <h2>Products</h2>
+{{/* Render in two passes so In-Stock products lead, Pre-orders follow. */}}
+{{ $bundles := where .Pages "Params.product_type" "bundle" }}
+{{ with $bundles }}
+<section class="hardware-grid-section hardware-bundle-section">
+  <h2>Bundles</h2>
   <div class="hardware-grid">
-    {{ range where .Pages "Params.status" "available" }}
-    <div class="hardware-card">
-      <a href="{{ .Permalink }}" class="hardware-card-link">
-        <div class="hardware-card-image">
-          {{ with .Params.images }}
-            {{ $firstImg := index . 0 }}
-            {{ $imgResource := resources.Get $firstImg }}
-            {{ if $imgResource }}
-              {{ $resized := $imgResource.Fill "400x300 center" }}
-              <img src="{{ $resized.RelPermalink }}" alt="{{ $.Title }}" loading="lazy">
-            {{ else }}
-              <div class="hardware-card-placeholder">
-                <span class="hardware-card-icon">HW</span>
-              </div>
-            {{ end }}
-          {{ else }}
-            <div class="hardware-card-placeholder">
-              <span class="hardware-card-icon">HW</span>
-            </div>
-          {{ end }}
-        </div>
-        <div class="hardware-card-body">
-          <h3>{{ .Title }}</h3>
-          <p class="hardware-card-desc">{{ .Description }}</p>
-        </div>
-      </a>
-      <div class="hardware-card-footer">
-        {{ with .Params.price }}
-        <span class="hardware-card-price">From ${{ . }}</span>
-        {{ end }}
-        <span class="hardware-card-cta">Configure &rarr;</span>
-      </div>
-    </div>
+    {{ range . }}
+    {{ partial "hardware-card.html" . }}
     {{ end }}
-
-    {{/* Coming Soon: Pedals */}}
-    <div class="hardware-card coming-soon">
-      <div class="hardware-card-link">
-        <div class="hardware-card-image">
-          <div class="hardware-card-placeholder">
-            <span class="hardware-card-icon">PD</span>
-          </div>
-        </div>
-        <div class="hardware-card-body">
-          <h3>Guitar Pedals</h3>
-          <p class="hardware-card-desc">Hand-assembled effects pedals with circuit-accurate modeling. Each design is validated as a software model before the first enclosure is machined.</p>
-        </div>
-      </div>
-      <div class="hardware-card-footer">
-        <span class="hardware-card-coming-soon">Coming Soon</span>
-      </div>
-    </div>
-
-    {{/* Coming Soon: Studio Gear */}}
-    <div class="hardware-card coming-soon">
-      <div class="hardware-card-link">
-        <div class="hardware-card-image">
-          <div class="hardware-card-placeholder">
-            <span class="hardware-card-icon">SG</span>
-          </div>
-        </div>
-        <div class="hardware-card-body">
-          <h3>Studio Gear</h3>
-          <p class="hardware-card-desc">Professional studio equipment for producers and engineers. Designed and built in Seattle.</p>
-        </div>
-      </div>
-      <div class="hardware-card-footer">
-        <span class="hardware-card-coming-soon">Coming Soon</span>
-      </div>
-    </div>
   </div>
 </section>
+{{ end }}
+
+<section class="hardware-grid-section">
+  <h2>In Stock</h2>
+  <div class="hardware-grid">
+    {{ range where (where .Pages "Params.status" "available") "Params.product_type" "ne" "bundle" }}
+    {{ partial "hardware-card.html" . }}
+    {{ end }}
+  </div>
+</section>
+
+{{ $preorders := where (where .Pages "Params.status" "pre_order") "Params.product_type" "ne" "bundle" }}
+{{ with $preorders }}
+<section class="hardware-grid-section">
+  <h2>Pre-order</h2>
+  <p class="hardware-grid-intro">Pay now to reserve your unit. We ship when production wraps.</p>
+  <div class="hardware-grid">
+    {{ range . }}
+    {{ partial "hardware-card.html" . }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
 
 <section class="hardware-warranty">
   <p>All hardware includes a <strong>2-year warranty</strong> and Seattle-based support.</p>

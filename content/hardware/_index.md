@@ -9,55 +9,7 @@ We build professional audio hardware in our Seattle workshop. From Eurorack modu
 
 ---
 
-## Eurorack Modules
-
-### BiValve — Stereo Multi-Filter
-
-Seven legendary filter circuits, modeled circuit-accurate, in stereo. Moog ladder, MS-20, SSM2044, Polivoks, Steiner-Parker, Wasp, and Jupiter-6 — all on one module.
-
-**$299** — Expected Q4 2026
-
-[Learn more →](/hardware/bivalve/)
-
-### DrummerBoy — 4-Voice Drum Module
-
-A 4-voice drum module with complete WDF circuit models. 808 and 909 kicks, snares, hats, Simmons SDS-V, LinnDrum, Oberheim DMX, and more.
-
-**$349** — Expected Q4 2026
-
-[Learn more →](/hardware/drummerboy/)
-
----
-
-## Guitar Pedals
-
-### SuperPedal — Multi-FX
-
-A hardware stompbox running our full WDF engine. True bypass, expression pedal input, USB-C for updates. Includes all Puget Legends algorithms.
-
-**$299** — Expected Q1 2027
-
-[Learn more →](/hardware/superpedal/)
-
-### Euro Tour — Level Translator
-
-Bidirectional audio level translator between 1/4" pedal level and 3.5mm eurorack level. Two independent channels in one box.
-
-**$149** — Pre-release, demoing 5/16
-
-[Learn more →](/hardware/euro-tour/)
-
-### Roadie — Expression to CV
-
-Converts a standard TRS expression pedal into eurorack-compatible CV. Your foot now controls filter cutoffs, VCAs, anything CV-controllable.
-
-**$129** — Pre-release, demoing 5/16
-
-[Learn more →](/hardware/roadie/)
-
----
-
-## Eurorack Cases
+## In Stock
 
 ### Cornucopia
 
@@ -71,11 +23,36 @@ A customizable Eurorack case system designed for versatility and style.
 - Integrated power supply mounting
 
 **Pricing:**
-- 84HP: $449
-- 104HP: $549  
-- 126HP: $649
+- 84HP: $499
+- 104HP: $599
+- 126HP: $699
 
-[Configure Your Case →](/hardware/cornucopia/)
+[Configure Your Case &rarr;](/hardware/cornucopia/)
+
+---
+
+## Pre-order
+
+Pay now to reserve your unit at launch pricing. We'll email you when production wraps and your unit ships.
+
+### Bundles
+
+**Roadie + Euro Tour Pre-order Bundle — $150** *(save $25)*
+
+Both pedalboard-to-eurorack pedals, one order.
+[Pre-order the bundle &rarr;](/hardware/preorder-bundle/)
+
+### Eurorack Modules
+
+- **[AcidBath](/hardware/acidbath/)** — TB-303 voice — **$250**
+- **[BiValve](/hardware/bivalve/)** — WDF stereo multi-filter — **$250**
+- **[DrummerBoy](/hardware/drummerboy/)** — TR-style drum module — **$300**
+- **[Skiff](/hardware/skiff/)** — 4U 84HP metal skiff — **$199**
+
+### Pedal Format
+
+- **[Roadie](/hardware/roadie/)** — Expression-pedal-to-CV (and back) — **$75**
+- **[Euro Tour](/hardware/euro-tour/)** — Instrument-level FX send / return — **$100**
 
 ---
 

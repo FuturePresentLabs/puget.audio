@@ -107,29 +107,7 @@
       </div>
     </div>
 
-    {{ $studioData := index $features.collections "studio" }}
-    {{/* Studio Collection */}}
-    <div class="plugin-card{{ if $studioData.coming_soon }} coming-soon{{ end }}">
-      <a href="/plugins/studio/" class="plugin-card-link">
-        <div class="plugin-card-image">
-          <div class="plugin-card-placeholder">
-            <span class="plugin-card-icon">ST</span>
-          </div>
-        </div>
-        <div class="plugin-card-body">
-          <h3>Studio</h3>
-          <p class="plugin-card-subtitle">Professional VST3 Plugins</p>
-          <p class="plugin-card-desc">Five studio-grade processors: Passive EQ, Opto Compressor, FET Limiter, Variable-Mu, and Channel strip.</p>
-        </div>
-      </a>
-      <div class="plugin-card-footer">
-        {{ if $studioData.coming_soon }}
-        <span class="plugin-card-coming-soon">Coming Soon</span>
-        {{ else }}
-        <span class="plugin-card-price">5 plugins &middot; $49</span>
-        {{ end }}
-      </div>
-    </div>
+    {{/* Studio collection hidden pre-launch — page remains live but not linked. */}}
 
     {{ $ampsData := index $features.collections "amps" }}
     {{/* Amps Collection */}}

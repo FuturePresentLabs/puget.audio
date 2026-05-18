@@ -1,9 +1,9 @@
 ---
 title: "BiValve"
 description: "Stereo multi-filter module with 7 legendary circuits"
-price: 299
+price: 250
 sku: "BIVALVE-001"
-status: "coming_soon"
+status: "pre_order"
 layout: single
 images:
   - "/images/hardware/bivalve.png"
@@ -42,7 +42,7 @@ Seven legendary filter circuits, modeled circuit-accurate, in stereo. Cycle thro
 
 ## Status
 
-**Expected Q4 2026**
+**Pre-order open** — Pay now to reserve your unit at launch pricing. Expected Q4 2026.
 
 ---
 

@@ -1,9 +1,9 @@
 ---
 title: "Euro Tour"
 description: "Bidirectional audio level translator between pedal and eurorack"
-price: 149
+price: 100
 sku: "EURO-001"
-status: "coming_soon"
+status: "pre_order"
 layout: single
 images:
   - "/images/hardware/euro-tour.png"
@@ -41,8 +41,9 @@ Pedalboards and eurorack speak different audio languages. Euro Tour translates b
 
 ## Status
 
-**Pre-release** — Demoing 5/16  
-Sign up for the newsletter for production updates.
+**Pre-order open** — Pay now to reserve your unit at launch pricing.
+
+> **Save $25:** Pre-order Euro Tour + [Roadie](/hardware/roadie/) together in the **[$150 bundle](/hardware/preorder-bundle/)**.
 
 ---
 

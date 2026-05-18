@@ -5,6 +5,7 @@ price: 299
 sku: "SUPER-001"
 status: "coming_soon"
 layout: single
+draft: true
 images:
   - "/images/hardware/superpedal.png"
 ---

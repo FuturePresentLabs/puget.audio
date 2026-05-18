@@ -26,16 +26,57 @@
       {{ with .Params.price }}
       <div class="puget-product-price">
         {{ if $.Params.configurable }}Starting at{{ end }} ${{ . }}
+        {{ with $.Params.marked_price }}<span class="puget-product-marked-price">${{ . }}</span>{{ end }}
       </div>
       {{ end }}
       {{ with .Params.sku }}
       <div class="puget-product-sku">SKU: {{ . }}</div>
+      {{ end }}
+      {{ if eq .Params.status "pre_order" }}
+      <div class="puget-product-status puget-product-status--pre-order">
+        <span class="badge-dot"></span> Pre-order
+      </div>
+      {{ else if eq .Params.status "coming_soon" }}
+      <div class="puget-product-status puget-product-status--coming-soon">
+        <span class="badge-dot"></span> Coming Soon
+      </div>
       {{ end }}
     </header>
 
     <div class="puget-product-content">
       {{ .Content }}
     </div>
+
+    {{/* Buy / pre-order / notify CTA — skipped for configurable products,
+         which render their own button inside the configurator below. */}}
+    {{ if not .Params.configurable }}
+    <section class="puget-product-cta">
+      {{ if eq .Params.status "pre_order" }}
+        {{ partial "add-to-cart.html" (dict
+            "sku" .Params.sku
+            "price" .Params.price
+            "marked_price" (.Params.marked_price | default .Params.price)
+            "title" .Title
+            "type" "physical"
+            "label" (printf "Pre-order — $%v" .Params.price)
+            "class" "btn-primary btn-lg") }}
+        <p class="puget-product-cta-note">Pay now to reserve. We&rsquo;ll email you when your unit ships.</p>
+      {{ else if eq .Params.status "available" }}
+        {{ partial "add-to-cart.html" (dict
+            "sku" .Params.sku
+            "price" .Params.price
+            "title" .Title
+            "type" "physical"
+            "label" (printf "Add to Cart — $%v" .Params.price)
+            "class" "btn-primary btn-lg") }}
+      {{ else if eq .Params.status "coming_soon" }}
+        {{ partial "notify-form.html" (dict
+            "interest" (printf "hardware-%s" .Params.sku)
+            "label" (printf "Get notified when %s ships" .Title)
+            "button" "Notify Me") }}
+      {{ end }}
+    </section>
+    {{ end }}
 
     {{/* Product Configurator — wires directly to the gsg-ecommerce cart API */}}
     {{ if .Params.configurable }}

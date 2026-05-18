@@ -1,9 +1,9 @@
 ---
 title: "DrummerBoy"
 description: "4-voice drum module with classic machine models"
-price: 349
+price: 300
 sku: "DRUMMER-001"
-status: "coming_soon"
+status: "pre_order"
 layout: single
 images:
   - "/images/hardware/drummerboy.png"
@@ -58,7 +58,7 @@ A 4-voice drum module in Eurorack format. Each voice is a complete WDF circuit m
 
 ## Status
 
-**Expected Q4 2026**
+**Pre-order open** — Pay now to reserve your unit at launch pricing. Expected Q4 2026.
 
 ---
 
